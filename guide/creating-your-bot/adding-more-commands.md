@@ -4,7 +4,7 @@
 Esta página es una continuación y se basa en el código de la [página anterior](/creating-your-bot/) y asume que ya has leído la [sección de interacciones](/interactions/registering-slash-commands.md) y estás familiarizado con su uso.
 :::
 
-Un bot sin un solo comando pede ser aburrido, y probablemente tienes muchísimas ideas para comandos flotando alrededor de tu cabeza, ¿No? Empecemos entonces. 
+Un bot sin un solo comando puede ser aburrido, y probablemente tienes muchísimas ideas para comandos flotando alrededor de tu cabeza, ¿No? Empecemos entonces. 
 
 Así se debería ver tu evento de interacciones:
 
@@ -18,7 +18,7 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-Antes de hacer cualquier cosa, asegúrate de crear una propiedad para almacenar el token. En vez de `const config = ...`, puedes desestructurar el archivo de configuración para extraer la variable `token`.ucture the config file to extract the token variable.
+Antes de hacer cualquier cosa, asegúrate de crear una propiedad para almacenar el token. En vez de `const config = ...`, puedes desestructurar el archivo de configuración para extraer la variable `token`.
 
 ```js {1,3}
 const { token } = require('./config.json');
@@ -171,7 +171,7 @@ Esto mostrará el **nombre de usuario** del autor del comando (no el apodo, si t
 
 Si no tienes planeado hacer más de siete u ocho comandos para tu bot, entonces usar una cadena de if/else if es suficiente; es presumiblemente un proyecto pequeño en ese punto, por lo que no necesitarías dedicarle mucho tiempo a eso. Sin embargo, este no es el caso para la mayoría de nosotros.
 
-Probablemente quieras hacer tu bot con diversas funciones, fácil de configurar y desarrollar, ¿No? Usar una cadena de muchos if/else if no te ayudará a lograr eso; solo te molestará durante el proceso de desarrollo. En la siguiente página los dividiremos en algo llamado "command handler" - algo que hace la gestión de comandos más fácil y mucho más eficiente.
+Probablemente quieras hacer tu bot con diversas funciones, fácil de configurar y desarrollar, ¿No? Usar una cadena de muchos if/else if no te ayudará a lograr eso; solo te molestará durante el proceso de desarrollo. En la siguiente página los dividiremos en algo llamado "administrador de comandos". Algo que hace la gestión de comandos más fácil y mucho más eficiente.
 
 Antes de continuar, aquí hay una pequeña lista de razones por las que no deberías usar cadenas de if/else if para algo que no sea un proyecto pequeño:
 

@@ -1,8 +1,8 @@
-# Command handling
+# Administrador de comandos
 
-Unless your bot project is a small one, it's not a very good idea to have a single file with a giant if/else if chain for commands. If you want to implement features into your bot and make your development process a lot less painful, you'll want to implement a command handler. Let's get started on that!
+A menos de que tu bot sea un proyecto pequeño, no es una buena idea tener un solo archivo con cadenas gigantes de if/else if para los comandos. Si quieres implementar más cosas en tu bot y hacer el proceso de desarrollo mucho menos doloroso, querrás implementar un administrador de comandos. ¡Empecemos!
 
-Here's the base code we'll be using:
+Esta es la base del código que usaremos:
 
 ```js
 const { Client, Collection, Intents } = require('discord.js');
@@ -11,7 +11,7 @@ const { token } = require('./config.json');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('¡Estoy listo!');
 });
 
 client.on('interactionCreate', async interaction => {
@@ -20,7 +20,7 @@ client.on('interactionCreate', async interaction => {
 	if (interaction.commandName === 'ping') {
 		await interaction.reply('Pong.');
 	} else if (interaction.commandName === 'beep') {
-		await interaction.reply('Boop!');
+		await interaction.reply('¡Boop!');
 	}
 	// ...
 });
@@ -28,12 +28,12 @@ client.on('interactionCreate', async interaction => {
 client.login(token);
 ```
 
-## Individual command files
+## Archivos individuales para comandos
 
-Before anything, you may want to create a backup of your current bot file. If you've followed along so far, your entire folder structure should look something like this:
+Antes de nada, crea una copia de la carpeta actual de tu bot. Si seguiste la guía desde el inicio, la estructura completa de tu carpeta debería verse algo así: 
 
 ```:no-line-numbers
-discord-bot/
+bot-de-discord/
 ├── node_modules
 ├── config.json
 ├── index.js
@@ -41,31 +41,31 @@ discord-bot/
 └── package.json
 ```
 
-In the same folder, create a new folder and name it `commands`. This is where you'll store all of your commands, of course. Head over to your `commands` folder, create a new file named `ping.js`, and copy & paste in the following code:
+En la misma carpeta, crea una nueva carpeta llamada `commands`. Aquí será donde guardaremos todos los comandos, por supuesto. Abre esa carpeta, crea un nuevo archivo llamado `ping.js`, y copia y pega el siguiente código:
 
 ```js
 module.exports = {
 	name: 'ping',
-	description: 'Replies with Pong!',
+	description: '¡Responde un pong!',
 	async execute(interaction) {
-		await interaction.reply('Pong!');
+		await interaction.reply('¡Pong!');
 	},
 };
 ```
 
-You can go ahead and do the same for the rest of your commands and put their respective blocks of code inside the `execute()` function. If you've been using the same code as the guide thus far, you can copy & paste your commands into their own files now, following the format above. The `description` property is optional but will be useful for the dynamic help command we'll be covering later.
+Ahora puedes hacer lo mismo con el resto de tus comandos y colocarlos en sus respectivos bloques de código dentro de la función `execute()`. Si has estado usando el mismo código que la guía, puedes copiar y pegar tus comandos en sus respectivos archivos, siguiendo el formato de arriba. La propiedad `description` es opcional, pero será útil para un comando de ayuda dinámico que veremos más adelante.
 
 ::: tip
-`module.exports` is how you export data in Node.js so that you can `require()` it in other files. If you're unfamiliar with it and want to read more, you can look at [the documentation](https://nodejs.org/api/modules.html#modules_module_exports) for more info.
+`module.exports` es como exportas tus datos en Node.js para luego llamarlos con `require()` en otros archivos. Si no estás familiarizado con esto y quieres saber más, puedes revisar [la documentación](https://nodejs.org/api/modules.html#modules_module_exports) para más información.
 :::
 
 ::: tip
-If you need to access your client instance from inside one of your command files, you can access it via `interaction.client`. If you need to access external files, modules, etc., you should re-require them at the top of the file.
+Si necesitas acceso a la instancia de tu cliente dentro de alguno de los archivos de tus comandos, puedes acceder a el vía `interaction.client`. Si necesitas acceso a otros archivos externos, módulos, etc, tendrás que volver a requerirlos al inicio del archivo.
 :::
 
-## Reading command files
+## Leyendo archivos
 
-Back in your main file, make these two additions:
+En el archivo principal de tu bot, haz estas dos adiciones:
 
 ```js {1,6}
 const fs = require('fs');
@@ -77,14 +77,14 @@ client.commands = new Collection();
 ```
 
 ::: tip
-`fs` is Node's native file system module. You can read the docs about it [here](https://nodejs.org/api/fs.html).
+`fs` es el módulo de archivos de sistema nativo de Node. Puedes leer la documentación [aquí](https://nodejs.org/api/fs.html).
 :::
 
 ::: tip
-If you aren't exactly sure what Collections are, they're a class that extend JavaScript's native Map class and include more extensive, useful functionality. You can read about Maps [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and see all the available Collection methods <DocsLink section="collection" path="class/Collection">here</DocsLink>.
+Si no estás seguro exactamente sobre que son las colecciones, son una clase que extiende la clase Map nativa de JavaScript e incluye más funcionalidades útiles. Puedes leer sobre Maps [aquí](), y ver todos los métodos disponibles de una Collection <DocsLink section="collection" path="class/Collection">aquí</DocsLink>.
 :::
 
-This next step is how you'll dynamically retrieve all your newly created command files. The [`fs.readdirSync()`](https://nodejs.org/api/fs.html#fs_fs_readdirsync_path_options) method will return an array of all the file names in a directory, e.g. `['ping.js', 'beep.js']`. To ensure only command files get returned, use `Array.filter()` to leave out any non-JavaScript files from the array. With that array, you can loop over it and dynamically set your commands to the Collection you made above.
+El siguiente paso es la forma de obtener dinámicamente todos los archivos de comandos recién creados. El método [`fs.readdirSync()`](https://nodejs.org/api/fs.html#fs_fs_readdirsync_path_options) retornará un array de todos los nombres de los archivos en una carpeta, por ejemplo: `['ping.js', 'beep.js']`. Para asegurarte de que solo archivos de comandos sean retornados, usa `Array.filter()` para dejar fuera del array todos los archivos que no sean de JavaScript. Con ese array, puedes hacer un búcle sobre el y establecer tus comandos dinámicamente dentro de la colección que creaste arriba.
 
 ```js {3,5-10}
 client.commands = new Collection();
@@ -93,15 +93,15 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
-	// set a new item in the Collection
-	// with the key as the command name and the value as the exported module
+	// establece un nuevo objeto en la colección
+	// con el nombre del comando como llave y el módulo exportado como valor.
 	client.commands.set(command.name, command);
 }
 ```
 
-## Dynamically executing commands
+## Ejecutando comandos dinámicamente
 
-With your `client.commands` Collection setup, you can use it to retrieve and execute your commands! Inside your `interactionCreate` event, delete your `if`/`else if` chain of commands and replace it with this:
+Con tu colección en `client.commands` hecha, ¡Puedes usarla para obtener y ejecutar tus comandos! Dentro de tu evento `interactionCreate`, elimina tus cadenas de `if`/`else if` de comandos y reemplázalo con esto:
 
 ```js {6-12}
 client.on('interactionCreate', async interaction => {
@@ -113,15 +113,15 @@ client.on('interactionCreate', async interaction => {
 		await client.commands.get(interaction.commandName).execute(interaction);
 	} catch (error) {
 		console.error(error);
-		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		await interaction.reply({ content: '¡Ocurrió un error al ejecutar este comando!', ephemeral: true });
 	}
 });
 ```
 
-If there isn't a command with that name, you don't need to do anything further, so exit early with `return`. If there is, `.get()` the command, call its `.execute()` method, and pass in your `interaction` variable as its argument. In case something goes wrong, log the error and report back to the member to let them know.
+Si no hay ningún comando con ese nombre, no tendrás que hacer nada más que agregar un `return` para cancelar la ejecución del resto del código. Si hay uno, usas `.get()` para obtener el comando, llamas su método `.execute()`, y le pasas la variable `interaction` como argumento. En caso de que algo vaya mal, loguea el error en la consola y le hace saber al miembro que ocurrió un error.
 
-And that's it! Whenever you want to add a new command, you make a new file in your `commands` directory, name it what you want, and then do what you did for the other commands.
+¡Y eso es todo! Siempre que quieras crear un nuevo comando, crea un nuevo archivo en tu carpeta `commands`, nómbralo como quieras, y haz lo que hiciste con los otros comandos.
 
-## Resulting code
+## Resultado final
 
 <ResultingCode path="command-handling/file-setup" />
