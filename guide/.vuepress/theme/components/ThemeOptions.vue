@@ -1,18 +1,18 @@
 <template>
 	<div class="theme-options">
 		<ul class="color-theme-options">
-			<span>Theme</span>
+			<span>Tema</span>
 			<li>
 				<button
 					class="default-theme"
-					title="Green theme"
+					title="Verde"
 					@click.prevent="setTheme({ persist: true })"
 				></button>
 			</li>
 			<li>
 				<button
 					class="blurple-theme"
-					title="Blurple theme"
+					title="Blurple"
 					@click.prevent="setTheme({ colorTheme: 'blurple', persist: true })"
 				></button>
 			</li>
