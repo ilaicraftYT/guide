@@ -14,7 +14,7 @@ Puedes crear un archivo rápidamente usando el atajo `Ctrl + N` en tu teclado y 
 
 ## Iniciando sesión en Discord
 
-Una vez hayas creado el nuevo archivo, haz una revisión rápida para ver que hayas hecho todo correctamente. Copia y pega el siguiente código en tu archivo y guárdalo. No te preocupes si no lo entiendes—lo explicaremos más a profundidad después de esto.
+Una vez hayas creado el nuevo archivo, haz una revisión rápida para ver que hayas hecho todo correctamente. Copia y pega el siguiente código en tu archivo y guárdalo. No te preocupes si no lo entiendes, lo explicaremos más a profundidad después de esto.
 
 
 ```js
