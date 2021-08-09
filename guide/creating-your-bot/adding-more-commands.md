@@ -4,7 +4,7 @@
 Esta página es una continuación y se basa en el código de la [página anterior](/creating-your-bot/) y asume que ya has leído la [sección de interacciones](/interactions/registering-slash-commands.md) y estás familiarizado con su uso.
 :::
 
-Un bot sin un solo comando pede ser aburrido, y probablemente tienes muchísimas ideas para comandos flotando alrededor de tu cabeza, ¿No? Empecemos entonces. 
+Un bot sin un solo comando puede ser aburrido, y probablemente tienes muchísimas ideas para comandos flotando alrededor de tu cabeza, ¿No? Empecemos entonces. 
 
 Así se debería ver tu evento de interacciones:
 
@@ -18,7 +18,7 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-Antes de hacer cualquier cosa, asegúrate de crear una propiedad para almacenar el token. En vez de `const config = ...`, puedes desestructurar el archivo de configuración para extraer la variable `token`.ucture the config file to extract the token variable.
+Antes de hacer cualquier cosa, asegúrate de crear una propiedad para almacenar el token. En vez de `const config = ...`, puedes desestructurar el archivo de configuración para extraer la variable `token`.
 
 ```js {1,3}
 const { token } = require('./config.json');
