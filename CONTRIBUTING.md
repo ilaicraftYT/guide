@@ -1,28 +1,28 @@
-# Contributing
+# Contribuir
 
-## Local development
+## Desarrollo Local
 
-Clone the repo into your desired folder, `cd` into it, and install the dependencies.
+Clona el repositorio en la carpeta deseada, `cd` para entrar a la carpeta, e instala las dependencias.
 
 ```bash
-git clone https://github.com/discordjs/guide.git
+git clone https://github.com/awoocado/guide.git
 cd guide
 npm install
 ```
 
-You can use `npm run dev` to open up a local version of the site at http://localhost:8080. If you need to use a different port, run it as `npm run dev -- --port=1234`.
+Puedes usar `npm run dev` para abrir una versión local de la página en http://localhost:8080. Si necesitas usar otro puerto, ejecutalo con el siguiente parámetro `npm run dev -- --port=1234`.
 
-### Linting
+### Usando un linter
 
-Remember to always lint your edits/additions before making a commit to ensure everything's lined up and consistent with the rest of the guide. We use ESLint and have a package.json script for linting both JS files and JS codeblocks inside Markdown files.
+Recuerda siempre usar el linter para tus ediciones/adiciones antes de hacer un commit para asegurar de que todo esté ordenado y sea consistente con la guía. Usamos ESLint y tenemos un script en package.json para usar el linter en los archivos y bloques de codigo JS en los archivos markdown.
 
 ```bash
 npm run lint
 ```
 
-#### Caveats
+#### Advertencias
 
-There might come a time where a snippet will contain a parsing error, and ESLint won't be able to lint it properly. For example:
+Puede que algunos snippets de código muestren errores  There might come a time where a snippet will contain a parsing error, and ESLint won't be able to lint it properly. For example:
 
 <!-- eslint-skip -->
 

@@ -12,7 +12,7 @@ La versión básica del enlace luce algo así:
 https://discord.com/oauth2/authorize?client_id=123456789012345678&scope=bot+applications.commands
 ```
 
-The structure of the url is quite simple:
+La estructura del url es bastante simple:
 
 * La primera parte es solo la estructura estandar de Discord para actualizar una aplicación OAuth3 (como tu aplicación del bot) para entrar a un servidor de Discord.
 * La segunda parte dice `client_id=...` es para especificar _cual_ aplicación quieres autorizar. Necesitaras remplazar esta parte con el ID del cliente para crear un enlace de invitación valido.
@@ -23,7 +23,7 @@ The structure of the url is quite simple:
 El `permissions` parametro tambien existe para restringir o garantizar el permiso que tu bot va a tener en el servidor que lo estan añadiendo. Para facilidad de uso, es recomendado usar [esta](https://discordapi.com/permissions.html) página.
 :::
 
-::: Advertencia
+::: warning
 Si obtienes un error diciendo "Bot requires a code grant", entonces ve a las configuraciones de tu aplicación y desabilita la "Require OAuth2 Code Grant" opción. Usted usualmente no habilitará esta "caja" si no sabe para que lo necesita.
 :::
 
