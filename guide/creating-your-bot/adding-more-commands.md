@@ -1,24 +1,24 @@
-# Adding more commands
+# Añadiendo más comandos
 
 ::: tip
-This page is a follow-up and bases its code on [the previous page](/creating-your-bot/configuration-files.md) and assumes that you have read [the interactions section](/interactions/registering-slash-commands.md) and are familiar with its usage.
+Esta página es una continuación y se basa en el código de la [página anterior](/creating-your-bot/) y asume que ya has leído la [sección de interacciones](/interactions/registering-slash-commands.md) y estás familiarizado con su uso.
 :::
 
-A bot with nothing but a single command would be boring, and you probably have a bunch of command ideas floating around in your head already, right? Let's begin, then.
+Un bot sin un solo comando pede ser aburrido, y probablemente tienes muchísimas ideas para comandos flotando alrededor de tu cabeza, ¿No? Empecemos entonces. 
 
-Here's what your interaction event should currently look like:
+Así se debería ver tu evento de interacciones:
 
 ```js
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
 	if (interaction.commandName === 'ping') {
-		await interaction.reply('Pong!');
+		await interaction.reply('¡Pong!');
 	}
 });
 ```
 
-Before doing anything else, make a property to store the token. Instead of `const config = ...`, you can destructure the config file to extract the token variable.
+Antes de hacer cualquier cosa, asegúrate de crear una propiedad para almacenar el token. En vez de `const config = ...`, puedes desestructurar el archivo de configuración para extraer la variable `token`.ucture the config file to extract the token variable.
 
 ```js {1,3}
 const { token } = require('./config.json');
@@ -26,15 +26,15 @@ const { token } = require('./config.json');
 client.login(token);
 ```
 
-From now on, if you change the token in your `config.json` file, it'll change in your bot file as well.
+Desde ahora, si cambias el token en tu archivo `config.json`, se cambiará en el archivo de tu bot igualmente.
 
 ::: tip
-If you aren't familiar with some of this syntax, it may be ES6 syntax. If it does confuse you, you should check out [this guide page](/additional-info/es6-syntax.md) before continuing.
+Si no estás familiarizado con parte de esta sintaxis, es posible que sea sintaxis ES6. Si esto te confunde, deberías revisar [esta página](/additional-info/es6-syntax.md) de la guía antes de continuar.
 :::
 
-## Simple command structure
+## Estructura simple de comandos
 
-You already have an if statement that checks messages for a ping/pong command. Adding other command checks is just as easy; chain an `else if` to your existing condition. Instead of using `interaction.commandName` every time, you can destructure and rename it to `command`.
+Ya tienes un if declarado que comprueba mensajes por un comando ping/pong. Añadir comprobaciones para otros comandos es fácil; encadena un `else if` a tu condición existente. En vez de usar `interaction.commandName` a cada rato, puedes desestructurar y renombrarlo a `command`.
 
 ```js {2-10}
 client.on('interactionCreate', async interaction => {
@@ -43,23 +43,23 @@ client.on('interactionCreate', async interaction => {
 	const { commandName: command } = interaction;
 
 	if (command === 'ping') {
-		await interaction.reply('Pong!');
+		await interaction.reply('¡Pong!');
 	} else if (command === 'beep') {
-		await interaction.reply('Boop!');
+		await interaction.reply('¡Boop!');
 	}
 });
 ```
 
-## Displaying real data
+## Mostrando datos reales
 
-Let's start displaying some real data. For now, we'll be displaying basic member/server info.
+Empecemos con mostrar algunos datos reales. Por ahora, mostraremos información básica de un miembro/servidor.
 
-### Server info command
+### Comando de información del servidor
 
-Make another if statement to check for commands using `server` as the command name. You get the interaction object and reply to the interaction just as before:
+Declara otro if para comprobar comandos con el nombre `server`. Obtén el objeto de la interacción y responde al igual que antes.
 
 ::: tip
-Servers are referred to as "guilds" in the Discord API and discord.js library. Whenever you see someone say "guild", they mean server.
+Los servidores son llamados "guilds" en la API de Discord y en la librería discord.js. Siempre que veas algo que diga "guild", significará servidor.
 :::
 
 ```js {10-12}
@@ -69,27 +69,27 @@ client.on('interactionCreate', async interaction => {
 	const { commandName: command } = interaction;
 
 	if (command === 'ping') {
-		await interaction.reply('Pong!');
+		await interaction.reply('¡Pong!');
 	} else if (command === 'beep') {
-		await interaction.reply('Boop!');
+		await interaction.reply('¡Boop!');
 	} else if (command === 'server') {
-		await interaction.reply(`This server's name is: ${interaction.guild.name}`);
+		await interaction.reply(`El nombre de este servidor es: ${interaction.guild.name}`);
 	}
 });
 ```
 
-The code above would result in this:
+El resultado del código de arriba sería este:
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
 		<template #interactions>
 			<DiscordInteraction profile="user" :command="true">server</DiscordInteraction>
 		</template>
-		This server's name is: Discord Bot Guide
+		El nombre de este servidor es: Discord Bot Guide
 	</DiscordMessage>
 </DiscordMessages>
 
-If you want to expand upon that command and add some more info, here's an example of what you can do:
+Si quieres expandir más ese comando y añadir algo más de información, aquí hay un ejemplo de qué puedes hacer:
 
 ```js {10-12}
 client.on('interactionCreate', async interaction => {
@@ -98,36 +98,36 @@ client.on('interactionCreate', async interaction => {
 	const { commandName: command } = interaction;
 
 	if (command === 'ping') {
-		await interaction.reply('Pong!');
+		await interaction.reply('¡Pong!');
 	} else if (command === 'beep') {
-		await interaction.reply('Boop!');
+		await interaction.reply('¡Boop!');
 	} else if (command === 'server') {
-		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+		await interaction.reply(`Nombre del servidor: ${interaction.guild.name}\nMiembros totales: ${interaction.guild.memberCount}`);
 	}
 });
 ```
 
-That would display both the server name _and_ the amount of members in it.
+Esto mostrará el nombre del servidor y la cantidad de miembros en el.
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
 		<template #interactions>
 			<DiscordInteraction profile="user" :command="true">server</DiscordInteraction>
 		</template>
-		Server name: Discord Bot Guide<br>
-		Total members: 3
+		Nombre del servidor: Discord Bot Guide<br>
+		Miembros totales: 3
 	</DiscordMessage>
 </DiscordMessages>
 
-Of course, you can modify this to your liking. You may also want to display the date the server was created or the server's region. You would do those in the same manner–use `interaction.guild.createdAt` or `interaction.guild.region`, respectively.
+Claro, puedes modificar esto a tu gusto. Puede que también quieras mostrar la fecha en la que se creó el servidor. Puedes hacerlo de la misma manera, usando `interaction.guild.createdAt`.
 
 ::: tip
-Want a list of all the properties you can access and all the methods you can call on a server? Refer to <DocsLink path="class/Guild">the discord.js documentation site</DocsLink>!
+¿Quieres ver una lista de todos los métodos y propiedades de un servidor a los que puedes acceder? ¡Revisa la <DocsLink path="class/Guild">documentación de discord.js</DocsLink>!
 :::
 
-### User info command
+### Comando de información del usuario
 
-Set up another if statement and use the command name `user-info`.
+Declara otro if con el comando `user-info`.
 
 <!-- eslint-skip -->
 
@@ -138,52 +138,52 @@ client.on('interactionCreate', async interaction => {
 	const { commandName: command } = interaction;
 
 	if (command === 'ping') {
-		await interaction.reply('Pong!');
+		await interaction.reply('¡Pong!');
 	} else if (command === 'beep') {
-		await interaction.reply('Boop!');
+		await interaction.reply('¡Boop!');
 	} else if (command === 'server') {
-		await interaction.reply(`This server's name is: ${interaction.guild.name}`);
+		await interaction.reply(`El nombre de este servidor es: ${interaction.guild.name}`);
 	} else if (command === 'user-info') {
-		await interaction.reply(`Your username: ${interaction.user.username}\nYour ID: ${interaction.user.id}`);
+		await interaction.reply(`Tu nombre de usuario: ${interaction.user.username}\nTu Id: ${interaction.user.id}`);
 	}
 });
 ```
 
-This will display the command author's **username** (not nickname, if they have one set), as well as their user ID.
+Esto mostrará el **nombre de usuario** del autor del comando (no el apodo, si tiene uno establecido), y su Id.
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
 		<template #interactions>
 			<DiscordInteraction profile="user" :command="true">user-info</DiscordInteraction>
 		</template>
-		Your username: User <br>
-		Your ID: 123456789012345678
+		Tu nombre de usuario: User <br>
+		Tu Id: 123456789012345678
 	</DiscordMessage>
 </DiscordMessages>
 
 ::: tip
-`interaction.user` refers to the user who sent the command. For a full list of all the properties and methods for the user object, check out <DocsLink path="class/User">the documentation page for it</DocsLink>.
+`interaction.user` se refiere al usuario que envió el comando. Para una lista completa de todas las propiedades y métodos que puedes usar de un usuario, revisa <DocsLink path="class/User">la documentación</DocsLink>.
 :::
 
-And there you have it! As you can see, it's quite simple to add additional commands.
+¡Y ahí lo tienes! Como puedes ver, es bastante simple agregar comandos adicionales.
 
-## The problem with `if`/`else if`
+## El problema con `if`/`else if`
 
-If you don't plan to make more than seven or eight commands for your bot, then using an if/else if chain is sufficient; it's presumably a small project at that point, so you shouldn't need to spend too much time on it. However, this isn't the case for most of us.
+Si no tienes planeado hacer más de siete u ocho comandos para tu bot, entonces usar una cadena de if/else if es suficiente; es presumiblemente un proyecto pequeño en ese punto, por lo que no necesitarías dedicarle mucho tiempo a eso. Sin embargo, este no es el caso para la mayoría de nosotros.
 
-You probably want your bot to be feature-rich and easy to configure and develop, right? Using a giant if/else if chain won't let you achieve that; it will only hinder your development process. After you read up on [creating arguments](/creating-your-bot/commands-with-user-input.md), we'll be diving right into something called a "command handler" - code that makes handling commands easier and much more efficient.
+Probablemente quieras hacer tu bot con diversas funciones, fácil de configurar y desarrollar, ¿No? Usar una cadena de muchos if/else if no te ayudará a lograr eso; solo te molestará durante el proceso de desarrollo. En la siguiente página los dividiremos en algo llamado "command handler" - algo que hace la gestión de comandos más fácil y mucho más eficiente.
 
-Before continuing, here's a small list of reasons why you shouldn't use if/else if chains for anything that's not a small project:
+Antes de continuar, aquí hay una pequeña lista de razones por las que no deberías usar cadenas de if/else if para algo que no sea un proyecto pequeño:
 
-* Takes longer to find a piece of code you want.
-* Easier to fall victim to [spaghetti code](https://en.wikipedia.org/wiki/Spaghetti_code).
-* Difficult to maintain as it grows.
-* Difficult to debug.
-* Difficult to organize.
-* General bad practice.
+* Toma más tiempo encontrar una pieza de código que busques.
+* Fácil de caer como víctima del [código espagueti](https://es.wikipedia.org/wiki/Código_espagueti).
+* Se dificulta más el mantenerlo mientras crece-
+* Se dificulta debuggearlo.
+* Se dificulta organizar.
+* Mala práctica en general.
 
-In short, it's just not a good idea. But that's why this guide exists! Go ahead and read the next few pages to prevent these issues before they happen, learning new things along the way.
+En resumen, no es una buena idea. ¡Pero esa es la razón por la que esta guía existe! Lee las siguientes páginas para prevenir estos problemas antes de que sucedan, aprende nuevas cosas durante el camino.
 
-## Resulting code
+## Resultado final
 
 <ResultingCode />

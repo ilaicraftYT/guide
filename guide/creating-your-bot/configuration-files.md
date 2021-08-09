@@ -1,53 +1,53 @@
-# Configuration files
+# Archivos de configuración
 
 ::: tip
-This page is a follow-up and bases its code on [the previous page](/creating-your-bot/).
+Esta página es una continuación y se basa en el código de la [página anterior](/creating-your-bot/)
 :::
 
-As you get deeper into development, you may need to interact with sensitive data or data that gets used in multiple locations, such as:
+Mientras más te profundices en el desarrollo, necesitarás interactuar con datos sensibles o datos que son usados en múltiples lugares, así como:
 
-* Database passwords
-* API keys
-* A list of bot owner IDs
+* Contraseñas de bases de datos
+* Llaves de APIs
+* Una lista de las Ids de los dueños del bot
 
-Having that kind of data hard-coded in each of your files can be bothersome and less than ideal. This is where configuration files come in–they're great for storing static data you can easily update in a single place.
+Tener ese tipo de datos en cada uno de tus archivos, puede ser molesto y menos de lo ideal. Aquí es donde los archivos de configuración entran–son un gran lugar para almacenar datos estáticos que puedes actualizar fácilmente en un solo lugar.
 
-## Implementing your config file
+## Implementando un archivo de configuración
 
-Go to your code editor and make a new file. Add in the code below and save it as `config.json`, in the same directory as your main bot file.
+Ve a tu editor de código y crea un nuevo archivo. Añade el código que está abajo y guárdalo como `config.json`, en la misma carpeta en la que está el archivo principal de tu bot.
 
 ```json
 {
-	"token": "your-token-goes-here"
+	"token": "tu-token-va-aquí"
 }
 ```
 
-Go back to your main bot file, locate the `const client = new Client()` line, and add this above it:
+Vuelve al archivo principal de tu bot, encuentra la línea del `const client = new Client()` y añade esto arriba:
 
 ```js
 const { token } = require('./config.json');
 ```
 
-Next, copy your token from the `client.login('your-token-goes-here')` line and paste into the `config.json` file. Make sure to keep it between the double-quotes.
+Ahora, copia tu token de la línea del `client.login('tu-token-va-aquí')` y pégala en el archivo `config.json`. Asegúrate de ponerla entre comillas.
 
-Now you can simply do `client.login(token)` to login!
+¡Ahora simplemente puedes hacer `client.login(token)` para iniciar sesión!
 
-## Storing additional data
+## Almacenando datos adicionales
 
-As previously mentioned, you'll probably want to store more than just your token at one point or another. If you're going to store more data, add another key/value pair to the list!
+Como mencionamos anteriormente, probablemente quieras almacenar más datos que solo tu token en algún punto u otro. ¡Si almacenarás más datos, añade otro par de llave/valor a la lista!
 
 ```json
 {
-	"token": "your-token-goes-here",
-	"meaning_of_life": 42,
-	"passwords_array": ["please", "dont", "hack", "me"],
-	"secret_passcodes": {
-		"bank": 1234,
-		"home": 4321
+	"token": "tu-token-va-aquí",
+	"significado_de_la_vida": 42,
+	"array_de_contraseñas": ["por", "favor", "no", "me", "hackees"],
+	"codigos_secretos": {
+		"banco": 1234,
+		"casa": 4321
 	}
 }
 ```
 
-## Resulting code
+## Resultado final
 
 <ResultingCode />

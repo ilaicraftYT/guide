@@ -1,20 +1,21 @@
-# Getting your bot up & running
+# Poniendo en marcha tu bot
 
-We're finally getting to the exciting parts! Since your bot is in your server now, the next step is to start coding and get it online!
+¡Por fin llegamos a las partes más emocionantes! ¡Ya que tu bot está en tu servidor, el siguiente paso es iniciar a programar y encenderlo!
 
-## Creating the bot file
+## Creando el archivo del bot
 
-Open up your preferred code editor (whether it be [Visual Studio Code](https://code.visualstudio.com/), [Atom](https://atom.io/), [Sublime Text](https://www.sublimetext.com/), or any other editor of your choice) and create a new file. If you're brand new and aren't sure what to use, go with Visual Studio Code.
+Abre tu editor de código preferido (Puede ser [Visual Studio Code](https://code.visualstudio.com/), [Atom](https://atom.io/), [Sublime Text](https://www.sublimetext.com/), o cualquier otro editor de tu elección) y crea un nuevo archivo. Si eres nuevo en esto y no estás seguro sobre cuál usar, usa Visual Studio Code.
 
-We suggest that you save the file as `index.js`, but you may name it whatever you wish, as long as it ends with `.js`.
+Es preferible que guardes el archivo como `index.js`, pero puedes nombrarlo como desees, mientras termine con `.js`.
 
 ::: tip
-You can quickly create a new file using the `Ctrl + N` shortcut on your keyboard and then using `Ctrl + S` to save the file.
+Puedes crear un archivo rápidamente usando el atajo `Ctrl + N` en tu teclado y `Ctrl + S` para guardar el archivo.
 :::
 
-## Logging in to Discord
+## Iniciando sesión en Discord
 
-Once you've created a new file, do a quick check to see if you have everything setup correctly. Copy & paste the following code into your file and save it. Don't worry if you don't understand it right away—we explain more in-depth after this.
+Una vez hayas creado el nuevo archivo, haz una revisión rápida para ver que hayas hecho todo correctamente. Copia y pega el siguiente código en tu archivo y guárdalo. No te preocupes si no lo entiendes—lo explicaremos más a profundidad después de esto.
+
 
 ```js
 const { Client, Intents } = require('discord.js');
@@ -22,43 +23,44 @@ const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('¡Estoy listo!');
 });
 
-client.login('your-token-goes-here');
+client.login('tu-token-va-aquí');
 ```
 
-Head back to your console window, type in `node your-file-name.js`, and press enter. If you see the `Ready!` message after a few seconds, you're good to go! If not, try going back a few steps and make sure you followed everything correctly.
+Abre la consola en una nueva ventana con `Ctrl + Shift + C`, escribe `node nombre-del-archivo.js`, y presiona enter. Si ves el mensaje `¡Estoy listo!` luego de unos segundos, ¡Todo funcionó correctamente! Si no, vuelve un par de pasos atras y revisa que hayas seguido todo correctamente.
+
 
 ::: tip
-Don't feel like typing the file name each time? Open up your `package.json` file, look for something like `"main": "index.js"`, and change `"index.js"` to whatever your file name is. After saving, you can run the `node .` shortcut in your console to start the process!
+¿No te gusta escribir el nombre de tu archivo a cada rato? Abre tu archivo `package.json`, busca algo como `"main": "index.js"`, y cambia `"index.js"` por el nombre de tu archivo. ¡Luego de guardarlo podrás usar `node .` como atajo en la consola para iniciar tu bot!
 :::
 
-### Start-up code explained
+### Código de inicio explicado
 
-Here's the same code with comments, so it's easier to understand what's going on.
+Aquí está el mismo código con comentarios, así será más fácil entender lo que estás haciendo.
 ```js
-// require the needed discord.js classes
+// requieres las clases necesarias de discord.js
 const { Client, Intents } = require('discord.js');
 
-// create a new Discord client
+// creas un nuevo cliente de Discord
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-// when the client is ready, run this code
-// this event will only trigger one time after logging in
+// cuando el cliente está listo, ejecuta este código
+// este evento solo se ejecutará una vez luego de iniciar sesión
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('¡Estoy listo!');
 });
 
-// login to Discord with your app's token
-client.login('your-token-goes-here');
+// Inicia sesión con el token de tu app de Discord
+client.login('tu-token-va-aquí');
 ```
 
-Although it's not a lot, it's good to know what each bit of your code does. But, as it currently is, this won't do anything. You probably want to add some commands that run whenever someone sends a specific message, right? Let's get started on that, then!
+Aunque no sea mucho, es bueno saber que hace cada parte de tu código. Pero, como está actualmente, esto no hará nada. Probablemente quieras añadir algunos comandos que se ejecuten cuando alguien usa uno de ellos, ¿No? ¡Empecemos con eso entonces!
 
-## Listening for interactions
+## Escuchando las interacciones
 
-First, make sure to close the process in your console. You can do so by pressing `Ctrl + C` inside the console. Go back to your code editor and add the following piece of code above the `client.login()` line.
+Primero, asegúrate de apagar el bot en tu consola. Puedes hacerlo presionando `Ctrl + C` dentro de la consola. Vuelve a tu editor de código y añade lo siguiente arriba de la línea del `client.login()`.
 
 ```js
 client.on('interactionCreate', interaction => {
@@ -66,16 +68,16 @@ client.on('interactionCreate', interaction => {
 });
 ```
 
-Notice how the code uses `.on` rather than `.once` like in the ready event. This means that it can trigger multiple times. Save the file, go back to your console, and start the process up again. Whenever an interaction is received, the console will log it. Go ahead and test it out!
+Fíjate como el código usa `.on` en vez de `.once` como en el evento ready. Esto significa que puede ser ejecutado múltiples veces. Guarda el archivo, vuelve a tu consola e inicia el bot nuevamente. Cuando una interacción sea recibida, aparecerá en la consola. ¡Vé y pruebalo!
 
 ::: tip
-Inside your console, you can press the up arrow on your keyboard to bring up the latest commands you've run. Pressing `Up` and then `Enter` after closing the process is a convenient, quick way to start it up again (instead of typing out the name each time).
+Dentro de la consola, puedes presionar las flechas de tu teclado para ver los comandos que haz usado reciéntemente. Presionar la flecha `Arriba` y `Enter` luego de apagar el bot, es una forma conveniente y rápida de encenderlo nuevamente (en vez de escribir el nombre a cada rato).
 :::
 
 ::: tip
-To learn how to create and receive slash commands, read through [the interactions section](/interactions/registering-slash-commands.md).
+Para aprender cómo crear y recibir comandos slash (`/`), lee la [sección de interacciones](/interactions/registering-slash-commands.md).
 :::
 
-## Resulting code
+## Resultado final
 
 <ResultingCode path="creating-your-bot/up-and-running" />
