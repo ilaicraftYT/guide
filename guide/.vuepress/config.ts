@@ -19,7 +19,7 @@ const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 		['meta', { property: 'og:title', content: 'Guía de Discord.js' }],
 		['meta', { property: 'og:description', content: 'Imagina una guía... que explora varias posibilidades para tu bot de Discord.js' }],
 		['meta', { property: 'og:type', content: 'website' }],
-		['meta', { property: 'og:url', content: 'https://discordjs.guide/' }],
+		['meta', { property: 'og:url', content: 'https://guia.palta.ml/' }],
 		['meta', { property: 'og:locale', content: 'es_XL' }],
 		['meta', { property: 'og:image', content: '/meta-image.png' }],
 	],
