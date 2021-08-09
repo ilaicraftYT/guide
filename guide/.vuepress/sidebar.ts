@@ -1,7 +1,7 @@
 export default {
 	'/voice/': [
 		{
-			text: 'Home',
+			text: 'Inicio',
 			children: [
 				'/',
 				'/requesting-more-content.md',
@@ -9,13 +9,13 @@ export default {
 			],
 		},
 		{
-			text: 'Getting Started',
+			text: 'Cómo empezar?',
 			children: [
 				'/voice/',
 			],
 		},
 		{
-			text: 'Library',
+			text: 'Librería',
 			children: [
 				'/voice/life-cycles.md',
 				'/voice/voice-connections.md',
@@ -26,7 +26,7 @@ export default {
 	],
 	'/': [
 		{
-			text: 'Home',
+			text: 'Inicio',
 			children: [
 				'/',
 				'/requesting-more-content.md',
@@ -34,7 +34,7 @@ export default {
 			],
 		},
 		{
-			text: 'Installations & Preparations',
+			text: 'Preparándose',
 			children: [
 				'/preparations/',
 				'/preparations/setting-up-a-linter.md',
@@ -43,7 +43,7 @@ export default {
 			],
 		},
 		{
-			text: 'Creating Your Bot',
+			text: 'Creando tu bot',
 			children: [
 				'/creating-your-bot/',
 				'/creating-your-bot/configuration-files.md',
@@ -51,19 +51,19 @@ export default {
 			],
 		},
 		{
-			text: 'Command Handler',
+			text: 'Administrador de comandos',
 			children: [
 				'/command-handling/',
 			],
 		},
 		{
-			text: 'Event Handler',
+			text: 'Administrador de eventos',
 			children: [
 				'/event-handling/',
 			],
 		},
 		{
-			text: 'Interactions',
+			text: 'Interacciones',
 			children: [
 				'/interactions/registering-slash-commands.md',
 				'/interactions/replying-to-slash-commands.md',
@@ -73,7 +73,7 @@ export default {
 			],
 		},
 		{
-			text: 'Popular Topics',
+			text: 'Temas populares',
 			children: [
 				'/popular-topics/faq.md',
 				'/popular-topics/threads.md',
@@ -92,14 +92,14 @@ export default {
 			],
 		},
 		{
-			text: 'Miscellaneous',
+			text: 'Misceláneo',
 			children: [
 				'/miscellaneous/parsing-mention-arguments.md',
 				'/miscellaneous/useful-packages.md',
 			],
 		},
 		{
-			text: 'Databases',
+			text: 'Bases de datos',
 			children: [
 				'/sequelize/',
 				'/sequelize/currency.md',
@@ -107,7 +107,7 @@ export default {
 			],
 		},
 		{
-			text: 'Sharding',
+			text: 'Fragmentación (sharding)',
 			children: [
 				'/sharding/',
 				'/sharding/additional-information.md',
@@ -121,14 +121,14 @@ export default {
 			],
 		},
 		{
-			text: 'Improving Your Dev Environment',
+			text: 'Mejorando tu entorno de desarrollo',
 			children: [
 				'/improving-dev-environment/pm2.md',
 				'/improving-dev-environment/package-json-scripts.md',
 			],
 		},
 		{
-			text: 'Additional Information',
+			text: 'Información adicional',
 			children: [
 				'/additional-info/notation.md',
 				'/additional-info/es6-syntax.md',

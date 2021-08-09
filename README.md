@@ -1,24 +1,22 @@
 <div align="center">
-	<img src="guide/images/branding/banner-blurple-small.png" title="Discord.js Guide" alt="Discord.js Guide" />
+	<img src="guide/images/branding/banner-blurple-small.png" title="Guía de Discord.js" alt="Guía de Discord.js" />
 </div>
 
-# Discord.js Guide
+# Guía de Discord.js (español)
 
-Imagine a guide... that explores the many possibilies for your [discord.js](https://github.com/discordjs/discord.js) bot.
+Imagina una guía... que explora varias posibilidades para tu bot de [Discord.js](https://github.com/discordjs/discord.js).
 
 ## About
 
-This guide is aimed at users who are either unfamiliar or inexperienced with Node.js and creating Discord bots. It assumes you have a basic understanding of JavaScript.
+Esta es una traducción no oficial de [Discord.js Guide](https://github.com/discordjs/guide) diseñado para el quién no sabe inglés.
 
-There are many different subjects covered, such as:
+Esta guía está diseñada para el usuario que es inexperto o no tiene noción, de Node.js y crear bots de Discord. Esta asume que tienes un conocimiento básico de JavaScript
 
-- How to get a bot [up and running](https://discordjs.guide/preparations/) from scratch;
-- How to properly [create](https://discordjs.guide/creating-your-bot/), [organize](https://discordjs.guide/command-handling/), and expand on your commands;
-- In-depth explanations and examples regarding popular topics (e.g. [reactions](https://discordjs.guide/popular-topics/reactions.html), [embeds](https://discordjs.guide/popular-topics/embeds.html), [canvas](https://discordjs.guide/popular-topics/canvas.html));
-- Working with databases (e.g. [sequelize](https://discordjs.guide/sequelize/) and [keyv](https://discordjs.guide/keyv/));
-- Getting started with [sharding](https://discordjs.guide/sharding/);
-- And much more.
+Hay varios temas cubiertos, como:
 
-## Contributing
-
-If you're interested in contributing to the guide, you should check out our [GitHub Projects](https://github.com/discordjs/guide/projects) page or [open issues](https://github.com/discordjs/guide/issues). There's a [contribution guide](https://github.com/discordjs/guide/blob/main/CONTRIBUTING.md) you should read once you decide on what you want to contribute.
+- [Cómo arrancar un bot](https://discordjs.guide/preparations/) desde 0;
+- Como [crear](https://discordjs.guide/creating-your-bot/) apropiadamente, [organizar](https://discordjs.guide/command-handling/), y expandir en tus comandos;
+- Explicaciones a fondo y ejemplos cubriendo diferentes temas populares (ej. [reacciones](https://discordjs.guide/popular-topics/reactions.html), [incrustaciones (embeds)](https://discordjs.guide/popular-topics/embeds.html), [manipulación de imágenes](https://discordjs.guide/popular-topics/canvas.html));
+- Trabajando con bases de datos (ej. [sequelize](https://discordjs.guide/sequelize/) y [keyv](https://discordjs.guide/keyv/));
+- Empezando a [fragmentar (sharding)](https://discordjs.guide/sharding/);
+- Y mucho más.
