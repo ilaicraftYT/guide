@@ -47,6 +47,7 @@ const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 		},
 	},
 	plugins: [],
+	server: { fs: { allow: ['..'] } }
 });
 
 if (process.env.NODE_ENV === 'production') {
