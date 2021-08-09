@@ -23,7 +23,7 @@ La estructura del url es bastante simple:
 El parámetro `permissions` también existe para restringir o garantizar el (o los) permiso que tu bot va a tener en el servidor en el cual añadiendo. Para facilidad de uso, es recomendado usar [esta](https://discordapi.com/permissions.html) página.
 :::
 
-::: advertencia
+::: warning
 Si obtienes un error diciendo "Bot requires a code grant", entonces ve a las configuraciones de tu aplicación y deshabilita la opción "Require OAuth2 Code Grant". Usted usualmente no habilitará esta opción si no sabe para que lo necesita.
 :::
 
