@@ -31,7 +31,7 @@ Si obtienes un error diciendo "Bot requires a code grant", entonces ve a las con
 
 Como mencionamos arriba, necesitas remplazar el parámetro `client_id` con la ID del cliente para generar el enlace de invitación. Para encontrar la ID de la aplicación, dirígete a la página [My Apps](https://discord.com/developers/applications/me), abajo de la sección "Applications" una vez más y clic en la aplicación de tu bot.
 
-Inserta tu ID de la aplicación en el ejemplo, y entonces abre en enlace en el navegador. Deberías ver algo como esto (con el nombre y avatar del bot):
+Inserta la ID de la aplicación en el ejemplo, y entonces abre el enlace en el navegador. Deberías ver algo como esto (con el nombre y avatar del bot):
 
 ![Página de autorización](./images/bot-auth-page.png)
 
