@@ -1,113 +1,112 @@
-# Managing your bot process with PM2
+# Gestionando el proceso de tu bot con PM2
 
-PM2 is a process manager. It manages your applications' states, so you can start, stop, restart, and delete processes. It offers features such as monitoring running processes and setting up a "start with operating system" (be that Windows, Linux, or Mac) so your processes start when you boot your system.
+PM2 es un administrador de procesos. Administra los estados de sus aplicaciones, para que pueda iniciar, detener, reiniciar y eliminar procesos. Ofrece características tales como monitorear los procesos en ejecución y configurar un "inicio con el sistema operativo" (ya sea Windows, Linux o Mac) para que sus procesos comiencen cuando inicie su sistema.
 
-## Installation
+## Instalación
 
-You can install PM2 via npm:
+Puedes instalar pm2 mediante npm:
 
 ```bash
 npm install --global pm2
 ```
 
-Or, if you use Yarn:
+O, también puedes utilizar Yarn:
 
 ```bash
 yarn global add pm2
 ```
 
-## Starting your app
+## Iniciando tu aplicación
 
-After you install PM2, the easiest way you can start your app is by going to the directory your bot is in and then run the following:
+Después de instalar pm2, la manera más sencilla para iniciar tu aplicación es yendo al directorio donde se encuentra tu bot y ejecutar lo siguiente:
 
 ```bash
 pm2 start your-app-name.js
 ```
 
-### Additional notes
+### Notas adicionales
 
-The `pm2 start` script allows for more optional command-line arguments.
+El script `pm2 start` permite el uso de argumentos en línea.
 
-- `--name`: This allows you to set the name of your process when listing it up with `pm2 list` or `pm2 monit`:
+- `--name`: Esto le permite establecer el nombre de su proceso al incluirlo en `pm2 list` o `pm2 monit`:
 
 ```bash
-pm2 start your-app-name.js --name "Some cool name"
+pm2 start your-app-name.js --name "Algún nombre cool"
 ```
 
-- `--watch`: This option will automatically restart your process as soon as a file change is detected, which can be useful for development environments:
+- `--watch`: Esta opción reiniciará automáticamente su proceso tan pronto como se detecte un cambio de archivo, lo que puede ser útil para entornos de desarrollo:
 
 ```bash
 pm2 start your-app-name.js --watch
 ```
 
 ::: tip
-The `pm2 start` command can take more optional parameters, but only these two are relevant. If you want to see all the parameters available, you can check the documentation of pm2 [here](https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/).
+El comando `pm2 start` puede tener más parámetros opcionales, pero solo estos dos son relevantes. Si quieres revisar el resto de los parámetros, puedes revisar la documentación de pm2 [here](https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/).
 :::
 
-Once the process launches with pm2, you can run `pm2 monit` to monitor all console outputs from the processes started by pm2. This accounts for any `console.log()` in your code or outputted errors.
+Cuando el proceso se inicie con pm2, puedes ejecutar `pm2 monit` para monitorear todas las salidas de la consola de los procesos iniciados por pm2. Esto incluye cualquier `console.log()` en tu código o errores de código.
 
-## Setting up booting with your system
+## Configuración del arranque junto al sistema
+Quizás una de las características más útiles de PM2 es poder iniciarse con su sistema operativo. Esta función garantizará que los procesos de su bot siempre se inicien después de un (inesperado) reinicio (por ejemplo, después de un corte de energía).
 
-Perhaps one of the more useful features of PM2 is being able to boot up with your Operating System. This feature will ensure that your bot processes will always be started after an (unexpected) reboot (e.g., after a power outage).
+Los pasos iniciales difieren según el sistema operativo. En esta guía, cubriremos los de Windows y Linux / MacOS.
 
-The initial steps differ per OS. In this guide, we'll cover those for Windows and Linux/MacOS.
-
-### Initial steps for Windows
+### Pasos iniciales para Windows
 
 ::: tip
-Run these from an administrative command prompt to avoid getting hit with a bunch of UAC dialogs.
+Ejecute esto desde el símbolo del sistema con permisos de administrador para evitar ser "golpeado" por múltiples cuadros de dialogo UAC.
 :::
 
-**Install the [pm2-windows-service](https://www.npmjs.com/package/pm2-windows-service) package from npm:**
+**Instalar el paquete de [pm2-windows-service](https://www.npmjs.com/package/pm2-windows-service) a partir de npm:**
 
 ```bash
 npm install --global pm2-windows-service
 ```
 
-**After installation has finished, install the service by running the following command:**
+**Cuando la instalación finalice, instala el servicio ejecutando el siguiente comando:**
 
 ```bash
 pm2-service-install
 ```
 ::: tip
-You can use the `-n` parameter to set the service name: `pm2-service-install -n "the-service-name"`
+Puedes usar el parámetro `-n` para establecer el nombre del servicio: `pm2-service-install -n "the-service-name"`
 :::
 
-### Initial steps for Linux/MacOS
+### Pasos iniciales para Linux/MacOS
 
-You'll need a start script, which you can get by running the following command:
+Necesitas un script de arranque, el cual puedes obtener ejecutando los siguientes comandos:
 
 ```bash
-# Detects the available init system, generates the config, and enables startup system
+# Detecta el sistema de inicio disponible, genera la configuración, y habilita el sistema de inicio
 pm2 startup
 ```
 
-Or, if you want to specify your machine manually, select one of the options with the command:
+O, si quieres especificar su sistema manualmente, selecciona una de las opciones con el comando:
 
 ```bash
 pm2 startup [ubuntu | ubuntu14 | ubuntu12 | centos | centos6 | arch | oracle | amazon | macos | darwin | freesd | systemd | systemv | upstart | launchd | rcd | openrc]
 ```
 
-The output of running one of the commands listed above will output a command for you to run with all environment variables and options configured.
+El resultado de ejecutar uno de los comandos enumerados anteriormente generará un comando para que lo ejecute con todas las variables y opciones de entorno configuradas.
 
-**Example output for an Ubuntu user:**
+**Ejemplo de la "salida" para usuarios de Ubuntu:**
 
 ```bash
 [PM2] You have to run this command as root. Execute the following command:
       sudo su -c "env PATH=$PATH:/home/user/.nvm/versions/node/v8.9/bin pm2 startup ubuntu -u user --hp /home/user
 ```
 
-After running that command, you can continue to the next step.
+Después de ejecutar el comando, puedes continuar con el siguiente comando.
 
-### Saving the current process list
+### Guardar la lista de procesos actual
 
-To save the current process list so it will automatically get started after a restart, run the following command:
+Para guardar la lista de procesos actual para que se inicie automáticamente después de un reinicio, ejecute el siguiente comando:
 
 ```bash
 pm2 save
 ```
 
-To disable this, you can run the following command:
+Para deshabilitar esto, ejecute el siguiente comando:
 
 ```bash
 pm2 unstartup
