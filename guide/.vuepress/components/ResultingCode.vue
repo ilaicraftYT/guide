@@ -1,8 +1,8 @@
 <template>
 	<p>
-		If you want to compare your code to the code we've constructed so far, you can review it over on the GitHub repository
+		Si quieres comparar tu código con el código que hemos hecho durante el camino, puedes revisarlo en nuestro repositorio de GitHub
 		<a :href="githubLink" target="_blank" rel="noopener noreferrer">
-			here <OutboundLink />
+			aquí <OutboundLink />
 		</a>.
 	</p>
 </template>
@@ -11,7 +11,7 @@
 import { defineProps, onMounted, ref } from 'vue';
 import { usePageData } from '@vuepress/client';
 
-const codeSamplesURL = 'https://github.com/discordjs/guide/tree/main/code-samples/';
+const codeSamplesURL = 'https://github.com/Awoocado/guide/tree/main/code-samples/';
 
 const props = defineProps({
 	path: String,
