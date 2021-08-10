@@ -1,8 +1,8 @@
 # Entendiendo async/await
 
-Si no estas familiarizado con ECMAScript 2017, puede que no sepa acerca de async/await. Es una forma útil de manejar Promesas de una manera ambigua. También es un poco mas rápido y aumenta la legibilidad.
+Si no estas familiarizado con ECMAScript 2017, puede que no sepa acerca de async/await. Es una forma útil de manejar promesas de una manera ambigua. También es un poco mas rápido y aumenta la legibilidad.
 
-## ¿Como trabajan las promesas?
+## ¿Cómo trabajan las promesas?
 
 Antes de que podamos entrar en async/await, debe saber qué son las promesas y cómo funcionan porque async/await es solo una forma de manejar las promesas. Si sabe qué son las promesas y cómo lidiar con ellas, puede omitir esta parte.  
 
@@ -10,11 +10,11 @@ Las promesas son una forma de manejar tareas asincrónicas en JavaScript; son la
 
 Una promesa puede tener tres estados; pendiente, resuelto y rechazado
 
-El estado **pendiente** significa que la Promesa aún está en curso y no se ha resuelto ni rechazado.
-El estado **resuelto** significa que la Promesa está hecha y ejecutada sin errores.
-El estado **rechazado** significa que la Promesa encontró un error y no se pudo ejecutar correctamente.
+El estado **pendiente** significa que la promesa aún está en curso y no se ha resuelto ni rechazado.
+El estado **resuelto** significa que la promesa está hecha y ejecutada sin errores.
+El estado **rechazado** significa que la promesa encontró un error y no se pudo ejecutar correctamente.
 
-Una cosa importante que debe saber es que una Promesa solo puede tener un estado simultáneamente; nunca puede estar pendiente y resuelto, rechazado y resuelto, o pendiente y rechazado. Es posible que se pregunte, "¿Cómo se vería eso en el código?". Aquí hay un pequeño ejemplo:
+Una cosa importante que debe saber es que una promesa solo puede tener un estado simultáneamente; nunca puede estar pendiente y resuelto, rechazado y resuelto, o pendiente y rechazado. Es posible que se pregunte, "¿Cómo se vería eso en el código?". Aquí hay un pequeño ejemplo:
 
 ::: tip
 Este ejemplo usa código ES6. Si no sabe qué es eso, debería leerlo [Aquí](/additional-info/es6-syntax.md).
@@ -37,13 +37,13 @@ deleteMessages(5).then(value => {
 });
 ```
 
-En este escenario, la función `deleteMessages` retorna una promesa. El método `.then()` se activará si la Promesa se resuelve, y el método `.catch()` si la Promesa se rechaza. En la función `deleteMessages`, la Promesa se resuelve después de 2 segundos con la cadena" 10 mensajes eliminados ", por lo que el método` .catch() `nunca se ejecutará. También puede pasar la función `.catch()` como segundo parámetro de `.then()`
+En este escenario, la función `deleteMessages` retorna una promesa. El método `.then()` se activará si la promesa se resuelve, y el método `.catch()` si la promesa se rechaza. En la función `deleteMessages`, la promesa se resuelve después de 2 segundos con la cadena" 10 mensajes eliminados ", por lo que el método` .catch() `nunca se ejecutará. También puede pasar la función `.catch()` como segundo parámetro de `.then()`
 
-## Cómo implementar async/await
+## ¿Cómo implementar async/await?
 
 ### Teoría
 
-Es fundamental conocer la siguiente información antes de trabajar con async/await.Solo puedes usar la palabra clave `await` dentro de una función declarada como` async` (pones la palabra clave `async` antes de la palabra clave` function` o antes de los parámetros cuando usas una función de devolución de llamada).
+Es fundamental conocer la siguiente información antes de trabajar con async/await.Solo puedes usar la palabra clave `await` dentro de una función declarada como` async` (pones la palabra clave `async` antes de la palabra clave `function` o antes de los parámetros cuando usas una función de devolución de llamada).
 
 Un ejemplo sencillo sería:
 
@@ -69,7 +69,7 @@ client.on('evento', async (first, last) => {
 });
 ```
 
-Una cosa importante a saber es que una función declarada como `async` siempre devolverá una Promesa. Además de esto, si devuelve algo, la Promesa se resolverá con ese valor, y si arroja un error, rechazará la Promesa con ese error.
+Una cosa importante a saber es que una función declarada como `async` siempre devolverá una promesa. Además de esto, si devuelve algo, la promesa se resolverá con ese valor, y si arroja un error, rechazará la promesa con ese error.
 
 ### Ejecución con código discord.js
 
@@ -106,7 +106,7 @@ client.on('interactionCreate', interaction => {
 });
 ```
 
-Pero dado que todos estos métodos se inician al mismo tiempo, sería una carrera a qué solicitud del servidor finalizó primero, por lo que no habría garantía de que reaccionaría en absoluto (si el mensaje no se recupera) o en el orden que querías. Para asegurarse de que reacciona después de que se envía el mensaje y en orden (a, b, c), necesitaría usar la devolución de llamada `.then()` de las Promesas que estos métodos devuelven. El código se vería así:
+Pero dado que todos estos métodos se inician al mismo tiempo, sería una carrera a qué solicitud del servidor finalizó primero, por lo que no habría garantía de que reaccionaría en absoluto (si el mensaje no se recupera) o en el orden que querías. Para asegurarse de que reacciona después de que se envía el mensaje y en orden (a, b, c), necesitaría usar la devolución de llamada `.then()` de las promesa que estos métodos devuelven. El código se vería así:
 
 ```js {3-11}
 client.on('interactionCreate', interaction => {
@@ -117,14 +117,14 @@ client.on('interactionCreate', interaction => {
 					.then(() => message.react('🇧'))
 					.then(() => message.react('🇨'))
 					.catch(error => {
-						// manejar el error de cualquier rechazo de Promesa aquí
+						// manejar el error de cualquier rechazo de promesa aquí
 					});
 			});
 	}
 });
 ```
 
-En este fragmento de código, las Promesas se [resuelven en cadena](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#encadenamiento) entre sí, y si una de las Promesas es rechazada, se llama a la función `.catch()`. Aquí está el mismo código pero con async/await:
+En este fragmento de código, las promesa se [resuelven en cadena](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#encadenamiento) entre sí, y si una de las promesa es rechazada, se llama a la función `.catch()`. Aquí está el mismo código pero con async/await:
 
 ```js {1,3-6}
 client.on('interactionCreate', async interaction => {
@@ -148,7 +148,7 @@ client.on('interactionCreate', async interaction => {
 			await message.react('🇧');
 			await message.react('🇨');
 		} catch (error) {
-			// manejar el error de cualquier rechazo de Promesa aquí
+			// manejar el error de cualquier rechazo de promesa aquí
 		}
 	}
 });
@@ -156,7 +156,7 @@ client.on('interactionCreate', async interaction => {
 
 Este código se ve limpio y también es fácil de leer.
 
-Por lo tanto, es posible que se pregunte: "¿Cómo obtendría el valor con el que se resolvió la Promesa?".
+Por lo tanto, es posible que se pregunte: "¿Cómo obtendría el valor con el que se resolvió la promesa?".
 
 Veamos un ejemplo en el que desea eliminar una respuesta enviada.
 
