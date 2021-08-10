@@ -1,4 +1,5 @@
 # Configuración de los scripts en el package.json
+
 La manera más fácil de ejecutar un script como un script para iniciar tu bot, un script para lint para los archivos de tu bot, o cualquier script que uses almacenándolos en el archivo `package.json`. Después de almacenar estos scripts en su archivo `package.json`, puede ejecutar `npm run start` para iniciar tu bot o `npm run lint` para lint para los archivos de tu bot.
 
 ## Empezando
@@ -7,7 +8,7 @@ La manera más fácil de ejecutar un script como un script para iniciar tu bot, 
 Antes de comenzar, necesitarás un archivo `package.json`. Si aún no tienes un archivo `package.json`, puede ejecutar `npm init -y` en la consola para crear uno.
 :::
 
-Si aún no ha tocado su archivo `package.json` (excluyendo las dependencias de instalación), su archivo` package.json` debería tener un aspecto similar al siguiente:
+Si aún no ha tocado su archivo `package.json` (excluyendo las dependencias de instalación), su archivo `package.json` debería tener un aspecto similar al siguiente:
 
 ```json
 {
@@ -61,7 +62,7 @@ Tu archivo `package.json` ahora debería tener un aspecto similar al siguiente:
 {
 	"name": "my-bot",
 	"version": "1.0.0",
-	"description": ¡Un bot de Discord!",
+	"description": "¡Un bot de Discord!",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
