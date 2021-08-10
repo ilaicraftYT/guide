@@ -1,20 +1,19 @@
-# Setting up package.json scripts
+# Configuración de los scripts en el package.json
+La manera más fácil de ejecutar un script como un script para iniciar tu bot, un script para lint para los archivos de tu bot, o cualquier script que uses almacenándolos en el archivo `package.json`. Después de almacenar estos scripts en su archivo `package.json`, puede ejecutar `npm run start` para iniciar tu bot o `npm run lint` para lint para los archivos de tu bot.
 
-An easy way to run scripts like a script to start your bot, a script to lint your bot's files, or whatever scripts you use is by storing them in your `package.json` file. After you store these scripts in your `package.json` file, you can type `npm run start` to start your bot or `npm run lint` to lint your code for errors.
-
-## Getting started
+## Empezando
 
 ::: tip
-Before getting started, you'll need to have a `package.json` file. If you don't have a `package.json` file yet, you can run `npm init -y` in the console to generate one.
+Antes de comenzar, necesitarás un archivo `package.json`. Si aún no tienes un archivo `package.json`, puede ejecutar `npm init -y` en la consola para crear uno.
 :::
 
-If you haven't touched your `package.json` file yet (excluding installing dependencies), your `package.json` file should look similar to the following:
+Si aún no ha tocado su archivo `package.json` (excluyendo las dependencias de instalación), su archivo` package.json` debería tener un aspecto similar al siguiente:
 
 ```json
 {
 	"name": "my-bot",
 	"version": "1.0.0",
-	"description": "A Discord bot!",
+	"description": "¡Un bot de Discord!",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -25,44 +24,44 @@ If you haven't touched your `package.json` file yet (excluding installing depend
 }
 ```
 
-Let's zoom in more. Below `main`, you'll see `scripts`. You can specify your scripts there. In this guide, we'll show how to start and lint your bot using a `package.json` script.
+Veamos más de cerda. Abajo de `main`, veras `scripts`. Puedes especificar tus scripts ahí. En esta guia, le mostraremos cómo iniciar y lint su bot usando un script `package.json`.
 
-## Adding your first script
+## Agregando tu primer script
 
 ::: tip
-We'll assume you have finished the [creating your first bot](/creating-your-bot/) section of the guide. If you haven't, ensure to follow it first!
+Asumiremos que ya terminaste la sección: [creando tu primer bot](/creating-your-bot/) de la guía. ¡Si no lo has hecho, asegúrate de seguirlo primero!
 :::
 
-Over at your `package.json` file, add the following line to the `scripts`:
+En su archivo `package.json`, agregue la siguiente línea en la sección de `scripts`:
 
 ```json
 "start": "node ."
 ```
 
 ::: tip
-The `node .` script will run the file you have specified at the `main` entry in your `package.json` file. If you don't have it set yet, make sure to select your bot's main file as `main`!
+El script `node .` ejecutara el archivo que especificaste en la entrada `main` de tu archivo `package.json`. Si aún no lo tiene configurado, ¡asegúrese de seleccionar el archivo principal de su bot como `main`!
 :::
 
-Now, whenever you run the `npm run start` script in your bot's directory, it will run the `node .` command. Let's create another script to lint your code via the command line.
+Ahora, cada vez que ejecutes el script `npm run start` en el directorio de tu bot, ejecutara el comando `node .`. Creemos otra secuencia de comandos para lint tu código a través de la línea de comando.
 
 ::: tip
-If you do not have ESLint installed globally, you can use [npx](https://alligator.io/workflow/npx/) to run the ESLint script for your local directory. For more info on how to set it up, you can read the site [here](https://alligator.io/workflow/npx/).
+Si no tiene ESLint instalado globalmente, puede usar [npx](https://alligator.io/workflow/npx/) para ejecutar el script ESLint para su directorio local. Para más información del como configurarlo, puedes leer la página oficial [aquí](https://alligator.io/workflow/npx/).
 :::
-Add the following line to your scripts:
+Agrega la siguiente línea a tus scripts:
 
 ```json
 "lint": "eslint ."
 ```
 
-Now, whenever you run the `npm run lint` script, ESLint will lint your `index.js` file.
+Ahora, cada vez que ejecutes el script `npm run lint`, ESLint lint tu archivo `index.js`.
 
-Your `package.json` file should now look similar to the following:
+Tu archivo `package.json` ahora debería tener un aspecto similar al siguiente:
 
 ```json
 {
 	"name": "my-bot",
 	"version": "1.0.0",
-	"description": "A Discord bot!",
+	"description": ¡Un bot de Discord!",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
@@ -75,4 +74,4 @@ Your `package.json` file should now look similar to the following:
 }
 ```
 
-And that's it! You can always add more scripts now, running them with `npm run script-name`.
+¡Y eso es todo! Siempre puedes agregar más scripts ahora, ejecutándolos con `npm run script-name`.
