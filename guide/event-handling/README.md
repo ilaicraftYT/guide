@@ -84,7 +84,7 @@ Para escuchar eventos, debes registrar un event listener. Puedes hacerlo usando 
 Puedes aprender más sobre un `EventEmitter` [aquí](https://nodejs.org/api/events.html#events_class_eventemitter).
 :::
 
-La clase `Client` en discord.js extiende la clase `EventEmitter`. Por lo tanto, el objeto `client` tambmién tiene los métodos `on` y `once` que puedes usar para registrar eventos. Estos métodos toman dos argumentos: El nombre del evento y una función callback.
+La clase `Client` en discord.js extiende la clase `EventEmitter`. Por lo tanto, el objeto `client` también tiene el método `on` el cual puedes usar para registrar eventos. Este método toma dos argumentos: El nombre del evento y una función callback.
 
 Luego de esto, escuchar otros eventos es tan fácil como crear un nuevo archivo en la carpeta `events`. El administrador de eventos automáticamente lo obtendrá y registrará cada vez que reinicies tu bot.
 
