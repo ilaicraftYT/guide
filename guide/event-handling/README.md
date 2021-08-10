@@ -1,8 +1,8 @@
-# Event handling
+# Administrador de eventos
 
-Node.js uses an event-driven architecture, making it possible to execute code when a specific event occurs. The discord.js library takes full advantage of this. You can visit <DocsLink path="class/Client">the discord.js documentation site</DocsLink> to see the full list of `Client` events.
+Node.js usa una arquitectura basada en eventos, haciendo posible el ejecutar código cuando un evento específico ocurre. La librería discord.js aprovecha esto al máximo. Puedes visitar <DocsLink path="class/Client">la documentación</DocsLink> para ver una lista de todos los eventos que tiene `Client`.
 
-Here's the base code we'll be using:
+Esta es la base del código que usaremos:
 
 ```js
 const { Client, Intents } = require('discord.js');
@@ -11,21 +11,21 @@ const { token } = require('./config.json');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('¡Estoy listo!');
 });
 
 client.on('interactionCreate', interaction => {
-	console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`);
+	console.log(`${interaction.user.tag} ejecutó una interacción en #${interaction.channel.name}.`);
 });
 
 client.login(token);
 ```
 
-Currently, the event listeners are in the `index.js` file. The `ready` event emits once when the `Client` becomes ready for use, and the `interactionCreate` event emits whenever an interaction is received. Moving the event listener code into individual files is simple, and we'll be taking a similar approach to the [command handler](/command-handling/). 
+Actualmente, los eventos están en el archivo `index.js`. El evento `ready` se emite una sola vez cuando `Client` está listo para su uso, y el evento `interactionCreate` se emite siempre que una interacción sea recibida. Mover el código de los eventos a archivos individuales es simple, y vamos a adoptar un enfoque similar al del [administrador de comandos](/command-handling/).
 
-## Individual event files
+## Archivos individuales para eventos
 
-Your folder structure should look something like this:
+La estructura completa de tu carpeta debería verse algo así: 
 
 ```:no-line-numbers
 discord-bot/
@@ -36,30 +36,29 @@ discord-bot/
 └── package.json
 ```
 
-Create an `events` folder in the same directory. You can now take your existing events code in `index.js` and move them to individual files inside the `events` folders. Create a `ready.js` and an `interactionCreate.js` file in the `events` folder and place in the code for the respective files:
+En la misma carpeta, crea una nueva carpeta llamada `events`. Ahora puedes tomar el código de tus eventos en `index.js` y ponerlos en archivos individuales dentro de la carpeta `events`. Crea los archivos `ready.js` y `interactionCreate.js` dentro de la carpeta `events` y pon el código en sus respectivos archivos:
 
 ```js
-module.exports = {
-	name: 'ready',
-	once: true,
-	execute() {
-		console.log('Ready!');
-	},
-};
+// ready.js
+module.exports = (client) => {
+	console.log('¡Estoy listo! Mi nombre es:', client.user.tag);
+}
 ```
 
 ```js
-module.exports = {
-	name: 'interactionCreate',
-	execute(interaction) {
-		console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`);
-	},
-};
+// interactionCreate.js
+module.exports = (client, interaction) => {
+	console.log(`${interaction.user.tag} ejecutó una interacción en #${interaction.channel.name}.`);
+}
 ```
 
-The `name` property states which event this file is for, the `once` property is a boolean and specifies if the event should run only once, and the `execute` function is for your event logic. The event handler will call this function whenever the event emits.
+::: tip
+El nombre del archivo será el nombre que usemos para escuchar nuestros eventos. El nombre debe ser exacto al de un evento, o sino no se emitirá.
+:::
 
-Now, you'll write the code for dynamically retrieving all the event files in the `events` folder. Add this below the `const client` line in `index.js`:
+Exportamos una función la cual se ejecutará cada vez que se emita el evento. El primer parámetro que recibirá la función será `client`. Este no es un parámetro propio del evento, más adelante veremos como pasar el parámetro `client` aparte de los parámetros del evento. Aparte de `client`, el resto de parámetros son propios del evento que crearás, por ejemplo: El evento `ready` no tiene parámetros propios, así que el único parámetro que tendría sería `client`. El evento `interactionCreate` tiene como parámetro propio el objeto de la interacción, así que sus parámetros serían: `client`, `interaction`.
+
+Ahora, escribirás el código para recibir todos los eventos dentro de la carpeta `events` dinámicamente. Añade esto debajo de la línea del `const client` en el `index.js`:
 
 ```js {3}
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
@@ -67,80 +66,38 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 ```
 
-This same method is used in our [command handler](/command-handling/) section. The `fs.readdirSync().filter()` calls return an array of all the file names in the given directory and filter for only `.js` files, i.e. `['ready.js', 'interactionCreate.js']`.
+Este mismo método es usado en nuestro [administrador de comandos](/command-handling/). El método `fs.readdirSync().filter()` retorna un array de todos los nombres de los archivos en la carpeta especificada y filtra solamente los archivos que sean `.js`, por ejemplo: `['ready.js', 'interactionCreate.js']`.
 
-```js {3-10}
+```js {3-8}
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
+	const eventName = file.split('.').shift();
 	const event = require(`./events/${file}`);
-	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args));
-	} else {
-		client.on(event.name, (...args) => event.execute(...args));
-	}
+
+	client.on(eventName, event.bind(null, client));
 }
 ```
-
-
-To listen for events, you have to register an event listener. This is done using the `on` or `once` methods of an `EventEmitter` instance. The `on` method for events can emit multiple times, while `once` will run once and unregister the listener after a single emit.
+Para escuchar eventos, debes registrar un event listener. Puedes hacerlo usando el método `on` de una instancia de `EventEmitter`.
 
 ::: tip
-You can learn more about `EventEmitter` [here](https://nodejs.org/api/events.html#events_class_eventemitter).
+Puedes aprender más sobre un `EventEmitter` [aquí](https://nodejs.org/api/events.html#events_class_eventemitter).
 :::
 
-The `Client` class in discord.js extends the `EventEmitter` class. Therefore, the `client` object also has these `on` and `once` methods that you can use to register events. These methods take two arguments: the name of the event and a callback function.
+La clase `Client` en discord.js extiende la clase `EventEmitter`. Por lo tanto, el objeto `client` tambmién tiene los métodos `on` y `once` que puedes usar para registrar eventos. Estos métodos toman dos argumentos: El nombre del evento y una función callback.
 
-The callback function passed takes argument(s) returned by its respective event, collects them in an `args` array using the `...` [rest parameter syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters), then calls `event.execute` function while passing in the `args` array using the `...` [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax). They are used here because different events in discord.js have different numbers of arguments. The rest parameter collects these variable number of arguments into a single array, and the spread syntax then takes these elements and passes them to the `execute` function.
+Luego de esto, escuchar otros eventos es tan fácil como crear un nuevo archivo en la carpeta `events`. El administrador de eventos automáticamente lo obtendrá y registrará cada vez que reinicies tu bot.
 
-After this, listening for other events is as easy as creating a new file in the `events` folder. The event handler will automatically retrieve and register it whenever you restart your bot.
-
-## Passing `Client` to event files
-
-You may have noticed how important the `Client` class is. You created a `client` instance of this class in the `index.js` file. Most of the time, you can use this `client` instance in other files by either obtaining it from one of the other discord.js structures or function parameters. In your `interactionCreate` event, you can use `interaction.client`. When you don't have access to any of the structures with the `client` property, you'll have to use the latter method. A prime example of this is the `ready` event.
-
-The `ready` event does not have arguments, meaning that `args` will be an empty array, thus nothing will be passed to the `execute` function in `ready.js`. To obtain the `client` instance, you'll have to pass it as an argument along with the `args` array in the event handler. Back in `index.js`, make the following changes:
-
-```js {4,6}
-for (const file of eventFiles) {
-	const event = require(`./events/${file}`);
-	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args, client));
-	} else {
-		client.on(event.name, (...args) => event.execute(...args, client));
-	}
-}
-```
-
-This allows `client` to be available as the **last** argument to the `execute` function in each event file. You can make use of `client` in `ready.js` by logging your bot's tag in the console when it becomes ready:
-
-```js {4-6}
-module.exports = {
-	name: 'ready',
-	once: true,
-	execute(client) {
-		console.log(`Ready! Logged in as ${client.user.tag}`);
-	},
-};
-```
-
-::: tip
-You can omit the `client` argument from the `execute` function in files where you don't need it. For example, it isn't required in the `interactionCreate.js` file because its first argument is an `Interaction` instance, meaning you can use `interaction.client`.
-:::
-
-It is worth noting that the position of `client` argument matters. For example, the `messageUpdate` event has two arguments: `oldMessage` and `newMessage`. Events like this should be handled as:
+Es importante saber que el orden de los parámetros importa. Por ejemplo, el evento `userUpdate` tiene dos parámetros: `oldUser` y `newUser`. Eventos como ese deben ser gestionados de esta forma:
 
 ```js {3}
-module.exports = {
-	name: 'messageUpdate',
-	execute(oldMessage, newMessage, client) {
-		// ...
-	},
-};
+module.exports = (client, oldUser, newUser) => {
+	// ...
+}
 ```
 
-If you were to try `execute(newMessage, client)`, this would mean that `newMessage` is an `oldMessage` object and `client` is a `newMessage` object.
+Si intentas hacer `(newUser, client, oldUser)`, esto significará que `newUser` es el objeto `client`, `client` es el objeto `oldUser` y `oldUser` es el objeto `newUser`.
 
-## Resulting code
+## Resultado final
 
 <ResultingCode path="event-handling/file-setup" />
