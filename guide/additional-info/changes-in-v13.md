@@ -17,7 +17,7 @@ Discord.js v13 usa la versión 9 del API de Discord. Adicionalmente, la nueva ve
 ¡Discord.js tiene soporte para slash commands!
 Visita la seccion de [slash commands](/interactions/registering-slash-commands.html) para empezar a usarlos.
 
-In addition to the `interactionCreate` event covered in the above guide, this release also includes the new Client events `applicationCommandCreate`, `applicationCommandDelete`, and `applicationCommandUpdate`.
+La guia explica el evento `interactionCreate`. En esta version también existe los eventos `applicationCommandCreate`, `applicationCommandDelete`, and `applicationCommandUpdate`.
 
 ## Message components
 
