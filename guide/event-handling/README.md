@@ -10,7 +10,7 @@ const { token } = require('./config.json');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-client.once('ready', () => {
+client.on('ready', () => {
 	console.log('¡Estoy listo!');
 });
 
@@ -28,7 +28,7 @@ Actualmente, los eventos están en el archivo `index.js`. El evento `ready` se e
 La estructura completa de tu carpeta debería verse algo así: 
 
 ```:no-line-numbers
-discord-bot/
+bot-de-discord/
 ├── node_modules
 ├── config.json
 ├── index.js
