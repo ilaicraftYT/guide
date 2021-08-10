@@ -23,25 +23,29 @@
 		</template>
 		discord.js v13 ya está disponible pero esta guía sigue en proceso
 		<span class="emoji-container">
-			<img class="emoji-image" title="tada" src="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f629.png" alt="" />
+			<img class="emoji-image" title="tada" src="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f629.png" alt=""/>
 		</span>
-		<br />
+		<br/>
 		Esta guía incluye material acerca de los slash commands y componentes.
 	</DiscordMessage>
 </DiscordMessages>
 
-## Site
+::: warning
+La traducción de la guía está en proceso por lo que aún existe texto en inglés. Ayúdanos con un pull request en el [repositorio](https://github.com/Awoocado/guide)
+:::
+
+## Temas
 
 - Actualizado a [VuePress v2](https://v2.vuepress.vuejs.org/)
 - Nuevo tema que se iguala a [la documentación de discord.js](https://discord.js.org/)
-- El compenente de mensajes de Discord ahora es [@discord-message-components/vue](https://github.com/Danktuary/discord-message-components/blob/main/packages/vue/README.md)
+- El componente de mensajes de Discord ahora es [@discord-message-components/vue](https://github.com/Danktuary/discord-message-components/blob/main/packages/vue/README.md)
 - ~~Many fixes in codeblocks, grammar, consistency, etc~~ Seguimos traduciendo la guía
 
-## Pages
+## Páginas
 
-Todo el contenido de la guia usa discord.js v13. La versión de esta guia se puede encontrar en [https://v12.discordjs.guide/](https://v12.discordjs.guide/) (en inglés).
+Todo el contenido de la guia usa discord.js v13. La versión de esta guía se puede encontrar en [https://v12.discordjs.guide/](https://v12.discordjs.guide/) (en inglés).
 
-### New
+### ¡Nuevo contenido!
 
 - [Actualizando de v12 a v13](/additional-info/changes-in-v13.md): Una lista de cambios para actualizar de discord.js v12 a v13
 - [Registrando slash commands](/interactions/registering-slash-commands.md): Pasos para registrar slash commands
@@ -51,19 +55,19 @@ Todo el contenido de la guia usa discord.js v13. La versión de esta guia se pue
 - [Select menus](/interactions/select-menus.md): Definiendo, enviando y recibiendo select menus
 - [Threads](/popular-topics/threads.md): Creando y manejando threads
 
-### Updated
+### Actualizado
 
-- Commando: Reemplazado por una guia de [Sapphire](https://github.com/discordjs/guide/pull/711) ~~Aunque para ser sincero es mejor crear el handler como en la guia~~
+- Commando: Reemplazado por una guia de [Sapphire](https://github.com/discordjs/guide/pull/711) ~~Aunque para ser sincero es mejor crear el handler como en la guía~~
 - [Voice](/voice/): Reescrito para que use [`@discordjs/voice`](https://github.com/discordjs/voice) 
 - [Administrador de comandos](/command-handling/): Actualizado a slash commands
 	- Secciones obsoletas removidas
 - `client.on('message')` snippets actualizados a `client.on('interactionCreate')`
-	- ['Message Content' será un intent privilegiado en Abril del 2022](https://support-dev.discord.com/hc/es-es/articles/4404772028055)
+	- ['Guild Message Content' será un intent privilegiado en Abril del 2022](https://support-dev.discord.com/hc/es-es/articles/4404772028055)
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
 		Gracias a todos los que han ayudado en el desarrollo de discord.js y de la guía
-		<br />
+		<br/>
 		¡A crear un bot!
 		<span class="emoji-container">
 			<img class="emoji-image" title="heart" src="https://twemoji.maxcdn.com/v/13.1.0/72x72/2764.png" alt="" />

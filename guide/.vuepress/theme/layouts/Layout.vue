@@ -18,8 +18,8 @@
 				<Notification storage-key="v13-notice">
 					<span class="notification-icon"><PartyPopperIcon /></span>
 					<span>
-						You're browsing the guide for discord.js v13.
-						Check out <router-link to="/whats-new.html">what's new</router-link>, or browse the <a href="https://v12.discordjs.guide">discord.js v12 guide</a>.
+						Estás en la guía traducida de <a href="https://discordjs.guide">https://discordjs.guide</a> en español.
+						¡Visita <router-link to="/whats-new.html">¿Qué hay de nuevo?</router-link> para ver las novedades!
 					</span>
 				</Notification>
 			</Notifications>
