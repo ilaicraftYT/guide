@@ -1,27 +1,27 @@
-# Updating from v12 to v13
+# Actualizando de v12 a v13
 
-## Before you start
+## Antes de que empieces
 
-v13 requires Node 16.6 or higher to use, so make sure you're up to date. To check your Node version, use `node -v` in your terminal or command prompt, and if it's not high enough, update it! There are many resources online to help you with this step based on your host system.
+Discord.js v13 necesita Node.js 16.6 como mínimo para que funcione asi que asegurate de tener la version correcta. Para ver la version de node en tu host usa `node -v` en tu terminal, si es inferior a 16.6 significa que debes actualizar antes de empezar.
 
-Once you've got Node up-to-date, you can install v13 by running `npm install discord.js` in your terminal or command prompt for text-only use, or `npm install discord.js @discordjs/voice` for voice support.
+Una vez tengas node actualizado, podrás instalar discord.js v13 usando `npm install discord.js` en tu terminal (`npm install discord.js @discordjs/voice` para soporte de voz).
 
-You can check your discord.js version with `npm list discord.js`. Should it still show v12.x, uninstall (`npm uninstall discord.js`) and re-install discord.js and make sure the entry in your package.json does not prevent a major version update. Please refer to the [npm documentation](https://docs.npmjs.com/files/package.json#dependencies) for this.
+Puedes verificar tu version de discord.js usando `npm list discord.js`. Si sigue en v12.x, desinstalalo (`npm uninstall discord.js`) y reinstalalo (`npm install discord.js`).
 
-## API version
+## Versión del API
 
-discord.js v13 makes the switch to Discord API v9! In addition to this, the new major version also includes a bunch of cool new features.
+Discord.js v13 usa la versión 9 del API de Discord. Adicionalmente, la nueva versión incluye muchas funciones nuevas.
 
 ## Slash commands
 
-discord.js now has support for slash commands!
-Refer to the [slash commands](/interactions/registering-slash-commands.html) section of this guide to get started.
+¡Discord.js tiene soporte para slash commands!
+Visita la seccion de [slash commands](/interactions/registering-slash-commands.html) para empezar a usarlos.
 
 In addition to the `interactionCreate` event covered in the above guide, this release also includes the new Client events `applicationCommandCreate`, `applicationCommandDelete`, and `applicationCommandUpdate`.
 
 ## Message components
 
-discord.js now has support for message components!
+¡Discord.js tiene soporte para message components!
 This introduces the `MessageActionRow`, `MessageButton`, and `MessageSelectMenu` classes, as well as associated interactions and collectors. 
 
 Refer to the [message components](/interactions/buttons.html) section of this guide to get started.
