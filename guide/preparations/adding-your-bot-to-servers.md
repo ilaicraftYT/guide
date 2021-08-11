@@ -1,6 +1,6 @@
 # Añadiendo tu bot a servidores
 
-Si tú has seguido las guías en las anteriores páginas, ya deberías tener una aplicación de bot. Como sea, el bot aún no está en ningún servidor aún. Así que, ¿cómo es que esto funciona?
+Si has seguido las guías en las anteriores páginas, ya deberías tener una aplicación de bot. Como sea, el bot aún no está en ningún servidor aún. Así que, ¿cómo es que esto funciona?
 
 Antes de ver tu bot en tu propio (u otro) servidor, necesitas añadirlo creando y usando una invitación única usando la ID de la aplicación.
 
