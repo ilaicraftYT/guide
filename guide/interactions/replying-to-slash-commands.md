@@ -1,14 +1,14 @@
-# Replying to slash commands
+# Responder a los comandos de barra
 
-Discord provides developers the option to create client-integrated slash commands. In this section, we'll cover how to respond to these commands using discord.js!
+Discord ofrece a los desarrolladores la opción de crear comandos de barra integrados en el cliente. En esta sección, cubriremos cómo responder a estos comandos usando discord.js.
 
 ::: tip
-You need at least one slash command registered on your application to continue with the instructions on this page. If you haven't done that yet, refer to [the previous page](/interactions/registering-slash-commands.md).
+Necesita al menos un comando de barra registrado en su aplicación para continuar con las instrucciones en esta página. Si aún no lo ha hecho, consulte [la página anterior](/interactions/registering-slash-commands.md).
 :::
 
-## Receiving interactions
+## Recibir interacciones
 
-Every slash command is an `interaction`, so to respond to a command, you need to set up an event listener that will execute code when your application receives an interaction:
+Cada comando de barra es una `interacción`, por lo que para responder a un comando, debe configurar un detector de eventos que ejecutará el código cuando su aplicación reciba una interacción:
 
 ```js
 client.on('interactionCreate', interaction => {
@@ -16,7 +16,7 @@ client.on('interactionCreate', interaction => {
 });
 ```
 
-However, not every interaction is a slash command (e.g. `MessageComponent`s). Make sure to only receive slash commands by making use of the `CommandInteraction#isCommand()` method:
+Sin embargo, no todas las interacciones son un comando de barra (por ejemplo, `Componentes`). Asegúrese de recibir solo comandos de barra haciendo uso del método `CommandInteraction#isCommand()`:
 
 ```js {2}
 client.on('interactionCreate', interaction => {
@@ -25,13 +25,13 @@ client.on('interactionCreate', interaction => {
 });
 ```
 
-## Responding to a command
+## Respondiendo a un comando
 
-There are multiple ways of responding to a slash command, each of these are covered in the following segments.
-The most common way of sending a response is by using the `CommandInteraction#reply()` method:
+Hay varias formas de responder a un comando de barra, cada una de las cuales se describe en los siguientes segmentos.
+La forma más común de enviar una respuesta es mediante el método `CommandInteraction#reply()`:
 
 ::: warning
-Initially an interaction token is only valid for three seconds, so that's the timeframe in which you are able to use the `CommandInteraction#reply()` method. Responses that require more time ("Deferred Responses") are explained later in this page.
+Inicialmente, un `token` de interacción solo es válido durante tres segundos, por lo que ese es el período de tiempo en el que puede utilizar el método `CommandInteraction#reply()`. Las respuestas que requieren más tiempo ("Respuestas diferidas") se explican más adelante en esta página.
 :::
 
 ```js {1,4-6}
@@ -44,7 +44,7 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-Restart your bot and then send the command to a channel your bot has access to. If all goes well, you should see something like this:
+Reinicie su `bot` y luego envíe el comando a un canal al que su `bot` tenga acceso. Si todo va bien, debería ver algo como esto:
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
@@ -55,12 +55,12 @@ Restart your bot and then send the command to a channel your bot has access to. 
 	</DiscordMessage>
 </DiscordMessages>
 
-You've successfully sent a response to a slash command! This is only the beginning, there's more to look out for so let's move on to further ways of replying to a command!
+¡Ha enviado con éxito una respuesta a un comando de barra! Esto es solo el comienzo, hay más que tener en cuenta, ¡así que pasemos a otras formas de responder a un comando!
 
 
-## Ephemeral responses
+## Respuestas efímeras
 
-You may not always want everyone who has access to the channel to see a slash command's response. Thankfully, Discord implemented a way to hide messages from everyone but the executor of the slash command. This type of message is called `ephemeral` and can be set by using `ephemeral: true` in the `InteractionReplyOptions`, as follows:
+Es posible que no siempre desee que todos los que tienen acceso al canal vean la respuesta de un comando de barra. Afortunadamente, Discord implementó una forma de ocultar mensajes a todos menos al ejecutor del comando de barra. Este tipo de mensaje se llama `efímero` y se puede configurar mediante `ephemeral: true` en `InteractionReplyOptions`, de la siguiente manera:
 
 ```js {5}
 client.on('interactionCreate', async interaction => {
@@ -72,7 +72,7 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-Now when you run your command again, you should see something like this:
+Ahora, cuando ejecute su comando nuevamente, debería ver algo como esto:
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
@@ -87,12 +87,12 @@ Now when you run your command again, you should see something like this:
 	</DiscordMessage>
 </DiscordMessages>
 
-## Editing responses
+## Editando respuestas
 
-After you've sent an initial response, you may want to edit that response for various reasons. This can be achieved with the `CommandInteraction#editReply()` method:
+Después de enviar una respuesta inicial, es posible que desee editar esa respuesta por varios motivos. Esto se puede lograr con el método `CommandInteraction#editReply()`:
 
 ::: warning
-After the initial response, an interaction token is valid for 15 minutes, so this is the timeframe in which you can edit the response and send follow-up messages.
+Después de la respuesta inicial, un token de interacción es válido durante 15 minutos, por lo que este es el período de tiempo en el que puede editar la respuesta y enviar mensajes de seguimiento.
 :::
 
 ```js {1,8-9}
@@ -104,16 +104,16 @@ client.on('interactionCreate', async interaction => {
 	if (interaction.commandName === 'ping') {
 		await interaction.reply('Pong!');
 		await wait(2000);
-		await interaction.editReply('Pong again!');
+		await interaction.editReply('¡Pong de nuevo!');
 	}
 });
 ```
 
-## Deferred responses
+## Respuestas diferidas
 
-As previously mentioned, you have three seconds to respond to an interaction before its token becomes invalid. But what if you have a command that performs a task which takes longer than three seconds before being able to reply?
+Como se mencionó anteriormente, tiene tres segundos para responder a una interacción antes de que su token deje de ser válido. Pero, ¿qué sucede si tiene un comando que realiza una tarea que tarda más de tres segundos antes de poder responder?
 
-In this case, you can make use of the `CommandInteraction#deferReply()` method, which triggers the `<application> is thinking...` message and also acts as initial response. This allows you 15 minutes to complete your tasks before responding.
+En este caso, puede hacer uso del método `CommandInteraction#deferReply()`, que activa el mensaje `<application> esta pensando ...` y también actúa como respuesta inicial. Esto le permite 15 minutos para completar sus tareas antes de responder.
 <!--- here either display the is thinking message via vue-discord-message or place a screenshot -->
 
 ```js {7-9}
@@ -130,9 +130,9 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-If you have a command that performs longer tasks, be sure to call `deferReply()` as early as possible.
+Si tiene un comando que realiza tareas más largas, asegúrese de llamar a `deferReply()` lo antes posible.
 
-You can also pass an `ephemeral` flag to the `InteractionDeferOptions`:
+También puede pasar una marca `efímera` a `InteractionDeferOptions`:
 
 <!-- eslint-skip -->
 
@@ -140,12 +140,12 @@ You can also pass an `ephemeral` flag to the `InteractionDeferOptions`:
 await interaction.deferReply({ ephemeral: true });
 ```
 
-## Follow-ups
+## Seguimientos
 
-Replying to slash commands is great and all, but what if you want to send multiple responses instead of just one? Follow-up messages got you covered, you can use `CommandInteraction#followUp()` to send multiple responses:
+Responder a los comandos de barra es genial y todo, pero ¿qué sucede si desea enviar varias respuestas en lugar de solo una? Los mensajes de seguimiento lo cubren, puede usar `CommandInteraction#followUp()` para enviar múltiples respuestas:
 
 ::: warning
-After the initial response, an interaction token is valid for 15 minutes, so this is the timeframe in which you can edit the response and send follow-up messages.
+Después de la respuesta inicial, un `token` de interacción es válido durante 15 minutos, por lo que este es el período de tiempo en el que puede editar la respuesta y enviar mensajes de seguimiento.
 :::
 
 ```js {6}
@@ -154,12 +154,12 @@ client.on('interactionCreate', async interaction => {
 
 	if (interaction.commandName === 'ping') {
 		await interaction.reply('Pong!');
-		await interaction.followUp('Pong again!');
+		await interaction.followUp('¡Pong de nuevo!');
 	}
 });
 ```
 
-If you run this code you should end up having something that looks like this:
+Si ejecuta este código, debería terminar teniendo algo parecido a esto:
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
@@ -172,16 +172,16 @@ If you run this code you should end up having something that looks like this:
 		<template #interactions>
 			<DiscordInteraction profile="bot">Pong!</DiscordInteraction>
 		</template>
-		Pong again!
+		¡Pong de nuevo!
 	</DiscordMessage>
 </DiscordMessages>
 
-You can also pass an `ephemeral` flag to the `InteractionReplyOptions`:
+También puede pasar una marca `efímera` a `InteractionReplyOptions`:
 
 <!-- eslint-skip -->
 
 ```js
-await interaction.followUp({ content: 'Pong again!', ephemeral: true });
+await interaction.followUp({ content: '¡Pong de nuevo!', ephemeral: true });
 ```
 
 <DiscordMessages>
@@ -195,72 +195,72 @@ await interaction.followUp({ content: 'Pong again!', ephemeral: true });
 		<template #interactions>
 			<DiscordInteraction profile="bot" :ephemeral="true">Pong!</DiscordInteraction>
 		</template>
-		Pong again!
+		¡Pong de nuevo!
 	</DiscordMessage>
 </DiscordMessages>
 
-That's all, now you know everything there is to know on how to reply to slash commands! 
+Eso es todo, ahora sabes todo lo que hay que saber sobre cómo responder a los comandos de barra.
 
 ::: tip
-Interaction responses can use masked links (e.g. `[text](http://site.com)`) and global emojis in the message content.
+Las respuestas de interacción pueden usar enlaces enmascarados (e.g. `[Google](http://google.com)`) y emojis globales en el contenido del mensaje.
 :::
 
-## Parsing options
+## Analizando opciones
 
-### Command options
+### Opciones de comando
 
-In this section, we'll cover how to access the values of a command's options. Let's assume you have a command that contains the following options:
+En esta sección, cubriremos cómo acceder a los valores de las opciones de un comando. Supongamos que tiene un comando que contiene las siguientes opciones:
 
 ```js {4-35}
 const data = {
 	name: 'ping',
-	description: 'Replies with Pong!',
+	description: '¡Respuestas con Pong!',
 	options: [
 		{
 			name: 'input',
-			description: 'Enter a string',
+			description: 'Ingrese una cadena de texto',
 			type: 'STRING',
 		},
 		{
 			name: 'int',
-			description: 'Enter an integer',
+			description: 'Ingrese un número entero',
 			type: 'INTEGER',
 		},
 		{
 			name: 'num',
-			description: 'Enter a number',
+			description: 'Ingrese un numero',
 			type: 'NUMBER',
 		},
 		{
 			name: 'choice',
-			description: 'Select a boolean',
+			description: 'Seleccione un booleano',
 			type: 'BOOLEAN',
 		},
 		{
 			name: 'target',
-			description: 'Select a user',
+			description: 'Selecciona un usuario',
 			type: 'USER',
 		},
 		{
 			name: 'destination',
-			description: 'Select a channel',
+			description: 'Seleccionar un canal',
 			type: 'CHANNEL',
 		},
 		{
 			name: 'muted',
-			description: 'Select a role',
+			description: 'Seleccione un rol',
 			type: 'ROLE',
 		},
 		{
 			name: 'mentionable',
-			description: 'Mention something',
+			description: 'Menciona algo',
 			type: 'MENTIONABLE',
 		},
 	],
 };
 ```
 
-You can `get()` these options from the `CommandInteractionOptionResolver` as shown below:
+Puede obtener estas opciones con `get()` desde el `CommandInteractionOptionResolver` como se muestra a continuación:
 
 ```js
 const string = interaction.options.getString('input');
@@ -277,41 +277,43 @@ console.log([string, integer, boolean, user, member, channel, role, mentionable]
 ```
 
 ::: tip
-If you want the Snowflake of a structure instead, grab the option via `get()` and access the Snowflake via the `value` property. Note that you should use `const { value: name } = ...` here to [destructure and rename](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the value obtained from the <DocsLink path="typedef/CommandInteractionOption">`CommandInteractionOption`</DocsLink> structure to avoid identifier name conflicts.
+
+Si desea el `snowflake` de una estructura en su lugar, tome la opción a través de `get()` y acceda al `snowflake` a través de la propiedad `value`. Tenga en cuenta que debe usar `const {value: name} = ...` aquí para [desestructurar y renombrar](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) el valor obtenido de la estructura <DocsLink path ="typedef/CommandInteractionOption"> `CommandInteractionOption` </DocsLink> para evitar conflictos de nombres de identificadores.
+
 :::
 
-### Subcommands
+### Subcomandos
 
-If you have a command that contains subcommands, you can parse them in a very similar way as to the above examples.
-Let's say your command looks like this:
+Si tiene un comando que contiene subcomandos, puede analizarlos de una manera muy similar a los ejemplos anteriores.
+Digamos que su comando se ve así:
 
 ```js {4-22}
 const data = {
 	name: 'info',
-	description: 'Get info about a user or the server!',
+	description: '¡Obtén información sobre un usuario o el servidor!',
 	options: [
 		{
 			name: 'user',
-			description: 'Info about a user',
+			description: 'Información sobre un usuario',
 			type: 'SUB_COMMAND',
 			options: [
 				{
 					name: 'target',
-					description: 'The user',
+					description: 'El usuario',
 					type: 'USER',
 				},
 			],
 		},
 		{
 			name: 'server',
-			description: 'Info about the server',
+			description: 'Información sobre el servidor',
 			type: 'SUB_COMMAND',
 		},
 	],
 };
 ```
 
-The following snippet details the logic needed to parse the subcommands and respond accordingly using the `CommandInteractionOptionResolver#getSubcommand()` method:
+El siguiente fragmento detalla la lógica necesaria para analizar los subcomandos y responder en consecuencia utilizando el método `CommandInteractionOptionResolver#getSubcommand()`:
 
 ```js {5-20}
 client.on('interactionCreate', async interaction => {
@@ -324,23 +326,22 @@ client.on('interactionCreate', async interaction => {
 			if (user) {
 				await interaction.reply(`Username: ${user.username}\nID: ${user.id}`);
 			} else {
-				await interaction.reply(`Your username: ${interaction.user.username}\nYour ID: ${interaction.user.id}`);
+				await interaction.reply(`Tu username: ${interaction.user.username}\nTu ID: ${interaction.user.id}`);
 			}
 		} else if (interaction.options.getSubcommand() === 'server') {
-			await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+			await interaction.reply(`Nombre del servidor: ${interaction.guild.name}\nMiembros en total: ${interaction.guild.memberCount}`);
 		}
 	}
 });
 ```
 
-## Fetching and deleting responses
+## Obteniendo y eliminando respuestas
 
 ::: danger
-You _cannot_ fetch nor delete an ephemeral message.
+_No_ puede buscar ni borrar un mensaje efímero.
 :::
 
-In addition to replying to a slash command, you may also want to delete the initial reply. You can use `CommandInteraction#deleteReply()` for this:
-
+Además de responder a un comando de barra, es posible que también desee eliminar la respuesta inicial. Puede usar `CommandInteraction#deleteReply()` para esto:
 <!-- eslint-skip -->
 
 ```js {2}
@@ -348,7 +349,7 @@ await interaction.reply('Pong!');
 await interaction.deleteReply();
 ```
 
-Lastly, you may require the `Message` object of a reply for various reasons, such as adding reactions. You can use the `CommandInteraction#fetchReply()` method to fetch the `Message` instance of an initial response:
+Por último, es posible que necesite el objeto `Message` de una respuesta por varias razones, como agregar reacciones. Puede usar el método `CommandInteraction#fetchReply()` para obtener la instancia de `Message` de una respuesta inicial:
 
 <!-- eslint-skip -->
 

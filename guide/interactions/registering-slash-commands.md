@@ -1,20 +1,21 @@
-# Registering slash commands
+# Registrando comandos de barra
 
-Discord provides developers with the option to create client-integrated slash commands. In this section, we'll cover how to register these commands using discord.js!
+Discord ofrece a los desarrolladores la opción de crear comandos de barra integrados en el cliente. En esta sección, cubriremos cómo registrar estos comandos usando discord.js.
 
 ::: tip
-This page assumes you use the same file structure as our [command handling](/command-handling) section. The scripts provided are made to function with that setup.
+Esta página asume que usa la misma estructura de archivo que nuestro **[administrador de comandos](/command-handling)**. Los scripts proporcionados están hechos para funcionar con esa configuración.
 
-If you already have slash commands set up for your application and want to learn how to respond to them, refer to [the following page](/interactions/replying-to-slash-commands.md).
+Si ya tiene los comandos de barra configurados para su aplicación y desea aprender cómo responder a ellos, consulte **[la página siguiente](/interactions/replying-to-slash-commands.md)**.
 :::
 
-## Guild commands
+## Comandos de servidor
 
-Guild application commands are only available in the guild they were created in, if your application has the `applications.commands` scope authorized.
+Los comandos de aplicación del servidor, solo estan disponibles en el mismo que fueron creados, si su aplicación tiene el `scope` de `applications.commands` autorizado.  
 
-In this section, we'll be using a script that is usable in conjunction with the slash command handler from the [command handling](/command-handling/) section.
+Es esta sección,
+In this section, utilizaremos una secuencia de comandos que se puede utilizar junto con el controlador de comandos de barra de [administrador de comandos](/command-handling/).
 
-First off, install the [discord.js REST module](https://github.com/discordjs/discord.js-modules/blob/main/packages/rest/) by running `npm install @discordjs/rest` in your terminal.
+Antes que nada, instala el [módulo discord.js REST](https://github.com/discordjs/discord.js-modules/blob/main/packages/rest/) ejecutando `npm install @discordjs/rest` en tu terminal.
 
 <!-- eslint-skip -->
 
@@ -36,31 +37,31 @@ const rest = new REST({ version: '9' }).setToken(token);
 
 (async () => {
 	try {
-		console.log('Started refreshing application (/) commands.');
+		console.log('Iniciando la actualización de (/) comandos de aplicación');
 
 		await rest.put(
 			Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
 			{ body: commands },
 		);
 
-		console.log('Successfully reloaded application (/) commands.');
+		console.log('(/) Comandos de aplicación recargados con éxito');
 	} catch (error) {
 		console.error(error);
 	}
 })();
 ```
 
-Running this script will register all your commands to the guild of which the id was passed in above.
+La ejecución de este script registrará todos sus comandos en el servidor cuya identificación se pasó arriba.
 
-## Global commands
+## Comandos globales
 
-Global application commands will be available in all the guilds your application has the `applications.commands` scope authorized, as well as in DMs.
+Los comandos globales de la aplicación estarán disponibles en todos los gremios que tu aplicación tenga el `scope` de `applications.commands` autorizado, así como en los DM.
 
 ::: tip
-Global commands are cached for one hour. New global commands will fan out slowly across all guilds and will only be guaranteed to be updated after an hour. Guild commands update instantly. As such, we recommend you use guild-based commands during development and publish them to global commands when they're ready for public use.
+Los comandos globales se almacenan en caché durante una hora. Los nuevos comandos globales se desplegarán lentamente en todos los servidores y solo se garantizará que se actualicen después de una hora. Los comandos del servidor se actualizan instantáneamente. Como tal, le recomendamos que use comandos basados en servidores durante el desarrollo y los publique en comandos globales cuando estén listos para uso público.
 :::
 
-To deploy global commands, you can use the same script from the [guild commands](#guild-commands) section and adjust the route in the script to `.applicationCommands(CLIENT_ID)`.
+Para implementar comandos globales, puede usar el mismo script del [comandos de servidor](#comandos-de-servidor) y ajuste la ruta en el script para `.applicationCommands(CLIENT_ID)`.
 
 <!-- eslint-skip -->
 
@@ -71,65 +72,65 @@ await rest.put(
 );
 ```
 
-## Options
+## Opciones
 
-Application commands can have `options`. Think of these options as arguments to a function. You can specify them as shown below:
+Los comandos de la aplicación pueden tener `opciones`. Piense en estas opciones como argumentos de una función. Puede especificarlos como se muestra a continuación:
 
 ```js {6-9}
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 const data = new SlashCommandBuilder()
 	.setName('echo')
-	.setDescription('Replies with your input!')
+	.setDescription('¡Responde con tu argumento!')
 	.addStringOption(option =>
 		option.setName('input')
-			.setDescription('The input to echo back')
+			.setDescription('El argumento a repetir')
 			.setRequired(true));
 ```
 
-Notice how `.setRequired(true)` is specified within the options builder. Setting this will prevent the user from sending the command without specifying a value for this option!
+Observe cómo se especifica `.setRequired (true)` dentro del generador de opciones. ¡Establecer esto evitará que el usuario envíe el comando sin especificar un valor para esta opción!
 
-## Option types
+## Tipos de opciones
 
-As shown in the options example above, you can specify the `type` of an `ApplicationCommandOption`. Listed below are all the possible values you can pass as `ApplicationCommandOptionType`:
+Como se muestra en el ejemplo de opciones anterior, puede especificar el `tipo` de un `ApplicationCommandOption`. A continuación se enumeran todos los valores posibles que puede pasar como `ApplicationCommandOptionType`:
 
 ::: tip
-The [slash command builder](popular-topics/builders.md#slash-command-builders) has a method for each of these types respectively.
-Refer to the Discord API documentation for detailed explanations on the [`SUB_COMMAND` and `SUB_COMMAND_GROUP` option types](https://discord.com/developers/docs/interactions/slash-commands#subcommands-and-subcommand-groups).
+El [constructor de comandos de barra](popular-topics/builders.md#slash-command-builders) tiene un método para cada uno de estos tipos, respectivamente.
+Consulte la documentación de la API de Discord para obtener explicaciones detalladas sobre el [`SUB_COMMAND` y `SUB_COMMAND_GROUP` tipos de opciones](https://discord.com/developers/docs/interactions/slash-commands#subcommands-and-subcommand-groups).
 :::
 
-* `SUB_COMMAND` sets the option to be a subcommand
-* `SUB_COMMAND_GROUP` sets the option to be a subcommand group
-* `STRING` sets the option to require a string value
-* `INTEGER` sets the option to require an integer value
-* `NUMBER` sets the option to require a decimal (also known as a floating point) value
-* `BOOLEAN` sets the option to require a boolean value
-* `USER` sets the option to require a user or snowflake as value
-* `CHANNEL` sets the option to require a channel or snowflake as value
-* `ROLE` sets the option to require a role or snowflake as value
-* `MENTIONABLE` sets the option to require a user, role or snowflake as value
+* `SUB_COMMAND` establece la opción para que sea un subcomando
+* `SUB_COMMAND_GROUP` establece la opción para ser un grupo de subcomando
+* `STRING` establece la opción para requerir un valor cadena de texto
+* `INTEGER` establece la opción para requerir un valor entero
+* `NUMBER` establece la opción para requerir un valor decimal (también conocido como `floating point`)
+* `BOOLEAN` establece la opción para requerir un valor booleano
+* `USER` establece la opción para requerir un usuario o un `snowflake` como valor
+* `CHANNEL` establece la opción para requerir un canal o un `snowflake` como valor
+* `ROLE` establece la opción para requerir un rol o un `snowflake` como valor
+* `MENTIONABLE` establece la opción para requerir un usuario, rol o `snowflake` como valor
 
-## Choices
+## Elecciones
 
-The `STRING` and `INTEGER` option types both can have `choices`. `choices` are a set of predetermined values users can pick from when selecting the option that contains them.
+Los tipos de opción `STRING` y `INTEGER` pueden tener "opciones". Las `elecciones` son un conjunto de valores predeterminados entre los que los usuarios pueden elegir al seleccionar la opción que los contiene.
 
 ::: warning
-If you specify `choices` for an option, they'll be the **only** valid values users can pick!
+Si especifica `elecciones` para una opción, serán los **únicos** valores válidos que los usuarios pueden elegir.
 :::
 
-Specify them by using the `addChoice()` method from the slash command builder:
+Especifíquelos usando el método `addChoice()` del generador de comandos de barra:
 
 ```js {10-12}
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 const data = new SlashCommandBuilder()
 	.setName('gif')
-	.setDescription('Sends a random gif!')
+	.setDescription('¡Envía un gif aleatorio!')
 	.addStringOption(option =>
-		option.setName('category')
-			.setDescription('The gif category')
+		option.setName('categoria')
+			.setDescription('La categoría del gif')
 			.setRequired(true)
-			.addChoice('Funny', 'gif_funny')
+			.addChoice('Gracioso', 'gif_gracioso')
 			.addChoice('Meme', 'gif_meme')
-			.addChoice('Movie', 'gif_movie'));
+			.addChoice('Pelicula', 'gif_pelicula'));
 ```
