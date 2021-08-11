@@ -1,20 +1,20 @@
-# Buttons
+# Botones
 
-With the components API, you can create interactive message components. On this page, we'll cover how to send, receive, and respond to buttons using discord.js!
+Con la API de `Componentes`, puede crear componentes de mensajes interactivos. En esta página, cubriremos cómo enviar, recibir y responder a `botones` usando discord.js.
 
 ::: tip
-This page is a follow-up to the [interactions (slash commands) pages](/interactions/registering-slash-commands.md). Please carefully read those first so that you can understand the methods used in this section.
+Esta página es un seguimiento de la [página de interacciones (comandos de barra)](/interactions/registering-slash-commands.md). Por favor, léalos primero con atención para que pueda comprender los métodos utilizados en esta sección.
 :::
 
-## Building and sending buttons
+## Construyendo y enviando botones
 
-Buttons are part of the `MessageComponent` class, which can be sent via messages or interaction responses. A button, as any other message component, must be in an `ActionRow`.
+Los botones son parte de la clase `MessageComponent`, que se pueden enviar a través de mensajes o respuestas de interacción. Un botón, como cualquier otro componente de mensaje, debe estar en una `ActionRow`.
 
 ::: warning
-You can have a maximum of five `ActionRow`s per message, and five buttons within an `ActionRow`.
+Puede tener un máximo de cinco `ActionRow` por mensaje y cinco `botones` dentro de una `ActionRow`.
 :::
 
-To create a button, use the `MessageActionRow()` and `MessageButton()` builder functions and then pass the resulting object to `CommandInteraction#reply()` as `InteractionReplyOptions`:
+Para crear un botón, use las funciones de construcción `MessageActionRow()` y `MessageButton()` y luego pase el objeto resultante a `CommandInteraction#reply()` como `InteractionReplyOptions`:
 
 ```js {1,7-13,15}
 const { MessageActionRow, MessageButton } = require('discord.js');
@@ -27,7 +27,7 @@ client.on('interactionCreate', async interaction => {
 			.addComponents(
 				new MessageButton()
 					.setCustomId('primary')
-					.setLabel('Primary')
+					.setLabel('Primario')
 					.setStyle('PRIMARY'),
 			);
 
@@ -37,10 +37,10 @@ client.on('interactionCreate', async interaction => {
 ```
 
 ::: tip
-The custom ID is a developer-defined string of up to 100 characters.
+El ID personalizado es una cadena de texto definida por el desarrollador de hasta 100 caracteres.
 :::
 
-Restart your bot and then send the command to a channel your bot has access to. If all goes well, you should see something like this:
+Reinicie su bot y luego envíe el comando a un canal al que su bot tenga acceso. Si todo va bien, debería ver algo como esto:
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
@@ -50,13 +50,13 @@ Restart your bot and then send the command to a channel your bot has access to. 
 		Pong!
 		<template #actions>
 			<DiscordButtons>
-				<DiscordButton>Primary</DiscordButton>
+				<DiscordButton>Primario</DiscordButton>
 			</DiscordButtons>
 		</template>
 	</DiscordMessage>
 </DiscordMessages>
 
-You can also send message components within an ephemeral response or alongside message embeds.
+También puede enviar componentes de mensaje dentro de una respuesta `efímera` o junto con incrustaciones de mensajes (embeds).
 
 ```js {1,12-16,18}
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
@@ -72,9 +72,9 @@ client.on('interactionCreate', async interaction => {
 
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
-			.setTitle('Some title')
+			.setTitle('Algun titulo')
 			.setURL('https://discord.js.org')
-			.setDescription('Some description here');
+			.setDescription('Alguna descripción aquí');
 
 		await interaction.reply({ content: 'Pong!', ephemeral: true, embeds: [embed], components: [row] });
 	}
@@ -94,28 +94,28 @@ client.on('interactionCreate', async interaction => {
 		<template #embeds>
 			<DiscordEmbed
 				border-color="#0099ff"
-				embed-title="Some title"
+				embed-title="Algun titulo"
 				url="https://discord.js.org"
 			>
-				Some description here
+				Alguna descripción aquí
 			</DiscordEmbed>
 		</template>
 		<template #actions>
 			<DiscordButtons>
-				<DiscordButton>Primary</DiscordButton>
+				<DiscordButton>Primario</DiscordButton>
 			</DiscordButtons>
 		</template>
 	</DiscordMessage>
 </DiscordMessages>
 
-### Disabled buttons
+### Botones desactivados
 
-If you want to prevent a button from being used, but not remove it from the message, you can disable it with the `setDisabled()` method:
+Si desea evitar que se use un botón, pero no eliminarlo del mensaje, puede deshabilitarlo con el método `setDisabled()`:
 
 ```js {5}
 const button = new MessageButton()
 	.setCustomId('primary')
-	.setLabel('Primary')
+	.setLabel('Primario')
 	.setStyle('PRIMARY')
 	.setDisabled(true);
 ```
@@ -128,29 +128,29 @@ const button = new MessageButton()
 		Pong!
 		<template #actions>
 			<DiscordButtons>
-				<DiscordButton :disabled="true">Primary</DiscordButton>
+				<DiscordButton :disabled="true">Primario</DiscordButton>
 			</DiscordButtons>
 		</template>
 	</DiscordMessage>
 </DiscordMessages>
 
-### Emoji buttons
+### Botones de emoji
 
-If you want to use a guild emoji within a `MessageButton`, you can use the `setEmoji()` method:
+Si quieres usar un emoji de `servidor` dentro de un `MessageButton`, puedes usar el método` setEmoji() `:
 
 ```js {5}
 const button = new MessageButton()
 	.setCustomId('primary')
-	.setLabel('Primary')
+	.setLabel('Primario')
 	.setStyle('PRIMARY')
 	.setEmoji('123456789012345678');
 ```
 
-Now you know all there is to building and sending a `MessageButton`! Let's move on to receiving button interactions!
+¡Ahora ya sabe todo lo que hay que hacer para crear y enviar un `MessageButton`! ¡Pasemos a recibir interacciones de botones!
 
-## Receiving buttons
+## Recibiendo botones
 
-To receive a `ButtonInteraction`, attach an event listener to your client and use the `Interaction#isButton()` type guard to make sure you only receive buttons:
+Para recibir una `ButtonInteraction`, adjunte un detector de eventos a su cliente y use la protección de tipo` Interaction#isButton() `para asegurarse de que solo reciba botones:
 
 ```js {2}
 client.on('interactionCreate', interaction => {
@@ -159,19 +159,19 @@ client.on('interactionCreate', interaction => {
 });
 ```
 
-## Component collectors
+## Colleciones de botones
 
-These work quite similarly to message and reaction collectors, except that you will receive instances of the `MessageComponentInteraction` class as collected items.
+Estos funcionan de manera bastante similar a los `collectors` de mensajes y reacciones, excepto que recibirá instancias de la clase `MessageComponentInteraction` como elementos recopilados.
 
 ::: tip
-You can create the collectors on either a `message` or a `channel`.
+Puede crear los `collectors` en un `mensaje` o en un `canal`.
 :::
 
-For a detailed guide on receiving message components via collectors, please refer to the [collectors guide](/popular-topics/collectors.md#interaction-collectors).
+Para obtener una guía detallada sobre la recepción de componentes de mensajes a través de `collectors`, consulte la [guía de colleciones](/popular-topics/collectors.md#interaction-collectors).
 
-## Responding to buttons
+## Respondiendo a botones
 
-The `MessageComponentInteraction` class provides the same methods as the `CommandInteraction` class. These methods behave equally:
+La clase `MessageComponentInteraction` proporciona los mismos métodos que la clase` CommandInteraction`. Estos métodos se comportan igualmente:
 - `reply()`
 - `editReply()`
 - `deferReply()`
@@ -179,9 +179,9 @@ The `MessageComponentInteraction` class provides the same methods as the `Comman
 - `deleteReply()`
 - `followUp()`
 
-### Updating the button message
+### Actualización del mensaje de un botón
 
-The `MessageComponentInteraction` class provides an `update()` method to update the message the button is attached to. Passing an empty array to the `components` option will remove any buttons after one has been clicked.
+La clase `MessageComponentInteraction` proporciona un método` update()` para actualizar el mensaje al que está adjunto el menú de selección. Pasar una matriz (array) vacía a la opción `componentes` eliminará cualquier botón después de que se haya hecho click en alguno de ellos.
 
 <!-- eslint-skip -->
 
@@ -192,16 +192,16 @@ const collector = interaction.channel.createMessageComponentCollector({ filter, 
 
 collector.on('collect', async i => {
 	if (i.customId === 'primary') {
-		await i.update({ content: 'A button was clicked!', components: [] });
+		await i.update({ content: '¡Se hizo clic en un botón!', components: [] });
 	}
 });
 
-collector.on('end', collected => console.log(`Collected ${collected.size} items`));
+collector.on('end', collected => console.log(`${collected.size} items coleccionados`));
 ```
 
-### Deferring and updating the button message
+### Aplazamiento y actualización del mensaje de un botón
 
-In addition to deferring an interaction response, you can defer the button, which will trigger a loading state and then revert to its original state:
+Además de aplazar una respuesta de interacción, puede aplazar el botón, que activará un estado de carga y luego volverá a su estado original:
 
 <!-- eslint-skip -->
 
@@ -214,7 +214,7 @@ collector.on('collect', async i => {
 	if (i.customId === 'primary') {
 		await i.deferUpdate();
 		await wait(4000);
-		await i.editReply({ content: 'A button was clicked!', components: [] });
+		await i.editReply({ content: '¡Se hizo clic en un botón!', components: [] });
 	}
 });
 
@@ -222,29 +222,29 @@ collector.on('end', collected => console.log(`Collected ${collected.size} items`
 ```
 
 
-## Button styles
+## Estilos de botones
 
-Currently there are five different button styles available:
-- `PRIMARY`, a blurple button;
-- `SECONDARY`, a grey button;
-- `SUCCESS`, a green button;
-- `DANGER`, a red button;
-- `LINK`, a button that navigates to a URL.
+Actualmente hay cinco estilos de botones diferentes disponibles:
+- `PRIMARY`, un botón azul borroso;
+- `SECONDARY`, un botón gris;
+- `SUCCESS`, un botón verde;
+- `DANGER`, un botón rojo;
+- `LINK`, un botón que redirige a una URL.
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
 		<template #actions>
 			<DiscordButtons>
-				<DiscordButton>Primary</DiscordButton>
-				<DiscordButton type="secondary">Secondary</DiscordButton>
-				<DiscordButton type="success">Success</DiscordButton>
-				<DiscordButton type="danger">Danger</DiscordButton>
-				<DiscordButton type="link" url="https://discord.js.org">Link</DiscordButton>
+				<DiscordButton>Primario</DiscordButton>
+				<DiscordButton type="secondary">Secondario</DiscordButton>
+				<DiscordButton type="success">Éxito</DiscordButton>
+				<DiscordButton type="danger">Peligro</DiscordButton>
+				<DiscordButton type="link" url="https://discord.js.org">Enlace</DiscordButton>
 			</DiscordButtons>
 		</template>
 	</DiscordMessage>
 </DiscordMessages>
 
 ::: warning
-Only `LINK` buttons can have a `url`. `LINK` buttons _cannot_ have a `custom_id` and _do not_ send an interaction event when clicked.
+Solo los botones `LINK` pueden tener una `URL`. Los botones `LINK` _no_ pueden tener un` custom_id` y _no_ envían un evento de interacción cuando se hace clic en ellos.
 :::

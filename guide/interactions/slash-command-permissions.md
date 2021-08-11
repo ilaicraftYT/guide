@@ -1,14 +1,14 @@
-# Slash command permissions
+# Permisos de comando de barra
 
-Slash commands have their own permissions system, which allows you to control who has access to use which commands. Unlike the slash commands permission setting within the Discord client, you can fine-tune access to commands without preventing the selected user or role from using all commands.
+Los comandos de barra tienen su propio sistema de permisos, lo que le permite controlar quién tiene acceso para usar qué comandos. A diferencia de la configuración de permisos de los comandos de barra inclinada dentro del cliente de Discord, puede ajustar el acceso a los comandos sin evitar que el usuario o rol seleccionado use todos los comandos.
 
 ::: tip
-If you set `defaultPermission: false` when creating a command, you can immediately disable it for everyone, including guild administrators and yourself.
+Si establece `defaultPermission: false` al crear un comando, puede deshabilitarlo inmediatamente para todos, incluidos los administradores del gremio y usted mismo.
 :::
 
-## User permissions
+## Permisos de usuario
 
-To begin, fetch an `ApplicationCommand` and then set the permissions using the `ApplicationCommandPermissionsManager#add()` method:
+Para comenzar, obtenga un `ApplicationCommand` y luego configure los permisos usando el método `ApplicationCommandPermissionsManager#add()`:
 
 <!-- eslint-skip -->
 
@@ -28,16 +28,16 @@ const permissions = [
 await command.permissions.add({ permissions });
 ```
 
-Now you have successfully denied the user whose `id` you used access to this application command.
+Ahora ha denegado con éxito al usuario cuyo `id` utilizó el acceso a este comando de aplicación.
 
 ::: tip
-If you want to update permissions for a global command instead, your `command` variable would be:
+Si desea actualizar los permisos para un comando global, su variable `comando` sería:
 ```js
 const command = client.application?.commands.fetch('123456789012345678');
 ```
 :::
 
-If you have a command that is disabled by default and you want to grant someone access to use it, do as follows:
+Si tiene un comando que está deshabilitado de manera predeterminada y desea otorgar acceso a alguien para usarlo, haga lo siguiente:
 
 <!-- eslint-skip -->
 
@@ -54,9 +54,9 @@ await command.permissions.set({ permissions });
 ```
 
 
-## Role permissions
+## Permisos para roles
 
-Permissions may also be denied (or allowed) at a role scope instead of a single user:
+Los permisos también se pueden denegar (o permitir) a un `rol` en lugar de un solo usuario:
 
 <!-- eslint-skip -->
 
@@ -72,9 +72,9 @@ const permissions = [
 await command.permissions.add({ permissions });
 ```
 
-## Bulk update permissions
+## Permisos de actualización masiva
 
-If you have a lot of commands, you likely want to update their permissions in one go instead of one-by-one. For this approach, you can use `ApplicationCommandPermissionsManager#set()` method:
+Si tiene muchos comandos, es probable que desee actualizar sus permisos de una vez en lugar de uno por uno. Para este enfoque, puede utilizar el método `ApplicationCommandPermissionsManager#set()`:
 
 <!-- eslint-skip -->
 
@@ -101,4 +101,4 @@ const fullPermissions = [
 await client.guilds.cache.get('123456789012345678')?.commands.permissions.set({ fullPermissions });
 ```
 
-And that's all you need to know on slash command permissions!
+¡Y eso es todo lo que necesita saber sobre los permisos en comandos de barra!

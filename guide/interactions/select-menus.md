@@ -1,20 +1,20 @@
 # Select menus
 
-With the components API, you can create interactive message components. In this page, we'll cover how to send, receive, and respond to select menus using discord.js!
+Con la API de `Componentes`, puede crear componentes de mensajes interactivos. En esta página, cubriremos cómo enviar, recibir y responder a `select menus` usando discord.js.
 
 ::: tip
-This page is a follow-up to the [interactions (slash commands) pages](/interactions/registering-slash-commands.md). Please carefully read those first so that you can understand the methods used in this section.
+Esta página es un seguimiento de la [página de interacciones (comandos de barra)](/interactions/registering-slash-commands.md). Por favor, léalos primero con atención para que pueda comprender los métodos utilizados en esta sección.
 :::
 
-## Building and sending select menus
+## Construyendo y enviando select menus
 
-Select menus are part of the `MessageComponent` class, which can be sent via messages or interaction responses. A select menu, as any other message component, must be in an `ActionRow`.
+Los menús seleccionados son parte de la clase `MessageComponent`, que se pueden enviar a través de mensajes o respuestas de interacción. Un `select menu`, como cualquier otro componente de mensaje, debe estar en una `ActionRow`.
 
 ::: warning
-You can have a maximum of five `ActionRow`s per message, and one select menu within an `ActionRow`.
+Puede tener un máximo de cinco `ActionRow` por mensaje y un `select menu` dentro de una `ActionRow`.
 :::
 
-To create a select menu, use the `MessageActionRow()` and `MessageSelectMenu()` builder functions and then pass the resulting object to `CommandInteraction#reply()` as `InteractionReplyOptions`:
+Para crear un `select menu`, use las funciones de construcción `MessageActionRow()` y `MessageSelectMenu()` y luego pase el objeto resultante a `CommandInteraction#reply()` como `InteractionReplyOptions`:
 
 ```js {1,7-24,26}
 const { MessageActionRow, MessageSelectMenu } = require('discord.js');
@@ -27,16 +27,16 @@ client.on('interactionCreate', async interaction => {
 			.addComponents(
 				new MessageSelectMenu()
 					.setCustomId('select')
-					.setPlaceholder('Nothing selected')
+					.setPlaceholder('Ninguna selección')
 					.addOptions([
 						{
 							label: 'Select me',
-							description: 'This is a description',
+							description: 'Esta es una descripción',
 							value: 'first_option',
 						},
 						{
-							label: 'You can select me too',
-							description: 'This is also a description',
+							label: 'Tu, también puedes seleccionarme',
+							description: 'Esta es también una descripción,
 							value: 'second_option',
 						},
 					]),
@@ -48,10 +48,10 @@ client.on('interactionCreate', async interaction => {
 ```
 
 ::: tip
-The custom id is a developer-defined string of up to 100 characters.
+El ID personalizado es una cadena de texto definida por el desarrollador de hasta 100 caracteres.
 :::
 
-Restart your bot and then send the command to a channel your bot has access to. If all goes well, you should see something like this:
+Reinicie su `bot` y luego envíe el comando a un canal al que su `bot` tenga acceso. Si todo va bien, debería ver algo como esto:
 
 <!--- vue-discord-message doesn't yet have support for select menus
 <DiscordMessages>
@@ -65,7 +65,7 @@ Restart your bot and then send the command to a channel your bot has access to. 
 -->
 ![select](./images/select.png)
 
-You can also send message components within an ephemeral response or alongside message embeds.
+También puede enviar componentes de mensaje dentro de una respuesta `efímera` o junto con incrustaciones de mensajes (embeds).
 
 ```js {1,12-16,18}
 const { MessageActionRow, MessageEmbed, MessageSelectMenu } = require('discord.js');
@@ -90,7 +90,7 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-Restart your bot and then send the command to a channel your bot has access to. If all goes well, you should see something like this:
+Reinicie su `bot` y luego envíe el comando a un canal al que su `bot` tenga acceso. Si todo va bien, debería ver algo como esto:
 
 <!--- vue-discord-message doesn't yet have support for select menus
 <DiscordMessages>
@@ -117,11 +117,11 @@ Restart your bot and then send the command to a channel your bot has access to. 
 -->
 ![selectephem](./images/selectephem.png)
 
-Now you know all there is to building and sending a `SelectMenu`! Let's move on to how to receive menus!
+¡Ahora ya sabe todo lo que hay que hacer para crear y enviar un `SelectMenu`! ¡Pasemos a cómo recibir menús!
 
-## Receiving Select menus
+## Recibiendo Select menus
 
-To receive a `SelectMenuInteraction`, attach an event listener to your client and use the `Interaction#isSelectMenu()` type guard to make sure you only receive select menus:
+Para recibir una `SelectMenuInteraction`, adjunte un detector de eventos a su cliente y use el protector de tipo` Interaction#isSelectMenu() `para asegurarse de que solo reciba menús selectos:
 
 ```js {2}
 client.on('interactionCreate', interaction => {
@@ -130,19 +130,19 @@ client.on('interactionCreate', interaction => {
 });
 ```
 
-## Component collectors
+## Colección de componentes
 
-These work quite similarly to message and reaction collectors, except that you will receive instances of the `MessageComponentInteraction` class as collected items.
+Estos funcionan de manera bastante similar a los `collectors` de mensajes y reacciones, excepto que recibirá instancias de la clase `MessageComponentInteraction` como elementos coleccionados.
 
 ::: tip
-You can create the collectors on either a `message` or a `channel`.
+Puede crear los `collectors` en un `mensaje` o en un `canal`.
 :::
 
-For a detailed guide on receiving message components via collectors, please refer to the [collectors guide](/popular-topics/collectors.md#interaction-collectors).
+Para obtener una guía detallada sobre la recepción de componentes de mensajes a través de `collectors`, consulte la [guía de colleciones](/popular-topics/collectors.md#interaction-collectors).
 
-## Responding to select menus
+## Respondiendo a select menus
 
-The `MessageComponentInteraction` class provides the same methods as the `CommandInteraction` class. These methods behave equally:
+La clase `MessageComponentInteraction` proporciona los mismos métodos que la clase` CommandInteraction`. Estos métodos se comportan igualmente:
 - `reply()`
 - `editReply()`
 - `deferReply()`
@@ -150,23 +150,23 @@ The `MessageComponentInteraction` class provides the same methods as the `Comman
 - `deleteReply()`
 - `followUp()`
 
-### Updating the select menu's message
+### Actualización del mensaje de un select menu
 
-The `MessageComponentInteraction` class provides an `update()` method to update the message the select menu is attached to. Passing an empty array to the `components` option will remove any menus after an option has been selected.
+La clase `MessageComponentInteraction` proporciona un método` update() `para actualizar el mensaje al que está adjunto el menú de selección. Pasar una matriz (array) vacía a la opción `componentes` eliminará cualquier menú después de que se haya seleccionado una opción.
 
 ```js {1,4-6}
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isSelectMenu()) return;
 
 	if (interaction.customId === 'select') {
-		await interaction.update({ content: 'Something was selected!', components: [] });
+		await interaction.update({ content: '¡Se seleccionó algo!', components: [] });
 	}
 });
 ```
 
-### Deferring and updating the select menu's message
+### Aplazamiento y actualización del mensaje de un select menu
 
-Additionally to deferring the response of the interaction, you can defer the menu, which will trigger a loading state and then revert back to its original state:
+Además de aplazar la respuesta de la interacción, puede aplazar el menú, que activará un estado de carga y luego volverá a su estado original:
 
 ```js {1,6-10}
 const wait = require('util').promisify(setTimeout);
@@ -177,14 +177,14 @@ client.on('interactionCreate', async interaction => {
 	if (interaction.customId === 'select') {
 		await interaction.deferUpdate();
 		await wait(4000);
-		await interaction.editReply({ content: 'Something was selected!', components: [] });
+		await interaction.editReply({ content: '¡Se seleccionó algo!', components: [] });
 	}
 });
 ```
 
 ## Multi-select menus
 
-A select menu is not bound to only one selection; you can specify a minimum and maximum amount of options that must be selected. You can use `MessageSelectMenu#setMinValues()` and `MessageSelectMenu#setMaxValues()` to determine these values.
+Un select menu  no está limitado a una sola selección; puede especificar una cantidad mínima y máxima de opciones que deben seleccionarse. Puede utilizar `MessageSelectMenu#setMinValues()` y `MessageSelectMenu#setMaxValues()` para determinar estos valores.
 
 ```js {1,7-31,33}
 const { MessageActionRow, MessageSelectMenu } = require('discord.js');
@@ -197,23 +197,23 @@ client.on('interactionCreate', async interaction => {
 			.addComponents(
 				new MessageSelectMenu()
 					.setCustomId('select')
-					.setPlaceholder('Nothing selected')
+					.setPlaceholder('Nada seleccionado')
 					.setMinValues(2)
 					.setMaxValues(3)
 					.addOptions([
 						{
-							label: 'Select me',
-							description: 'This is a description',
+							label: 'Seleccioname',
+							description: 'Esta es una descripción',
 							value: 'first_option',
 						},
 						{
-							label: 'You can select me too',
-							description: 'This is also a description',
+							label: 'También puedes seleccionarme',
+							description: 'Esta es también una descripción',
 							value: 'second_option',
 						},
 						{
-							label: 'I am also an option',
-							description: 'This is a description as well',
+							label: 'Yo también soy una opcion',
+							description: 'Esta es otra descripción',
 							value: 'third_option',
 						},
 					]),
