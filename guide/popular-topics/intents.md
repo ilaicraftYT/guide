@@ -1,22 +1,22 @@
-# Gateway Intents
+# Intents del Gateway
 
-Gateway Intents were introduced by Discord so bot developers can choose which events their bot receives based on which data it needs to function. Intents are named groups of pre-defined WebSocket events, which the discord.js client will receive. If you omit `DIRECT_MESSAGE_TYPING`, for example, you will no longer receive typing events from direct messages. If you provide no intents, discord.js will throw an error.
+Los Intents del Gateway fueron introducidos por Discord para que los desarrolladores de bots puedan elegir los eventos que su bot recibirá, basándose en los datos que necesite para funcionar. Los Intents son grupos nombrados de eventos del WebSocket pre-definidos, los cuales el cliente de discord.js recibirá. Si omites el Intent `DIRECT_MESSAGE_TYPING` por ejemplo, no recibirás eventos cuando un usuario empieza a escribir en mensaje directo. Si no provess ningún intent, discord.js arrojará un error.
 
-## Privileged Intents
+## Intents privilegiados
 
-Discord defines some intents as "privileged" due to the data's sensitive nature. At the time of writing this article, privileged intents are `GUILD_PRESENCES` and `GUILD_MEMBERS`. If your bot is not verified and in less than 100 guilds, you can enable privileged gateway intents in the [Discord Developer Portal](https://discord.com/developers/applications) under "Privileged Gateway Intents" in the "Bot" section. If your bot is already verified or is about to [require verification](https://support.discord.com/hc/en-us/articles/360040720412), you need to request privileged intents. You can do this in your verification application or by reaching out to Discord's [support team](https://dis.gd/contact), including why you require access to each privileged intent.
+Discord define algunos Intents como "privilegiados" debido a los datos que ofrecen. Por ahora, los Intents privilegiados son `GUILD_PRESENCES` y `GUILD_MEMBERS`. Si tu bot no está verificado y está en menos de 100 servidores, puedes habilitar los Intents del Gateway privilegiados en el [Portal de Desarrolladores de Discord](https://discord.com/developers/applications) debajo de "Privileged Gateway Intents" en la sección "Bot". Si tu bot ya está verificado o está a punto de [pedir la verificación](https://support.discord.com/hc/en-us/articles/360040720412), tendrás que pedir los Intents privilegiados. Puedes hacer esto en tu formulario de verificación o hablando con el [equipo de soporte](https://dis.gd/contact) de Discord, incluyendo la razón por la cual quieres acceso a cada Intent privilegiado.
 
-Before storming off and doing so, you should stop and carefully think about if you need these events. Discord made them opt-in so users across the platform can enjoy a higher level of [privacy](https://en.wikipedia.org/wiki/Privacy_by_design). Presences can expose quite a bit of personal information through games and online times, for example. You might find it sufficient for your bot to have a little less information about all guild members at all times, considering you still get the command author as GuildMember from the command execution message and can fetch targets separately.
+Antes de hacerlo, detente y piensa cuidadosamente sobre si realmente necesitas estos eventos. Discord los ha hecho opcionales para que todos los usuarios a través de la plataforma puedan disfrutar de un mayor nivel de seguridad. Las presencias pueden exponer bastante información personal a través de juegos y tiempos en línea, por ejemplo. Puede que sea suficiente para tu bot tener un poco menos de información sobre todos los miembros del servidor en todo momento, teniendo en cuenta que aún puedes obtener el autor del comando como el `GuildMember` del mensaje de ejecución, y puedes buscar miembros por separado.
 
-### Error: Disallowed Intents
+### Error: Intents deshabiltados
 
-Should you receive an error prefixed with `[DISALLOWED_INTENTS]`, please review your developer dashboard settings for all privileged intents you use. Check on the [Discord API documentation](https://discord.com/developers/docs/topics/gateway#privileged-intents) for up to date information.
+Si recibes un error que empieza con `[DISALLOWED_INTENTS]`, revisa los ajustes del panel de desarrolladores para ver todos los Intents privilegiados que tengas activados. Revisa la [documentación de la API de Discord](https://discord.com/developers/docs/topics/gateway#privileged-intents) para información más detallada.
 
-## Enabling Intents
+## Activando Intents
 
-To specify which events you want your bot to receive, first think about which events your bot needs to operate. Then select the required intents and add them to your client constructor, as shown below.
+Para especificar los eventos que quieres que tu bot reciba, primero piensa que eventos tu bot necesita operar. Entonces, selecciona los Intents que necesites y añádelos a tu constructor Client, como puedes ver abajo.
 
-All gateway intents, and the events belonging to each, are listed on the [Discord API documentation](https://discord.com/developers/docs/topics/gateway#list-of-intents). If you need your bot to receive messages (`MESSAGE_CREATE` - `"messageCreate"` in discord.js), you need the `GUILD_MESSAGES` intent. If you want your bot to post welcome messages for new members (`GUILD_MEMBER_ADD` - `"guildMemberAdd"` in discord.js), you need the `GUILD_MEMBERS` intent, and so on.
+Todos los Intents del Gateway y eventos pertenecientes a estos, están listados en la [documentación de la API de Discord](https://discord.com/developers/docs/topics/gateway#list-of-intents). Si necesitas que tu bot reciba mensajes (`MESSAGE_CREATE` - `"messageCreate"` en discord.js), necesitarás el Intent `GUILD_MESSAGES`. Si quieres que to bot anuncie mensajes de bienvenidas para nuevos miembros (`GUILD_MEMBER_ADD` - `"guildMemberAdd"` en discord.js), necesitarás el Intent `GUILD_MEMBERS`, y así sucesivamente.
 
 ```js
 const { Client, Intents } = require('discord.js');
@@ -25,18 +25,18 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 ```
 
 ::: warning
-Note that discord.js relies heavily on caching to provide its functionality. Some methods that seem unrelated might stop working if certain events do not arrive.
+Ten en cuenta que discord.js se basa en gran medida en el almacenamiento en caché para proporcionar su funcionalidad. Algunos métodos que parecen no estar relacionados, podrían dejar de funcionar si no se emiten ciertos eventos.
 
-Please make sure to provide the list of gateway intents and partials you use in your Client constructor when asking for support on our [Discord server](https://discord.gg/djs) or [GitHub repository](https://github.com/discordjs/discord.js).
+~~Asegúrate de proporcionar una lista de los `Intents del Gateway` y `Partials` que usas en tu constructor Client cuando pidas soporte en el [Servidor de Discord](https://discord.gg/djs) o en el [repositorio de GitHub](https://github.com/discordjs/discord.js)`~~
 :::
 
-## The Intents Bitfield
+## Los Bitfields de Intents
 
-discord.js provides the utility structure <docs-link path="class/Intents">`Intents`</docs-link> to simplify the modification of intents bitfields.
+Discord.js proporciona la estructura de utilidad <DocsLink section="main" path="class/Intents">`Intents`</DocsLink> para simplificar la modificación de bitfields de los Intents.
 
-You can use the `.add()` and `.remove()` methods to add or remove flags (Intents string literals representing a certain bit) and modify the bitfield. You can provide single flags as well as an array or bitfield. To use a set of intents as a template you can pass it to the constructor. Note that the empty constructor `new Intents()` creates an empty Intents instance, representing no intents or the bitfield `0`:
+Puedes usar los métodos `.add()` y `.remove()` para añadir o eliminar flags (String de Intents representando un cierto bit) y modificar el Bitfield. Puedes proporcionar una sola flag así como un array de flags o Bitfield. Para usar conjunto de Intents como plantilla, puedes pasarlos por el constructor. Un constructor `new Intents()` vacío crea una nueva instancia de Intents vacíos, representando ningún Intent o el bitfield `0`:
 
-```js
+```js {3,4,6,10,11,13,14}
 const { Client, Intents } = require('discord.js');
 
 const myIntents = new Intents();
@@ -44,7 +44,7 @@ myIntents.add(Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MEMBERS);
 
 const client = new Client({ intents: myIntents });
 
-// other examples:
+// otros ejemplos:
 
 const otherIntents = new Intents([Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES]);
 otherIntents.remove([Intents.FLAGS.DIRECT_MESSAGES]);
@@ -53,10 +53,10 @@ const otherIntents2 = new Intents(32509);
 otherIntents2.remove(4096, 512);
 ```
 
-If you want to view the built flags you can utilize the `.toArray()`, `.serialize()` methods. The first returns an array of flags represented in this bitfield, the second an object mapping all possible flag values to a boolean, based on their representation in this bitfield.
+Si quieres ver las flags construidas, puedes usar los métodos `.toArray()` o `.serialize()`. El primero devuelve un array de flags representado en los Bitfields y el segundo devuelve un objeto mapeando todos los valores de los flags a un booleano, basándose en su representación en este Bitfield.
 
-## More on Bitfields
+## Más de Bitfields
 
-Discord Intents and Permissions are stored in a 53-bit integer and calculated using bitwise operations. If you want to dive deeper into what's happening behind the curtains, check the [Wikipedia](https://en.wikipedia.org/wiki/Bit_field) and [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) articles on the topic.
+Los Intents y permisos de Discord son almacenados en un integer de 53-bits y calculados usando operadores de desplazamiento de bits (Bitwise operators). Si quieres navegar más profundo sobre qué sucede detrás de las cortinas, puedes revisar los artículos de [MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators#operadores_de_desplazamiento_de_bits) sobre el tópico.
 
-In discord.js, Permissions and Intents bitfields are represented as either the decimal value of said bit field or its referenced flags. Every position in a permissions bitfield represents one of these flags and its state (either referenced `1` or not referenced `0`).
+En discord.js, los bitfields de `Permissions` y `Intents` se representan como el valor decimal de dicho bitfield o sus flags referenciadas. Cada posición de un bitfield de permisos representa uno de estas bitfields y su estado. (Ya sea `1` para referenciado y `0` para no referenciado)
