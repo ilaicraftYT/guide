@@ -1,17 +1,17 @@
-# Frequently asked Questions
+# Preguntas frecuentes (FAQ)
 
-## Legend
+## Leyenda
 
-* `<client>` is a placeholder for the Client object, such as `const client = new Client({ intents: [Intents.FLAGS.GUILDS] });`.
-* `<interaction>` is a placeholder for the Interaction object, such as `client.on('interactionCreate', interaction => { ... });`.
-* `<guild>` is a placeholder for the Guild object, such as `<interaction>.guild` or `<client>.guilds.cache.get('<id>')`.
-* `<voiceChannel>` is a placeholder for the VoiceChannel object, such as `<message>.member.voice.channel`
+* `<client>` es un marcador de posición para el objeto `Client`, como `const client = new Client({ intents: [Intents.FLAGS.GUILDS] });`.
+* `<interaction>` es un marcador de posición para el objeto `Interaction`, como `client.on('interactionCreate', interaction => { ... });`.
+* `<guild>` es un marcador de posición para el objeto `Guild`, como `<interaction>.guild` o `<client>.guilds.cache.get('<id>')`.
+* `<voiceChannel>`es un marcador de posición para el objeto `VoiceChannel`, como `<message>.member.voice.channel`
 
-For a more detailed explanation of the notations commonly used in this guide, the docs, and the support server, see [here](/additional-info/notation.md).
+Para obtener una explicación más detallada de las notaciones que se usan comúnmente en esta guía, los documentos y el servidor de soporte, consulte [aquí](/additional-info/notation.md).
 
-## Administrative
+## Administrativo
 
-### How do I ban a user?
+### ¿Cómo banear a un usuario?
 
 <!-- eslint-skip -->
 
@@ -20,7 +20,7 @@ const user = <interaction>.options.getUser('target');
 <guild>.members.ban(user);
 ```
 
-### How do I unban a user?
+### ¿Cómo desbaneo un usuario?
 
 <!-- eslint-skip -->
 
@@ -30,10 +30,10 @@ const id = <interaction>.options.get('target')?.value;
 ```
 
 ::: tip
-Because you cannot ping a user who isn't in the server, you have to pass in the user id. To do this, we use a <DocsLink path="typedef/CommandInteractionOption">`CommandInteractionOption`</DocsLink>. See [here](/interactions/replying-to-slash-commands.html#parsing-options) for more information on this topic.
+Debido a que no puede hacer ping a un usuario que no está en el servidor, debe pasar la identificación del usuario. Para hacer esto, usamos un <DocsLink path="typedef/CommandInteractionOption">`CommandInteractionOption`</DocsLink>. Mira [aquí](/interactions/replying-to-slash-commands.html#parsing-options) para obtener más información sobre este tema.
 :::
 
-### How do I kick a user?
+### ¿Cómo expulso a un usuario?
 
 <!-- eslint-skip -->
 
@@ -42,7 +42,7 @@ const member = <interaction>.options.getMember('target');
 member.kick();
 ```
 
-### How do I add a role to a guild member?
+### ¿Cómo agrego un rol a un miembro de servidor?
 
 <!-- eslint-skip -->
 
@@ -52,7 +52,7 @@ const member = <interaction>.options.getMember('target');
 member.roles.add(role);
 ```
 
-### How do I check if a guild member has a specific role?
+### ¿Cómo verifico que un miembro tiene un rol especifico?
 
 <!-- eslint-skip -->
 
@@ -63,7 +63,7 @@ if (member.roles.cache.some(role => role.name === '<role name>')) {
 }
 ```
 
-### How do I limit a command to a single user?
+### ¿Cómo limito un comando a un solo usuario?
 
 <!-- eslint-skip -->
 
@@ -73,9 +73,9 @@ if (<interaction>.user.id === '<id>') {
 }
 ```
 
-## Bot Configuration and Utility
+## Configuración y utilidad del bot
 
-### How do I set my bot's username?
+### ¿Cómo establezco el nombre de usuario de mi bot?
 
 <!-- eslint-skip -->
 
@@ -83,7 +83,7 @@ if (<interaction>.user.id === '<id>') {
 <client>.user.setUsername('<username>');
 ```
 
-### How do I set my bot's avatar?
+### ¿Cómo establezco el avatar de mi bot?
 
 <!-- eslint-skip -->
 
@@ -91,7 +91,7 @@ if (<interaction>.user.id === '<id>') {
 <client>.user.setAvatar('<url or path>');
 ```
 
-### How do I set my playing status?
+### ¿Cómo establezco el estado de juego?
 
 <!-- eslint-skip -->
 
@@ -99,7 +99,7 @@ if (<interaction>.user.id === '<id>') {
 <client>.user.setActivity('<activity>');
 ```
 
-### How do I set my status to "Watching/Listening to/Competing in ..."?
+### ¿Cómo establezco el estado en "Mirando / Escuchando / Compitiendo en ..."?
 
 <!-- eslint-skip -->
 
@@ -110,10 +110,10 @@ if (<interaction>.user.id === '<id>') {
 ```
 
 ::: tip
-If you would like to set your activity upon startup, you can use the `ClientOptions` object to set the appropriate `Presence` data.
+Si desea configurar su actividad al inicio, puede usar el objeto `ClientOptions` para configurar los datos de` Presence` apropiados.
 :::
 
-### How do I make my bot display online/idle/dnd/invisible?
+### ¿Cómo hago para que mi bot se muestre en línea / inactivo / dnd / invisible?
 
 <!-- eslint-skip -->
 
@@ -124,7 +124,7 @@ If you would like to set your activity upon startup, you can use the `ClientOpti
 <client>.user.setStatus('invisible');
 ```
 
-### How do I set both status and activity in one go?
+### ¿Cómo establezco el estado y la actividad de una sola vez?
 
 <!-- eslint-skip -->
 
@@ -132,9 +132,9 @@ If you would like to set your activity upon startup, you can use the `ClientOpti
 <client>.user.setPresence({ activities: [{ name: '<activity>' }], status: 'idle' });
 ```
 
-## Miscellaneous
+## Variados
 
-### How do I send a message to a specific channel?
+### ¿Cómo envío un mensaje a un canal específico?
 
 <!-- eslint-skip -->
 
@@ -143,7 +143,7 @@ const channel = <client>.channels.cache.get('<id>');
 channel.send('<content>');
 ```
 
-### How do I DM a specific user?
+### ¿Cómo hago DM a un usuario específico?
 
 <!-- eslint-skip -->
 
@@ -153,33 +153,33 @@ user.send('<content>');
 ```
 
 ::: tip
-If you want to DM the user who sent the interaction, you can use `<interaction>.user.send()`.
+Si desea enviar un mensaje directo al usuario que envió la interacción, puede usar `<interaction>.user.send()`.
 :::
 
-### How do I mention a specific user in a message?
+### ¿Cómo menciono a un usuario específico en un mensaje?
 
 <!-- eslint-skip -->
 
 ```js
 const user = <interaction>.options.getUser('target');
-await <interaction>.reply(`Hi, ${user}.`);
-await <interaction>.followUp('Hi, <@user id>.');
+await <interaction>.reply(`Hola, ${user}.`);
+await <interaction>.followUp('Hola, <@user id>.');
 ```
 
 ::: tip
-Mentions in embeds may resolve correctly in embed description and field values but will never notify the user. Other areas do not support mentions at all.
+Las menciones en incrustaciones pueden resolverse correctamente en la descripción de incrustaciones (embeds) y los valores de campo, pero nunca notificarán al usuario. Otras áreas no admiten menciones en absoluto.
 :::
 
-### How do I control which users and/or roles are mentioned in a message?
+### ¿Cómo controlo qué usuarios y/o roles se mencionan en un mensaje?
 
-Controlling which mentions will send a ping is done via the `allowedMentions` option, which replaces `disableMentions`.
+El control de qué menciones enviarán un ping se realiza a través de la opción `allowedMentions`, que reemplaza a `disableMentions`.
 
-This can be set as a default in `ClientOptions`, and controlled per-message sent by your bot.
+Esto se puede configurar como predeterminado en `ClientOptions`, y se puede controlar por mensaje enviado por su bot.
 ```js
 new Client({ allowedMentions: { parse: ['users', 'roles'] } });
 ```
 
-Even more control can be achieved by listing specific `users` or `roles` to be mentioned by ID, e.g.:
+Se puede lograr aún más control al enumerar `usuarios` o `roles` específicos que se mencionarán por ID, por ejemplo:
 ```js
 channel.send({
 	content: '<@123456789012345678> <@987654321098765432> <@&102938475665748392>',
@@ -187,29 +187,29 @@ channel.send({
 });
 ```
 
-### How do I prompt the user for additional input?
+### ¿Cómo solicito al usuario información adicional?
 
 <!-- eslint-skip -->
 
 ```js
-<interaction>.reply('Please enter more input.').then(() => {
+<interaction>.reply('Ingrese más información.').then(() => {
 	const filter = m => <interaction>.user.id === m.author.id;
 
 	<interaction>.channel.awaitMessages({ filter, time: 60000, max: 1, errors: ['time'] })
 		.then(messages => {
-			<interaction>.followUp(`You've entered: ${messages.first().content}`);
+			<interaction>.followUp(`Has ingresado: ${messages.first().content}`);
 		})
 		.catch(() => {
-			<interaction>.followUp('You did not enter any input!');
+			<interaction>.followUp('¡No ingresaste nada!');
 		});
 });
 ```
 
 ::: tip
-If you want to learn more about this syntax or other types of collectors, check out [this dedicated guide page for collectors](/popular-topics/collectors.md)!
+Si desea obtener más información sobre esta sintaxis u otros tipos de colecciones, consulte [esta página de guía dedicada para `collectors`](/popular-topics/collectors.md).
 :::
 
-### How do I block a user from using my bot?
+### ¿Cómo puedo bloquear a un usuario para que no use mi bot?
 
 <!-- eslint-skip -->
 
@@ -221,7 +221,7 @@ const blockedUsers = ['id1', 'id2'];
 ```
 
 ::: tip
-You do not need to have a constant local variable like `blockedUsers` above. If you have a database system that you use to store IDs of blocked users, you can query the database instead:
+No es necesario que tenga una variable local constante como `blockUsers` anterior. Si tiene un sistema de base de datos que usa para almacenar los ID de los usuarios bloqueados, puede consultar la base de datos en su lugar:
 
 <!-- eslint-skip -->
 
@@ -232,15 +232,15 @@ You do not need to have a constant local variable like `blockedUsers` above. If 
 });
 ```
 
-Note that this is just a showcase of how you could do such a check.
+Tenga en cuenta que esto es solo una muestra de cómo podría hacer tal verificación.
 :::
 
-### How do I react to the message my bot sent?
+### ¿Cómo reacciono al mensaje que envió mi bot?
 
 <!-- eslint-skip -->
 
 ```js
-<interaction>.channel.send('My message to react to.').then(sentMessage => {
+<interaction>.channel.send('Mi mensaje para reaccionar.').then(sentMessage => {
 	// Unicode emoji
 	sentMessage.react('👍');
 
@@ -254,24 +254,24 @@ Note that this is just a showcase of how you could do such a check.
 ```
 
 ::: tip
-If you want to learn more about reactions, check out [this dedicated guide on reactions](/popular-topics/reactions.md)!
+Si desea obtener más información sobre las reacciones, consulte [esta guía dedicada a las reacciones](/popular-topics/react.md).
 :::
 
-### How do I restart my bot with a command?
+### ¿Cómo reinicio mi bot con un comando?
 
 ```js
 process.exit();
 ```
 
 ::: danger
-`process.exit()` will only kill your Node process, but when using [PM2](http://pm2.keymetrics.io/), it will restart the process whenever it gets killed. You can read our guide on PM2 [here](/improving-dev-environment/pm2.md).
+`process.exit()`solo matará su proceso de Node, pero al usar [PM2](http://pm2.keymetrics.io/), reiniciará el proceso cada vez que muera. Puede leer nuestra guía sobre PM2 [aquí](/improving-dev-environment/pm2.md).
 :::
 
-### What is the difference between a User and a GuildMember?
+## #¿Cuál es la diferencia entre un usuario y un miembro de servidor?
 
-A User represents a global Discord user, and a GuildMember represents a Discord user on a specific server. That means only GuildMembers can have permissions, roles, and nicknames, for example, because all of these things are server-bound information that could be different on each server that the user is in.
+Un `User` representa a un usuario global de Discord y un `GuildMember` representa a un usuario de Discord en un servidor específico. Eso significa que solo los `GuildMembers` pueden tener permisos, roles y apodos, por ejemplo, porque todas estas cosas son información vinculada al servidor que podría ser diferente en cada servidor en el que se encuentre el usuario.
 
-### How do I find all online members of a guild?
+### ¿Cómo encuentro a todos los miembros en línea de un gremio?
 
 <!-- eslint-skip -->
 
@@ -280,71 +280,71 @@ A User represents a global Discord user, and a GuildMember represents a Discord 
 <guild>.members.fetch().then(fetchedMembers => {
 	const totalOnline = fetchedMembers.filter(member => member.presence.status === 'online');
 	// Now you have a collection with all online member objects in the totalOnline variable
-	console.log(`There are currently ${totalOnline.size} members online in this guild!`)
+	console.log(`¡Actualmente hay ${totalOnline.size} miembros en línea en este servidor!`)
 });
 ```
 
 ::: warning
-This only works correctly if you have the `GUILD_PRESENCES` intent enabled for your application and client.
-If you want to learn more about intents, check out [this dedicated guide on intents](/popular-topics/intents.md)!
+Esto solo funciona correctamente si tiene habilitada la intención `GUILD_PRESENCES` para su aplicación y cliente.
+Si desea obtener más información sobre las intenciones, consulte [esta guía dedicada a las intenciones](/popular-topics/intents.md).
 :::
 
-### How do I check which role was added/removed and for which member?
+### ¿Cómo verifico qué función se agregó/eliminó y para qué miembro?
 
 <!-- eslint-skip -->
 
 ```js
-// Start by declaring a guildMemberUpdate listener
-// This code should be placed outside of any other listener callbacks to prevent listener nesting
+// Comience declarando un evento guildMemberUpdate
+// Este código debe colocarse fuera de cualquier otra devolución de llamada del evento para evitar eventos anidados
 client.on('guildMemberUpdate', (oldMember, newMember) => {
-	// If the role(s) are present on the old member object but no longer on the new one (i.e role(s) were removed)
+	// Si los roles están presentes en el objeto miembro antiguo pero ya no en el nuevo (es decir, se eliminaron los roles)
 	const removedRoles = oldMember.roles.cache.filter(role => !newMember.roles.cache.has(role.id));
 	if (removedRoles.size > 0) {
-		console.log(`The roles ${removedRoles.map(r => r.name)} were removed from ${oldMember.displayName}.`);
+		console.log(`Los roles ${removedRoles.map(r => r.name)} han sido removidos de ${oldMember.displayName}.`);
 	}
 
-	// If the role(s) are present on the new member object but are not on the old one (i.e role(s) were added)
+	// Si los roles están presentes en el nuevo objeto miembro pero no en el anterior (es decir, se agregaron roles)
 	const addedRoles = newMember.roles.cache.filter(role => !oldMember.roles.cache.has(role.id));
 	if (addedRoles.size > 0) {
-		console.log(`The roles ${addedRoles.map(r => r.name)} were added to ${oldMember.displayName}.`);
+		console.log(`los roles ${addedRoles.map(r => r.name)} han sido agregados a ${oldMember.displayName}.`);
 	}
 });
 ```
 
-### How do I check the bot's ping?
+### ¿Cómo verifico el ping del bot?
 
-There are two common measurements for bot pings. The first, **Websocket heartbeat**, is the average interval of a regularly sent signal indicating the healthy operation of the WebSocket connection the library receives events over:
+Hay dos medidas comunes para los bots. El primero, **`Websocket heartbeat`**, es el intervalo promedio de una señal enviada regularmente que indica el buen funcionamiento de la conexión `WebSocket` sobre la que la biblioteca recibe eventos:
 
 <!-- eslint-skip -->
 
 ```js
-<interaction>.reply(`Websocket heartbeat: ${<client>.ws.ping}ms.`);
+<interaction>.reply(`Websocket latencia: ${<client>.ws.ping}ms.`);
 ```
 
 ::: tip
-A specific shards heartbeat can be found on the WebSocketShard instance, accessible at `<client>.ws.shards` > `.ping`.
+Se puede encontrar un latido de un `shard` específico en la instancia de WebSocketShard, accesible en `<client>.ws.shards` > `.ping`.
 :::
 
-The second, **Roundtrip Latency**, describes the amount of time a full API roundtrip (from the creation of the command message to the creation of the response message) takes. You then edit the response to the respective value to avoid needing to send yet another message:
+El segundo, **Latencia de ida y vuelta**, describe la cantidad de tiempo que lleva una ida y vuelta completa de la API (desde la creación del mensaje de comando hasta la creación del mensaje de respuesta). Luego edita la respuesta al valor respectivo para evitar tener que enviar otro mensaje:
 
 <!-- eslint-skip -->
 
 ```js
-<interaction>.reply('Pinging...', { fetchReply: true })
+<interaction>.reply('Calculando...', { fetchReply: true })
 	.then(sent => {
-		sent.edit(`Roundtrip latency: ${sent.createdTimestamp - <interaction>.createdTimestamp}ms`);
+		sent.edit(`Latencia de ida y vuelta: ${sent.createdTimestamp - <interaction>.createdTimestamp}ms`);
 	});
 ```
 
-### How do I play music from YouTube?
+### ¿Cómo reproduzco música de YouTube?
 
-For this to work, you need to have `ytdl-core` and `@discordjs/voice` installed.
+Para que esto funcione, necesita tener instalados `ytdl-core` y `@discordjs/voice`.
 
 ```bash
 npm install ytdl-core @discordjs/voice
 ```
 
-Additionally, you may need the following:
+Además, es posible que necesite lo siguiente:
 
 ```bash
 npm install --save @discordjs/opus # opus engine (if missing)
@@ -383,12 +383,12 @@ player.on(AudioPlayerStatus.Idle, () => connection.destroy());
 ```
 
 ::: tip
-You can learn more about these methods in the [voice section of this guide](/voice)!
+Puede obtener más información sobre estos métodos en la [sección de voz de esta guía](/voice).
 :::
 
-### Why do some emojis behave weirdly?
+### ¿Por qué algunos emojis se comportan de manera extraña?
 
-If you've tried using [the usual method of retrieving unicode emojis](/popular-topics/reactions.md#unicode-emojis), you may have noticed that some characters don't provide the expected results. Here's a short snippet that'll help with that issue. You can toss this into a file of its own and use it anywhere you need! Alternatively feel free to simply copy-paste the characters from below:
+Si ha intentado utilizar [el método habitual para recuperar emojis Unicode](/popular-topics/react.md#unicode-emojis), es posible que haya notado que algunos caracteres no proporcionan los resultados esperados. Aquí hay un breve fragmento que lo ayudará con ese problema. ¡Puedes guardarlo en un archivo propio y usarlo en cualquier lugar que necesites! Alternativamente, siéntase libre de simplemente copiar y pegar los caracteres de abajo:
 
 ```js
 // emojiCharacters.js
@@ -419,5 +419,5 @@ console.log(emojiCharacters['!']); // ❗
 ```
 
 ::: tip
-On Windows, you may be able to use the `Win + .` keyboard shortcut to open up an emoji picker that can be used for quick, easy access to all the Unicode emojis available to you. Some of the emojis listed above may not be represented there, though (e.g., the 0-9 emojis).
+En Windows, es posible que pueda usar el método abreviado de teclado `Win + .` para abrir un selector de emoji que se puede usar para un acceso rápido y fácil a todos los emojis Unicode disponibles para usted. Sin embargo, es posible que algunos de los emojis enumerados anteriormente no estén representados allí (por ejemplo, los emojis 0-9).
 :::
