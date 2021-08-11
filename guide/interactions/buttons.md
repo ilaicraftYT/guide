@@ -136,7 +136,7 @@ const button = new MessageButton()
 
 ### Botones de emoji
 
-Si quieres usar un emoji de `servidor` dentro de un `MessageButton`, puedes usar el método` setEmoji() `:
+Si quieres usar un emoji de `servidor` dentro de un `MessageButton`, puedes usar el método `setEmoji() `:
 
 ```js {5}
 const button = new MessageButton()
@@ -150,7 +150,7 @@ const button = new MessageButton()
 
 ## Recibiendo botones
 
-Para recibir una `ButtonInteraction`, adjunte un detector de eventos a su cliente y use la protección de tipo` Interaction#isButton() `para asegurarse de que solo reciba botones:
+Para recibir una `ButtonInteraction`, adjunte un detector de eventos a su cliente y use la protección de tipo `Interaction#isButton() `para asegurarse de que solo reciba botones:
 
 ```js {2}
 client.on('interactionCreate', interaction => {
@@ -171,7 +171,7 @@ Para obtener una guía detallada sobre la recepción de componentes de mensajes 
 
 ## Respondiendo a botones
 
-La clase `MessageComponentInteraction` proporciona los mismos métodos que la clase` CommandInteraction`. Estos métodos se comportan igualmente:
+La clase `MessageComponentInteraction` proporciona los mismos métodos que la clase `CommandInteraction`. Estos métodos se comportan igualmente:
 - `reply()`
 - `editReply()`
 - `deferReply()`
@@ -181,7 +181,8 @@ La clase `MessageComponentInteraction` proporciona los mismos métodos que la cl
 
 ### Actualización del mensaje de un botón
 
-La clase `MessageComponentInteraction` proporciona un método` update()` para actualizar el mensaje al que está adjunto el menú de selección. Pasar una matriz (array) vacía a la opción `componentes` eliminará cualquier botón después de que se haya hecho click en alguno de ellos.
+La clase `MessageComponentInteraction` proporciona un método
+`update()` para actualizar el mensaje al que está adjunto el menú de selección. Pasar una matriz (array) vacía a la opción `componentes` eliminará cualquier botón después de que se haya hecho click en alguno de ellos.
 
 <!-- eslint-skip -->
 
@@ -246,5 +247,5 @@ Actualmente hay cinco estilos de botones diferentes disponibles:
 </DiscordMessages>
 
 ::: warning
-Solo los botones `LINK` pueden tener una `URL`. Los botones `LINK` _no_ pueden tener un` custom_id` y _no_ envían un evento de interacción cuando se hace clic en ellos.
+Solo los botones `LINK` pueden tener una `URL`. Los botones `LINK` _no_ pueden tener un `custom_id` y _no_ envían un evento de interacción cuando se hace clic en ellos.
 :::

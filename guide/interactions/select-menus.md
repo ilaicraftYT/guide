@@ -121,7 +121,7 @@ Reinicie su `bot` y luego envíe el comando a un canal al que su `bot` tenga acc
 
 ## Recibiendo Select menus
 
-Para recibir una `SelectMenuInteraction`, adjunte un detector de eventos a su cliente y use el protector de tipo` Interaction#isSelectMenu() `para asegurarse de que solo reciba menús selectos:
+Para recibir una `SelectMenuInteraction`, adjunte un detector de eventos a su cliente y use el protector de tipo `Interaction#isSelectMenu() `para asegurarse de que solo reciba menús selectos:
 
 ```js {2}
 client.on('interactionCreate', interaction => {
@@ -142,7 +142,7 @@ Para obtener una guía detallada sobre la recepción de componentes de mensajes 
 
 ## Respondiendo a select menus
 
-La clase `MessageComponentInteraction` proporciona los mismos métodos que la clase` CommandInteraction`. Estos métodos se comportan igualmente:
+La clase `MessageComponentInteraction` proporciona los mismos métodos que la clase `CommandInteraction`. Estos métodos se comportan igualmente:
 - `reply()`
 - `editReply()`
 - `deferReply()`
@@ -152,7 +152,7 @@ La clase `MessageComponentInteraction` proporciona los mismos métodos que la cl
 
 ### Actualización del mensaje de un select menu
 
-La clase `MessageComponentInteraction` proporciona un método` update() `para actualizar el mensaje al que está adjunto el menú de selección. Pasar una matriz (array) vacía a la opción `componentes` eliminará cualquier menú después de que se haya seleccionado una opción.
+La clase `MessageComponentInteraction` proporciona un método `update() `para actualizar el mensaje al que está adjunto el menú de selección. Pasar una matriz (array) vacía a la opción `componentes` eliminará cualquier menú después de que se haya seleccionado una opción.
 
 ```js {1,4-6}
 client.on('interactionCreate', async interaction => {
