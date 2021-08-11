@@ -57,7 +57,36 @@ Esta es la base de cómo se verá un archivo ESLint. El objeto `rules` es donde 
 
 Puede encontrar una lista de todas las reglas de ESLint en su sitio, ubicado [aquí](https://eslint.org/). De hecho, hay muchas reglas, y puede ser abrumador al principio, pero solo necesitará revisar la lista y definir su archivo una vez.
 
-Alternativamente, si no desea revisar todo uno por uno por su cuenta, puede usar el archivo ESLint que usamos para esta guía.
+Alternativamente, si no desea revisar todo uno por uno por su cuenta.
+
+Puede usar una configuración básica:
+
+```json
+{
+	"extends": "eslint:recommended",
+	"env": {
+		"node": true,
+		"es6": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 2021
+	},
+	"rules": {
+		"indent": ["error", "tab"],
+		"no-console": "off",
+		"no-empty-function": "warn",
+		"semi": ["error", "never"]
+	}
+}
+```
+Los puntos principales de esta configuración serían:
+
+* Permitiéndote depurar con `console.log()`;
+* Requerir comillas simples sobre comillas dobles;
+* No requerir el punto y coma, dando una advertencia al usarlo;
+* Exigir que la sangría se haga con pestañas (tabs);
+
+Si quiere algo mas estricto puede usar el archivo ESLint que usamos para esta guía.
 
 ```json {11-45}
 {
