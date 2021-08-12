@@ -1,58 +1,58 @@
-# Understanding notation
+# Entendiendo la notación
 
-Throughout the discord.js docs and when asking for help on the official server, you will run into many different kinds of notations. To help you understand the texts that you read, we will be going over some standard notations.
-
-::: tip
-Always keep in mind that notation is not always rigorous. There will be typos, misunderstandings, or contexts that will cause notation to differ from the usual meanings.
-:::
-
-## Classes
-
-Some common notations refer to a class or the properties, methods, or events of a class. There are many variations on these notations, and they are very flexible depending on the person, so use your best judgment when reading them.
-
-The notation `<Class>` means an instance of the `Class` class. For example, a snippet like `<Message>.reply('Hello')` is asking you to replace `<Message>` with some value that is an instance of `Message`, e.g. `msg.reply('Hello')`. It could also just be a placeholder, e.g., `<id>` would mean a placeholder for some ID.
-
-The notation `Class#foo` can refer to the `foo` property, method, or event of the `Class` class. Which one the writer meant needs to be determined from context. For example:
-
-- `Message#author` means that you should refer to the `author` property on a `Message`.
-- `TextChannel#send` means that you should refer to the `send` method on a `TextChannel`.
-- `Client#message` means that you should refer to the `message` event on a `Client`.
+A lo largo de los documentos de discord.js y cuando pida ayuda en el servidor oficial, se encontrará con muchos tipos diferentes de anotaciones. Para ayudarlo a comprender los textos que lee, repasaremos algunas notaciones estándar.
 
 ::: tip
-Remember that this notation is not valid JavaScript; it is a shorthand to refer to a specific piece of code.
+Tenga siempre en cuenta que la notación no siempre es rigurosa. Habrá errores tipográficos, malentendidos o contextos que harán que la notación difiera de los significados habituales.
 :::
 
-Sometimes, the notation is extended, which can help you determine which one the writer meant. For example, `TextChannel#send(content, options)` is definitely a method of `TextChannel`, since it uses function notation. `Client#event:message` is an event since it says it is an event.
+## Clases
 
-The vital thing to take away from this notation is that the `#` symbol signifies that the property, method, or event can only be accessed through an instance of the class. Unfortunately, many abuse this notation, e.g., `<Message>#send`  or `Util#resolveColor`. `<Message>` is already an instance, so this makes no sense, and `resolveColor` is a static method–you should write it as `Util.resolveColor`. Always refer back to the docs if you are confused.
+Algunas notaciones comunes se refieren a una clase o las propiedades, métodos o eventos de una clase. Hay muchas variaciones en estas notaciones, y son muy flexibles según la persona, así que use su mejor juicio al leerlas.
 
-As an example, the documentation's search feature uses this notation.
+La notación `<Clase>` significa una instancia de la clase `Clase`. Por ejemplo, un fragmento como `<Message>.reply('Hola')` le pide que reemplace `<Message>` con algún valor que sea una instancia de `Message`, p. Ej. `msg.reply('Hola')`. También podría ser un marcador de posición, por ejemplo, `<id>` significaría un marcador de posición para alguna ID.
+
+La notación `Class#foo` puede referirse a la propiedad, método o evento `foo` de la clase `Class`. A cuál se refería el escritor debe determinarse a partir del contexto. Por ejemplo:
+
+- `Message#author` significa que debe hacer referencia a la propiedad `author` en un `Message`.
+- `TextChannel#send()` significa que debe consultar el método `send()` en un `TextChannel`.
+- `Client#message` significa que debe hacer referencia al evento `message` en un `Client`.
+
+::: tip
+Recuerde que esta notación no es JavaScript válida; es una forma abreviada de referirse a un fragmento de código específico.
+:::
+
+A veces, la notación se extiende, lo que puede ayudarlo a determinar a cuál se refería el escritor. Por ejemplo, `TextChannel#send(content, options)` es definitivamente un método de `TextChannel`, ya que usa la notación de funciones. `Client#event:message` es un evento ya que dice que es un evento.
+
+Lo fundamental que hay que extraer de esta notación es que el símbolo "#" significa que solo se puede acceder a la propiedad, método o evento a través de una instancia de la clase. Desafortunadamente, muchos abusan de esta notación, por ejemplo, `<Message>#send` o` Util#resolveColor`. `<Message>` ya es una instancia, por lo que esto no tiene sentido, y `resolveColor` es un método estático; debes escribirlo como` Util.resolveColor`. Siempre consulte los documentos si está confundido.
+
+Como ejemplo, la función de búsqueda de la documentación utiliza esta notación.
 
 ![Docs search](./images/search.png)
 
-Notice the use of the `.` operator for the static method, `Role.comparePositions` and the `#` notation for the method, `Role#comparePositionsTo`.
+Observe el uso del operador `.` para el método estático, `Role.comparePositions` y la notación `#` para el método, `Role #comparePositionsTo`.
 
-## Types
+## Tipos
 
-In the discord.js docs, there are type signatures everywhere, such as in properties, parameters, or return values. If you do not come from a statically typed language, you may not know what specific notations mean.
+En la documentación de discord.js, hay firmas de tipo en todas partes, como en las propiedades, los parámetros o los valores de retorno. Si no proviene de un idioma escrito estáticamente, es posible que no sepa qué significan las notaciones específicas.
 
-The symbol `*` means any type. For example, methods that return `*` mean that they can return anything, and a parameter of type `*` can be anything.
+El símbolo `*` significa cualquier tipo. Por ejemplo, los métodos que devuelven `*` significan que pueden devolver cualquier cosa, y un parámetro de tipo `*` puede ser cualquier cosa.
 
-The symbol `?` means that the type is nullable. You can see it before or after the type (e.g. `?T` or `T?`). This symbol means that the value can be of the type `T` or `null`. An example is `GuildMember#nickname`; its type is `?string` since a member may or may not have a nickname.
+El símbolo `?` Significa que el tipo es anulable. Puede verlo antes o después del tipo (p. Ej., `?T` o `T?`). Este símbolo significa que el valor puede ser del tipo "T" o "nulo". Un ejemplo es `GuildMember#nickname`; su tipo es `?string` ya que un miembro puede tener o no un apodo.
 
-The expression `T[]` means an array of `T`. You can sometimes see multiple brackets `[]`, indicating that the array is multi-dimensional, e.g., `string[][]`.
+La expresión `T[]` significa una matriz (array) de `T`. A veces puede ver varios corchetes `[]`, lo que indica que la matriz es multidimensional, por ejemplo, `string[][]`.
 
-The expression `...T` signifies a rest parameter of type `T`. This means that the function can take any amount of arguments, and all those arguments must be of the type `T`.
+La expresión `...T` significa un parámetro de reposo de tipo `T`. Esto significa que la función puede aceptar cualquier cantidad de argumentos, y todos esos argumentos deben ser del tipo `T`.
 
-The operator `|`, which can read as "or", creates a union type, e.g. `A|B|C`. Simply, it means the value can be of any one of the types given.
+El operador `|`, que puede leerse como `or`, crea un tipo de unión, p. Ej. `A | B | C`. Simplemente, significa que el valor puede ser de cualquiera de los tipos dados.
 
-The angle brackets `<>` are used for generic types or parameterized types, signifying a type that uses another type(s). The notation looks like `A<B>` where `A` is the type and `B` is a type parameter. If this is hard to follow, it is enough to keep in mind that whenever you see `A<B>`, you can think of an `A` containing `B`. Examples:
+Los corchetes angulares `<>` se utilizan para tipos genéricos o tipos parametrizados, lo que significa un tipo que utiliza otro(s) tipo(s). La notación se parece a `A<B>` donde `A` es el tipo y `B` es un parámetro de tipo. Si esto es difícil de seguir, es suficiente tener en cuenta que siempre que vea `A<B>`, puede pensar en una `A` que contenga `B`. Ejemplos:
 
-- `Array<String>` means an array of strings.
-- `Promise<User>` means a `Promise` that contains a `User`.
-- `Array<Promise<User|GuildMember>>` would be an array of `Promise`s, each containing a `User` or a `GuildMember`.
-- `Collection<Snowflake, User>` would be a `Collection`, containing key-value pairs where the keys are `Snowflake`s, and the values are `User`s.
+- `Array<String>` significa una matriz (array) de cadenas de  texto (string).
+- `Promise<User>` Significa una `Promesa` que contiene un `Usuario`.
+- `Array<Promise<User|GuildMember>>` sería una matriz (array) de `Promesas`, cada una con un `User` o un `GuildMember`.
+- `Collection<Snowflake, User>` sería una `Colección`, que contiene pares clave-valor donde las claves son` Snowflake`s y los valores son `User`s.
 
-![TextChannel#send on the docs](./images/send.png)
+![TextChannel#send en la documentacion](./images/send.png)
 
-In this piece of the docs, you can see three type signatures, `StringResolvable or APIMessage`, `MessageOptions or MessageAdditions`, and `Promise<(Message|Array<Message>)>`. The meaning of the word "or" here is the same as `|`.
+En esta parte de los documentos, puede ver tres firmas de tipo, `StringResolvable o APIMessage`,`MessageOptions o MessageAdditions` y `Promise<(Message | Array <Message>)>`. El significado de la palabra `or` aquí es el mismo que `|`.
