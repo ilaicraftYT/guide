@@ -59,11 +59,7 @@ Puede encontrar una lista de todas las reglas de ESLint en su sitio, ubicado [aq
 
 Alternativamente, si no desea revisar todo uno por uno por su cuenta.
 
-<<<<<<< HEAD
 Puede usar una configuración básica:
-=======
-Puede user una configuración básica:
->>>>>>> 97da69c228ffe418d64946fcbdbb00458122bd8c
 
 ```json
 {
