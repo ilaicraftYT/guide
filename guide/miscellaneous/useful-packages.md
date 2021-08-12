@@ -2,7 +2,7 @@
 
 ## Day.js
 
-::: TIP
+::: tip
 Documentación oficial: [Aquí](https://day.js.org/en)
 :::
 
