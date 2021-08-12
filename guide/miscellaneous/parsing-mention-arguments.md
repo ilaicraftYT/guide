@@ -212,10 +212,10 @@ Así es como funciona la expresión regular:
 Usando el método `.match()` en cadenas, puedes obtener los valores del grupo de captura, es decir, el ID de la mención.
 
 ::: warning ADVERTENCIA
-Discord.js tiene <DocsLink path = "class / MessageMentions? scrollTo = s-CHANNELS_PATTERN"> patrones integrados </DocsLink> para las menciones coincidentes, sin embargo, a partir de la versión 11.4 no contienen ningún grupo, por lo tanto, no son útiles para eliminar la identificación de la mención.
+Discord.js tiene <DocsLink path = "class/MessageMentions?scrollTo=s-CHANNELS_PATTERN"> patrones integrados </DocsLink> para las menciones coincidentes, sin embargo, a partir de la versión 11.4 no contienen ningún grupo, por lo tanto, no son útiles para eliminar la identificación de la mención.
 :::
 
-Actualizar su función `getUserFromMention` para usar RegEx le da esto:
+Actualizar su función `getUserFromMention` para usar RegExp le da esto:
 
 ```js
 function getUserFromMention(mention) {
