@@ -15,9 +15,9 @@ Discord.js v13 usa la versión 9 de la API de Discord. Adicionalmente, esta vers
 ## Comandos de barra diagonal
 
 ¡Discord.js tiene soporte para los comandos de barra diagonal!
-Visita la seccion para los [comandos de barra diagonal](/interactions/registering-slash-commands.html) para empezar a usarlos.
+Visita la sección de los [comandos de barra diagonal](/interactions/registering-slash-commands.html) para empezar a usarlos.
 
-Dicha sección de la guía explica el evento `interactionCreate`. En esta versión también existen los eventos `applicationCommandCreate`, `applicationCommandDelete`, and `applicationCommandUpdate`.
+Dicha sección de la guía explica el evento `interactionCreate`. En esta versión también existen los eventos `applicationCommandCreate`, `applicationCommandDelete`, y `applicationCommandUpdate`.
 
 ## Componentes
 
@@ -25,7 +25,7 @@ Dicha sección de la guía explica el evento `interactionCreate`. En esta versi�
 
 Se han introducido las clases `MessageActionRow`, `MessageButton` y `MessageSelectMenu`, al igual que las interacciones y colectores asociados a estos. 
 
-Revisa la seccion de [componentes](/interactions/buttons.html) en esta guía para empezar a usarlos.
+Revisa la sección de [componentes](/interactions/buttons.html) en esta guía para empezar a usarlos.
 
 ## Hilos
 
@@ -33,7 +33,7 @@ Revisa la seccion de [componentes](/interactions/buttons.html) en esta guía par
 
 Esto introduce la clase `ThreadManager`, la cual puede ser encontrada como `TextChannel#threads`, en adición a `ThreadChannel`, `ThreadMemberManager`, y `ThreadMember`. También hay cinco eventos nuevos: `threadCreate`, `threadDelete`, `threadListSync`, `threadMemberUpdate` y `threadMembersUpdate`.
 
-Revisa la seccion de [hilos](/popular-topics/threads.html) en esta guía para empezar a usarlos.
+Revisa la sección de [hilos](/popular-topics/threads.html) en esta guía para empezar a usarlos.
 
 ## Voz
 
@@ -102,11 +102,11 @@ Las opciones `code` y `split` también han sido removidas. Esta característica 
 
 ### Cadenas de texto
 
-Muchos métodos en discord.js que se documentaron aceptando cadenas de texto, también aceptaban otros tipos y se resolvia como una cadena. Los resultados de este comportamiento eran a menudo indeseables, produciendo resultados como `[object Object]`.
+Muchos métodos en discord.js que se documentaron aceptando cadenas de texto, también aceptaban otros tipos y se resolvía como una cadena. Los resultados de este comportamiento eran a menudo indeseables, produciendo resultados como `[object Object]`.
 
-Discord.js ahora aplica y valida la entrada de cadenas de texto en todos los métodos que la esperan. Los usuarios necesitaran llamar manualmente a `.toString()`  o utilizar `template string` para todas las entradas de cadenas de texto segun correspondan.
+Discord.js ahora aplica y valida la entrada de cadenas de texto en todos los métodos que la esperan. Los usuarios necesitaran llamar manualmente a `.toString()`  o utilizar `template string` para todas las entradas de cadenas de texto según correspondan.
 
-Las áreas más comunes donde se encuentran este cambio se aplica son: `MessageOptions#content`, las propiedades de un `MessageEmbed`, y pasando objetos como usuarios o roles, esperando que sean una cadena.
+Las áreas más comunes donde se encuentra este cambio son: `MessageOptions#content`, las propiedades de un `MessageEmbed`, y pasando objetos como usuarios o roles, esperando que sean una cadena.
 
 ```diff
 - message.channel.send(user);
@@ -193,8 +193,8 @@ Esto incluye: `afkChannelId`, `applicationId`, `channelId`, `creatorId`, `guildI
 
 #### Client#message
 
-El evento `message` ha sido renombrado a `messageCreate` para igualar la libreria con las nomenclaturas de Discord.
-El uso de `message` seguira funcionando, pero recibirás una advertencia de característica obsoleta, hasta que lo cambies.
+El evento `message` ha sido renombrado a `messageCreate` para igualar la librería con las nomenclaturas de Discord.
+El uso de `message` seguirá funcionando, pero recibirás una advertencia de característica obsoleta hasta que lo cambies.
 
 ```diff
 - client.on("message", message => { ... });
@@ -239,14 +239,14 @@ El comportamiento de `Message#reply` ha cambiado: en vez de agregar una mención
 La opción `MessageOptions.allowedMentions.repliedUser` determina si la respuesta notifica al autor del mensaje original.
 
 ```diff
-- message.reply('content')
-+ message.reply({ content: 'content', allowedMentions: { repliedUser: false }})
+- message.reply('¡Hola!')
++ message.reply({ content: '¡Hola!', allowedMentions: { repliedUser: false }})
 ```
 
 Tenga en cuenta que esto deshabilitará todas las demás menciones en este mensaje. Para habilitar otras menciones, necesitará incluir otros valores en `allowedMentions`. Consulte la sección `Menciones permitidas` para obtener mas infomación.
 
 ### Campos de bits (bitfields)
-<!-- No tiene nada que ver los permisos con los bitfields -->
+<!-- No tienen nada que ver los permisos con los bitfields -->
 Estos campos ahora son `BigInt`s en lugar de `Number`s. Esto puede ser gestionado usando la clase `BigInt()`, o agregando la `n` como sufijo. Para más información sobre `BigInt`s, revisa la [documentación (en inglés)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
 
 Usando permisos:
@@ -264,7 +264,7 @@ Evita usar cadenas como `Permissions` y `UserFlags`, hay "flags" en su lugar.
 
 ### Mensajes directos
 
-En la API de Discord v8 y superior, los canales de un mensaje directo, no emiten el evento `CHANNEL_CREATE`, lo que significa que Discord.js no puede añadirlos en caché automáticamente. Para que tu bot pueda recibir DMs debes activar el [parcial (partial)](/popular-topics/partials.html) llamadp `CHANNEL`.
+En la API de Discord v8 y superior, los canales de un mensaje directo, no emiten el evento `CHANNEL_CREATE`, lo que significa que Discord.js no puede añadirlos en caché automáticamente. Para que tu bot pueda recibir DMs debes activar el [parcial (partial)](/popular-topics/partials.html) llamado `CHANNEL`.
 
 ### Versión para navegadores (Webpack builds)
 
@@ -308,7 +308,7 @@ Este método ha sido renombrado a `fetchGuildWidget` para representar mejor qué
 
 #### Client#generateInvite
 
-`Client#generateInvite` ahora recibe `InviteGenerationOptions` en vez de `PermissionsResolvable` como argumento. `InviteGenerationOptions` necesita al menos un "scope", `bot` o `application commands`, para generar una URL de invitación válida.
+`Client#generateInvite` ahora recibe `InviteGenerationOptions` en vez de `PermissionsResolvable` como argumento. `InviteGenerationOptions` necesita al menos un "scope", `bot` o `applications.commands`, para generar una URL de invitación válida.
 
 Para generar una invitación con permisos de comandos de barra diagonal:
 
@@ -325,14 +325,14 @@ Tambien puedes definir los permisos necesarios:
 
 #### Client#login
 
-Cuando tu token se reiniciaba por llegar al limite de 1000 inicios de sesión en 1 día, Discord.js lo consideraba un ratelimit y esperaba a que pueda iniciar sesión sin avisar al usuario. Ahora tira un `Error` si esto ocurre.
+Cuando tu token se reiniciaba por llegar al límite de 1000 inicios de sesión en 1 día, Discord.js lo consideraba un ratelimit y esperaba a que pueda iniciar sesión sin avisar al usuario. Ahora tira un `Error` si esto ocurre.
 
 #### Client#setInterval
 #### Client#setTimeout
 #### Client#setImmediate
 
-Los métodos `Client#setInterval`, `Client#setTimeout` y `Client#setImmediate` han sido removidos. Estos métodos existian para almacenar "relojes" en caché de manera interna para que se eliminen una vez el cliente sea destruido.
-Ya que ahora esos "relojes" tiene el metodo `unref` en Node.js, esto no es necesario.
+Los métodos `Client#setInterval`, `Client#setTimeout` y `Client#setImmediate` han sido removidos. Estos métodos existían para almacenar "relojes" en caché de manera interna para que se eliminen una vez el cliente sea destruido.
+Ya que ahora esos "relojes" tienen el método `unref` en Node.js, esto no es necesario.
 
 ### ClientOptions
 
@@ -510,7 +510,7 @@ En estas subclases, el método ahora soporta opciones adicionales:
 
 #### GuildChannel#overwritePermissions
 
-Estos métodos fueron removidos, con su funcionalidad reemplazada por el nuevo `PermissionOverwriteManager`.
+Este método fue removido, con su funcionalidad reemplazada por el nuevo `PermissionOverwriteManager`.
 
 ```diff
 - channel.overwritePermissions([{ id: user.id , allow: ['VIEW_CHANNEL'], deny: ['SEND_MESSAGES'] }]);
@@ -538,7 +538,7 @@ Este método fue removido, con su funcionalidad reemplazada por el nuevo `Permis
 
 #### GuildMember#ban
 
-`GuildMember#ban()` devolverá un `TypeError` cuando se proporciona un `String` en vez de un objeto de opciones.
+El método `GuildMember#ban()` devolverá un `TypeError` cuando se proporciona una cadena de texto en lugar de un objeto de opciones.
 
 ```diff
 - member.ban('Razón')
@@ -562,13 +562,13 @@ Ninguna de estas propiedades fue proporcionada por Discord, sino que se basó en
 
 #### GuildMember#presence
 
-La propiedad `GuildMember#presence` ahora puede ser `null`, en lugar del objeto genérico con `offline`; por ejemplo, cuando el `Intent` `GUILD_PRESENCES` no está activado.
+La propiedad `GuildMember#presence` ahora puede ser `null` en lugar del objeto genérico con `offline`, por ejemplo, cuando el `Intent` `GUILD_PRESENCES` no está activado.
 
 ### GuildMemberManager
 
 #### GuildMemberManager#ban
 
-El método `GuildMemberManager#ban` devolverá un `TypeError` cuando se proporciona una cadena de texto en vez de un objeto de opciones.
+El método `GuildMemberManager#ban` devolverá un `TypeError` cuando se proporciona una cadena de texto en lugar de un objeto de opciones.
 
 ```diff
 - guild.members.ban('123456789012345678', 'Razón')
@@ -683,7 +683,7 @@ Esto significa que el usuario ya no necesita escribir valores predeterminados pa
 
 #### ShardingManager#broadcastEval
 
-El método `ShardingManager#broadcastEval` ya no acepta un `String`, sino que espera una función. Ve `ShardClientUtil#broadcastEval`.
+El método `ShardingManager#broadcastEval` ya no acepta una cadena de texto, sino que espera una función. Ve `ShardClientUtil#broadcastEval`.
 
 #### ShardingManager#spawn
 
@@ -804,11 +804,11 @@ Proporciona compatibilidad con API para los comandos de barra diagonal.
 
 ### ApplicationCommandManager
 
-Proporciona soporte API para crear, editar y eliminar comandos de barra diagonal.
+Proporciona soporte de la API para crear, editar y eliminar comandos de barra diagonal.
 
 ### ApplicationCommandPermissionsManager
 
-Proporciona compatibilidad con API para crear, editar y eliminar sobrescrituras de permisos en los comandos de barra diagonal.
+Proporciona compatibilidad con la API para crear, editar y eliminar sobrescrituras de permisos en los comandos de barra diagonal.
 
 ### ApplicationFlags
 
@@ -876,15 +876,15 @@ Emitido cuando una instancia de escenario es actualizada, ej. cambio de tema o n
 
 #### Client#stickerCreate
 
-Emitido cuando una pegatina personalizada es creado en un servidor.
+Emitido cuando una pegatina personalizada es creada en un servidor.
 
 #### Client#stickerDelete
 
-Emitido cuando una pegatina personalizada es borrado en un servidor.
+Emitido cuando una pegatina personalizada es borrada en un servidor.
 
 #### Client#stickerUpdate
 
-Emitido cuando una pegatina personalizada es actualizado en un servidor.
+Emitido cuando una pegatina personalizada es actualizada en un servidor.
 
 #### Client#threadCreate
 
@@ -914,13 +914,13 @@ Emitido cuando un hilo es actualizado, por ejemplo: cambia de nombre, o estado a
 
 #### ClientOptions#failIfNotExists
 
-El parámetro establece el comportamiento por defecto para `ReplyMessageOptions#failIfNotExists`, tirando un error o ignorar silenciosamente cuando se responde a un mensaje desconocido.
+El parámetro establece el comportamiento por defecto para `ReplyMessageOptions#failIfNotExists`, tirando un error o ignorando silenciosamente cuando se responde a un mensaje desconocido.
 
 ### CollectorOptions
 
 #### CollectorOptions#filter
 
-Este parámetro es opcional y recurrirá a una función que siempre devuelve `true` si no se otorga ningun parámetro.
+Este parámetro es opcional y recurrirá a una función que siempre devuelve `true` si no se otorga ningún parámetro.
 
 ### CommandInteraction
 
@@ -931,7 +931,7 @@ Para más información, visita la sección para los [comandos de barra diagonal]
 
 #### Guild#bans
 
-Provee acceso a `GuildBanManager` del servidor.
+Proporciona acceso al `GuildBanManager` del servidor.
 
 #### Guild#create
 
@@ -960,15 +960,15 @@ Proporciona soporte de la API para el Widget del servidor, conteniendo informaci
 
 #### Guild#invites
 
-Provee acceso al nuevo `GuildInviteManager`.
+Proporciona acceso al nuevo `GuildInviteManager`.
 
 #### Guild#nsfwLevel
 
-La propiedad `Guild#nsfwLevel` ahora se representa con el número `NSFWLevel`.
+La propiedad `Guild#nsfwLevel` ahora se representa con la enumeración `NSFWLevel`.
 
 #### Guild#premiumTier
 
-La propiedad `Guild#premiumTier` ahora se representa con el número `PremiumTier`.
+La propiedad `Guild#premiumTier` ahora se representa con la enumeración `PremiumTier`.
 
 #### Guild#setChannelPositions
 
@@ -1003,11 +1003,11 @@ Esto reemplaza `Guild#fetchInvites`.
 
 #### GuildManager#create
 
-Ahora funciona especificando los canales de AFK y sistema cuando se crea un guild.
+Ahora funciona especificando los canales de AFK y sistema cuando se crea un servidor.
 
 #### GuildManager#fetch
 
-Ahora soporta el poder consultar multiples guilds, devolviendo una `Promise<Collection<Snowflake, OAuth2Guild>>` si se usa de esta manera.
+Ahora soporta el poder consultar múltiples servidores, devolviendo una `Promise<Collection<Snowflake, OAuth2Guild>>` si se usa de esta manera.
 
 ### GuildEmojiManager
 
@@ -1036,14 +1036,14 @@ Se agregaron varios métodos a `GuildMemberManager` para proporcionar compatibil
 
 #### GuildMemberManager#search
 
-Proporciona soporte de API para consultar `GuildMember`s.
+Proporciona soporte de la API para consultar `GuildMember`s.
 `GuildMemberManager#fetch` usa el gateway para recibir información.
 
 ### GuildMemberRoleManager
 
 #### GuildMemberRoleManager#botRole
 
-Obtiene el rol administrado que el miembro creo al unirso al guild, si lo hay
+Obtiene el rol administrado que el miembro creó al unirse al servidor, si lo hay
 
 #### GuildMemberRoleManager#premiumSubscriberRole
 
@@ -1055,11 +1055,11 @@ Obtiene el rol de suscriptor premium (booster) si el miembro lo presenta.
 
 #### GuildPreview#createdTimestamp
 
-La fecha `Date` de cuando se creó el `GuildPreview`
+La fecha en la que se creó el `GuildPreview`
 
 ### GuildTemplate
 
-Proporciona soporte de la API para [server templates](https://discord.com/developers/docs/resources/guild-template).
+Proporciona soporte de la API para [plantillas de servidores](https://discord.com/developers/docs/resources/guild-template).
 
 ### Integration
 
@@ -1069,14 +1069,14 @@ Una `Collection` de roles los cuales son administrados por una integración.
 
 ### Interaction
 
-Proporciona soporte del gateway para los comandos de barra diagonal e interaciones con componentes para mensajes. 
+Proporciona soporte del gateway para los comandos de barra diagonal e interacciones con componentes. 
 
-Para más información consulta las páginas para los [comandos de barra diagonal](/interactions/replying-to-slash-commands.md) y los [componentes para mensajes](/interactions/buttons.html#responding-to-buttons.html) de esta guía.
+Para más información consulta las páginas para los [comandos de barra diagonal](/interactions/replying-to-slash-commands.md) y los [componentes](/interactions/buttons.html#responding-to-buttons.html) de esta guía.
 
 ### InteractionCollector
 
 Proporciona una forma para que los usuarios recopilen cualquier tipo de interacción.
-Esta clase tiene un diseño mas flexible que otros `Collectors`, pudiendo estar vinculado a cualquier servidor, canal o mensaje según corresponda.
+Esta clase tiene un diseño más flexible que otros `Collectors`, pudiendo estar vinculado a cualquier servidor, canal o mensaje según corresponda.
 Los desarrolladores de TypeScript pueden aprovechar el tipado genérico para definir las sub-clases de interacciones que serán devueltas.
 
 ### InteractionWebhook
@@ -1218,13 +1218,13 @@ Los métodos `createOverwrite`, `updateOverwrite` y `overwritePermissions` de `G
 
 #### Role#tags
 
-Contiene los etiquetas de un rol (si es de un bot, integración o subscripción premium)
+Contiene los etiquetas de un rol (si es de un bot, integración o suscripción premium)
 
 ### RoleManager
 
 #### RoleManager#botRoleFor
 
-Consigue el rol de un bot, que se crea al unirse al servidor, si existe.
+Consigue el rol de un bot que se crea al unirse al servidor, si existe.
 
 #### RoleManager#edit
 
@@ -1240,29 +1240,29 @@ Proporciona soporte de gateway para `MessageComponentInteraction` los cuales pro
 
 ### StageChannel
 
-Proporciona soporte de API para los canales de escenario.
+Proporciona soporte de la API para los canales de escenario.
 
 ### StageInstance
 
-Proporciona soporte de API para las instancias de escenarios. Las instancias de eventos contienen información de eventos en vivo.
+Proporciona soporte de la API para las instancias de escenarios. Las instancias de eventos contienen información de eventos en vivo.
 
 ### StageInstanceManager
 
-Proporciona soporte de API para crear, editar y borrar canales de escenario, al igual que almacenarlos en caché.
+Proporciona soporte de la API para crear, editar y borrar canales de escenario, al igual que almacenarlos en caché.
 
 ### Sticker
 
-Proporciona soporte de API para los pegatinas de Discord.
+Proporciona soporte de la API para las pegatinas.
 
 ### StickerPack
 
-Proporciona soporte de API para los packs de pegatinas de Discord.
+Proporciona soporte de la API para los paquetes de pegatinas.
 
 ### TextChannel
 
 #### TextChannel#awaitMessageComponent
 
-Un acceso directo para crear un `InteractionCollector` en forma de promesa que se resuelve en un solo `MessageComponentInteraction`
+Un acceso directo para crear un `InteractionCollector` en forma de promesa que se resuelve en un solo `MessageComponentInteraction`.
 
 #### TextChannel#createMessageComponentCollector
 
@@ -1278,19 +1278,19 @@ Proporciona acceso al `ThreadManager` para este canal.
 
 ### ThreadChannel
 
-Proporciona soporte de API para canales de `hilos`
+Proporciona soporte de la API para `hilos`.
 
 ### ThreadChannelManager
 
-Proporciona soporte de API para que el bot cree, edite y elimine `hilos`, y almacene cache de `ThreadChannels`.
+Proporciona soporte de la API para que el bot cree, edite y elimine `hilos`, y almacene caché de `ThreadChannels`.
 
 ### ThreadMember
 
-Rperesenta un miembro de un `hilo` y  sus metadatos especificos del `hilo` 
+Rperesenta un miembro de un `hilo` y  sus metadatos específicos del `hilo` 
 
 ### ThreadMemberManager
 
-Proporciona soporte de API para que el bot agregue y elimine miembros de un `hilo`, y almacena un caché de `ThreadMembers`.
+Proporciona soporte de API para que el bot agregue y elimine miembros de un `hilo`, y almacena caché de `ThreadMembers`.
 
 ### Webhook
 
@@ -1304,13 +1304,13 @@ Los Webhooks ahora pueden editar mensajes que fueron enviados por el Webhook.
 
 #### Webhook#fetchMessage
 
-Los Webhooks ahora pueden recuperar los mensajes enviados por el Webhook.
+Los Webhooks ahora pueden buscar los mensajes enviados por el Webhook.
 
 #### Webhook#sourceChannel
 
 #### Webhook#sourceGuild
 
-Los webhooks ahora pueden tener `sourceGuild` y `sourceChannel` si el mensaje es difundido (crosspost).
+Los webhooks ahora pueden tener `sourceGuild` y `sourceChannel` si el mensaje es difundido (crossposted).
 
 ### WelcomeChannel
 
@@ -1332,7 +1332,7 @@ Información parcial sobre los miembros de un `Guild` almacenados en un widget.
 
 #### Métodos para el formato
 
-Se proporcionan varias funciones para el formato, nuevas en la clase Util, para administrar la adición de Markdown en cadenas de texto.
+Se proporcionan varias funciones para el formato, nuevas en la clase `Util`, para administrar la adición de Markdown en cadenas de texto.
 
 #### Util#resolvePartialEmoji
 
@@ -1340,4 +1340,4 @@ Un método auxiliar que intenta resolver las propiedades de un objeto emoji en b
 
 #### Util#verifyString
 
-Un método auxiliar que se utiliza para validar internamente los argumentos de cadena proporcionados a los métodos en Discord.js.
+Un método auxiliar que se utiliza para validar internamente los argumentos de cadena de texto proporcionados a los métodos en Discord.js.
