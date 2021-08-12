@@ -79,7 +79,7 @@ Common-tags es una biblioteca dedicada al trabajo con literales de plantilla.
 Hasta ahora, probablemente solo la hayas usado para interpolar variables en sus cadenas, pero puedes hacer mucho más.
 Si tiene tiempo, deberías consultar [La documentación de MDN sobre *literales etiquetados*](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Template_literals#plantillas_etiquetadas).
 
-Alguna vez te molestó que sus cadenas de varias líneas tuvieran partes desagradables de sangría en ellas,
+Alguna vez le molestó que sus cadenas de texto multi-líneas tuvieran partes desagradables de sangría en ellas
 pero no quería eliminar la sangría en su código fuente?
 common-tags lo tiene cubierto:
 
