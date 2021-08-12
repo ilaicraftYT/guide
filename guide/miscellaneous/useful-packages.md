@@ -24,7 +24,7 @@ const input = await interaction.channel.awaitMessages({
 const date = dayjs(input.first().content).toDate();
 ```
 
-Con el [Complemento de duración](https://day.js.org/docs/en/durations/durations), puedes decirle al usuario si la fecha es en el futuro o en el pasado:
+Con el [Complemento de duración](https://day.js.org/docs/en/durations/durations), puede decirle al usuario si la fecha es en el futuro o en el pasado:
 
 ```js
 if (date.isValid()) {
@@ -118,7 +118,7 @@ Colsulta la documentación para encontrar más funciones útiles.
 ::: tip
 Documentación oficial: [Aquí](https://www.npmjs.com/package/chalk)
 :::
-Chalk no es exactamente útil para los bots de Discord, pero hará que la salida de tu terminal sea mucho más bonita y organizada.
+Chalk no es exactamente útil para los bots de Discord, pero hará que la salida de tu terminal sea más bonita y organizada.
 Este paquete le permite colorear y diseñar su `console.log`s de muchas formas diferentes; No más blanco sobre negro.
 
 Supongamos que quieres que sus mensajes de error sean fácilmente visibles; Démosles un bonito color rojo:
@@ -184,7 +184,7 @@ Si bien es útil, JSON no es muy legible, por lo que definimos un formato person
 Si quieres, también puedes usar el módulo de tiza para hacer que el formato del registrador sea un poco más bonito aplicando colores, etc.
 
 ![winston example](./images/winston.png)
-Sin embargo, Winston no es la única biblioteca de registro que existe, por lo que si no está convencido, debería buscar en Google un poco y
+Sin embargo, Winston no es la única biblioteca de registro que existe, por lo que si no está convencido, puedes buscar en Google y
 deberías encontrar algo que te guste.
 ## i18next
 
