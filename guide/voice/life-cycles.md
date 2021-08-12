@@ -1,34 +1,34 @@
-# Life cycles
+# Ciclos de Vida
 
-Two of the main components that you'll interact with when using `@discordjs/voice` are:
+Dos de los componentes principales con los que interactuará cuando use `@discordjs/voice` son:
 
-- **VoiceConnection** – maintains a network connection to a Discord voice server
-- **AudioPlayer** – plays audio resources across a voice connection
+- **VoiceConnection** – mantiene una conexión de red a un servidor de voz Discord
+- **AudioPlayer** – reproduce recursos de audio a través de una conexión de voz
 
-Both voice connections and audio players are _stateful_, and you can subscribe to changes in their state as they progress through their respective life cycles.
+Tanto las conexiones de voz como los reproductores de audio tienen _estado_, y puede suscribirse a los cambios en su estado a medida que avanzan en sus respectivos ciclos de vida.
 
-It's important to listen for state change events, as they will likely require you to take some action. For example, a voice connection entering the `Disconnected` state will probably require you to attempt to reconnect it.
+Es importante escuchar los eventos de cambio de estado, ya que probablemente requerirán que tome alguna acción. Por ejemplo, una conexión de voz que ingresa al estado `Disconnected` probablemente requerirá que intente volver a conectarla.
 
-Their individual life cycles with descriptions of their states are documented on their respective pages.
+Sus ciclos de vida individuales con descripciones de sus estados están documentados en sus respectivas páginas.
 
-Listening to changes in the life cycles of voice connections and audio players can be done in two ways:
+Escuchar los cambios en los ciclos de vida de las conexiones de voz y los reproductores de audio se puede realizar de dos formas:
 
-## Subscribing to individual events
+## Seguimiento a eventos individuales
 
 ```js
 const { VoiceConnectionStatus, AudioPlayerStatus } = require('@discordjs/voice');
 
 connection.on(VoiceConnectionStatus.Ready, (oldState, newState) => {
-	console.log('Connection is in the Ready state!');
+	console.log('¡La conexión está en estado Ready!');
 });
 
 player.on(AudioPlayerStatus.Playing, (oldState, newState) => {
-	console.log('Audio player is in the Playing state!');
+	console.log('¡El reproductor de audio está en estado Playing!');
 });
 ```
 
 :::tip
-One advantage of listening for transitions to individual states is that it becomes a lot easier to write sequential logic. This is made easy using our [state transition helper](https://github.com/discordjs/voice/blob/main/src/util/entersState.ts). An example is shown below.
+Una ventaja de escuchar las transiciones a estados individuales es que resulta mucho más fácil escribir lógica secuencial. Esto se simplifica con nuestro [asistente de transición de estado](https://github.com/discordjs/voice/blob/main/src/util/entersState.ts). A continuación se muestra un ejemplo.
 
 ```js
 const { AudioPlayerStatus, entersState } = require('@discordjs/voice');
@@ -37,12 +37,12 @@ async function start() {
 	player.play(resource);
 	try {
 		await entersState(player, AudioPlayerStatus.Playing, 5_000);
-		// The player has entered the Playing state within 5 seconds
-		console.log('Playback has started!');
+		// El reproductor ha entrado en el estado de Playing en 5 segundos.
+		console.log('¡La reproducción ha comenzado!');
 	} catch (error) {
-		// The player has not entered the Playing state and either:
-		// 1) The 'error' event has been emitted and should be handled
-		// 2) 5 seconds have passed
+		// El reproductor no ha entrado en el estado de Playing o también:
+		// 1) El evento 'error' se ha emitido y debe manejarse
+		// 2) Han pasado 5 segundos
 		console.error(error);
 	}
 }
@@ -51,16 +51,16 @@ void start();
 ```
 :::
 
-## Subscribing to all state transitions
+## Seguimiento a todas las transiciones de estado
 
-If you would prefer to keep a single event listener for all possible state transitions, then you can also listen to the `stateChange` event:
+Si prefiere mantener un solo detector de eventos para todas las posibles transiciones de estado, también puede escuchar el evento `stateChange`:
 
 ```js
 connection.on('stateChange', (oldState, newState) => {
-	console.log(`Connection transitioned from ${oldState.status} to ${newState.status}`);
+	console.log(`La conexión pasó de ${oldState.status} a ${newState.status}`);
 });
 
 player.on('stateChange', (oldState, newState) => {
-	console.log(`Audio player transitioned from ${oldState.status} to ${newState.status}`);
+	console.log(`Transición del reproductor de audio de ${oldState.status} a ${newState.status}`);
 });
 ```

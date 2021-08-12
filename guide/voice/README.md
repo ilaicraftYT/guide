@@ -1,46 +1,45 @@
-# Introduction
+# Introducción
 
-"Voice" refers to Discord bots being able to send audio in voice channels. This is supported in discord.js via [@discordjs/voice](https://github.com/discordjs/voice), a standalone library made by the developers of discord.js. While you can use it with any Node.js Discord API library, this guide will focus on using it with discord.js.
+"Voz" se refiere a que los bots de Discord pueden enviar audio en canales de voz. Esto es compatible con discord.js a través de [@discordjs/voice](https://github.com/discordjs/voice), una biblioteca independiente creada por los desarrolladores de discord.js. Si bien puede usarlo con cualquier biblioteca de API de Discord de Node.js, esta guía se centrará en usarlo con discord.js.
 
-## Installation
+## Instalación
 
-### Barebones
+### Esqueleto
 
-To add voice functionality to your discord.js bot, you will need the `@discordjs/voice` package, as well as one of the encryption packages listed below. For example: 
+Para agregar funcionalidad de voz a su bot discord.js, necesitará el paquete `@discordjs/voice`, así como uno de los paquetes de cifrado que se enumeran a continuación. Por ejemplo:
 
 ```bash
 npm install @discordjs/voice libsodium-wrappers
 ```
 
-After this, you'll be able to play Ogg and WebM Opus files without any other dependencies. If you want to play audio from other sources, or want to improve performance, consider installing some of the extra dependencies listed below.
+Después de esto, podrá reproducir archivos Ogg y WebM Opus sin ninguna otra dependencia. Si desea reproducir audio de otras fuentes o desea mejorar el rendimiento, considere instalar algunas de las dependencias adicionales que se enumeran a continuación.
 
 ::: warning ADVERTENCIA
-This guide assumes you have installed at least one additional dependency – FFmpeg. More information on this can be found in the
-section below.
+Esta guía asume que ha instalado al menos una dependencia adicional: FFmpeg. Puede encontrar más información sobre esto en la sección siguiente.
 :::
 
-### Extra Dependencies
+### Dependencias adicionales
 
-- An Opus encoding library
-  - [`@discordjs/opus`](https://github.com/discordjs/opus) (best performance)
+- Una biblioteca de codificación Opus
+  - [`@discordjs/opus`](https://github.com/discordjs/opus) (mejor rendimiento)
   - [`opusscript`](https://github.com/abalabahaha/opusscript/)
-- FFmpeg – allows you to play a range of media (e.g. MP3s).
-  - [`ffmpeg`](https://ffmpeg.org/) - install and add to your system environment
-  - [`ffmpeg-static`](https://www.npmjs.com/package/ffmpeg-static) - to install FFmpeg via npm
-- Encryption packages
-  - [`sodium`](https://www.npmjs.com/package/sodium) (best performance)
+- FFmpeg – le permite reproducir una variedad de medios (e.g. MP3s).
+  - [`ffmpeg`](https://ffmpeg.org/) - instalar y agregar al entorno de su sistema
+  - [`ffmpeg-static`](https://www.npmjs.com/package/ffmpeg-static) - para instalar FFmpeg a través de npm
+- Paquetes de cifrado
+  - [`sodium`](https://www.npmjs.com/package/sodium) (mejor rendimiento)
   - [`libsodium-wrappers`](https://www.npmjs.com/package/libsodium-wrappers)
   - [`tweetnacl`](https://www.npmjs.com/package/tweetnacl)
 
 ::: tip
-Outside a development environment, it is recommended for you to use `@discordjs/opus` and `sodium` to improve performance and improve the stability of audio playback!
+Fuera de un entorno de desarrollo, se recomienda que utilice `@discordjs/opus` y `sodium` para mejorar el rendimiento y la estabilidad de la reproducción de audio.
 
-If you're struggling to install these dependencies, make sure you have build tools installed first. On Windows, this is as easy as running `npm install --global --production --vs2015 --add-python-to-path windows-build-tools`!
+Si tiene dificultades para instalar estas dependencias, asegúrese de tener instaladas las herramientas de compilación primero. En Windows, esto es tan fácil como ejecutar `npm install --global --production --vs2015 --add-python-to-path windows-build-tools`
 :::
 
-## Debugging Dependencies
+## Dependencias de depuración
 
-The library includes a helper function that helps you to find out which dependencies you've successfully installed. This information is also very helpful if you ever need to submit an issue on the `@discordjs/voice` issue tracker.
+La biblioteca incluye una función auxiliar que le ayuda a averiguar qué dependencias ha instalado correctamente. Esta información también es muy útil si alguna vez necesita enviar un problema en el rastreador de problemas `@discordjs/voice`.
 
 ```js
 const { generateDependencyReport } = require('@discordjs/voice');
@@ -69,12 +68,12 @@ FFmpeg
 */
 ```
 
-- **Core Dependencies**
-  - These are dependencies that should definitely be available.
-- **Opus Libraries**
-  - If you want to play audio from many different file types, or alter volume in real-time, you will need to have one of these.
-- **Encryption Libraries**
-  - You should have at least one encryption library installed to use `@discordjs/voice`.
+- **Dependencias principales**
+  - Estas son dependencias que definitivamente deberían estar disponibles.
+- **Bibliotecas Opus**
+  - Si desea reproducir audio de muchos tipos de archivos diferentes o alterar el volumen en tiempo real, necesitará uno de estos.
+- **Bibliotecas de cifrado**
+  - Debe tener al menos una biblioteca de cifrado instalada para usar `@discordjs/voice`.
 - **FFmpeg**
-  - If you want to play audio from many different file types, you will need to have FFmpeg installed.
-  - If `libopus` is enabled, you will be able to benefit from increased performance if real-time volume alteration is disabled.
+  - Si desea reproducir audio de muchos tipos de archivos diferentes, deberá tener FFmpeg instalado.
+  - Si `libopus` está habilitado, podrá beneficiarse de un mayor rendimiento si la alteración de volumen en tiempo real está deshabilitada.

@@ -23,7 +23,7 @@ Dicha sección de la guía explica el evento `interactionCreate`. En esta versi�
 
 ¡Discord.js tiene soporte para los componentes de un mensaje!
 
-Se han introducido las clases `MessageActionRow`, `MessageButton` y `MessageSelectMenu`, al igual que las interacciones y colectores asociados a estos. 
+Se han introducido las clases `MessageActionRow`, `MessageButton` y `MessageSelectMenu`, al igual que las interacciones y colectores asociados a estos.
 
 Revisa la sección de [componentes](/interactions/buttons.html) en esta guía para empezar a usarlos.
 
@@ -179,7 +179,7 @@ Algunos nombres de uso común en Discord.js han cambiado.
 
 #### Algo#algoId
 
-El nombre de las propiedades con el formato `algoID` han cambiado a `algoId`. Discord.js ahora usa (camelCase o 'letra de caja camello')[https://es.wikipedia.org/wiki/Camel_case] ya que `Id` es una abreviación de 'identificador', no un acrónimo.
+El nombre de las propiedades con el formato `algoID` han cambiado a `algoId`. Discord.js ahora usa [camelCase o 'letra de caja camello'](https://es.wikipedia.org/wiki/Camel_case) ya que `Id` es una abreviación de 'identificador', no un acrónimo.
 
 Esto incluye: `afkChannelId`, `applicationId`, `channelId`, `creatorId`, `guildId`, `lastMessageId`, `ownerId`, `parentId`, `partyId`, `processId`, `publicUpdatesChannelId`, `resolveId`, `rulesChannelId`, `sessionId`, `shardId`, `systemChannelId`, `webhookId`, `widgetChannelId` y `workerId`.
 
@@ -534,7 +534,7 @@ Este método fue removido, con su funcionalidad reemplazada por el nuevo `Permis
 + channel.permissionOverwrites.edit(user, { VIEW_CHANNEL: false });
 ```
 
-### GuildMember 
+### GuildMember
 
 #### GuildMember#ban
 
@@ -1069,7 +1069,7 @@ Una `Collection` de roles los cuales son administrados por una integración.
 
 ### Interaction
 
-Proporciona soporte del gateway para los comandos de barra diagonal e interacciones con componentes. 
+Proporciona soporte del gateway para los comandos de barra diagonal e interacciones con componentes.
 
 Para más información consulta las páginas para los [comandos de barra diagonal](/interactions/replying-to-slash-commands.md) y los [componentes](/interactions/buttons.html#responding-to-buttons.html) de esta guía.
 
@@ -1286,7 +1286,7 @@ Proporciona soporte de la API para que el bot cree, edite y elimine `hilos`, y a
 
 ### ThreadMember
 
-Rperesenta un miembro de un `hilo` y  sus metadatos específicos del `hilo` 
+Rperesenta un miembro de un `hilo` y  sus metadatos específicos del `hilo`
 
 ### ThreadMemberManager
 
@@ -1322,7 +1322,7 @@ Proporciona soporte de API para la pantalla de bienvenida de un `Guild`
 
 ### Widget
 
-Representa un `Widget` de un `Guild`. 
+Representa un `Widget` de un `Guild`.
 
 ### WidgetMember
 

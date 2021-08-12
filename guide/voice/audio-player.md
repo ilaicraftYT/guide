@@ -1,12 +1,12 @@
-# Audio Player
+# Reproductor de audio
 
-Audio players can be used to play audio across voice connections. A single audio player can play the same audio over multiple voice connections.
+Los reproductores de audio se pueden utilizar para reproducir audio a través de conexiones de voz. Un solo reproductor de audio puede reproducir el mismo audio a través de múltiples conexiones de voz.
 
-## Cheat sheet
+## Hoja de trucos
 
-### Creation
+### Creación
 
-Creating an audio player is simple:
+Crear un reproductor de audio es simple:
 
 ```js
 const { createAudioPlayer } = require('@discordjs/voice');
@@ -14,7 +14,7 @@ const { createAudioPlayer } = require('@discordjs/voice');
 const player = createAudioPlayer();
 ```
 
-You can also customize the behaviors of an audio player. For example, the default behavior is to pause when there are no active subscribers for an audio player. This behavior can be configured to either pause, stop, or just continue playing through the stream:
+También puede personalizar los comportamientos de un reproductor de audio. Por ejemplo, el comportamiento predeterminado es pausar cuando no hay suscriptores activos para un reproductor de audio. Este comportamiento se puede configurar para pausar, detener o simplemente continuar la reproducción a través de la transmisión:
 
 ```js
 const { createAudioPlayer, NoSubscriberBehavior } = require('@discordjs/voice');
@@ -26,55 +26,55 @@ const player = createAudioPlayer({
 });
 ```
 
-### Deletion
+### Supresión
 
-If you no longer require an audio player, you can `stop()` it and then remove references to it so that it gets garbage collected.
+Si ya no necesita un reproductor de audio, puede detenerlo usando `stop()` y luego eliminar las referencias a él para que se recolecte la basura
 
 ```js
 player.stop();
 ```
 
-### Playing audio
+### Reproducción de audio
 
-You can create [audio resources](./audio-resources.md) and then play them on an audio player.
+Puede crear [recursos de audio](./audio-resources.md) y luego reproducirlos en un reproductor de audio.
 
 ```js
 const resource = createAudioResource('/home/user/voice/track.mp3');
 player.play(resource);
 
-// Play "track.mp3" across two voice connections
+// Reproduce "track.mp3" a través de dos conexiones de voz
 connection1.subscribe(player);
 connection2.subscribe(player);
 ```
 
 ::: warning ADVERTENCIA
-**Audio players can play one audio resource at most.** If you try to play another audio resource while one is already playing on the same player, the existing one is destroyed and replaced with the new one.
+**Los reproductores de audio pueden reproducir un recurso de audio como máximo.** Si intenta reproducir otro recurso de audio mientras uno ya se está reproduciendo en el mismo reproductor, el existente se destruye y se reemplaza por el nuevo.
 :::
 
-### Pausing/unpausing
+### Pausar / reanudar
 
-You can call the `pause()` and `unpause()` methods. While the audio player is paused, no audio will be played. When it is resumed, it will continue where it left off.
+Puede llamar a los métodos `pause()` y `unpause()`. Mientras el reproductor de audio esté en pausa, no se reproducirá ningún audio. Cuando se reanude, continuará donde lo dejó.
 
 ```js
 player.pause();
 
-// Unpause after 5 seconds
+// Reanudar después de 5 segundos
 setTimeout(() => player.unpause(), 5_000);
 ```
 
-## Life cycle
+## Ciclo vital
 
-Voice connections have their own life cycle, with five distinct states. You can follow the methods discussed in the [life cycles](/voice/life-cycles.md) section to subscribe to changes to voice connections.
+Las conexiones de voz tienen su propio ciclo de vida, con cinco estados distintos. Puede seguir los métodos discutidos en la sección [ciclos de vida](/voice/life-cycles.md) para suscribirse a los cambios en las conexiones de voz.
 
-- **Idle** - the initial state of an audio player. The audio player will be in this state when there is no audio resource for it to play.
+- **Idle** - el estado inicial de un reproductor de audio. El reproductor de audio estará en este estado cuando no haya recursos de audio para reproducir.
 
-- **Bufferring** - the state an audio player will be in while it is waiting for an audio resource to become playable. The audio player may transition from this state to either the `Playing` state (success) or the `Idle` state (failure).
+- **Bufferring** - el estado en el que se encontrará un reproductor de audio mientras espera que se pueda reproducir un recurso de audio. El reproductor de audio puede pasar de este estado al estado `Playing` (éxito) o al estado `Idle` (fallo).
 
-- **Playing** - the state a voice connection enters when it is actively playing an audio resource. When the audio resource comes to an end, the audio player will transition to the Idle state.
+- **Playing** - el estado en el que entra una conexión de voz cuando está reproduciendo activamente un recurso de audio. Cuando el recurso de audio llega a su fin, el reproductor de audio pasará al estado `Idle`.
 
-- **AutoPaused** - the state a voice connection will enter when the player has paused itself because there are no active voice connections to play to. This is only possible with the `noSubscriber` behavior set to `Pause`. It will automatically transition back to `Playing` once at least one connection becomes available again.
+- **AutoPaused** - el estado en el que entrará una conexión de voz cuando el reproductor se haya detenido porque no hay conexiones de voz activas para reproducir. Esto solo es posible con el comportamiento `noSubscriber` configurado en `Pause`. Volverá automáticamente a `Playing` una vez que al menos una conexión vuelva a estar disponible.
 
-- **Paused** - the state a voice connection enters when it is paused by the user.
+- **Paused** - el estado en el que entra una conexión de voz cuando el usuario la detiene.
 
 ```js
 const { AudioPlayerStatus } = require('@discordjs/voice');
@@ -84,47 +84,47 @@ player.on(AudioPlayerStatus.Playing, () => {
 });
 ```
 
-## Handling errors
+## Manejo de errores
 
-When an audio player is given an audio resource to play, it will propagate errors from the audio resource for you to handle.
+Cuando un reproductor de audio recibe un recurso de audio para reproducir, propagará los errores del `recurso` de audio para que usted los maneje.
 
-In the error handler, you can choose to either play a new audio resource or stop playback. If you take no action, the audio player will stop itself and revert to the `Idle` state.
+En el controlador de errores, puede elegir reproducir un nuevo `recurso` de audio o detener la reproducción. Si no realiza ninguna acción, el reproductor de audio se detendrá y volverá al estado `Idle`.
 
-Additionally, the error object will also contain a `resource` property that helps you to figure out which audio resource created the error.
+Además, el objeto de error también contendrá una propiedad de `recurso` que le ayudará a determinar qué recurso de audio creó el error.
 
-Two different examples of how you may handle errors are shown below.
+A continuación, se muestran dos ejemplos diferentes de cómo puede manejar los errores.
 
-### Taking action within the error handler
+### Tomando acción dentro del controlador de errores
 
-In this example, the audio player will only move on to playing the next audio resource if an error has occurred. If playback ends gracefully, nothing will happen. This example avoids a transition into the Idle state.
+En este ejemplo, el reproductor de audio solo pasará a reproducir el siguiente `recurso` de audio si se ha producido un error. Si la reproducción finaliza correctamente, no ocurrirá nada. Este ejemplo evita una transición al estado inactivo.
 
 ```js
 const { createAudioResource } = require('@discordjs/voice');
 
 const resource = createAudioResource('/home/user/voice/music.mp3', {
 	metadata: {
-		title: 'A good song!',
+		title: '¡Una buena canción!',
 	},
 });
 
 player.play(resource);
 
 player.on('error', error => {
-	console.error(`Error: ${error.message} with resource ${error.resource.metadata.title}`);
+	console.error(`Error: ${error.message} con el recurso ${error.resource.metadata.title}`);
 	player.play(getNextResource());
 });
 ```
 
-### Taking action within the `Idle` state
+### Actuando en el estado `Idle`
 
-In this example, the error event is used only for logging purposes. The audio player will naturally transition into the `Idle` state, and then another resource is played. This has the advantage of working with streams that come to an end gracefully, and those that are interrupted by errors.
+En este ejemplo, el evento de error se usa solo para fines de registro. El reproductor de audio pasará naturalmente al estado `Idle` y luego se reproducirá otro `recurso`. Esto tiene la ventaja de trabajar con streams que llegan a su fin con gracia y aquellos que son interrumpidos por errores.
 
 ```js
 const { createAudioResource } = require('@discordjs/voice');
 
 const resource = createAudioResource('/home/user/voice/music.mp3', {
 	metadata: {
-		title: 'A good song!',
+		title: '¡Una buena canción!',
 	},
 });
 

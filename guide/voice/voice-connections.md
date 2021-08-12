@@ -1,14 +1,14 @@
-# Voice Connections
+# Conexiones de voz
 
-Voice connections represent connections to voice channels in a guild. You can only connect to one voice channel in a guild at a time.
+Las conexiones de voz representan conexiones a canales de voz en un servidor. Solo puedes conectarte a un canal de voz en un servidor a la vez.
 
-Voice connections will automatically try their best to re-establish their connections when they move across voice channels, or if the voice server region changes.
+Las conexiones de voz harán automáticamente todo lo posible para restablecer sus conexiones cuando se muevan a través de los canales de voz o si cambia la región del servidor de voz.
 
-## Cheat sheet
+## Hoja de trucos
 
 ### Creation
 
-Creating a voice connection is simple:
+Crear una conexión de voz es simple:
 
 ```js
 const { joinVoiceChannel } = require('@discordjs/voice');
@@ -20,11 +20,11 @@ const connection = joinVoiceChannel({
 });
 ```
 
-If you try to call `joinVoiceChannel` on another channel in the same guild in which there is already an active voice connection, the existing voice connection switches over to the new channel.
+Si intentas llamar a `joinVoiceChannel` en otro canal del mismo servidor en el que ya hay una conexión de voz activa, la conexión de voz existente cambia al nuevo canal.
 
-### Access
+### Acceso
 
-You can access created connections elsewhere in your code without having to track the connections yourself. It is best practice to not track the voice connections yourself as you may forget to clean them up once they are destroyed, leading to memory leaks.
+Puede acceder a las conexiones creadas en otras partes de su código sin tener que realizar un seguimiento de las conexiones usted mismo. Es una buena práctica no rastrear las conexiones de voz usted mismo, ya que puede olvidarse de limpiarlas una vez que se destruyen, lo que provoca pérdidas de memoria.
 
 ```js
 const { getVoiceConnection } = require('@discordjs/voice');
@@ -32,72 +32,72 @@ const { getVoiceConnection } = require('@discordjs/voice');
 const connection = getVoiceConnection(myVoiceChannel.guild.id);
 ```
 
-### Deletion
+### Supresión
 
-You can destroy a voice connection when you no longer require it. This will disconnect its connection if it is still active, stop audio playing to it, and will remove it from the internal tracker for voice connections.
+Puede destruir una conexión de voz cuando ya no la necesite. Esto desconectará su conexión si todavía está activa, detendrá la reproducción de audio y lo eliminará del rastreador interno para las conexiones de voz.
 
-It's important that you destroy voice connections when they are no longer required so that your bot leaves the voice channel, and to prevent memory leaks.
+Es importante que destruya las conexiones de voz cuando ya no sean necesarias para que su bot abandone el canal de voz y para evitar pérdidas de memoria.
 
 ```js
 connection.destroy();
 ```
 
-### Playing audio
+### Reproducción de audio
 
-You can subscribe voice connections to audio players as soon as they're created. Audio players will try to stream audio to all their subscribed voice connections that are in the Ready state. Destroyed voice connections cannot be subscribed to audio players.
+Puede suscribir conexiones de voz a reproductores de audio tan pronto como se creen. Los reproductores de audio intentarán transmitir audio a todas sus conexiones de voz suscritas que estén en estado `Ready`. Las conexiones de voz destruidas no se pueden suscribir a reproductores de audio.
 
 ```js
-// Subscribe the connection to the audio player (will play audio on the voice connection)
+// Suscribe la conexión al reproductor de audio (reproducirá audio en la conexión de voz)
 const subscription = connection.subscribe(audioPlayer);
 
-// subscription could be undefined if the connection is destroyed!
+// La suscripción podría no estar definida si se destruye la conexión.
 if (subscription) {
-	// Unsubscribe after 5 seconds (stop playing audio on the voice connection)
+	// Cancelar la suscripción después de 5 segundos (dejar de reproducir audio en la conexión de voz)
 	setTimeout(() => subscription.unsubscribe(), 5_000);
 }
 ```
 
 ::: warning ADVERTENCIA
-**Voice connections can be subscribed to one audio player at most.** If you try to subscribe to another audio player while already subscribed to one, the current audio player is unsubscribed and replaced with the new one.
+**Las conexiones de voz se pueden suscribir a un reproductor de audio como máximo.** Si intenta suscribirse a otro reproductor de audio mientras ya está suscrito a uno, el reproductor de audio actual se cancela y se reemplaza por el nuevo.
 :::
 
-## Life cycle
+## Ciclos de vida
 
-Voice connections have their own life cycle, with five distinct states. You can follow the methods discussed in the [life cycles](/voice/life-cycles.md) section to subscribe to changes to voice connections.
+Las conexiones de voz tienen su propio ciclo de vida, con cinco estados distintos. Puede seguir los métodos discutidos en la sección [ciclos de vida](/voice/life-cycles.md) para suscribirse a los cambios en las conexiones de voz.
 
-- **Signalling** - the initial state of a voice connection. The connection will be in this state when it is requesting permission to join a voice channel.
+- **Signalling** - el estado inicial de una conexión de voz. La conexión estará en este estado cuando solicite permiso para unirse a un canal de voz.
 
-- **Connecting** - the state a voice connection enters once it has permission to join a voice channel and is in the process of establishing a connection to it.
+- **Connecting** - el estado en el que entra una conexión de voz una vez que tiene permiso para unirse a un canal de voz y está en proceso de establecer una conexión con él.
 
-- **Ready** - the state a voice connection enters once it has successfully established a connection to the voice channel. It is ready to play audio in this state.
+- **Ready** - el estado en el que entra una conexión de voz una vez que se ha establecido con éxito una conexión con el canal de voz. Está listo para reproducir audio en este estado.
 
-- **Disconnected** - the state a voice connection enters when the connection to a voice channel has been severed. This can occur even if the connection has not yet been established. You may choose to attempt to reconnect in this state.
+- **Disconnected** - el estado en el que entra una conexión de voz cuando se corta la conexión con un canal de voz. Esto puede ocurrir incluso si aún no se ha establecido la conexión. Puede optar por intentar volver a conectarse en este estado.
 
-- **Destroyed** - the state a voice connection enters when it has been manually been destroyed. This will prevent it from accidentally being reused, and it will be removed from an in-memory tracker of voice connections.
+- **Destroyed** - el estado en el que entra una conexión de voz cuando se ha destruido manualmente. Esto evitará que se reutilice accidentalmente y se eliminará de un rastreador en memoria de conexiones de voz.
 
 ```js
 const { VoiceConnectionStatus } = require('@discordjs/voice');
 
 connection.on(VoiceConnectionStatus.Ready, () => {
-	console.log('The connection has entered the Ready state - ready to play audio!');
+	console.log('La conexión ha entrado en el estado Ready, ¡lista para reproducir audio!');
 });
 ```
 
-## Handling disconnects
+## Manejo de desconexiones
 
-Disconnects can be quite complex to handle. There are 3 cases for handling disconnects:
+Las desconexiones pueden ser bastante complejas de manejar. Hay 3 casos para manejar desconexiones:
 
-1. **Resumable disconnects** - there is no clear reason why the disconnect occurred. In this case, voice connections will automatically try to resume the existing session. The voice connection will enter the `Connecting` state. If this fails, it may enter a `Disconnected` state again.
+1. **Desconexiones reanudables** - no hay una razón clara por la que ocurrió la desconexión. En este caso, las conexiones de voz intentarán reanudar automáticamente la sesión existente. La conexión de voz entrará en el estado `Connecting`. Si esto falla, puede volver a entrar en un estado `Disconnected`.
 
-2. **Reconnectable disconnects** - Discord has closed the connection and given a reason as to why, and that the reason is recoverable. In this case, the voice connection will automatically try to rejoin the voice channel. The voice connection will enter the `Signalling` state. If this fails, it may enter a `Disconnected` state again.
+2. **Desconectadores reconectables** - Discord ha cerrado la conexión y ha dado una razón de por qué, y que la razón es recuperable. En este caso, la conexión de voz intentará automáticamente volver a unirse al canal de voz. La conexión de voz entrará en el estado de  `Signalling`. Si esto falla, puede volver a entrar en un estado `Disconnected`.
 
-3. **Potentially reconnectable disconnects** - the bot has either been moved to another voice channel, the channel has been deleted, or the bot has been kicked/lost access to the voice channel. The bot will enter the `Disconnected` state.
+3. **Desconexiones potencialmente reconectables** - el bot se ha movido a otro canal de voz, el canal se ha eliminado o el bot ha sido expulsado / perdido el acceso al canal de voz. El bot entrará en el estado `Disconnected`.
 
-As shown above, the first two cases are covered automatically by the voice connection itself. The only case you need to think carefully about is the third case.
+Como se muestra arriba, los dos primeros casos son cubiertos automáticamente por la propia conexión de voz. El único caso en el que debe pensar detenidamente es el tercer caso.
 
-The third case can be quite problematic to treat as a disconnect, as the bot could simply be moving to another voice channel and so not "truly" disconnected.
+El tercer caso puede ser bastante problemático de tratar como una desconexión, ya que el bot podría simplemente estar moviéndose a otro canal de voz y, por lo tanto, no estar "verdaderamente" desconectado.
 
-An imperfect workaround to this is to see if the bot has entered a `Signalling` / `Connecting` state shortly after entering the `Disconnected` state. If it has, then it means that the bot has moved voice channels. Otherwise, we should treat it as a real disconnect and not reconnect.
+Una solución imperfecta a esto es ver si el bot ha entrado en un estado de `Signalling` / `Connecting` poco después de entrar en el estado `Disconnected`. Si es así, significa que el bot ha movido los canales de voz. De lo contrario, deberíamos tratarlo como una desconexión real y no reconectarnos.
 
 ```js
 const { VoiceConnectionStatus, entersState } = require('@discordjs/voice');
@@ -108,9 +108,9 @@ connection.on(VoiceConnectionStatus.Disconnected, async (oldState, newState) => 
 			entersState(connection, VoiceConnectionStatus.Signalling, 5_000),
 			entersState(connection, VoiceConnectionStatus.Connecting, 5_000),
 		]);
-		// Seems to be reconnecting to a new channel - ignore disconnect
+		// Parece que se está volviendo a conectar a un nuevo canal; ignore la desconexión
 	} catch (error) {
-		// Seems to be a real disconnect which SHOULDN'T be recovered from
+		// Parece ser una desconexión real de la que NO DEBE recuperarse
 		connection.destroy();
 	}
 });
