@@ -263,7 +263,7 @@ Si desea obtener más información sobre las reacciones, consulte [esta guía de
 process.exit();
 ```
 
-::: danger
+::: danger PELIGRO
 `process.exit()`solo matará su proceso de Node, pero al usar [PM2](http://pm2.keymetrics.io/), reiniciará el proceso cada vez que muera. Puede leer nuestra guía sobre PM2 [aquí](/improving-dev-environment/pm2.md).
 :::
 
@@ -284,7 +284,7 @@ Un `User` representa a un usuario global de Discord y un `GuildMember` represent
 });
 ```
 
-::: warning
+::: warning ADVERTENCIA
 Esto solo funciona correctamente si tiene habilitada la intención `GUILD_PRESENCES` para su aplicación y cliente.
 Si desea obtener más información sobre las intenciones, consulte [esta guía dedicada a las intenciones](/popular-topics/intents.md).
 :::

@@ -22,7 +22,7 @@ Click the "Add Bot" button on the right and confirm the pop-up window by clickin
 
 ## Your token
 
-::: danger
+::: danger PELIGRO
 This section is critical, so pay close attention. It explains what your bot token is, as well as the security aspects of it.
 :::
 
@@ -51,7 +51,7 @@ Let's imagine that you have a bot on over 1,000 servers, and it took you many, m
 
 All that and much, much more. Sounds pretty terrible, right? So make sure to keep your token as safe as possible!
 
-::: danger
+::: danger PELIGRO
 If you ever somehow compromise your current bot token (commit it to a public repository, post it in support, etc.) or otherwise see your bot in danger, return to this page and press "Regenerate" to generate a new token. As you do so, all old tokens will become invalidated. Keep in mind that you will need to update your token where you used it before.
 :::
 

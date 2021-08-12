@@ -93,7 +93,7 @@ It accepts two properties: `shard` and `context`. The `context` property will be
 In this small snippet, an argument is passed to the `funcName` function through this parameter.
 The function will recieve the arguments as an object as the second parameter.
 
-::: warning
+::: warning ADVERTENCIA
 The `context` option only accepts properties which are JSON-serializable. This means you cannot pass complex data types in the context directly.
 For example, if you sent a `User` instance, the function would recieve the raw data object.
 :::

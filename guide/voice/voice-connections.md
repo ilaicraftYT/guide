@@ -57,7 +57,7 @@ if (subscription) {
 }
 ```
 
-::: warning
+::: warning ADVERTENCIA
 **Voice connections can be subscribed to one audio player at most.** If you try to subscribe to another audio player while already subscribed to one, the current audio player is unsubscribed and replaced with the new one.
 :::
 

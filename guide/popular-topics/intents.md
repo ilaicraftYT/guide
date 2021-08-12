@@ -24,7 +24,7 @@ const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 ```
 
-::: warning
+::: warning ADVERTENCIA
 Ten en cuenta que discord.js se basa en gran medida en el almacenamiento en caché para proporcionar su funcionalidad. Algunos métodos que parecen no estar relacionados, podrían dejar de funcionar si no se emiten ciertos eventos.
 
 ~~Asegúrate de proporcionar una lista de los `Intents del Gateway` y `Partials` que usas en tu constructor Client cuando pidas soporte en el [Servidor de Discord](https://discord.gg/djs) o en el [repositorio de GitHub](https://github.com/discordjs/discord.js)`~~

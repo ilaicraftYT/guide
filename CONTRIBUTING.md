@@ -108,11 +108,11 @@ In this section, we'll be doing some stuff!
 You can do this stuff even faster if you do this cool thing listed in this tip!
 :::
 
-::: warning
+::: warning ADVERTENCIA
 Make sure you're on version 2.0.0 or above before trying this.
 :::
 
-::: danger
+::: danger PELIGRO
 Be careful; this action is irreversible!
 :::
 ```
@@ -141,7 +141,7 @@ And here's a sentence that would explain how that works, maybe.
 Here's where we'd tell you something even cooler than the really cool thing you just learned.
 :::
 
-::: warning
+::: warning ADVERTENCIA
 This is where we'd warn you about the possible issues that arise when using this method.
 :::
 ```

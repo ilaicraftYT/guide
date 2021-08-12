@@ -232,7 +232,7 @@ app.get('/', async ({ query }, response) => {
 });
 ```
 
-::: warning
+::: warning ADVERTENCIA
 The content-type for the token URL must be `application/x-www-form-urlencoded`, which is why `URLSearchParams` is used.
 :::
 

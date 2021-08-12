@@ -209,7 +209,7 @@ const botPermissionsIn = guild.me.permissionsIn(channel);
 const rolePermissions = channel.permissionsFor(role);
 ```
 
-::: warning
+::: warning ADVERTENCIA
 The `.permissionsFor()` and `.permissionsIn()` methods return a Permissions object with all permissions set if the member or role has the global `ADMINISTRATOR` permission and does not take overwrites into consideration in this case. Using the second parameter of the `.has()` method as described further down in the guide will not allow you to check without taking `ADMINISTRATOR` into account here!
 :::
 

@@ -83,7 +83,7 @@ So, here's what's happening in this code:
 4. node-fetch receives the response and deserializes it with `response.json()`.
 5. You then send the object's `file` property in Discord.
 
-::: warning
+::: warning ADVERTENCIA
 The response will only be parsed if the server's `Content-Type` header includes `application/json`. In some cases you may have to apply the `.text()` method instead of `.json()` and `JSON.parse()` it yourself.
 :::
 

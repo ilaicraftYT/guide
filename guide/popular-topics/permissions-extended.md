@@ -78,6 +78,6 @@ During your development, you will likely run into `DiscordAPIError: Missing Perm
 - It is trying to execute an action on a voice channel without the `VIEW_CHANNEL` permission.
 - It is trying to create a channel or channel overwrite including the `MANAGE_ROLES` flag but does not have the `ADMINISTRATOR` permission or an explicit `MANAGE_ROLES` overwrite on this channel (note that the global permission does not count)
 
-::: warning
+::: warning ADVERTENCIA
 Granting the `ADMINISTRATOR` permission does not skip any hierarchical check!
 :::

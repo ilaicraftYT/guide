@@ -16,7 +16,7 @@ Si está desarrollando en macOS, tiene algunas opciones. Puedes ir al [sitio web
 
 Si está desarrollando en Linux, puede consultar [esta página](https://nodejs.org/en/download/package-manager/) para determinar cómo debe instalar Node.<br />En esa nota, existe la posibilidad de que ya tenga Node \(por ejemplo, si está usando un VPS\). Puede comprobarlo ejecutando el comando `node -v`. Si genera algo como `v16.6` o superior, ¡está listo para comenzar! De lo contrario, consulte la página vinculada anteriormente para obtener instrucciones sobre cómo instalar Node en su sistema operativo.
 
-::: warning
+::: warning ADVERTENCIA
 Si _tiene_ Node instalado, pero tiene una versión anterior \(es decir, cualquier cosa por debajo de 16.6\), debe actualizar a la última versión. discord.js v13 requiere Node 16.6 o superior.
 :::
 

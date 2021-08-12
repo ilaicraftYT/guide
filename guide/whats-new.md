@@ -30,7 +30,7 @@
 	</DiscordMessage>
 </DiscordMessages>
 
-::: warning
+::: warning ADVERTENCIA
 La traducción de la guía está en proceso, por lo que aún existe texto en inglés. Ayúdanos con un pull request en nuestro [repositorio](https://github.com/Awoocado/guide)
 :::
 

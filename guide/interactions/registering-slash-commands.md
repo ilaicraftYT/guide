@@ -114,7 +114,7 @@ Consulte la documentación de la API de Discord para obtener explicaciones detal
 
 Los tipos de opción `STRING` y `INTEGER` pueden tener "opciones". Las `elecciones` son un conjunto de valores predeterminados entre los que los usuarios pueden elegir al seleccionar la opción que los contiene.
 
-::: warning
+::: warning ADVERTENCIA
 Si especifica `elecciones` para una opción, serán los **únicos** valores válidos que los usuarios pueden elegir.
 :::
 

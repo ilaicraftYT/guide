@@ -214,7 +214,7 @@ const exampleEmbed = {
 channel.send({ embeds: [exampleEmbed], files: [file] });
 ```
 
-::: warning
+::: warning ADVERTENCIA
 If the images don't display inside the embed but outside of it, double-check your syntax to make sure it's as shown above.
 :::
 
@@ -226,7 +226,7 @@ We will now explain how to edit embedded message content and resend a received e
 
 To forward a received embed you retrieve it from the messages embed array (`message.embeds`) and pass it to the MessageEmbed can then be edited before sending it again.
 
-::: warning
+::: warning ADVERTENCIA
 We deliberately create a new Embed here instead of just modifying `message.embeds[0]` directly to keep the cache valid. If we were not to do this, the embed in cache on the original message would diverge from what the actual embed looks like, which can result in unexpected behavior down the line!
 :::
 

@@ -8,7 +8,7 @@ Canvas is an image manipulation tool that allows you to modify images with code.
 This guide is last tested with `canvas^2.6.0`, so make sure you have this or a similar version after installation.
 :::
 
-::: warning
+::: warning ADVERTENCIA
 Be sure that you're familiar with things like [async/await](/additional-info/async-await.md) and [object destructuring](/additional-info/es6-syntax.md#object-destructuring) before continuing, as we'll be making use of features like these.
 :::
 
@@ -55,7 +55,7 @@ client.on('interactionCreate', interaction => {
 client.login('your-token-goes-here');
 ```
 
-::: warning
+::: warning ADVERTENCIA
 Remember to register the slash commands before continuing on with this section of the guide. You can view how to do that [here](/interactions/registering-slash-commands.md).
 :::
 

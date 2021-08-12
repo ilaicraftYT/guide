@@ -10,7 +10,7 @@ Esta página es un seguimiento de la [página de interacciones (comandos de barr
 
 Los menús seleccionados son parte de la clase `MessageComponent`, que se pueden enviar a través de mensajes o respuestas de interacción. Un `select menu`, como cualquier otro componente de mensaje, debe estar en una `ActionRow`.
 
-::: warning
+::: warning ADVERTENCIA
 Puede tener un máximo de cinco `ActionRow` por mensaje y un `select menu` dentro de una `ActionRow`.
 :::
 

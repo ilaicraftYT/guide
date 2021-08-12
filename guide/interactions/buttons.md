@@ -10,7 +10,7 @@ Esta página es un seguimiento de la [página de interacciones (comandos de barr
 
 Los botones son parte de la clase `MessageComponent`, que se pueden enviar a través de mensajes o respuestas de interacción. Un botón, como cualquier otro componente de mensaje, debe estar en una `ActionRow`.
 
-::: warning
+::: warning ADVERTENCIA
 Puede tener un máximo de cinco `ActionRow` por mensaje y cinco `botones` dentro de una `ActionRow`.
 :::
 
@@ -246,6 +246,6 @@ Actualmente hay cinco estilos de botones diferentes disponibles:
 	</DiscordMessage>
 </DiscordMessages>
 
-::: warning
+::: warning ADVERTENCIA
 Solo los botones `LINK` pueden tener una `URL`. Los botones `LINK` _no_ pueden tener un `custom_id` y _no_ envían un evento de interacción cuando se hace clic en ellos.
 :::

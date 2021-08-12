@@ -30,7 +30,7 @@ client.on('interactionCreate', interaction => {
 Hay varias formas de responder a un comando de barra, cada una de las cuales se describe en los siguientes segmentos.
 La forma más común de enviar una respuesta es mediante el método `CommandInteraction#reply()`:
 
-::: warning
+::: warning ADVERTENCIA
 Inicialmente, un `token` de interacción solo es válido durante tres segundos, por lo que ese es el período de tiempo en el que puede utilizar el método `CommandInteraction#reply()`. Las respuestas que requieren más tiempo ("Respuestas diferidas") se explican más adelante en esta página.
 :::
 
@@ -91,7 +91,7 @@ Ahora, cuando ejecute su comando nuevamente, debería ver algo como esto:
 
 Después de enviar una respuesta inicial, es posible que desee editar esa respuesta por varios motivos. Esto se puede lograr con el método `CommandInteraction#editReply()`:
 
-::: warning
+::: warning ADVERTENCIA
 Después de la respuesta inicial, un token de interacción es válido durante 15 minutos, por lo que este es el período de tiempo en el que puede editar la respuesta y enviar mensajes de seguimiento.
 :::
 
@@ -144,7 +144,7 @@ await interaction.deferReply({ ephemeral: true });
 
 Responder a los comandos de barra es genial y todo, pero ¿qué sucede si desea enviar varias respuestas en lugar de solo una? Los mensajes de seguimiento lo cubren, puede usar `CommandInteraction#followUp()` para enviar múltiples respuestas:
 
-::: warning
+::: warning ADVERTENCIA
 Después de la respuesta inicial, un `token` de interacción es válido durante 15 minutos, por lo que este es el período de tiempo en el que puede editar la respuesta y enviar mensajes de seguimiento.
 :::
 
@@ -337,7 +337,7 @@ client.on('interactionCreate', async interaction => {
 
 ## Obteniendo y eliminando respuestas
 
-::: danger
+::: danger PELIGRO
 _No_ puede buscar ni borrar un mensaje efímero.
 :::
 

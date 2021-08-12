@@ -49,6 +49,7 @@ const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 	plugins: [],
 });
 
+/*
 if (process.env.NODE_ENV === 'production') {
 	config.plugins.push(
 		[
@@ -59,11 +60,8 @@ if (process.env.NODE_ENV === 'production') {
 				placeholder: 'Search guide',
 			},
 		],
-		[
-			'@vuepress/plugin-google-analytics',
-			{ id: process.env.GOOGLE_ANALYTICS_ID },
-		],
 	);
 }
+*/
 
 export default config;
