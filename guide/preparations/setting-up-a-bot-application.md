@@ -51,13 +51,8 @@ Imaginemos que tiene un bot en más de 1,000 servidores, y le tomó muchos, much
 
 Todo eso y mucho, mucho más. Suena bastante terrible, ¿verdad? ¡Así que asegúrese de mantener su token lo más seguro posible!
 
-<<<<<<< HEAD
 ::: danger
 Si alguna vez compromete su token de bot actual (consignarlo en un repositorio público, publicarlo en soporte, etc.) o si ve a su bot en peligro, regrese a esta página y presione "Regenerate" para generar un nuevo token. Al hacerlo, todos los tokens antiguos quedarán invalidados. Tenga en cuenta que deberá actualizar su token donde lo usó antes.
-=======
-::: danger PELIGRO
-If you ever somehow compromise your current bot token (commit it to a public repository, post it in support, etc.) or otherwise see your bot in danger, return to this page and press "Regenerate" to generate a new token. As you do so, all old tokens will become invalidated. Keep in mind that you will need to update your token where you used it before.
->>>>>>> a0af688480182d1c94973db0c48d22321cf4608b
 :::
 
 ### Manteniendo tu token a salvo
