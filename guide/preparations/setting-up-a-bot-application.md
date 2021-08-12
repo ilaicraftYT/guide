@@ -1,81 +1,86 @@
-# Setting up a bot application
+# Configurar una aplicación bot
 
-## Creating your bot
+## Creando tu bot
 
-Now that you've installed Node, discord.js, and hopefully a linter, you're almost ready to start coding! The next step you need to take is setting up an actual Discord bot application via Discord's website.
+Ahora que ha instalado Node, discord.js y, con suerte, un linter, ¡está casi listo para comenzar a codificar! El siguiente paso que debe tomar es configurar una aplicación de bot de Discord real a través del sitio web de Discord.
 
-It's effortless to create one. The steps you need to take are as follows:
+Es fácil crear uno. Los pasos que debe seguir son los siguientes:
 
-1. Open [the Discord developer portal](https://discord.com/developers/applications) and log into your account.
-2. Click on the "New Application" button.
-3. Enter a name and optionally select a team (if you want the bot to belong to one). Then confirm the pop-up window by clicking the "Create" button.
+1. Abre [el portal para desarrolladores de Discord](https://discord.com/developers/applications) e inicie sesión en su cuenta.
+2. Haga clic en el botón "New Application".
+3. Ingrese un nombre y, opcionalmente, seleccione un equipo (si desea que el bot pertenezca a uno). Luego, confirme la ventana emergente haciendo clic en el botón "Create".
 
-You should see a page like this:
+Debería ver una página como esta:
 
-![Successfully created application](./images/create-app.png)
+![Aplicación creada con éxito](./images/create-app.png)
 
-You can optionally enter a name, description, and avatar for your application here. Once you've saved your changes, you can move on by selecting the "Bot" tab in the left pane.
+Opcionalmente, puede ingresar un nombre, una descripción y un avatar para su aplicación aquí. Una vez que haya guardado sus cambios, puede continuar seleccionando la pestaña "Bot" en el panel izquierdo.
 
-![Create a bot UI](./images/create-bot.png)
+![Crear Bot UI](./images/create-bot.png)
 
-Click the "Add Bot" button on the right and confirm the pop-up window by clicking "Yes, do it!". Congratulations, you're now the proud owner of a shiny new Discord bot! You're not entirely done, though.
+Haga clic en el botón "Add Bot" a la derecha y confirme la ventana emergente haciendo clic en "Yes, do it!". ¡Felicitaciones, ahora eres el orgulloso propietario de un nuevo y brillante bot de Discord! Sin embargo, no ha terminado del todo.
 
-## Your token
+## Tu token
 
-::: danger PELIGRO
-This section is critical, so pay close attention. It explains what your bot token is, as well as the security aspects of it.
+::: danger
+Esta sección es fundamental, así que preste mucha atención. Explica cuál es su `token` de bot, así como sus aspectos de seguridad.
 :::
 
-After creating a bot user, you'll see a section like this:
+Después de crear un usuario de bot, verá una sección como esta:
 
-![Bot application](./images/created-bot.png)
+![Aplicación de bot](./images/created-bot.png)
 
-In this panel, you can give your bot a snazzy avatar, set its username, and make it public or private. You can access your token in this panel as well, either by revealing it or pressing the "Copy" button. When we ask you to paste your token somewhere, this is the value that you need to put in. Don't worry if you do happen to lose it at some point; you can always come back to this page and copy it again.
+En este panel, puede darle a su bot un avatar elegante, establecer su nombre de usuario y hacerlo público o privado. También puede acceder a su `token` en este panel, ya sea revelándolo o presionando el botón "Copy". Cuando le pedimos que pegue su `token` en algún lugar, este es el valor que debe ingresar. No se preocupe si lo pierde en algún momento; siempre puede volver a esta página y copiarla de nuevo.
 
-### What is a token, anyway?
+### ¿De todos modos, qué es un token?
 
-A token is essentially your bot's password; it's what your bot uses to login to Discord. With that said, **it is vital that you do not ever share this token with anybody, purposely or accidentally**. If someone does manage to get a hold of your token, they can use your bot as if it were theirs—this means they can perform malicious acts with it.
+Un token es esencialmente la contraseña de su bot; es lo que usa su bot para iniciar sesión en Discord. Dicho esto, **es vital que nunca compartas este token con nadie, intencional o accidentalmente**. Si alguien logra hacerse con su token, puede usar su bot como si fuera suyo; esto significa que puede realizar actos maliciosos con él.
 
-Tokens look like this: `NzkyNzE1NDU0MTk2MDg4ODQy.X-hvzA.Ovy4MCQywSkoMRRclStW4xAYK7I` (don't worry, we immediately reset this token before even posting it here!). If it's any shorter and looks more like this: `kxbsDRU5UfAaiO7ar9GFMHSlmTwYaIYn`, you copied your client secret instead. Make sure to copy the token if you want your bot to work!
+Los tokens se ven así: `NzkyNzE1NDU0MTk2MDg4ODQy.X-hvzA.Ovy4MCQywSkoMRRclStW4xAYK7I` (¡no se preocupe, restablecemos este token inmediatamente antes de publicarlo aquí!). Si es más corto y se parece más a esto: `kxbsDRU5UfAaiO7ar9GFMHSlmTwYaIYn`, en su lugar, copió el secreto de su cliente. ¡Asegúrate de copiar el token si quieres que tu bot funcione!
 
-### Token leak scenario
+### Escenario de fuga de tokens
 
-Let's imagine that you have a bot on over 1,000 servers, and it took you many, many months of coding and patience to get it on that amount. Your token gets leaked somewhere, and now someone else has it. That person can:
+Imaginemos que tiene un bot en más de 1,000 servidores, y le tomó muchos, muchos meses de codificación y paciencia para obtener esa cantidad. Su token se filtró en alguna parte y ahora alguien más lo tiene. Esa persona puede:
 
-* Spam every server your bot is on;
-* Attempt to DM spam as many users as they can;
-* Attempt to delete as many channels as they can;
-* Attempt to kick or ban as many server members as they possibly can;
-* Make your bot leave all of the servers it has joined.
-* Access and damage the underlying infrastructure (your server)
+* Envíar mensajes no deseado a todos los servidores en los que se encuentra su bot;
+* Intentar enviar spam por DM a tantos usuarios como sea posible;
+* Intentar eliminar tantos canales como sea posible;
+* Intentar expulsar o bannear a tantos miembros del servidor como sea posible;
+* Hagcer que su bot abandone todos los servidores a los que se ha unido.
+* Acceda y dañe la infraestructura subyacente (su servidor)
 
-All that and much, much more. Sounds pretty terrible, right? So make sure to keep your token as safe as possible!
+Todo eso y mucho, mucho más. Suena bastante terrible, ¿verdad? ¡Así que asegúrese de mantener su token lo más seguro posible!
 
+<<<<<<< HEAD
+::: danger
+Si alguna vez compromete su token de bot actual (consignarlo en un repositorio público, publicarlo en soporte, etc.) o si ve a su bot en peligro, regrese a esta página y presione "Regenerate" para generar un nuevo token. Al hacerlo, todos los tokens antiguos quedarán invalidados. Tenga en cuenta que deberá actualizar su token donde lo usó antes.
+=======
 ::: danger PELIGRO
 If you ever somehow compromise your current bot token (commit it to a public repository, post it in support, etc.) or otherwise see your bot in danger, return to this page and press "Regenerate" to generate a new token. As you do so, all old tokens will become invalidated. Keep in mind that you will need to update your token where you used it before.
+>>>>>>> a0af688480182d1c94973db0c48d22321cf4608b
 :::
 
-### Keeping your token safe
+### Manteniendo tu token a salvo
 
-Now that we explained why your token is essential and why you should prevent giving it to others, let's quickly talk about how you can avoid accidentally leaking it.
+Ahora que explicamos por qué su token es esencial y por qué debe evitar dárselo a otras personas, hablemos rápidamente sobre cómo puede evitar que se filtre accidentalmente.
 
-#### Environment variables
+#### Variables de entorno
 
-Environment variables are special values your environment (for example, your console, docker container, or environment variable file) can pass to your code's scope so that you can use them inside.
+Las variables de entorno son valores especiales que su entorno (por ejemplo, su consola, contenedor docker o archivo de variable de entorno) puede pasar al alcance de su código para que pueda usarlos dentro.
 
-One way to pass environment variables is via the command line interface you use to start your node process. When starting your app, instead of `node index.js` to begin your process, you can use `TOKEN=NzkyNzE1NDU0MTk2MDg4ODQy.X-hvzA.Ovy4MCQywSkoMRRclStW4xAYK7I node index.js`. You can repeat this pattern to expose other values as well: `TOKEN=NzkyNzE1NDU0MTk2MDg4ODQy.X-hvzA.Ovy4MCQywSkoMRRclStW4xAYK7I A=123 B=456 node index.js`
+Una forma de pasar variables de entorno es a través de la interfaz de línea de comandos que utiliza para iniciar el proceso de node. Al iniciar su aplicación, en lugar de `node index.js` para comenzar su proceso, puede usar` TOKEN = NzkyNzE1NDU0MTk2MDg4ODQy.X-hvzA.Ovy4MCQywSkoMRRclStW4xAYK7I node index.js`. Puede repetir este patrón para exponer también otros valores: `TOKEN = NzkyNzE1NDU0MTk2MDg4ODQy.X-hvzA.Ovy4MCQywSkoMRRclStW4xAYK7I A = 123 B = 456 node index.js`
 
-You can access the set values in your code through the `process.env` global, accessible from any file. Note that values passed this way will always be strings and that you might need to parse them to a number before using them to do calculations.
+Puede acceder a los valores establecidos en su código a través del `process.env` global, accesible desde cualquier archivo. Tenga en cuenta que los valores pasados de esta manera siempre serán cadenas y que es posible que deba analizarlos en un número antes de usarlos para hacer cálculos.
 
 ```js
 // index.js
-// ... client setup (keep reading)
+// ... configuración del cliente (sigue leyendo)
 console.log(process.env.A);
 console.log(process.env.B);
 client.login(process.env.TOKEN);
 ```
 
-Another common approach is storing these values in a file called `.env` (some hosting solutions automatically ignore `.env` files and load them into your process. We will shortly cover how to keep them safe from git's greedy tracking in a later section below). This approach is less prone to typos and spares you from always copying tokens into your command line. Each line in this file will hold a key-value pair separated by the `=` character. 
+Otro enfoque común es almacenar estos valores en un archivo llamado `.env` (algunas soluciones de alojamiento ignoran automáticamente los archivos `.env` y los cargan en su proceso. En breve cubriremos cómo mantenerlos a salvo del seguimiento codicioso de git en una sección posterior debajo). Este enfoque es menos propenso a errores tipográficos y le evita tener que copiar siempre tokens en su línea de comandos. Cada línea de este archivo contendrá un par clave-valor separado por el carácter `=`.
 
 ```
 TOKEN=NzkyNzE1NDU0MTk2MDg4ODQy.X-hvzA.Ovy4MCQywSkoMRRclStW4xAYK7I
@@ -83,41 +88,41 @@ A=123
 B=456
 ```
 
-To load variables from a file into the process you can either write the code to do so yourself or simply use the `dotenv` package from npm by executing the command line instruction `npm install dotenv` in your project root. You can then require and use the package on top of your main file to load your `.env` file and attach the variables to the `process.env` global as demonstrated below:
+Para cargar variables desde un archivo en el proceso, puede escribir el código para hacerlo usted mismo o simplemente usar el paquete `dotenv` de npm ejecutando la instrucción de línea de comando `npm install dotenv` en la raíz de su proyecto. A continuación, puede solicitar y utilizar el paquete en la parte superior de su archivo principal para cargar su archivo `.env` y adjuntar las variables al global `process.env` como se muestra a continuación:
 
 ```js
 // index.js
 const dotenv = require('dotenv');
 
 dotenv.config();
-// ... client setup (keep reading)
+// ... configuración del cliente (sigue leyendo)
 console.log(process.env.A);
 console.log(process.env.B);
 client.login(process.env.TOKEN);
 ```
 
-#### Git and .gitignore
+#### Git y .gitignore
 
-Git is a fantastic tool to keep track of your code changes and allows you to upload progress to services like [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/) or [Bitbucket](https://bitbucket.org/product). While this is super useful to share code with other developers, it also bears the risk of uploading your configuration files with sensitive values!
+Git es una herramienta fantástica para realizar un seguimiento de los cambios de su código y le permite cargar el progreso a servicios como [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/) o [Bitbucket](https://bitbucket.org/product). Si bien esto es muy útil para compartir código con otros desarrolladores, ¡también conlleva el riesgo de cargar sus archivos de configuración con valores confidenciales!
 
-You can specify files that git should ignore and not add to its versioning systems in a fittingly called `.gitignore` file. To do so, create a file called `.gitignore` in your projects root directory and add the names of the files and folders you want to ignore:
+Puede especificar archivos que git debe ignorar y no agregar a sus sistemas de control de versiones en un archivo llamado `.gitignore`. Para hacerlo, cree un archivo llamado `.gitignore` en el directorio raíz de su proyecto y agregue los nombres de los archivos y carpetas que desea ignorar:
 
 ```
-node_modules
+node_modules/
 .env
 config.json
 ```
 
 ::: tip
-Besides keeping credentials safe, you can (and should) add `node_modules` here. This directory can be restored based on your entries in `package.json` and `package-lock.json` by running `npm install` after downloading and does not need to be included in git.
+Además de mantener las credenciales seguras, puede (y debe) agregar `node_modules` aquí. Este directorio se puede restaurar en función de sus entradas en `package.json` y` package-lock.json` ejecutando `npm install` después de la descarga y no es necesario incluirlo en git.
 
-You can specify quite intricate patterns in `.gitignore` files, check out the [git documentation on `.gitignore`](https://git-scm.com/docs/gitignore) for more information!
+Puede especificar patrones bastantes complicados en archivos `.gitignore`, consulte la [documentación de git sobre `.gitignore`](https://git-scm.com/docs/gitignore) para obtener más información!
 :::
 
-#### Online editors
+#### Editores en linea
 
-While we generally do not recommend using online editors as hosting solutions but investing in a proper virtual private server instead, these services do offer ways to keep your credentials safe as well! Please see the respective service's documentation and help articles for more information on how to keep sensitive information safe:
+Si bien generalmente no recomendamos el uso de editores en línea como soluciones de alojamiento, sino invertir en un servidor privado virtual adecuado, estos servicios también ofrecen formas de mantener sus credenciales seguras. Consulte la documentación del servicio correspondiente y los artículos de ayuda para obtener más información sobre cómo mantener segura la información confidencial:
 
-- Glitch.com: [storing secrets in .env](https://glitch.happyfox.com/kb/article/18)
-- Heroku.com: [config variables](https://devcenter.heroku.com/articles/config-vars)
-- Repl.it: [secrets & environment variables](https://docs.replit.com/repls/secrets-environment-variables)
+- Glitch.com: [almacenar secretos en .env](https://glitch.happyfox.com/kb/article/18)
+- Heroku.com: [variables de configuración](https://devcenter.heroku.com/articles/config-vars)
+- Repl.it: [secretos y variables de entorno](https://docs.replit.com/repls/secrets-environment-variables)
