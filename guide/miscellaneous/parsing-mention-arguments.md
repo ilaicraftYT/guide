@@ -11,23 +11,23 @@ Pero, ¿qué pasa si intentas usar el comando de esta manera?
 
 <DiscordMessages>
 	<DiscordMessage profile="user">
-		!ban <DiscordMention>Offender</DiscordMention> Porque fueron groseros con <DiscordMention>Victim</DiscordMention>.
+		!ban <DiscordMention>Villano</DiscordMention> fue grosero con <DiscordMention>Victima</DiscordMention>.
 	</DiscordMessage>
 </DiscordMessages>
-Obvio que has baneado a Offender por que es al que le has mencionado primero
-Sin embargo, la API de Discord no envía las menciones en el orden en que aparecen; En su lugar, están ordenados por su ID.
 
-Si la @Victim se ha unido a Discord antes que @Offender y tiene una ID más pequeña, es posible que se le prohíba la prohibición.
+Obvio que has baneado a `Villano` por que es al que le has mencionado primero. Sin embargo, la API de Discord no envía las menciones en el orden en que aparecen; En su lugar, están ordenados por su ID.
+
+Si la `@Victima` se ha unido a Discord antes que `@Villano` y tiene una ID más pequeña, es posible que se le prohíba la prohibición.
 O tal vez alguien hace un mal uso de un comando, el bot aún puede aceptarlo, pero creará un resultado inesperado.
 Digamos que alguien usó accidentalmente el comando de prohibición de esta manera:
 
 <DiscordMessages>
 	<DiscordMessage profile="user">
-		!ban Por que fueron groseros con <DiscordMention>Victim</DiscordMention>.
+		!ban Fueron groseron con <DiscordMention>Victima</DiscordMention>.
 	</DiscordMessage>
 </DiscordMessages>
 
-El bot todavía baneara a alguien, pero volverá a ser @Victim. `message.mentions.users` todavía contiene una mención, que el bot usará. Pero en realidad, querrás que tu bot pueda decirle al usuario que hizo un mal uso del comando.
+El bot todavía baneara a alguien, pero volverá a ser `@Victima`. `message.mentions.users` todavía contiene una mención, que el bot usará. Pero en realidad, querrás que tu bot pueda decirle al usuario que hizo un mal uso del comando.
 
 ## Cómo funcionan las menciones de Discord
 
@@ -39,7 +39,7 @@ Si tu envías:
 
 <DiscordMessages>
 	<DiscordMessage profile="user">
-		Creo que deberíamos agregar <DiscordMention>BuenaPersona</DiscordMention> al <DiscordMention type="role" role-color="#3eaf7c">Moderador</DiscordMention> rol
+		Creo que deberíamos agregar el rol<DiscordMention type="role" role-color="#3eaf7c">Moderador</DiscordMention> a <DiscordMention>BuenaPersona</DiscordMention>
 	</DiscordMessage>
 </DiscordMessages>
 
@@ -47,14 +47,14 @@ Entonces el `message.content` para ese mensaje se verá así:
 
 <!-- eslint-skip -->
 ```js
-'Creo que deberíamos agregar <@86890631690977280> al rol <@&134362454976102401>.'
+'Creo que deberíamos agregar el rol  <@&134362454976102401> a <@86890631690977280>.'
 ```
 
 ## Implementación
 
 Entonces, ¿cómo usas esta nueva información para tu bot?
 La mayor parte de su código no cambiará; sin embargo, en lugar de usar `message.mentions` para encontrar los usuarios mencionados, tendrás que hacerlo manualmente.
-Esto puede sonar aterrador al principio, pero veráz que es bastante simple una vez que veas el código.
+Esto puede sonar aterrador al principio, pero verás que es bastante simple una vez que veas el código.
 
 Digamos que ya tienes un controlador de comandos simple como este:
 
@@ -80,7 +80,7 @@ client.on('messageCreate', message => {
 });
 ```
 
-Pero, ¿cómo se obtiene el usuario correcto ahora? Bueno, esto require unos sencillos pasos. Ponerlo en una función lo hará fácilmente reutilizable. Usaremos el nombre `get User From Mention` aquí:
+Pero, ¿cómo se obtiene el usuario correcto ahora? Bueno, esto require unos sencillos pasos. Ponerlo en una función lo hará fácilmente reutilizable. Usaremos el nombre `getUserFromMention` aquí:
 ```js
 function getUserFromMention(mention) {
 	if (!mention) return;
@@ -99,13 +99,13 @@ function getUserFromMention(mention) {
 
 Como puedes ver, es una función relativamente sencilla.
 Básicamente, solo funciona a través de la estructura de la mención poco a poco:
-  1. Comprueba si la mención comienza con `<@` y termina con `>` y luego elimínalos.
-  2. Si el usuario tiene un apodo y su mención contiene un `!`, Elimínalo también.
-  3. Ahora solo debe dejarse el ID, así que utilícelo para buscar el usuario de la colección `client.users.cache`.
-Siempre que encuentra un error con la mención (es decir, estructura no válida), simplemente devuelve "indefinido" para indicar que la mención no es válida.
+  1. Comprueba si la mención comienza con `<@` y termina con `>` y luego los elimina.
+  2. Si el usuario tiene un apodo y su mención contiene un `!`, lo elimina también.
+  3. Ahora solo debe dejar el ID, así que utilícelo para buscar el usuario de la colección `client.users.cache`.
+Siempre que encuentra un error con la mención (es decir, estructura no válida), simplemente devuelve `undefined` para indicar que la mención no es válida.
 
 ::: tip
-El método `.slice ()` se usa aquí de una manera más avanzada. Puedes leer el [Documentación MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice) para más información.
+El método `.slice()` se usa aquí de una manera más avanzada. Puedes leer el [Documentación MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/String/slice) para más información.
 :::
 
 Ahora tiene una función ingeniosa que puede usar para convertir una mención sin formato en un objeto de usuario adecuado.
@@ -135,10 +135,10 @@ Si el usuario proporcionó un argumento, debería ser la mención del usuario, p
 ¡Y eso es todo! Simple, ¿no es así? Inicia tu bot y ve si funciona.
 
 <DiscordMessages>
-	<DiscordMessage author="Awoo" avatar="green">
-		!avatar <DiscordMention profile="user" />
+	<DiscordMessage author="Awoo" avatar="https://cdn.discordapp.com/avatars/224619540263337984/120934a52cccfd5838df9ee7f0ce7cc3.png?size=256">
+		!avatar <DiscordMention profile="bot" />
 	</DiscordMessage>
-	<DiscordMessage profile="bot">
+	<DiscordMessage profile="bot" avatar="https://i.imgur.com/AfFp7pu.png">
 		Avatar del usuario:
 		<a href="https://i.imgur.com/AfFp7pu.png" target="_blank" rel="noreferrer noopener">https://cdn.discordapp.com/avatars/123456789012345678/0ab1c2d34efg5678902345h6i7890j12.png</a>
 		<br />
@@ -161,22 +161,22 @@ client.on('messageCreate', async message => {
 	// ...
 	if (command === 'ban') {
 		if (args.length < 2) {
-			return message.reply('Menciona al usuario que quieres banear y especifique un motivo de este.');
+			return message.reply('Menciona al usuario que quieres banear y especifica un motivo.');
 		}
 
 		const user = getUserFromMention(args[0]);
 		if (!user) {
-			return message.reply('Utiliza una mención adecuada si desea banear a alguien.');
+			return message.reply('Utiliza una mención adecuada si desea banear a un usuario.');
 		}
 
 		const reason = args.slice(1).join(' ');
 		try {
 			await message.guild.members.ban(user, { reason });
 		} catch (error) {
-			return message.channel.send(`No se puedo banear: **${user.tag}**: ${error}`);
+			return message.channel.send(`No pude banear a: **${user.tag}**: ${error}`);
 		}
 
-		return message.channel.send(`Se baneo a **${user.tag}** correctamente de este servidor!`);
+		return message.channel.send(`He baneado a **${user.tag}** correctamente de este servidor!`);
 	}
 });
 ```
@@ -184,8 +184,8 @@ client.on('messageCreate', async message => {
 Ahora, si envías un comando como el siguiente, siempre puedes estar seguro de que usarás la mención al principio para averiguar a quién banear, y validarás adecuadamente la mención:
 
 <DiscordMessages>
-<DiscordMessage profile = "usuario">
-!ban <DiscordMention>Offender</DiscordMention>porque fue grosero con <DiscordMention>Victim</DiscordMention>.
+<DiscordMessage profile="usuario">
+!ban <DiscordMention>Villano</DiscordMention> fue grosero con <DiscordMention>Victima</DiscordMention>.
 </DiscordMessage>
 </DiscordMessages>
 
@@ -194,10 +194,10 @@ Ahora, si envías un comando como el siguiente, siempre puedes estar seguro de q
 Anteriormente, aprendiste a usar funciones rudimentarias relacionadas con cadenas para convertir la sintaxis de mención especial que usa Discord en un objeto de usuario de discord.js adecuado.
 Pero usando expresiones regulares (también conocidas como "RegEx" o "RegExp"), ¡puedes condensar toda esa lógica en una sola línea! Loco, ¿verdad?
 
-Si nunca antes has trabajado con expresiones regulares, esto puede parecer abrumador. Pero, de hecho, ya has utilizado expresiones regulares. ¿Recuerda `withoutPrefix.split (/ + /);`? Este pequeño `/ + /` es una expresión regular. El `/` a cada lado le dice a JavaScript dónde comienza y dónde termina la expresión regular; el material intermedio es su contenido.
+Si nunca antes has trabajado con expresiones regulares, esto puede parecer abrumador. Pero, de hecho, ya has utilizado expresiones regulares. ¿Recuerda `withoutPrefix.split(/ + /);`? Este pequeño `/ + /` es una expresión regular. El `/` a cada lado le dice a JavaScript dónde comienza y dónde termina la expresión regular; el material intermedio es su contenido.
 
 ::: tip
-Para obtener una explicación más detallada, consulte la [Documentación de MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp).
+Para obtener una explicación más detallada, consulte la [Documentación de MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/RegExp).
 :::
 
 La expresión regular que utilizarás para las menciones de los usuarios tendrá este aspecto: `/^<@!?(\d+)>$/`.
@@ -209,7 +209,7 @@ Así es como funciona la expresión regular:
  4. `\ d +` significa que la expresión regular buscará varios dígitos, que serán el ID.
  5. Los paréntesis alrededor de `\ d +` crean un grupo de captura, que le permite sacar el ID de la mención.
 
-Usando el método `.match ()` en cadenas, puedes obtener los valores del grupo de captura, es decir, el ID de la mención.
+Usando el método `.match()` en cadenas, puedes obtener los valores del grupo de captura, es decir, el ID de la mención.
 
 ::: warning ADVERTENCIA
 Discord.js tiene <DocsLink path = "class / MessageMentions? scrollTo = s-CHANNELS_PATTERN"> patrones integrados </DocsLink> para las menciones coincidentes, sin embargo, a partir de la versión 11.4 no contienen ningún grupo, por lo tanto, no son útiles para eliminar la identificación de la mención.
@@ -222,10 +222,10 @@ function getUserFromMention(mention) {
 	//La identificación es la primera y única coincidencia encontrada por la expresión regular.
 	const matches = mention.match(/^<@!?(\d+)>$/);
 
-	// Si la variable proporcionada no fue una mención, las coincidencias serán nulas en lugar de un array
+	// Si la variable proporcionada no fue una mención, las coincidencias serán nulas en lugar de una matriz (array)
 	if (!matches) return;
 
-	// Sin embargo, el primer elemento del array de coincidencias será la mención completa, no solo el ID,
+	// Sin embargo, el primer elemento de la matriz (array) de coincidencias será la mención completa, no solo el ID,
     // Entonces usa el index 1.
 	const id = matches[1];
 
