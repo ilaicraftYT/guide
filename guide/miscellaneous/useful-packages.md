@@ -55,7 +55,7 @@ Ejemplo:
 
 <!-- eslint-skip -->
 ```js
-await interaction.reply('Envía dos mensajes y te diré a qué distancia los enviaste.
+await interaction.reply('Envía dos mensajes y te diré la diferencia de tiempo que hay entre ellos.');
 const messages = await interaction.channel.awaitMessages({
 	filter: m => m.author.id === interaction.user.id,
 	max: 2,
@@ -66,7 +66,7 @@ const messages = await interaction.channel.awaitMessages({
 const difference = messages.last().createdTimestamp - messages.first().createdTimestamp;
 const formatted = ms(difference);
 
-await interaction.followUp(Enviaste los dos mensajes ${formatted} aparte.`);
+await interaction.followUp(`La diferencia de tiempo entre tus dos mensajes es ${formatted}`);
 ```
 
 ## common-tags
