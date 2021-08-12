@@ -32,14 +32,14 @@ El bot todavía baneara a alguien, pero volverá a ser @Victim. `message.mention
 ## Cómo funcionan las menciones de Discord
 
 Discord usa una sintaxis especial para incrustar menciones en un mensaje. Para las menciones del usuario, es la identificación del usuario con `<@` al principio y `>` al final, así: `<@86890631690977280>`. Si tienen un apodo, también habrá un `!` Después de la `@`.
-Las menciones de roles y las menciones de canales funcionan de manera similar. Las menciones de roles se ven como `<@& 134362454976102401>` y las menciones de canales como `<#222197033908436994>`.
+Las menciones de roles y las menciones de canales funcionan de manera similar. Las menciones de roles se ven como `<@&134362454976102401>` y las menciones de canales como `<#222197033908436994>`.
 
 Eso significa que cuando recibe un mensaje de la API de Discord y contiene menciones, el contenido del mensaje contendrá esa sintaxis especial.
 Si tu envías:
 
 <DiscordMessages>
 	<DiscordMessage profile="user">
-		Cre que deberíamos agregar <DiscordMention>BuenaPersona</DiscordMention> al <DiscordMention type="role" role-color="#3eaf7c">Moderador</DiscordMention> rol
+		Creo que deberíamos agregar <DiscordMention>BuenaPersona</DiscordMention> al <DiscordMention type="role" role-color="#3eaf7c">Moderador</DiscordMention> rol
 	</DiscordMessage>
 </DiscordMessages>
 
@@ -47,7 +47,7 @@ Entonces el `message.content` para ese mensaje se verá así:
 
 <!-- eslint-skip -->
 ```js
-'Creo que deberíamos agregar <@ 86890631690977280> al rol <@ & 134362454976102401>.'
+'Creo que deberíamos agregar <@86890631690977280> al rol <@&134362454976102401>.'
 ```
 
 ## Implementación
@@ -185,7 +185,7 @@ Ahora, si envías un comando como el siguiente, siempre puedes estar seguro de q
 
 <DiscordMessages>
 <DiscordMessage profile = "usuario">
-!ban <DiscordMention>Offender</DiscordMention>porque fue groseros con<DiscordMention>Victim</DiscordMention>.
+!ban <DiscordMention>Offender</DiscordMention>porque fue grosero con <DiscordMention>Victim</DiscordMention>.
 </DiscordMessage>
 </DiscordMessages>
 
@@ -200,7 +200,7 @@ Si nunca antes has trabajado con expresiones regulares, esto puede parecer abrum
 Para obtener una explicación más detallada, consulte la [Documentación de MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp).
 :::
 
-La expresión regular que utilizarás para las menciones de los usuarios tendrá este aspecto: `/ ^ <@ !? (\ d +)> $ /`.
+La expresión regular que utilizarás para las menciones de los usuarios tendrá este aspecto: `/^<@!?(\d+)>$/`.
 Así es como funciona la expresión regular:
 
  1. El `^` al principio y el `$` al final significa que la mención debe ocupar toda la cadena.
@@ -211,9 +211,8 @@ Así es como funciona la expresión regular:
 
 Usando el método `.match ()` en cadenas, puedes obtener los valores del grupo de captura, es decir, el ID de la mención.
 
-::: advertencia ADVERTENCIA
-discord.js tiene <DocsLink path = "class / MessageMentions? scrollTo = s-CHANNELS_PATTERN"> patrones integrados </DocsLink> para las menciones coincidentes, sin embargo, a partir de la versión 11.4 no contienen ningún grupo
-y, por lo tanto, no son útiles para eliminar la identificación de la mención.
+::: warning ADVERTENCIA
+Discord.js tiene <DocsLink path = "class / MessageMentions? scrollTo = s-CHANNELS_PATTERN"> patrones integrados </DocsLink> para las menciones coincidentes, sin embargo, a partir de la versión 11.4 no contienen ningún grupo, por lo tanto, no son útiles para eliminar la identificación de la mención.
 :::
 
 Actualizar su función `getUserFromMention` para usar RegEx le da esto:
@@ -234,7 +233,7 @@ function getUserFromMention(mention) {
 }
 ```
 
-Ves?? Eso es *mucho* más corto y no tan complicado.
+¿Ves? Eso es *mucho* más corto y no tan complicado.
 Si vuelves a ejecutar tu bot ahora, todo debería de funcionar igual.
 
 ## Resultado del código
