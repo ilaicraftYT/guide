@@ -1,22 +1,22 @@
-# Using a REST API
+# Usando una REST API
 
-REST APIs are extremely popular on the web and allow you to freely grab a site's data if it has an available API over an HTTP connection.
+Las API REST son extremadamente populares en la web y le permiten obtener libremente los datos de un sitio si tiene una API disponible a través de una conexión HTTP.
 
-If you've ever seen a music bot that accepts a YouTube query instead of just a video's URL, then you've seen a REST API in action. discord.js uses the Discord API, so you've probably used an API yourself.
+Si alguna vez ha visto un bot de música que acepta una consulta de YouTube en lugar de solo la URL de un video, entonces ha visto una API REST en acción. discord.js usa la API de Discord, por lo que probablemente hayas usado una API tú mismo.
 
-## Making HTTP requests with Node
+# Realizando solicitudes HTTP con Node
 
-In these examples, we will be using [node-fetch](https://www.npmjs.com/package/node-fetch), an excellent library for making HTTP requests.
+En estos ejemplos, usaremos [node-fetch](https://www.npmjs.com/package/node-fetch), una excelente librería para realizar solicitudes HTTP.
 
-To install node-fetch, run the following command:
+Para instalar node-fetch, ejecute el siguiente comando:
 
 ```bash
 npm install node-fetch
 ```
 
-## Skeleton code
+## Esqueleto del código
 
-To start off, you're just going to be using this skeleton code:
+Para comenzar, solo usará este código base:
 
 <!-- eslint-disable require-await -->
 ```js
@@ -36,20 +36,20 @@ client.on('interactionCreate', async interaction => {
 	// ...
 });
 
-client.login('your-token-goes-here');
+client.login('tu-token-va-aquí');
 ```
 
 ::: tip
-We're going to take advantage of [destructuring](/additional-info/es6-syntax.md#destructuring) in this tutorial to maintain readability.
+Vamos a aprovechar [desestructuración](/additional-info/es6-syntax.md#desestructuración) en este tutorial para mantener la legibilidad.
 :::
 
-## Using node-fetch
+## Usando node-fetch
 
-node-fetch is a lightweight, Promise-based module that brings the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), which is available in browsers, to node. If you aren't already familiar with Promises, you should read up on them [here](/additional-info/async-await.md).
+node-fetch es un módulo ligero basado en `Promise` que trae la [Fetch API](https://developer.mozilla.org/es/docs/Web/API/Fetch_API), que está disponible desde los navegadores a Node.js. Si aún no está familiarizado con las promesas, debería leerlas [aquí](/additional-info/async-await.md).
 
-In this tutorial, we'll be making a bot with two API-based commands using the [random.cat](https://aws.random.cat) and [Urban Dictionary](https://www.urbandictionary.com) APIs.
+En este tutorial, crearemos un bot con dos comandos basados en API usando las APIs [random.cat](https://aws.random.cat) y [Urban Dictionary](https://www.urbandictionary.com).
 
-To require node-fetch, you'd do:
+Para requerir `node-fetch`, haría lo siguiente:
 
 ```js
 const fetch = require('node-fetch');
@@ -57,13 +57,13 @@ const fetch = require('node-fetch');
 
 ### Random Cat
 
-Random cat's API is available at https://aws.random.cat/meow and returns a [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) response. To actually fetch data from the API, you're going to do the following:
+La API de Random Cat está disponible en https://aws.random.cat/meow y devuelve una respuesta [JSON](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/JSON). Para obtener datos de la API, debe hacer lo siguiente:
 
 ```js
 fetch('https://aws.random.cat/meow').then(response => response.json());
 ```
 
-It may seem like this does nothing, but what it's doing is launching a request to the random.cat server. The server is returning some JSON that contains a `file` property, which is a string containing a link to a random cat. node-fetch returns a response object, which we can change into JSON with `response.json()`. Next, let's implement this into a command. The code should look similar to this:
+Puede parecer que esto no hace nada, pero lo que está haciendo es lanzar una solicitud al servidor random.cat. El servidor está devolviendo algo de JSON que contiene una propiedad de `file`, que es una cadena que contiene un enlace a un gato aleatorio. `node-fetch` devuelve un objeto de respuesta, que podemos cambiar a JSON con `response.json()`. A continuación, implementemos esto en un comando. El código debería verse similar a esto:
 
 ```js {3-6}
 client.on('interactionCreate', async interaction => {
@@ -75,23 +75,23 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-So, here's what's happening in this code:
+Entonces, esto es lo que está sucediendo en este código:
 
-1. You're sending a `GET` request to random.cat.
-2. random.cat sees your request and gets a random file from their database.
-3. random.cat then sends that file's URL as a JSON object that contains a link to the image.
-4. node-fetch receives the response and deserializes it with `response.json()`.
-5. You then send the object's `file` property in Discord.
+1. Estás enviando una solicitud `GET` a random.cat.
+2. random.cat ve su solicitud y obtiene un archivo aleatorio de su base de datos.
+3. random.cat luego envía la URL de ese archivo como un objeto JSON que contiene un enlace a la imagen.
+4. node-fetch recibe la respuesta y la deserializa con `response.json()`.
+5. Luego envía la propiedad `file` del objeto en Discord.
 
 ::: warning ADVERTENCIA
-The response will only be parsed if the server's `Content-Type` header includes `application/json`. In some cases you may have to apply the `.text()` method instead of `.json()` and `JSON.parse()` it yourself.
+La respuesta solo se analizará si el encabezado `Content-Type` del servidor incluye `application/json`. En algunos casos, puede que tenga que aplicar el método `.text()` en lugar de `.json()` y [JSON.parse()](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) usted mismo.
 :::
 
 ### Urban Dictionary
 
-Urban Dictionary's API is available at https://api.urbandictionary.com/v0/define, accepts a `term` parameter, and returns a JSON response.
+La API de Urban Dictionary's esta disponible en https://api.urbandictionary.com/v0/define, accepta el parametro `term`, y retorna una respuesta JSON.
 
-First, you're going to need to fetch data from the API. To do this, you'd do:
+Primero, necesitará obtener datos de la API. Para hacer esto, harías:
 
 ```js {1,5-11}
 const querystring = require('querystring');
@@ -108,11 +108,15 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-Here, we use Node's native [querystring module](https://nodejs.org/api/querystring.html) to create a [query string](https://en.wikipedia.org/wiki/Query_string) for the URL so that the Urban Dictionary server can parse it and know what to search.
+Aquí, usamos el módulo nativo de Node [querystring](https://nodejs.org/api/querystring.html) para crear una  [cadena de consulta](https://es.wikipedia.org/wiki/Query_string) y la pasamos a la URL para que el servidor Urban Dictionary pueda analizarla y saber qué buscar.
 
-If you were to do `/urban hello world`, then the URL would become https://api.urbandictionary.com/v0/define?term=hello%20world since the string gets encoded.
+Si tuviera que hacer `/urban hello world`, entonces la URL se convertiría en https://api.urbandictionary.com/v0/define?term=hello%20world ya que la cadena se codifica.
 
-You can get the respective properties from the returned JSON. If you were to view it in your browser, it usually looks like a bunch of mumbo jumbo. If it doesn't, great! If it does, then you should get a JSON formatter/viewer. If you're using Chrome, [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) is one of the more popular extensions. If you're not using Chrome, search for "JSON formatter/viewer &lt;your browser&gt;" and get one.
+Puede obtener las propiedades respectivas del JSON devuelto. Si tuviera que verlo en su navegador, por lo general parece un montón de palabrería. Si no es así, ¡genial! Si es así, debería obtener un formateador/visor JSON. Si usa Chrome, [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) es una de las extensiones más populares. Si no utiliza Chrome, busque "Formateador/visor JSON&lt; su navegador&gt;" y consigue uno.
+
+::: tip
+El navegador [Mozilla Firefox](https://www.mozilla.org/es-ES/firefox/new/) le da formato a los JSON por defecto.
+:::
 
 Now, if you look at the JSON, you can see that it's a `list` property, which is an array of objects containing various definitions for the term (maximum 10). Something you always want to do when making API-based commands is to handle no results. So, let's throw a random term in there (e.g. `njaksdcas`) and then look at the response. The `list` array should then be empty. Now you are ready to start writing!
 
@@ -122,16 +126,16 @@ As explained above, you'll want to check if the API returned any answers for you
 if (command === 'urban') {
 	// ...
 	if (!list.length) {
-		return interaction.reply(`No results found for **${term}**.`);
+		return interaction.reply(`No encontré resultados para **${term}**.`);
 	}
 
 	interaction.reply(`**${term}**: ${list[0].definition}`);
 }
 ```
 
-Here, you are only getting the first object from the array of objects called `list` and grabbing its `definition` property.
+Aquí, solo obtiene el primer objeto de la matriz (array) de objetos llamada `list` y obtiene su propiedad `definition`.
 
-If you've followed the tutorial, you should have something like this:
+Si ha seguido el tutorial, debería tener algo como esto:
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
@@ -141,7 +145,7 @@ If you've followed the tutorial, you should have something like this:
 				:command="true"
 			>urban</DiscordInteraction>
 		</template>
-		<DiscordMention :highlight="true" profile="user" />, No results for <strong>njaksdcas</strong>
+		<DiscordMention :highlight="true" profile="user" />, No encontré resultados para <strong>njaksdcas</strong>
 	</DiscordMessage>
 	<DiscordMessage profile="bot">
 		<template #interactions>
@@ -150,19 +154,19 @@ If you've followed the tutorial, you should have something like this:
 				:command="true"
 			>urban</DiscordInteraction>
 		</template>
-		**hello world**: The easiest, and first program any newbie would write. Applies for any language. Also what you would see in the first chapter of most programming books.
+		<strong>Hello World</strong>: El primer y más fácil programa que cualquier novato escribiría. Aplica para cualquier idioma. También lo que vería en el primer capítulo de la mayoría de los libros de programación.
 	</DiscordMessage>
 </DiscordMessages>
 
-Now, let's just make this an [embed](/popular-topics/embeds.md).
+Ahora, hagamos de esto un [embed](/popular-topics/embeds.md).
 
-We are also going to be defining a utility function at the top of the file so that the embed doesn't error when the field value is over 1024 characters. Here is a bit of code to do that:
+También vamos a definir una función de utilidad en la parte superior del archivo para que la inserción no produzca errores cuando el valor del campo supere los 1024 caracteres. Aquí hay un poco de código para hacer eso:
 
 ```js
 const trim = (str, max) => ((str.length > max) ? `${str.slice(0, max - 3)}...` : str);
 ```
 
-The following snippet is how to structure the embed:
+El siguiente fragmento muestra cómo estructurar la inserción:
 ```js
 const [answer] = list;
 
@@ -171,15 +175,15 @@ const embed = new MessageEmbed()
 	.setTitle(answer.word)
 	.setURL(answer.permalink)
 	.addFields(
-		{ name: 'Definition', value: trim(answer.definition, 1024) },
-		{ name: 'Example', value: trim(answer.example, 1024) },
-		{ name: 'Rating', value: `${answer.thumbs_up} thumbs up. ${answer.thumbs_down} thumbs down.` },
+		{ name: 'Definición', value: trim(answer.definition, 1024) },
+		{ name: 'Ejemplo', value: trim(answer.example, 1024) },
+		{ name: 'Votos', value: `${answer.thumbs_up} pulgares arriba. ${answer.thumbs_down} pulgares abajo.` },
 	);
 
 interaction.reply({ embeds: [embed] });
 ```
 
-Now, if you do that same command again, you should get this:
+Ahora, si vuelve a hacer el mismo comando, debería obtener esto:
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
@@ -190,22 +194,22 @@ Now, if you do that same command again, you should get this:
 			>urban</DiscordInteraction>
 		</template>
 		<template #embeds>
-			<DiscordEmbed border-color="#EFFF00" embed-title="hello world" url="https://www.urbandictionary.com/define.php?term=hello%20world">
+			<DiscordEmbed border-color="#EFFF00" embed-title="Hola mundo" url="https://www.urbandictionary.com/define.php?term=hello%20world">
 				<template #fields>
 					<DiscordEmbedFields>
-						<DiscordEmbedField field-title="Definition">
-							The easiest, and first program any newbie would write. Applies for any language. Also what you would see in the first chapter of most programming books. 
+						<DiscordEmbedField field-title="Definición">
+							El primer y más fácil programa que cualquier novato escribiría. Aplica para cualquier idioma. También lo que vería en el primer capítulo de la mayoría de los libros de programación.
 						</DiscordEmbedField>
-						<DiscordEmbedField field-title="Example">
-							programming noob: Hey I just attended my first programming lesson earlier! <br>
-							.NET Veteran: Oh? What can you do? <br>
-							programming noob: I could make a dialog box pop up which says "Hello World!" !!! <br>
-							.NET Veteran: lmao.. hey guys! look.. check out this "hello world" programmer <br><br>
-							Console.WriteLine("Hello World")
+						<DiscordEmbedField field-title="Ejemplo">
+							Programador novato: ¡Oye, acabo de asistir a mi primera lección de programación antes! <br>
+							Veterano en .NET: ¿Oh? ¿Qué puedes hacer? <br>
+							Programador novato: Podría hacer que aparezca un cuadro de diálogo que diga "¡Hola mundo!" !!! <br>
+							Veterano en .NET: Jaja... ¡hey chicos! miren, un programador de "hola mundo" <br><br>
+							Console.WriteLine("Hola mundo")
 						</DiscordEmbedField>
-						<DiscordEmbedField field-title="Rating">
-							122 thumbs up. <br>
-							42 thumbs down.
+						<DiscordEmbedField field-title="Votos">
+							122 pulgares arriba. <br>
+							42 pulgares abajo.
 						</DiscordEmbedField>
 					</DiscordEmbedFields>
 				</template>
