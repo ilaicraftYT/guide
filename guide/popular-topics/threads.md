@@ -2,13 +2,13 @@
 
 Los hilos se pueden considerar como subcanales temporales dentro de un canal existente, para ayudar a organizar mejor la conversación en un canal ocupado.
 
-## Eventos de pasarela relacionados con hilos
+## Eventos de Gateway relacionados con hilos
 
 ::: tip
 ¡Puedes usar la protección de tipo `isThread()` para asegurarte de que un canal sea un Canal de hilo!
 :::
 
-Los hilos introducen una serie de nuevos eventos de puerta de enlace, que se enumeran a continuación:
+Los hilos introducen una serie de nuevos eventos de Gateway, que se enumeran a continuación:
 
 - `Client#threadCreate`: Emitido cada vez que se crea un hilo o cuando el usuario cliente se agrega a un hilo.
 - `Client#threadDelete`: Se emite cada vez que se elimina un hilo.
