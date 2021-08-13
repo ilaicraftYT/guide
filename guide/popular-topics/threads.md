@@ -5,7 +5,7 @@ Los hilos se pueden considerar como subcanales temporales dentro de un canal exi
 ## Eventos de Gateway relacionados con hilos
 
 ::: tip
-¡Puedes usar la protección de tipo `isThread()` para asegurarte de que un canal sea un Canal de hilo!
+¡Puedes usar `isThread()` para asegurarte de que un canal sea un canal de hilo!
 :::
 
 Los hilos introducen una serie de nuevos eventos de Gateway, que se enumeran a continuación:
@@ -28,7 +28,7 @@ Para crear un hilo, llama al método `ThreadManager#create()`:
 const thread = await channel.threads.create({
 	name: 'food-talk',
 	autoArchiveDuration: 60,
-	reason: 'Necesitaba un hilo separado para la comida.',
+	reason: '¿Palta o Aguacate? Debate serio, abro hilo.',
 });
 
 console.log(`Hilo creado: ${thread.name}`);
@@ -63,9 +63,9 @@ await thread.leave();
 ```
 ## Archivar, desarchivar y bloquear hilos
 
-Un hilo puede estar activo o archivado. Cambiar un hilo de archivado a activo se conoce como desarchivar el hilo. Los subprocesos que tienen "bloqueado" establecido en verdadero solo pueden ser desarchivados por un miembro con el permiso "MANAGE_THREADS".
+Un hilo puede estar activo o archivado. Cambiar un hilo de archivado a activo se conoce como desarchivar el hilo. Los hilos "bloqueados" solo pueden ser administrados por un miembro con el permiso "MANAGE_THREADS".
 
-Los hilos se archivan automáticamente después de la inactividad. "Actividad" se define como enviar un mensaje, desarchivar un hilo o cambiar la hora del archivo automático.
+Los hilos se archivan automáticamente después de un tiempo de inactividad. "Actividad" se define como enviar un mensaje, desarchivar un hilo o cambiar la hora del archivo automático.
 
 Para archivar o desarchivar un hilo, usa el método `ThreadChannel#setArchived()` y pase un parámetro booleano:
 
