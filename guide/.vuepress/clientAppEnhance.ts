@@ -17,24 +17,26 @@ import {
 import DocsLink from './components/DocsLink.vue';
 import ResultingCode from './components/ResultingCode.vue';
 import djsAvatar from './assets/discord-avatar-djs.png';
+import guideLogo from './assets/guide-logo.png';
 import '@discord-message-components/vue/dist/style.css';
 
 export default defineClientAppEnhance(({ app }) => {
 	app.use(DiscordMessageComponents, {
 		avatars: {
 			djs: djsAvatar,
+			guide: guideLogo
 		},
 		profiles: {
 			user: {
 				author: 'Usuario',
-				avatar: 'djs',
+				avatar: 'djs'
 			},
 			bot: {
 				author: 'Bot de pruebas',
-				avatar: 'green',
-				bot: true,
-			},
-		},
+				avatar: 'guide',
+				bot: true
+			}
+		}
 	});
 
 	app.component('DiscordButton', DiscordButton);

@@ -9,7 +9,7 @@ export default {
 			],
 		},
 		{
-			text: 'Cómo empezar?',
+			text: '¿Cómo empezar?',
 			children: [
 				'/voice/',
 			],
@@ -92,7 +92,7 @@ export default {
 			],
 		},
 		{
-			text: 'Hosting',
+			text: 'Alojamiento',
 			children: [
 				'/hosting/',
 				'/hosting/replit.md',
@@ -114,7 +114,7 @@ export default {
 			],
 		},
 		{
-			text: 'Fragmentación (sharding)',
+			text: 'Fragmentación (Sharding)',
 			children: [
 				'/sharding/',
 				'/sharding/additional-information.md',

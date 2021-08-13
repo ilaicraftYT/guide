@@ -16,7 +16,7 @@
 		"prefix": "warning",
 		"description": "insert a warning element",
 		"body": [
-			"::: warning",
+			"::: warning ADVERTENCIA",
 			"$1",
 			":::"
 		]
@@ -25,7 +25,7 @@
 		"prefix": "danger",
 		"description": "insert a danger element",
 		"body": [
-			"::: danger",
+			"::: danger PELIGRO",
 			"$1",
 			":::"
 		]
