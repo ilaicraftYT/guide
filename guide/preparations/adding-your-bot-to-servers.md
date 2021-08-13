@@ -14,7 +14,7 @@ https://discord.com/oauth2/authorize?client_id=123456789012345678&scope=bot+appl
 
 La estructura del url es bastante simple:
 
-* La primera parte es solo la estructura estándar de Discord para actualizar una aplicación OAuth3 (como tu aplicación del bot) para entrar a un servidor de Discord.
+* La primera parte es solo la estructura estándar de Discord para actualizar una aplicación OAuth2 (como tu aplicación del bot) para entrar a un servidor de Discord.
 * La segunda parte la cual dice `client_id=...` es para especificar _cual_ aplicación quieres autorizar. Necesitaras remplazar esta parte con la ID del cliente para crear un enlace de invitación valido.
 * Como último, la tercera parte, la cual dice `scope=bot+application.commads`, especifica que quieres añadir la aplicación como un bot de Discord, con la habilidad de crear Slash Commands (comandos de barra).
 
