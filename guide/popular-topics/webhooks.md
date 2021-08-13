@@ -63,29 +63,29 @@ Puedes crear webhooks directamente a través del cliente de Discord. Ve a Config
 
 ![Integrations tab](./images/creating-webhooks-1.png)
 
-If you already have created a webhook, the webhooks tab will look like this; you will need to click the `View Webhooks` button.
+Si ya has creado un webhook, la pestaña de webhooks se verá así; deberás hacer clic en el botón `Ver webhooks`.
 
 ![Integrations tab](./images/creating-webhooks-2.png)
 
-Once you are there, click on the `Create Webhook` / `New Webhook` button; this will create a webhook. From here, you can edit the channel, the name, and the avatar. Copy the link, the first part is the id, and the second is the token.
+Una vez que estés ahí, haz clic en el botón `Crear webhook` / ` Nuevo webhook`; esto creará un webhook. Desde aquí, puedes editar el canal, el nombre y el avatar. Copia el enlace, la primera parte es la identificación y la segunda es el token.
 
 ![Creating a Webhook](./images/creating-webhooks-3.png)
 
-### Creating webhooks with discord.js
+### Creando webhooks con discord.js
 
-Webhooks can be created with the <DocsLink path="class/TextChannel?scrollTo=createWebhook">`TextChannel#createWebhook()`</DocsLink> method.
+Los webhooks se pueden crear con el método <DocsLink path="class/TextChannel?scrollTo=createWebhook">`TextChannel#createWebhook()`</DocsLink>.
 
 ```js
 channel.createWebhook('Some-username', {
 	avatar: 'https://i.imgur.com/AfFp7pu.png',
 })
-	.then(webhook => console.log(`Created webhook ${webhook}`))
+	.then(webhook => console.log(`Webhook creado: ${webhook}`))
 	.catch(console.error);
 ```
 
-## Editing webhooks
+## Editar webhooks
 
-You can edit Webhooks and WebhookClients to change their name, avatar, and channel using <DocsLink path="class/Webhook?scrollTo=edit">`Webhook#edit()`</DocsLink>.
+Puedes editar Webhooks y WebhookClients para cambiar su nombre, avatar y canal usando <DocsLink path="class/Webhook?scrollTo=edit">`Webhook#edit()`</DocsLink>.
 
 ```js
 webhook.edit({
@@ -93,19 +93,18 @@ webhook.edit({
 	avatar: 'https://i.imgur.com/AfFp7pu.png',
 	channel: '222197033908436994',
 })
-	.then(webhook => console.log(`Edited webhook ${webhook}`))
+	.then(webhook => console.log(`Webhook editado: ${webhook}`))
 	.catch(console.error);
 ```
 
-## Using webhooks
+## Usar webhooks
+Los webhooks pueden enviar mensajes a canales de texto, así como recuperar, editar y eliminar los tuyos. Estos métodos son los mismos para ambos `Webhook` y `WebhookClient`.
 
-Webhooks can send messages to text channels, as well as fetch, edit, and delete their own. These methods are the same for both `Webhook` and `WebhookClient`.
+### Enviando mensajes
 
-### Sending messages
+Los webhooks, como los bots, pueden enviar hasta 10 incrustaciones por mensaje. También pueden enviar archivos adjuntos y contenido normal. El <DocsLink path="class/Webhook?scrollTo=send">`Webhook#send()`</DocsLink> el método utilizado para enviar a un webhook es muy similar al método utilizado para enviar a un canal de texto. Los webhooks también pueden elegir cómo aparecerán el nombre de usuario y el avatar cuando envíen el mensaje.
 
-Webhooks, like bots, can send up to 10 embeds per message. They can also send attachments and normal content. The <DocsLink path="class/Webhook?scrollTo=send">`Webhook#send()`</DocsLink> method used to send to a webhook is very similar to the method used for sending to a text channel. Webhooks can also choose how the username and avatar will appear when they send the message.
-
-Example using a WebhookClient:
+Ejemplo usando un WebhookClient:
 
 ```js
 const { MessageEmbed, WebhookClient } = require('discord.js');
@@ -114,7 +113,7 @@ const { webhookId, webhookToken } = require('./config.json');
 const webhookClient = new WebhookClient({ id: webhookId, token: webhookToken });
 
 const embed = new MessageEmbed()
-	.setTitle('Some Title')
+	.setTitle('Titulo')
 	.setColor('#0099ff');
 
 webhookClient.send({
@@ -125,7 +124,7 @@ webhookClient.send({
 });
 ```
 
-Example using a Webhook:
+Ejemplo usando un Webhook:
 
 ```js
 const { Client, Intents, MessageEmbed } = require('discord.js');
@@ -134,7 +133,7 @@ const { token } = require('./config.json');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 const embed = new MessageEmbed()
-	.setTitle('Some Title')
+	.setTitle('Titulo')
 	.setColor('#0099ff');
 
 client.once('ready', async () => {
@@ -150,16 +149,16 @@ client.once('ready', async () => {
 			embeds: [embed],
 		});
 	} catch (error) {
-		console.error('Error trying to send a message: ', error);
+		console.error('Error al intentar enviar un mensaje: ', error);
 	}
 });
 
 client.login(token);
 ```
 
-### Fetching messages
+### Obteniendo mensajes
 
-You can use <DocsLink path="class/Webhook?scrollTo=fetchMessage">`Webhook#fetchMessage()`</DocsLink> to fetch messages previously sent by the Webhook.
+Puedes usar <DocsLink path="class/Webhook?scrollTo=fetchMessage">`Webhook#fetchMessage()`</DocsLink> para recuperar mensajes enviados previamente por el Webhook.
 
 <!-- eslint-skip -->
 
@@ -167,9 +166,9 @@ You can use <DocsLink path="class/Webhook?scrollTo=fetchMessage">`Webhook#fetchM
 const message = await webhookClient.fetchMessage('123456789012345678');
 ```
 
-### Editing messages
+### Editando mensajes
 
-You can use <DocsLink path="class/Webhook?scrollTo=editMessage">`Webhook#editMessage()`</DocsLink> to edit messages previously sent by the Webhook.
+Puedes usar <DocsLink path="class/Webhook?scrollTo=editMessage">`Webhook#editMessage()`</DocsLink> para editar mensajes enviados previamente por el Webhook.
 
 <!-- eslint-skip -->
 
@@ -182,9 +181,9 @@ const message = await webhook.editMessage('123456789012345678', {
 });
 ```
 
-### Deleting messages
+### Eliminando mensajes
 
-You can use <DocsLink path="class/Webhook?scrollTo=deleteMessage">`Webhook#deleteMessage()`</DocsLink> to delete messages previously sent by the Webhook.
+Puedes usar <DocsLink path="class/Webhook?scrollTo=deleteMessage">`Webhook#deleteMessage()`</DocsLink> para eliminar mensajes enviados previamente por el Webhook.
 
 <!-- eslint-skip -->
 
@@ -192,6 +191,6 @@ You can use <DocsLink path="class/Webhook?scrollTo=deleteMessage">`Webhook#delet
 await webhookClient.deleteMessage('123456789012345678');
 ```
 
-## Resulting code
+## Resultado del código
 
 <ResultingCode/>
