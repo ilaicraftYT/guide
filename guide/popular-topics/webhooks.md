@@ -1,65 +1,65 @@
 # Webhooks
 
-Webhooks can send messages to a text channel without having to log in as a bot. They can also fetch, edit, and delete their own messages. There are a variety of methods in discord.js to interact with webhooks. In this section, you will learn how to create, fetch, edit, and use webhooks.
+Los webhooks pueden enviar mensajes a un canal de texto sin tener que iniciar sesión como bot. También pueden buscar, editar y eliminar sus propios mensajes. Hay una variedad de métodos en discord.js para interactuar con webhooks. En esta sección, aprenderás a crear, recuperar, editar y utilizar webhooks.
 
-## What is a webhook
+## ¿Qué es un webhook?
 
-Webhooks are a utility used to send messages to text channels without needing a Discord application. Webhooks are useful for allowing something to send messages without requiring a Discord application. You can also directly edit or delete messages you sent through the webhook. There are two structures to make use of this functionality: `Webhook` and `WebhookClient`. `WebhookClient` is an extended version of a `Webhook`, which allows you to send messages through it without needing a bot client.
+Los webhooks son una utilidad que se utilizan para enviar mensajes a canales de texto sin necesidad de un bot de Discord. Los webhooks son útiles para permitir que algo envíe mensajes sin requerir un bot de Discord. También puedes editar o eliminar directamente los mensajes que envió a través del webhook. Hay dos estructuras para hacer uso de esta funcionalidad: `Webhook` y `WebhookClient`. `WebhookClient` es una versión extendida de un `Webhook`, que te permite enviar mensajes a través de él sin necesidad de un cliente bot.
 
 ::: tip
-If you would like to read about using webhooks through the API without discord.js, you can read about them [here](https://discord.com/developers/docs/resources/webhook).
+Si quieres leer sobre el uso de webhooks a través de la API sin discord.js, puedes leer sobre ellos [aquí](https://discord.com/developers/docs/resources/webhook).
 :::
 
-## Detecting webhook messages
+Detectar mensajes de webhooks
 
-Bots receive webhook messages in a text channel as usual. You can detect if a webhook sent the message by checking if the `Message.webhookId` is not `null`. In this example, we return if a webhook sent the message.
+Los bots reciben mensajes de webhooks en un canal de texto como de costumbre. Puedes detectar si un webhook envió el mensaje comprobando si el `Message.webhookId` no es `null`. En este ejemplo, revisamos si un webhook envió el mensaje.
 
 <!-- eslint-skip -->
 ```js
 if (message.webhookId) return;
 ```
 
-If you would like to get the webhook object that sent the message, you can use <DocsLink path="class/Message?scrollTo=fetchWebhook">`Message#fetchWebhook`</DocsLink>.
+Si quieres obbtener el objeto webhook que envió el mensaje, puedes usar <DocsLink path="class/Message?scrollTo=fetchWebhook">`Message#fetchWebhook`</DocsLink>.
 
-## Fetching webhooks
+## Obteniendo webhooks
 
 ::: tip
-Webhook fetching will always make use of collections and Promises. If you do not understand either concept, revise them, and then come back to this section.  You can read about collections [here](/additional-info/collections.md), and Promises [here](/additional-info/async-await.md) and [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises).
+La búsqueda de webhook siempre hará uso de colecciones y promesas. Si no comprendes ninguno de los conceptos, revisalos y luego vuelve a esta sección. Puedes leer esto sobre colecciónes [Aquí](/additional-info/collections.md), y propesas [aquí](/additional-info/async-await.md) y [aquí](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises).
 :::
 
 ### Fetching all webhooks of a guild
 
 If you would like to get all webhooks of a guild you can use <DocsLink path="class/Guild?scrollTo=fetchWebhooks">`Guild#fetchWebhooks()`</DocsLink>. This will return a Promise which will resolve into a Collection of `Webhook`s.
 
-### Fetching webhooks of a channel
+### Obteniendo webhooks de un canal
 
-Webhooks belonging to a channel can be fetched using <DocsLink path="class/TextChannel?scrollTo=fetchWebhooks">`TextChannel#fetchWebhooks()`</DocsLink>. This will return a Promise which will resolve into a Collection of `Webhook`s. A collection will be returned even if the channel contains a single webhook. If you are certain the channel contains a single webhook, you can use <DocsLink section="collection" path="class/Collection?scrollTo=first">`Collection#first()`</DocsLink> on the Collection to get the webhook.
+Los webhooks que pertenecen a un canal se pueden recuperar usando <DocsLink path="class/TextChannel?scrollTo=fetchWebhooks">`TextChannel#fetchWebhooks()`</DocsLink>. Esto devolverá una promesa que se resolverá en una colección de `Webhook`s. Se devolverá una colección incluso si el canal contiene un solo webhook. Si estás seguro de que el canal contiene un único webhook, puedes usar <DocsLink section="collection" path="class/Collection?scrollTo=first">`Collection#first()`</DocsLink> en la colección para obtener el webhook.
 
-### Fetching a single webhook
+### Obteniendo un solo webhook
 
-#### Using client
+#### Usando el cliente
 
-You can fetch a specific webhook using its `id` with <DocsLink path="class/Client?scrollTo=fetchWebhook">`Client#fetchWebhook()`</DocsLink>. You can obtain the webhook id by looking at its link, the number after `https://discord.com/api/webhooks/` is the `id`, and the part after that is the `token`.
+Puedes obtener un webhook específico usando su `id` con <DocsLink path="class/Client?scrollTo=fetchWebhook">`Client#fetchWebhook()`</DocsLink>. Puedes obtener la ID del webhook mirando su enlace, el número después de `https://discord.com/api/webhooks/` es el `id`, y la parte posterior es el `token`.
 
-#### Using the WebhookClient constructor
+#### Usando el constructor WebhookClient
 
-If you are not using a bot client, you can get a webhook by creating a new instance of `WebhookClient` and passing the `id` and `token` into the constructor. These credentials do not require you to have a bot application, but it also offers limited information instead of fetching it using an authorized client.
+Si no estás utilizando un cliente de bot, puedes obtener un webhook creando una nueva instancia de `WebhookClient` y pasando el` id` y el `token` al constructor. Estas credenciales no requieren que tengas una aplicación de bot, pero también ofrece información limitada en lugar de obtenerla con un cliente autorizado.
 
 ```js
 const webhookClient = new WebhookClient({ id: 'id', token: 'token' });
 ```
 
-You can also pass in just a `url`:
+Tanbién puedes pasar solo una `url`:
 
 ```js
 const webhookClient = new WebhookClient({ url: 'https://discord.com/api/webhooks/id/token' });
 ```
 
-## Creating webhooks
+## Creando webhooks
 
-### Creating webhooks through server settings
+### Creación de webhooks a través de la configuración del servidor
 
-You can create webhooks directly through the Discord client. Go to Server Settings, and you will see an `Integrations` tab.
+Puedes crear webhooks directamente a través del cliente de Discord. Ve a Configuración del servidor y verás una pestaña de "Integraciones".
 
 ![Integrations tab](./images/creating-webhooks-1.png)
 
