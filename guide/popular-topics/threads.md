@@ -1,6 +1,6 @@
 # Hilos
 
-Threads can be thought of as temporary sub-channels inside an existing channel, to help better organize conversation in a busy channel.
+Los hilos se pueden considerar como subcanales temporales dentro de un canal existente, para ayudar a organizar mejor la conversación en un canal ocupado.
 
 ## Eventos de pasarela relacionados con hilos
 
