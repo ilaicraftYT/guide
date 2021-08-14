@@ -19,7 +19,7 @@ Los bots reciben mensajes de webhooks en un canal de texto como de costumbre. Pu
 if (message.webhookId) return;
 ```
 
-Si quieres obbtener el objeto webhook que envió el mensaje, puedes usar <DocsLink path="class/Message?scrollTo=fetchWebhook">`Message#fetchWebhook`</DocsLink>.
+Si quieres obtener el objeto `Webhook` que envió el mensaje, puedes usar el método <DocsLink path="class/Message?scrollTo=fetchWebhook">`Message#fetchWebhook`</DocsLink>.
 
 ## Obteniendo webhooks
 
