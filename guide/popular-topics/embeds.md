@@ -14,38 +14,37 @@ Este es un ejemplo de cómo puede verse un embed. Revisaremos la construcción d
 		<template #embeds>
 			<DiscordEmbed
 				border-color="#0099ff"
-				embed-title="Some title"
+				embed-title="Título"
 				url="https://discord.js.org/"
 				thumbnail="https://i.imgur.com/AfFp7pu.png"
 				image="https://i.imgur.com/AfFp7pu.png"
 				footer-icon="https://i.imgur.com/AfFp7pu.png"
 				timestamp="01/01/2018"
-				author-name="Some name"
+				author-name="Autor"
 				author-icon="https://i.imgur.com/AfFp7pu.png"
-				author-url="https://discord.js.org/"
-			>
-				Some description here
+				author-url="https://discord.js.org/">
+				La descripción va aquí
 				<template #fields>
 					<DiscordEmbedFields>
-						<DiscordEmbedField field-title="Regular field title">
-							Some value here
+						<DiscordEmbedField field-title="Título de campo regular">
+							Texto
 						</DiscordEmbedField>
 						<DiscordEmbedField field-title="​">
 							​
 						</DiscordEmbedField>
-						<DiscordEmbedField :inline="true" field-title="Inline field title">
-							Some value here
+						<DiscordEmbedField :inline="true" field-title="Título de campo en línea">
+							Texto
 						</DiscordEmbedField>
-						<DiscordEmbedField :inline="true" field-title="Inline field title">
-							Some value here
+						<DiscordEmbedField :inline="true" field-title="Título de campo en línea">
+							Texto
 						</DiscordEmbedField>
-						<DiscordEmbedField :inline="true" field-title="Inline field title">
-							Some value here
+						<DiscordEmbedField :inline="true" field-title="Título de campo en línea">
+							Texto
 						</DiscordEmbedField>
 					</DiscordEmbedFields>
 				</template>
 				<template #footer>
-					<span>Some footer text here</span>
+					<span>Pie de página</span>
 				</template>
 			</DiscordEmbed>
 		</template>
@@ -63,21 +62,21 @@ const { MessageEmbed } = require('discord.js');
 // dentro de un comando, audiencia de evento, etc.
 const exampleEmbed = new MessageEmbed()
 	.setColor('#0099ff')
-	.setTitle('Some title')
+	.setTitle('Título')
 	.setURL('https://discord.js.org/')
-	.setAuthor('Some name', 'https://i.imgur.com/AfFp7pu.png', 'https://discord.js.org')
-	.setDescription('Some description here')
+	.setAuthor('Autor', 'https://i.imgur.com/AfFp7pu.png', 'https://discord.js.org')
+	.setDescription('La descripción va aquí')
 	.setThumbnail('https://i.imgur.com/AfFp7pu.png')
 	.addFields(
-		{ name: 'Regular field title', value: 'Some value here' },
+		{ name: 'Título de campo regular', value: 'Texto' },
 		{ name: '\u200B', value: '\u200B' },
-		{ name: 'Inline field title', value: 'Some value here', inline: true },
-		{ name: 'Inline field title', value: 'Some value here', inline: true },
+		{ name: 'Título de campo en línea', value: 'Texto', inline: true },
+		{ name: 'Título de campo en línea', value: 'Texto', inline: true },
 	)
-	.addField('Inline field title', 'Some value here', true)
+	.addField('Título de campo en línea', 'Texto', true)
 	.setImage('https://i.imgur.com/AfFp7pu.png')
 	.setTimestamp()
-	.setFooter('Some footer text here', 'https://i.imgur.com/AfFp7pu.png');
+	.setFooter('Pie de página', 'https://i.imgur.com/AfFp7pu.png');
 
 channel.send({ embeds: [exampleEmbed] });
 ```
@@ -96,7 +95,7 @@ Si quieres modificar tu embed en base a condiciones, necesitarás referenciarlo 
 <!-- eslint-skip -->
 
 ```js
-const exampleEmbed = new MessageEmbed().setTitle('Some title');
+const exampleEmbed = new MessageEmbed().setTitle('Un título');
 
 if (message.author.bot) {
 	exampleEmbed.setColor('#7289da');
@@ -124,7 +123,7 @@ const exampleEmbed = {
 	fields: [
 		{
 			name: 'Regular field title',
-			value: 'Some value here',
+			value: 'Texto',
 		},
 		{
 			name: '\u200b',
@@ -133,17 +132,17 @@ const exampleEmbed = {
 		},
 		{
 			name: 'Inline field title',
-			value: 'Some value here',
+			value: 'Texto',
 			inline: true,
 		},
 		{
 			name: 'Inline field title',
-			value: 'Some value here',
+			value: 'Texto',
 			inline: true,
 		},
 		{
 			name: 'Inline field title',
-			value: 'Some value here',
+			value: 'Texto',
 			inline: true,
 		},
 	],
@@ -152,7 +151,7 @@ const exampleEmbed = {
 	},
 	timestamp: new Date(),
 	footer: {
-		text: 'Some footer text here',
+		text: 'Un pie de página',
 		icon_url: 'https://i.imgur.com/AfFp7pu.png',
 	},
 };
@@ -184,7 +183,7 @@ Luego puedes referenciar y usar las imágenes dentro del embed en sí con: `atta
 Si planeas adjuntar la misma imágen repetidamente, mejor considera alojarla online y proveer la URL en el respectivo campo de embed. Esto también hace que tu bot responda más rápido, ya que no necesita subir la imagen dependiendo de cada respuesta.
 :::
 
-### Usar el constructor de MensajeEmbed
+### Usar el constructor MessageEmbed
 
 ```js
 const { MessageAttachment, MessageEmbed } = require('discord.js');
@@ -205,7 +204,7 @@ const { MessageAttachment } = require('discord.js');
 const file = new MessageAttachment('../assets/discordjs.png');
 
 const exampleEmbed = {
-	title: 'Some title',
+	title: 'Un título',
 	image: {
 		url: 'attachment://discordjs.png',
 	},
@@ -224,7 +223,7 @@ Ahora explicaremos cómo editar el contenido de mensajes en embed y reenviar un 
 
 ### Reenviar un embed recivido
 
-Para direccionar un embed recivido, lo recuperas de la matriz de embeds (`message.embeds`), y lo pasas al MessageEmbed, en donde puede ser editado antes de ser enviado otra vez. 
+Para direccionar un embed recibido, lo recuperas de la matriz de embeds (`message.embeds`), y lo pasas al MessageEmbed, en donde puede ser editado antes de ser enviado otra vez. 
 
 ::: warning ADVERTENCIA
 Aquí creamos deliberadamente un nuevo Embed en ves de modificar directamente el `message.embeds[0]`, para mantener el caché válido. Si no hiciéramos esto, el embed con el caché original diferiría de la forma original del Embed; lo que resultaría en comportamiento inadecuado más adelante!
@@ -232,7 +231,7 @@ Aquí creamos deliberadamente un nuevo Embed en ves de modificar directamente el
 
 ```js
 const receivedEmbed = message.embeds[0];
-const exampleEmbed = new MessageEmbed(receivedEmbed).setTitle('New title');
+const exampleEmbed = new MessageEmbed(receivedEmbed).setTitle('Nuevo título');
 
 channel.send({ embeds: [exampleEmbed] });
 ```
@@ -243,8 +242,8 @@ Para editar el contenido de un Embed, debes pasar a una nueva estructura Message
 
 ```js
 const exampleEmbed = new MessageEmbed()
-	.setTitle('Some title')
-	.setDescription('Description after the edit');
+	.setTitle('Un título')
+	.setDescription('¡Nueva descripción!');
 
 message.edit({ embeds: [exampleEmbed] });
 ```
@@ -254,23 +253,22 @@ Si quieres construir nuevos datos de Embed a una plantilla de un embed previamen
 ## Notas
 
 - Para mostrar campos lado a lado, necesitar por lo menos dos campos consecutivos ajustados en `inline`
-- Los marcadores de horas se ajustan automáticamente a las distintas zonas temporales dependiendo del dispositivo del usuario.
+- Los marcadores de horas en el pie de página se ajustan automáticamente a las distintas zonas temporales dependiendo del dispositivo del usuario.
 - Menciones de cualquier tipo sólo se mostrarán correctamente en campos con valores y descripciones.
-- Menciones en embeds no notificarán.
-- Embeds permiten links enmascarados 
-- Embeds allow masked links (ej. `[Guía](https://discordjs.guide/ 'subtítulo opcional')`), pero sólo en descripciones y campos de valores.
+- Las menciones dentro de embeds no notificarán.
+- Embeds permiten links enmascarados (ej. `[Guía](https://discordjs.guide/ 'subtítulo opcional')`), pero sólo en descripciones y campos de valores.
 
 ## Límites de un Embed
 
 Hay algunos límites a tener en cuenta en la planificación de tu embed, debido a las limitaciones de la API. Aquí hay una rápida referencia a la que puedes volver:
 
-- Títulos de Embed se limitan a 256 caracteres.
-- Descripciones de Embed se limitan a 4096 caracteres.
+- Títulos de Embed permite hasta 256 caracteres.
+- Descripciones de Embed permite hasta 4096 caracteres.
 - Pueden haber hasta 25 campos.
-- El nombre de un campo y sus valores se limitan a 256 y 1024 caracteres, respectivamente.
-- El pie de texto se limita a 2048 caracteres.
-- El nombre del autor se limita a 256 caracteres.
-- La suma de todos los caracteres de toda las estructuras de Embed en un mensaje no pueden exceder los 6000 caracteres.
-- Se pueden enviar hasta 10 Embeds por mensaje.
+- El nombre de un campo y sus valores permiten hasta 256 y 1024 caracteres, respectivamente.
+- El pie de texto permite hasta 2048 caracteres.
+- El nombre del autor permite hasta 256 caracteres.
+- La suma de todos los caracteres de toda las estructuras de Embed en un mensaje no puede exceder los 6000 caracteres.
+- Se pueden enviar hasta 10 embeds por mensaje.
 
 Fuente: [Documentación Discord API](https://discord.com/developers/docs/resources/channel#embed-limits)
