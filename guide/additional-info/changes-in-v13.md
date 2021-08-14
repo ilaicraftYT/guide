@@ -125,7 +125,7 @@ Los atajos `Intents.ALL`, `Intents.NON_PRIVILEGED`, y `Intents.PRIVILEGED` han s
 Consulte nuestro [artículo más detallado sobre el tema](/popular-topics/intents.html).
 
 ```diff
-- const client = new Client({ ws: { intents: [Intents.FLAGS.GUILDS] });
+- const client = new Client({ ws: { intents: [Intents.FLAGS.GUILDS] } });
 + const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 ```
 
@@ -199,18 +199,6 @@ El uso de `message` seguirá funcionando, pero recibirás una advertencia de car
 ```diff
 - client.on("message", message => { ... });
 + client.on("messageCreate", message => { ... });
-```
-
-### Snowflakes
-
-Para usuarios de TypeScript, discord.js ahora impone el tipo `Snowflake`, un `BigInt` encadenado, en lugar de permitir que se acepte cualquier cadena de texto.
-
-```diff
-interface Config {
- 	prefix: string;
--	ownerId: string;
-+	ownerId: Snowflake;
-}
 ```
 
 ### Menciones permitidas
