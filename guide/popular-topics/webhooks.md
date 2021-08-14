@@ -85,7 +85,7 @@ channel.createWebhook('Some-username', {
 
 ## Editar webhooks
 
-Puedes editar Webhooks y WebhookClients para cambiar su nombre, avatar y canal usando <DocsLink path="class/Webhook?scrollTo=edit">`Webhook#edit()`</DocsLink>.
+Puedes editar `Webhook`s y `WebhookClient`s para cambiar su nombre, avatar y canal usando <DocsLink path="class/Webhook?scrollTo=edit">`Webhook#edit()`</DocsLink>.
 
 ```js
 webhook.edit({
