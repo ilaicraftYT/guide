@@ -158,7 +158,7 @@ client.login(token);
 
 ### Obteniendo mensajes
 
-Puedes usar <DocsLink path="class/Webhook?scrollTo=fetchMessage">`Webhook#fetchMessage()`</DocsLink> para recuperar mensajes enviados previamente por el Webhook.
+Puedes usar <DocsLink path="class/Webhook?scrollTo=fetchMessage">`Webhook#fetchMessage()`</DocsLink> para obtener mensajes enviados previamente por el Webhook.
 
 <!-- eslint-skip -->
 
