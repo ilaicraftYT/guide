@@ -85,7 +85,7 @@ channel.send({ embeds: [exampleEmbed] });
 No es necesario que incluyas todos los elementos mostrados arriba. Si quieres un embed más sencillo, no uses algunos.
 :::
 
-El medio `.setColor()`, acepta datos enteros, cadena de color HEX, una formación de valores RGB, o cadenas de color específicas. Encuentra una lista de estos en <DocsLink path="typedef/ColorResolvable">la documentación de discord.js</DocsLink>.
+La función `.setColor()` acepta datos enteros, cadena de color HEX, una formación de valores RGB, o cadenas de color específicas. Encuentra una lista de estos en <DocsLink path="typedef/ColorResolvable">la documentación de discord.js</DocsLink>.
 
 Para añadir un campo vacío a tu embed, puedes usar `.addField('\u200b', '\u200b')`.
 
@@ -112,17 +112,17 @@ const exampleEmbed = {
 	title: 'Some title',
 	url: 'https://discord.js.org',
 	author: {
-		name: 'Some name',
+		name: 'Autor',
 		icon_url: 'https://i.imgur.com/AfFp7pu.png',
 		url: 'https://discord.js.org',
 	},
-	description: 'Some description here',
+	description: 'La descripción va aquí',
 	thumbnail: {
 		url: 'https://i.imgur.com/AfFp7pu.png',
 	},
 	fields: [
 		{
-			name: 'Regular field title',
+			name: 'Título de campo regular',
 			value: 'Texto',
 		},
 		{
@@ -131,17 +131,17 @@ const exampleEmbed = {
 			inline: false,
 		},
 		{
-			name: 'Inline field title',
+			name: 'Título de campo en línea',
 			value: 'Texto',
 			inline: true,
 		},
 		{
-			name: 'Inline field title',
+			name: 'Título de campo en línea',
 			value: 'Texto',
 			inline: true,
 		},
 		{
-			name: 'Inline field title',
+			name: 'Título de campo en línea',
 			value: 'Texto',
 			inline: true,
 		},
@@ -166,16 +166,16 @@ No es necesario que incluyas todos los elementos mostrados arriba. Si quieres un
 Si quieres modificar tu embed en base a condiciones, necesitarás referenciarlo directamente (como la constante `exampleEmbed` para nuestro ejemplo). Luego puedes re(asignar) los valores de sus propiedades como lo harías con cualquier otro objeto.
 
 ```js
-const exampleEmbed = { title: 'Some title' };
+const exampleEmbed = { title: 'Título' };
 
 if (message.author.bot) {
 	exampleEmbed.color = 0x7289da;
 }
 ```
 
-## Adjuntar imagenes
+## Adjuntar imágenes
 
-Puedes subir imágenes junto a tus mensajes incrustados (embedded) y usarlos como fuente para espacios que soporten urls de imágenes, construyendo un <DocsLink path="class/MessageAttachment">MessageAttachment</DocsLink> para que estos se envíen como opción de mensaje junto al embed. El parámetro para adjuntar usa un BufferResolvable o Stream incluyendo la URL de una imágen externa.
+Puedes subir imágenes junto a tus mensajes incrustados (embedded) y usarlos como fuente para espacios que soporten urls de imágenes, construyendo un <DocsLink path="class/MessageAttachment">MessageAttachment</DocsLink> para que estos se envíen como opción de mensaje junto al embed. El parámetro para adjuntar usa un `BufferResolvable` o `Stream` incluyendo la URL de una imágen externa.
 
 Luego puedes referenciar y usar las imágenes dentro del embed en sí con: `attachment://fileName.extension`.
 
@@ -190,7 +190,7 @@ const { MessageAttachment, MessageEmbed } = require('discord.js');
 // ...
 const file = new MessageAttachment('../assets/discordjs.png');
 const exampleEmbed = new MessageEmbed()
-	.setTitle('Some title')
+	.setTitle('Título')
 	.setImage('attachment://discordjs.png');
 
 channel.send({ embeds: [exampleEmbed], files: [file] });
@@ -231,6 +231,7 @@ Aquí creamos deliberadamente un nuevo Embed en ves de modificar directamente el
 
 ```js
 const receivedEmbed = message.embeds[0];
+//Creamos un embed nuevo que tiene la misma información y cambiamos el título
 const exampleEmbed = new MessageEmbed(receivedEmbed).setTitle('Nuevo título');
 
 channel.send({ embeds: [exampleEmbed] });
@@ -263,7 +264,7 @@ Si quieres construir nuevos datos de Embed a una plantilla de un embed previamen
 Hay algunos límites a tener en cuenta en la planificación de tu embed, debido a las limitaciones de la API. Aquí hay una rápida referencia a la que puedes volver:
 
 - Títulos de Embed permite hasta 256 caracteres.
-- Descripciones de Embed permite hasta 4096 caracteres.
+- La descripción permite hasta 4096 caracteres.
 - Pueden haber hasta 25 campos.
 - El nombre de un campo y sus valores permiten hasta 256 y 1024 caracteres, respectivamente.
 - El pie de texto permite hasta 2048 caracteres.
