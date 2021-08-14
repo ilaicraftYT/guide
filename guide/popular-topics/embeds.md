@@ -1,13 +1,13 @@
 # Embeds
 
-If you have been around on Discord for a bit, chances are you have seen these special messages, often sent by bots.
-They can have a colored border, embedded images, text fields, and other fancy properties.
+Si has estado en Discord durante un tiempo, es probable que hayas visto estos mensajes especiales, normalmente enviados por bots. 
+Pueden tener un borde coloreado, imágenes incluidas, campos de texto y otras propiedades de lujo.
 
-In the following section, we will explain how to compose an embed, send it, and what you need to be aware of while doing so.
+En la siguiente sección, explicaremos cómo componer un embed, enviarlo, y qué debes tener en cuenta al hacerlo.
 
-## Embed preview
+## Previsualización
 
-Here is an example of how an embed may look. We will go over embed construction in the next part of this guide.
+Este es un ejemplo de cómo puede verse un embed. Revisaremos la construcción de embeds en la siguiente parte de esta guía.
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
@@ -52,15 +52,15 @@ Here is an example of how an embed may look. We will go over embed construction 
 	</DiscordMessage>
 </DiscordMessages>
 
-## Using the embed constructor
+## Usar el contructor de embeds
 
-discord.js features the <DocsLink path="class/MessageEmbed">`MessageEmbed`</DocsLink> utility class for easy construction and manipulation of embeds.
+discord.js cuenta con la utilidad <DocsLink path="class/MessageEmbed">`MessageEmbed`</DocsLink> para una construcción y manipulación sencilla de embeds.
 
 ```js
-// at the top of your file
+// arriba de tu archivo
 const { MessageEmbed } = require('discord.js');
 
-// inside a command, event listener, etc.
+// dentro de un comando, audiencia de evento, etc.
 const exampleEmbed = new MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle('Some title')
@@ -83,15 +83,15 @@ channel.send({ embeds: [exampleEmbed] });
 ```
 
 ::: tip
-You don't need to include all the elements showcased above. If you want a simpler embed, leave some out.
+No es necesario que incluyas todos los elementos mostrados arriba. Si quieres un embed más sencillo, no uses algunos.
 :::
 
-The `.setColor()` method accepts an integer, HEX color string, an array of RGB values or specific color strings. You can find a list of them at <DocsLink path="typedef/ColorResolvable">the discord.js documentation</DocsLink>.
+El medio `.setColor()`, acepta datos enteros, cadena de color HEX, una formación de valores RGB, o cadenas de color específicas. Encuentra una lista de estos en <DocsLink path="typedef/ColorResolvable">la documentación de discord.js</DocsLink>.
 
-To add a blank field to the embed, you can use `.addField('\u200b', '\u200b')`.
+Para añadir un campo vacío a tu embed, puedes usar `.addField('\u200b', '\u200b')`.
 
-The above example chains the manipulating methods to the newly created MessageEmbed object.
-If you want to modify the embed based on conditions, you will need to reference it as the constant `exampleEmbed` (for our example).
+El ejemplo de arriba une los métodos de manipulación con el objeto MessageEmbed recién creado.
+Si quieres modificar tu embed en base a condiciones, necesitarás referenciarlo como la constante `exampleEmbed` (para nuestro ejemplo).
 
 <!-- eslint-skip -->
 
@@ -103,7 +103,7 @@ if (message.author.bot) {
 }
 ```
 
-## Using an embed object
+## Usar un objeto incrustado (embed)
 
 <!-- eslint-disable camelcase -->
 
@@ -161,10 +161,10 @@ channel.send({ embeds: [exampleEmbed] });
 ```
 
 ::: tip
-You don't need to include all the elements showcased above. If you want a simpler embed, leave some out.
+No es necesario que incluyas todos los elementos mostrados arriba. Si quieres un embed más sencillo, no uses algunos.
 :::
 
-If you want to modify the embed object based on conditions, you will need to reference it directly (as `exampleEmbed` for our example). You can then (re)assign the property values as you would with any other object.
+Si quieres modificar tu embed en base a condiciones, necesitarás referenciarlo directamente (como la constante `exampleEmbed` para nuestro ejemplo). Luego puedes re(asignar) los valores de sus propiedades como lo harías con cualquier otro objeto.
 
 ```js
 const exampleEmbed = { title: 'Some title' };
@@ -174,17 +174,17 @@ if (message.author.bot) {
 }
 ```
 
-## Attaching images
+## Adjuntar imagenes
 
-You can upload images with your embedded message and use them as source for embed fields that support image urls by constructing a <DocsLink path="class/MessageAttachment">MessageAttachment</DocsLink> from them to send as message option alongside the embed. The attachment parameter takes a BufferResolvable or Stream including the URL to an external image.
+Puedes subir imágenes junto a tus mensajes incrustados (embedded) y usarlos como fuente para espacios que soporten urls de imágenes, construyendo un <DocsLink path="class/MessageAttachment">MessageAttachment</DocsLink> para que estos se envíen como opción de mensaje junto al embed. El parámetro para adjuntar usa un BufferResolvable o Stream incluyendo la URL de una imágen externa.
 
-You can then reference and use the images inside the embed itself with `attachment://fileName.extension`.
+Luego puedes referenciar y usar las imágenes dentro del embed en sí con: `attachment://fileName.extension`.
 
 ::: tip
-If you plan to attach the same image repeatedly, consider hosting it online and providing the URL in the respective embed field instead. This also makes your bot respond faster since it doesn't need to upload the image with every response depending on it.
+Si planeas adjuntar la misma imágen repetidamente, mejor considera alojarla online y proveer la URL en el respectivo campo de embed. Esto también hace que tu bot responda más rápido, ya que no necesita subir la imagen dependiendo de cada respuesta.
 :::
 
-### Using the MessageEmbed builder
+### Usar el constructor de MensajeEmbed
 
 ```js
 const { MessageAttachment, MessageEmbed } = require('discord.js');
@@ -197,7 +197,7 @@ const exampleEmbed = new MessageEmbed()
 channel.send({ embeds: [exampleEmbed], files: [file] });
 ```
 
-### Using an embed object
+### Usar un objeto embed
 
 ```js
 const { MessageAttachment } = require('discord.js');
@@ -215,19 +215,19 @@ channel.send({ embeds: [exampleEmbed], files: [file] });
 ```
 
 ::: warning ADVERTENCIA
-If the images don't display inside the embed but outside of it, double-check your syntax to make sure it's as shown above.
+Si la imagen no se muestran dentro del embed, pero sí fuera de este; revisa tu sintaxis para asegurarte que está como se muestra arriba.
 :::
 
-## Resending and editing
+## Reenviar y Editar
 
-We will now explain how to edit embedded message content and resend a received embed.
+Ahora explicaremos cómo editar el contenido de mensajes en embed y reenviar un embed recivido.
 
-### Resending a received embed
+### Reenviar un embed recivido
 
-To forward a received embed you retrieve it from the messages embed array (`message.embeds`) and pass it to the MessageEmbed can then be edited before sending it again.
+Para direccionar un embed recivido, lo recuperas de la matriz de embeds (`message.embeds`), y lo pasas al MessageEmbed, en donde puede ser editado antes de ser enviado otra vez. 
 
 ::: warning ADVERTENCIA
-We deliberately create a new Embed here instead of just modifying `message.embeds[0]` directly to keep the cache valid. If we were not to do this, the embed in cache on the original message would diverge from what the actual embed looks like, which can result in unexpected behavior down the line!
+Aquí creamos deliberadamente un nuevo Embed en ves de modificar directamente el `message.embeds[0]`, para mantener el caché válido. Si no hiciéramos esto, el embed con el caché original diferiría de la forma original del Embed; lo que resultaría en comportamiento inadecuado más adelante!
 :::
 
 ```js
@@ -237,9 +237,9 @@ const exampleEmbed = new MessageEmbed(receivedEmbed).setTitle('New title');
 channel.send({ embeds: [exampleEmbed] });
 ```
 
-### Editing the embedded message content
+### Editar el contenido de un mensaje en Embed
 
-To edit the content of an embed you need to pass a new MessageEmbed structure or embed object to the messages `.edit()` method.
+Para editar el contenido de un Embed, debes pasar a una nueva estructura MessageEmbed o cambiar el objeto embed a `.edit()`.
 
 ```js
 const exampleEmbed = new MessageEmbed()
@@ -249,27 +249,28 @@ const exampleEmbed = new MessageEmbed()
 message.edit({ embeds: [exampleEmbed] });
 ```
 
-If you want to build the new embed data on a previously sent embed template, make sure to read the caveats in the previous section. 
+Si quieres construir nuevos datos de Embed a una plantilla de un embed previamente enviado, asegúrate de leer las advertencias de la sección anterior. 
 
-## Notes
+## Notas
 
-- To display fields side-by-side, you need at least two consecutive fields set to `inline`
-- The timestamp will automatically adjust the timezone depending on the user's device
-- Mentions of any kind will only render correctly in field values and descriptions
-- Mentions in embeds will not trigger a notification
-- Embeds allow masked links (e.g. `[Guide](https://discordjs.guide/ 'optional hovertext')`), but only in description and field values
+- Para mostrar campos lado a lado, necesitar por lo menos dos campos consecutivos ajustados en `inline`
+- Los marcadores de horas se ajustan automáticamente a las distintas zonas temporales dependiendo del dispositivo del usuario.
+- Menciones de cualquier tipo sólo se mostrarán correctamente en campos con valores y descripciones.
+- Menciones en embeds no notificarán.
+- Embeds permiten links enmascarados 
+- Embeds allow masked links (ej. `[Guía](https://discordjs.guide/ 'subtítulo opcional')`), pero sólo en descripciones y campos de valores.
 
-## Embed limits
+## Límites de un Embed
 
-There are a few limits to be aware of while planning your embeds due to the API's limitations. Here is a quick reference you can come back to:
+Hay algunos límites a tener en cuenta en la planificación de tu embed, debido a las limitaciones de la API. Aquí hay una rápida referencia a la que puedes volver:
 
-- Embed titles are limited to 256 characters
-- Embed descriptions are limited to 4096 characters
-- There can be up to 25 fields
-- A field's name is limited to 256 characters and its value to 1024 characters
-- The footer text is limited to 2048 characters
-- The author name is limited to 256 characters
-- The sum of all characters from all embed structures in a message must not exceed 6000 characters
-- Ten embeds can be sent per message
+- Títulos de Embed se limitan a 256 caracteres.
+- Descripciones de Embed se limitan a 4096 caracteres.
+- Pueden haber hasta 25 campos.
+- El nombre de un campo y sus valores se limitan a 256 y 1024 caracteres, respectivamente.
+- El pie de texto se limita a 2048 caracteres.
+- El nombre del autor se limita a 256 caracteres.
+- La suma de todos los caracteres de toda las estructuras de Embed en un mensaje no pueden exceder los 6000 caracteres.
+- Se pueden enviar hasta 10 Embeds por mensaje.
 
-Source: [Discord API documentation](https://discord.com/developers/docs/resources/channel#embed-limits)
+Fuente: [Documentación Discord API](https://discord.com/developers/docs/resources/channel#embed-limits)
