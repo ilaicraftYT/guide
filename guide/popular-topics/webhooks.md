@@ -102,7 +102,7 @@ Los webhooks pueden enviar mensajes a canales de texto, así como recuperar, edi
 
 ### Enviando mensajes
 
-Los webhooks, como los bots, pueden enviar hasta 10 incrustaciones por mensaje. También pueden enviar archivos adjuntos y contenido normal. El <DocsLink path="class/Webhook?scrollTo=send">`Webhook#send()`</DocsLink> el método utilizado para enviar a un webhook es muy similar al método utilizado para enviar a un canal de texto. Los webhooks también pueden elegir cómo aparecerán el nombre de usuario y el avatar cuando envíen el mensaje.
+Los webhooks, como los bots, pueden enviar hasta 10 incrustaciones por mensaje. También pueden enviar archivos adjuntos y contenido normal. El método <DocsLink path="class/Webhook?scrollTo=send">`Webhook#send()`</DocsLink> utilizado para enviar a una webhook es muy similar al método utilizado para enviar a un canal de texto. Los webhooks también pueden elegir cómo aparecerá el nombre de usuario y el avatar cuando envíen el mensaje.
 
 Ejemplo usando un WebhookClient:
 
