@@ -41,7 +41,7 @@ pm2 start your-app-name.js --watch
 ```
 
 ::: tip
-El comando `pm2 start` puede tener más parámetros opcionales, pero solo estos dos son relevantes. Si quieres revisar el resto de los parámetros, puedes revisar la documentación de pm2 [here](https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/).
+El comando `pm2 start` puede tener más parámetros opcionales, pero solo estos dos son relevantes. Si quieres revisar el resto de los parámetros, puedes revisar la documentación de pm2 [aquí](https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/).
 :::
 
 Cuando el proceso se inicie con pm2, puedes ejecutar `pm2 monit` para monitorear todas las salidas de la consola de los procesos iniciados por pm2. Esto incluye cualquier `console.log()` en tu código o errores de código.
