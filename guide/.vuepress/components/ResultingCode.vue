@@ -21,6 +21,7 @@ const githubLink = ref(codeSamplesURL);
 const page = usePageData();
 
 onMounted(() => {
+	console.log(page)
 	githubLink.value += props.path || page?.value.path.slice(1).replace('.html', '');
 });
 </script>
