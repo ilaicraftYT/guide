@@ -1,6 +1,6 @@
 # Introducción
 
-Si estas leyendo esto, es posible que quieras aprender a como hacer un bot con discord.js. ¡Genial! Has llegado al lugar correcto.
+Si estás leyendo esto, es posible que quieras aprender a cómo hacer un bot con discord.js. ¡Genial! Has llegado al lugar correcto.
 Esta guía te enseñará cosas como:
 - Cómo [crear un bot](/preparations/).
 - Cómo [crear](/creating-your-bot/), [organizar](/command-handling/) y expandir tus comandos.
@@ -10,7 +10,7 @@ Esta guía te enseñará cosas como:
 - Cómo hostear tu bot gratis en [replit](/hosting/replit/).
 - Y mucho más.
 
-Esta guía también cubre temas como errores comunes y como resolverlos, mantener tu código ordenado, configurar un entorno de dessarrollo adecuado, etc.
+Esta guía también cubre temas como errores comunes y cómo resolverlos, mantener tu código ordenado, configurar un entorno de dessarrollo adecuado, etc.
 Suena bien, ¿No? ¡Genial! Entonces empecemos...
 
 

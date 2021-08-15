@@ -4,27 +4,27 @@
 
 Para usar discord.js, deberá instalar Node.js. Puedes hacerlo yendo al [sitio web de Node.js](https://nodejs.org/).
 
+::: warning ADVERTENCIA
+Si _tiene_ Node instalado, pero tiene una versión anterior \(es decir, cualquier cosa por debajo de 16.6\), debe actualizar a la última versión. discord.js v13 requiere Node 16.6 o superior.
+:::
+
 ### Instalación en Windows
 
 Si está desarrollando en Windows, es tan simple como instalar cualquier otro programa. Ve al [sitio web de Node.js](https://nodejs.org/), descargue la última versión, abra el archivo descargado y siga los pasos del instalador.
 
 ### Instalación en macOS
 
-Si está desarrollando en macOS, tiene algunas opciones. Puedes ir al [sitio web de Node.js](https://nodejs.org/), descargue la última versión, haga doble clic en el instalador del paquete y siga las instrucciones. O puede usar un administrador de paquetes como [Homebrew](https://brew.sh/) con el comando `brew install node`.
+Si está desarrollando en macOS, tiene algunas opciones. Puedes ir al [sitio web de Node.js](https://nodejs.org/), descargue la última versión, haga doble clic en el instalador del paquete y siga las instrucciones. También puede usar un administrador de paquetes como [Homebrew](https://brew.sh/) con el comando `brew install node`.
 
 ### Instalación en Linux
 
 Si está desarrollando en Linux, puede consultar [esta página](https://nodejs.org/en/download/package-manager/) para determinar cómo debe instalar Node.<br />En esa nota, existe la posibilidad de que ya tenga Node \(por ejemplo, si está usando un VPS\). Puede comprobarlo ejecutando el comando `node -v`. Si genera algo como `v16.6` o superior, ¡está listo para comenzar! De lo contrario, consulte la página vinculada anteriormente para obtener instrucciones sobre cómo instalar Node en su sistema operativo.
 
-::: warning ADVERTENCIA
-Si _tiene_ Node instalado, pero tiene una versión anterior \(es decir, cualquier cosa por debajo de 16.6\), debe actualizar a la última versión. discord.js v13 requiere Node 16.6 o superior.
-:::
-
 ---
 
 ## Preparando lo esencial
 
-Para instalar y usar discord.js, deberá instalarlo a través de npm \(administrador de paquetes de Node\). npm viene con cada instalación de Node, por lo que no tiene que preocuparse por instalarlo. Sin embargo, antes de instalar nada, debe configurar una nueva carpeta de proyecto.
+Para instalar y usar discord.js, deberá instalarlo a través de npm \(administrador de paquetes de Node\). npm viene con cada instalación de Node, por lo que no tiene que preocuparse por instalarlo. Sin embargo, antes de instalar algo, debe configurar una nueva carpeta de proyecto.
 
 ### Configurar una carpeta de proyecto
 

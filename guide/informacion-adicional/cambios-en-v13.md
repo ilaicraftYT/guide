@@ -125,7 +125,7 @@ Los atajos `Intents.ALL`, `Intents.NON_PRIVILEGED`, y `Intents.PRIVILEGED` han s
 Consulte nuestro [artículo más detallado sobre el tema](/popular-topics/intents.html).
 
 ```diff
-- const client = new Client({ ws: { intents: [Intents.FLAGS.GUILDS] });
+- const client = new Client({ ws: { intents: [Intents.FLAGS.GUILDS] } });
 + const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 ```
 
@@ -201,18 +201,6 @@ El uso de `message` seguirá funcionando, pero recibirás una advertencia de car
 + client.on("messageCreate", message => { ... });
 ```
 
-### Snowflakes
-
-Para usuarios de TypeScript, discord.js ahora impone el tipo `Snowflake`, un `BigInt` encadenado, en lugar de permitir que se acepte cualquier cadena de texto.
-
-```diff
-interface Config {
- 	prefix: string;
--	ownerId: string;
-+	ownerId: Snowflake;
-}
-```
-
 ### Menciones permitidas
 
 ¡`clientOptions#disableMentions` ha sido removido y reemplazado por `clientOptions#allowedMentions`!
@@ -271,6 +259,10 @@ En la API de Discord v8 y superior, los canales de un mensaje directo, no emiten
 La versión para navegadores ya no es soportada por Discord.js
 
 ## Cambios y eliminaciones
+
+### ActivityType
+
+El tipo `CUSTOM_STATUS` ha sido renombrado a `CUSTOM`.
 
 ### APIMessage
 
@@ -556,7 +548,7 @@ El método auxiliar/acortador `GuildMember#hasPermission` fue removido.
 
 #### GuildMember#lastMessage
 
-#### GuildMember#lastMessageId
+#### GuildMember#lastMessageChannelId
 
 Ninguna de estas propiedades fue proporcionada por Discord, sino que se basó en una caché potencialmente inexacta, y fue eliminado.
 
@@ -598,6 +590,10 @@ El método `MessageManager.delete()` no aceptara ningún tipo de opción adicion
 ```
 
 El parámetro `reason` no lo usa la API de Discord en dicha acción.
+
+#### Message#edits
+
+La propiedad `Message#edits` ha sido removida.
 
 ### MessageEmbed
 

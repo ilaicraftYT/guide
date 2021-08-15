@@ -34,18 +34,18 @@ Si no estás familiarizado con parte de esta sintaxis, es posible que sea sintax
 
 ## Estructura simple de comandos
 
-Ya tienes un if declarado que comprueba mensajes por un comando ping/pong. Añadir comprobaciones para otros comandos es fácil; encadena un `else if` a tu condición existente. En vez de usar `interaction.commandName` a cada rato, puedes desestructurar y renombrarlo a `command`.
+Ya tienes un if declarado que comprueba mensajes por un comando ping/pong. Añadir comprobaciones para otros comandos es fácil; encadena un `else if` a tu condición existente. En vez de usar `interaction.commandName` a cada rato, puedes desestructurar así:
 
 ```js {2-10}
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
-	const { commandName: command } = interaction;
+	const { commandName } = interaction;
 
-	if (command === 'ping') {
-		await interaction.reply('¡Pong!');
-	} else if (command === 'beep') {
-		await interaction.reply('¡Boop!');
+	if (commandName === 'ping') {
+		await interaction.reply('Pong!');
+	} else if (commandName === 'beep') {
+		await interaction.reply('Boop!');
 	}
 });
 ```
@@ -66,13 +66,13 @@ Los servidores son llamados "guilds" en la API de Discord y en la librería disc
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
-	const { commandName: command } = interaction;
+	const { commandName } = interaction;
 
-	if (command === 'ping') {
-		await interaction.reply('¡Pong!');
-	} else if (command === 'beep') {
-		await interaction.reply('¡Boop!');
-	} else if (command === 'server') {
+	if (commandName === 'ping') {
+		await interaction.reply('Pong!');
+	} else if (commandName === 'beep') {
+		await interaction.reply('Boop!');
+	} else if (commandName === 'server') {
 		await interaction.reply(`El nombre de este servidor es: ${interaction.guild.name}`);
 	}
 });
@@ -95,13 +95,13 @@ Si quieres expandir más ese comando y añadir algo más de información, aquí 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
-	const { commandName: command } = interaction;
+	const { commandName } = interaction;
 
-	if (command === 'ping') {
-		await interaction.reply('¡Pong!');
-	} else if (command === 'beep') {
-		await interaction.reply('¡Boop!');
-	} else if (command === 'server') {
+	if (commandName === 'ping') {
+		await interaction.reply('Pong!');
+	} else if (commandName === 'beep') {
+		await interaction.reply('Boop!');
+	} else if (commandName === 'server') {
 		await interaction.reply(`Nombre del servidor: ${interaction.guild.name}\nMiembros totales: ${interaction.guild.memberCount}`);
 	}
 });
@@ -135,15 +135,15 @@ Declara otro if con el comando `user-info`.
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
-	const { commandName: command } = interaction;
+	const { commandName } = interaction;
 
-	if (command === 'ping') {
-		await interaction.reply('¡Pong!');
-	} else if (command === 'beep') {
-		await interaction.reply('¡Boop!');
-	} else if (command === 'server') {
-		await interaction.reply(`El nombre de este servidor es: ${interaction.guild.name}`);
-	} else if (command === 'user-info') {
+	if (commandName === 'ping') {
+		await interaction.reply('Pong!');
+	} else if (commandName === 'beep') {
+		await interaction.reply('Boop!');
+	} else if (commandName === 'server') {
+		await interaction.reply(`El nombre de este servidor es: ${interaction.guild.name}}`);
+	} else if (commandName === 'user-info') {
 		await interaction.reply(`Tu nombre de usuario: ${interaction.user.username}\nTu Id: ${interaction.user.id}`);
 	}
 });

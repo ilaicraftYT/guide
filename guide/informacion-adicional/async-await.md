@@ -85,6 +85,8 @@ client.once('ready', () => {
 });
 
 client.on('interactionCreate', interaction => {
+	if (!interaction.isCommand()) return;
+
 	if (interaction.commandName === 'react') {
 		// ...
 	}
@@ -95,9 +97,10 @@ client.login('tu-token-va-aquí');
 
 Si no sabe cómo funciona la ejecución asincrónica de Node.js, probablemente intente algo como esto:
 
-```js {3-6}
+```js {4-7}
 client.on('interactionCreate', interaction => {
-	if (interaction.commandName === 'react') {
+	// ...
+	if (commandName === 'react') {
 		const message = interaction.reply('¡Reaccionando!', { fetchReply: true });
 		message.react('🇦');
 		message.react('🇧');
@@ -108,9 +111,10 @@ client.on('interactionCreate', interaction => {
 
 Pero dado que todos estos métodos se inician al mismo tiempo, sería una carrera a qué solicitud del servidor finalizó primero, por lo que no habría garantía de que reaccionaría en absoluto (si el mensaje no se recupera) o en el orden que querías. Para asegurarse de que reacciona después de que se envía el mensaje y en orden (a, b, c), necesitaría usar la devolución de llamada `.then()` de las promesa que estos métodos devuelven. El código se vería así:
 
-```js {3-11}
+```js {4-12}
 client.on('interactionCreate', interaction => {
-	if (interaction.commandName === 'react') {
+	// ...
+	if (commandName === 'react') {
 		interaction.reply('¡Reaccionando!', { fetchReply: true })
 			.then(message => {
 				message.react('🇦')
@@ -126,9 +130,10 @@ client.on('interactionCreate', interaction => {
 
 En este fragmento de código, las promesa se [resuelven en cadena](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#encadenamiento) entre sí, y si una de las promesa es rechazada, se llama a la función `.catch()`. Aquí está el mismo código pero con async/await:
 
-```js {1,3-6}
+```js {1,4-7}
 client.on('interactionCreate', async interaction => {
-	if (interaction.commandName === 'react') {
+	// ...
+	if (commandName === 'react') {
 		const message = await interaction.reply('¡Reaccionando!', { fetchReply: true });
 		await message.react('🇦');
 		await message.react('🇧');
@@ -139,11 +144,11 @@ client.on('interactionCreate', async interaction => {
 
 Es principalmente el mismo código, pero ¿cómo detectaría los rechazos de Promise ahora, ya que `.catch()` ya no está? Esa también es una característica útil con async/await; el error se lanzará si lo espera para que pueda envolver las promesas esperadas dentro de un try/catch, y estará listo para comenzar.
 
-```js {1,3-10}
+```js {1,4-11}
 client.on('interactionCreate', async interaction => {
-	if (interaction.commandName === 'react') {
+	if (commandName === 'react') {
 		try {
-			const message = await interaction.reply('Reacting!', { fetchReply: true });
+			const message = await interaction.reply('¡Reaccionando!', { fetchReply: true });
 			await message.react('🇦');
 			await message.react('🇧');
 			await message.react('🇨');
@@ -160,9 +165,10 @@ Por lo tanto, es posible que se pregunte: "¿Cómo obtendría el valor con el qu
 
 Veamos un ejemplo en el que desea eliminar una respuesta enviada.
 
-```js {2-8}
+```js {3-9}
 client.on('interactionCreate', interaction => {
-	if (interaction.commandName === 'delete') {
+	// ...
+	if (commandName === 'delete') {
 		interaction.reply('Este mensaje será eliminado.', { fetchReply: true })
 			.then(replyMessage => setTimeout(() => replyMessage.delete(), 10000))
 			.catch(error => {
@@ -174,9 +180,9 @@ client.on('interactionCreate', interaction => {
 
 El valor de retorno de un `.reply()` con la opción `fetchReply` establecida en` true` es una Promise que se resuelve con la respuesta cuando se ha enviado, pero ¿cómo se vería el mismo código con async/await?
 
-```js {1,3-9}
+```js {1,4-10}
 client.on('interactionCreate', async interaction => {
-	if (interaction.commandName === 'delete') {
+	if (commandName === 'delete') {
 		try {
 			const replyMessage = await interaction.reply('Este mensaje será eliminado.', { fetchReply: true });
 			await replyMessage.delete({ timeout: 10000 });

@@ -11,7 +11,7 @@ It is crucial that you first understand two details about audit logs:
 2) There is no event which triggers when an audit log is created.
 :::
 
-Let's start by glancing at the `fetchAuditLogs` method and how to work with it. Like many discord.js methods, it returns a Promise containing the GuildAuditLogs object. In most cases, only the `entries` property will be of interest, as it holds a collection of GuildAuditLogsEntry objects, and consequently, the information you usually want. You can always take a look at the options <DocsLink path="class/Guild?scrollTo=fetchAuditLogs">in the discord.js docs</DocsLink>.
+Let's start by glancing at the <DocsLink path="class/Guild?scrollTo=fetchAuditLogs" type="method" /> method and how to work with it. Like many discord.js methods, it returns a Promise containing the <DocsLink path="class/GuildAuditLogs" /> object. In most cases, only the `entries` property will be of interest, as it holds a collection of <DocsLink path="class/GuildAuditLogsEntry" /> objects, and consequently, the information you usually want. You can always take a look at the options 
 
 The following examples will explore a straightforward case for some auditLog types. Some basic error handling is performed, but these code segments are by no means foolproof and are meant to teach you how fetching audit logs work. You will most likely need to expand on the examples based on your own goals for a rigorous system.
 
@@ -109,16 +109,16 @@ client.on('guildMemberRemove', async member => {
 The logic for this will be very similar to the above kick example, except that this time, the `guildBanAdd` event will be used.
 
 ```js
-client.on('guildBanAdd', async (guild, user) => {
-	console.log(`${user.tag} got hit with the swift hammer of justice in the guild ${guild.name}.`);
+client.on('guildBanAdd', async ban => {
+	console.log(`${ban.user.tag} got hit with the swift hammer of justice in the guild ${ban.guild.name}.`);
 });
 ```
 
 As was the case in the previous examples, you can see what happened, to whom it happened, but not who executed the action. Enter once again audit logs fetching limited to 1 entry and only the `MEMBER_BAN_ADD` type. The `guildBanAdd` listener then becomes:
 
 ```js {2-7,9-10,12-14,16-22}
-client.on('guildBanAdd', async (guild, user) => {
-	const fetchedLogs = await guild.fetchAuditLogs({
+client.on('guildBanAdd', async ban => {
+	const fetchedLogs = await ban.guild.fetchAuditLogs({
 		limit: 1,
 		type: 'MEMBER_BAN_ADD',
 	});
@@ -126,7 +126,7 @@ client.on('guildBanAdd', async (guild, user) => {
 	const banLog = fetchedLogs.entries.first();
 
 	// Perform a coherence check to make sure that there's *something*
-	if (!banLog) return console.log(`${user.tag} was banned from ${guild.name} but no audit log could be found.`);
+	if (!banLog) return console.log(`${ban.user.tag} was banned from ${ban.guild.name} but no audit log could be found.`);
 
 	// Now grab the user object of the person who banned the member
 	// Also grab the target of this action to double-check things
@@ -134,10 +134,10 @@ client.on('guildBanAdd', async (guild, user) => {
 
 	// Update the output with a bit more information
 	// Also run a check to make sure that the log returned was for the same banned member
-	if (target.id === user.id) {
-		console.log(`${user.tag} got hit with the swift hammer of justice in the guild ${guild.name}, wielded by the mighty ${executor.tag}`);
+	if (target.id === ban.user.id) {
+		console.log(`${ban.user.tag} got hit with the swift hammer of justice in the guild ${ban.guild.name}, wielded by the mighty ${executor.tag}`);
 	} else {
-		console.log(`${user.tag} got hit with the swift hammer of justice in the guild ${guild.name}, audit log fetch was inconclusive.`);
+		console.log(`${ban.user.tag} got hit with the swift hammer of justice in the guild ${ban.guild.name}, audit log fetch was inconclusive.`);
 	}
 });
 ```

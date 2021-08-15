@@ -11,7 +11,7 @@ Pero, ¿qué pasa si intentas usar el comando de esta manera?
 
 <DiscordMessages>
 	<DiscordMessage profile="user">
-		!ban <DiscordMention>Villano</DiscordMention> fue grosero con <DiscordMention>Victima</DiscordMention>.
+		!ban <DiscordMention>Villano</DiscordMention> Fue grosero con <DiscordMention>Victima</DiscordMention>.
 	</DiscordMessage>
 </DiscordMessages>
 
@@ -23,7 +23,7 @@ Digamos que alguien usó accidentalmente el comando de prohibición de esta mane
 
 <DiscordMessages>
 	<DiscordMessage profile="user">
-		!ban Fueron groseron con <DiscordMention>Victima</DiscordMention>.
+		!ban Fueron groseros con <DiscordMention>Victima</DiscordMention>.
 	</DiscordMessage>
 </DiscordMessages>
 
@@ -39,7 +39,7 @@ Si tu envías:
 
 <DiscordMessages>
 	<DiscordMessage profile="user">
-		Creo que deberíamos agregar el rol<DiscordMention type="role" role-color="#3eaf7c">Moderador</DiscordMention> a <DiscordMention>BuenaPersona</DiscordMention>
+		Creo que deberíamos agregar el rol <DiscordMention type="role" role-color="#3eaf7c">Moderador</DiscordMention> a <DiscordMention>BuenaPersona</DiscordMention>
 	</DiscordMessage>
 </DiscordMessages>
 
@@ -47,7 +47,7 @@ Entonces el `message.content` para ese mensaje se verá así:
 
 <!-- eslint-skip -->
 ```js
-'Creo que deberíamos agregar el rol  <@&134362454976102401> a <@86890631690977280>.'
+'Creo que deberíamos agregar el rol <@&134362454976102401> a <@86890631690977280>.'
 ```
 
 ## Implementación
@@ -185,7 +185,7 @@ Ahora, si envías un comando como el siguiente, siempre puedes estar seguro de q
 
 <DiscordMessages>
 <DiscordMessage profile="usuario">
-!ban <DiscordMention>Villano</DiscordMention> fue grosero con <DiscordMention>Victima</DiscordMention>.
+!ban <DiscordMention>Villano</DiscordMention> Fue grosero con <DiscordMention>Victima</DiscordMention>.
 </DiscordMessage>
 </DiscordMessages>
 
@@ -197,7 +197,7 @@ Pero usando expresiones regulares (también conocidas como "RegEx" o "RegExp"), 
 Si nunca antes has trabajado con expresiones regulares, esto puede parecer abrumador. Pero, de hecho, ya has utilizado expresiones regulares. ¿Recuerda `withoutPrefix.split(/ + /);`? Este pequeño `/ + /` es una expresión regular. El `/` a cada lado le dice a JavaScript dónde comienza y dónde termina la expresión regular; el material intermedio es su contenido.
 
 ::: tip
-Para obtener una explicación más detallada, consulte la [Documentación de MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/RegExp).
+Para obtener una explicación más detallada, consulte la [documentación de MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/RegExp).
 :::
 
 La expresión regular que utilizarás para las menciones de los usuarios tendrá este aspecto: `/^<@!?(\d+)>$/`.

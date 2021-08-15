@@ -243,9 +243,7 @@ console.log([string, integer, boolean, user, member, channel, role, mentionable]
 ```
 
 ::: tip
-
-Si desea el `snowflake` de una estructura en su lugar, tome la opción a través de `get()` y acceda al `snowflake` a través de la propiedad `value`. Tenga en cuenta que debe usar `const {value: name} = ...` aquí para [desestructurar y renombrar](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) el valor obtenido de la estructura <DocsLink path ="typedef/CommandInteractionOption"> `CommandInteractionOption` </DocsLink> para evitar conflictos de nombres de identificadores.
-
+Si desea el `snowflake` de una estructura en su lugar, tome la opción a través de `get()` y acceda al `snowflake` a través de la propiedad `value`. Tenga en cuenta que debe usar `const {value: name} = ...` aquí para [desestructurar y renombrar](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) el valor obtenido de la estructura <DocsLink path="typedef/CommandInteractionOption" /> para evitar conflictos de nombres de identificadores.
 :::
 
 ### Subcomandos
@@ -271,7 +269,7 @@ const data = new SlashCommandBuilder()
 
 El siguiente fragmento detalla la lógica necesaria para analizar los subcomandos y responder en consecuencia utilizando el método `CommandInteractionOptionResolver#getSubcommand()`:
 
-```js {5-20}
+```js {5-15}
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
