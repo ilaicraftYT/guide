@@ -92,13 +92,6 @@ export default {
 			],
 		},
 		{
-			text: 'Alojamiento',
-			children: [
-				'/hosting/',
-				'/hosting/replit.md',
-			],
-		},
-		{
 			text: 'Misceláneo',
 			children: [
 				'/miscellaneous/parsing-mention-arguments.md',
