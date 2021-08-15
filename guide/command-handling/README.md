@@ -17,10 +17,12 @@ client.once('ready', () => {
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
-	if (interaction.commandName === 'ping') {
+	const { commandName } = interaction;
+
+	if (commandName === 'ping') {
 		await interaction.reply('Pong.');
-	} else if (interaction.commandName === 'beep') {
-		await interaction.reply('¡Boop!');
+	} else if (commandName === 'beep') {
+		await interaction.reply('Boop!');
 	}
 	// ...
 });
@@ -56,7 +58,7 @@ module.exports = {
 };
 ```
 
-Ahora puedes hacer lo mismo con el resto de tus comandos y colocarlos en sus respectivos bloques de código dentro de la función `execute()`. Si has estado usando el mismo código que la guía, puedes copiar y pegar tus comandos en sus respectivos archivos, siguiendo el formato de arriba. La propiedad `description` es opcional, pero será útil para un comando de ayuda dinámico que veremos más adelante.
+Ahora puedes hacer lo mismo con el resto de tus comandos y colocarlos en sus respectivos bloques de código dentro de la función `execute()`. Si has estado usando el mismo código que la guía, puedes copiar y pegar tus comandos en sus respectivos archivos, siguiendo el formato de arriba.
 
 ::: tip
 `module.exports` es como exportas tus datos en Node.js para luego llamarlos con `require()` en otros archivos. Si no estás familiarizado con esto y quieres saber más, puedes revisar [la documentación](https://nodejs.org/api/modules.html#modules_module_exports) para más información.
@@ -84,7 +86,7 @@ client.commands = new Collection();
 :::
 
 ::: tip
-Si no estás seguro exactamente sobre que son las colecciones, son una clase que extiende la clase Map nativa de JavaScript e incluye más funcionalidades útiles. Puedes leer sobre Maps [aquí](), y ver todos los métodos disponibles de una Collection <DocsLink section="collection" path="class/Collection">aquí</DocsLink>.
+Las <DocsLink section="collection" path="class/Collection">Colecciones</DocsLink> son una clase que extiende la clase [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) nativa de JavaScript e incluye más funcionalidades útiles.
 :::
 
 El siguiente paso es la forma de obtener dinámicamente todos los archivos de comandos recién creados. El método [`fs.readdirSync()`](https://nodejs.org/api/fs.html#fs_fs_readdirsync_path_options) retornará un array de todos los nombres de los archivos en una carpeta, por ejemplo: `['ping.js', 'beep.js']`. Para asegurarte de que solo archivos de comandos sean retornados, usa `Array.filter()` para dejar fuera del array todos los archivos que no sean de JavaScript. Con ese array, puedes hacer un búcle sobre el y establecer tus comandos dinámicamente dentro de la colección que creaste arriba.
@@ -106,14 +108,16 @@ for (const file of commandFiles) {
 
 Con tu colección en `client.commands` hecha, ¡Puedes usarla para obtener y ejecutar tus comandos! Dentro de tu evento `interactionCreate`, elimina tus cadenas de `if`/`else if` de comandos y reemplázalo con esto:
 
-```js {6-12}
+```js {8-13}
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
-	if (!client.commands.has(interaction.commandName)) return;
+	const { commandName } = interaction;
+
+	if (!client.commands.has(commandName)) return;
 
 	try {
-		await client.commands.get(interaction.commandName).execute(interaction);
+		await client.commands.get(commandName).execute(interaction);
 	} catch (error) {
 		console.error(error);
 		await interaction.reply({ content: '¡Ocurrió un error al ejecutar este comando!', ephemeral: true });

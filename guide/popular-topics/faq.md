@@ -2,10 +2,10 @@
 
 ## Leyenda
 
-* `<client>` es un marcador de posición para el objeto `Client`, como `const client = new Client({ intents: [Intents.FLAGS.GUILDS] });`.
-* `<interaction>` es un marcador de posición para el objeto `Interaction`, como `client.on('interactionCreate', interaction => { ... });`.
-* `<guild>` es un marcador de posición para el objeto `Guild`, como `<interaction>.guild` o `<client>.guilds.cache.get('<id>')`.
-* `<voiceChannel>`es un marcador de posición para el objeto `VoiceChannel`, como `<message>.member.voice.channel`
+* `<client>` es un marcador de posición para el objeto <DocsLink path="class/Client" />, como `const client = new Client({ intents: [Intents.FLAGS.GUILDS] });`.
+* `<interaction>` es un marcador de posición para el objeto <DocsLink path="class/Interaction" />, como `client.on('interactionCreate', interaction => { ... });`.
+* `<guild>` es un marcador de posición para el objeto <DocsLink path="class/Guild" />, como `<interaction>.guild` o `<client>.guilds.cache.get('<id>')`.
+* `<voiceChannel>`es un marcador de posición para el objeto <DocsLink path="class/VoiceChannel" />, como `<message>.member.voice.channel`
 
 Para obtener una explicación más detallada de las notaciones que se usan comúnmente en esta guía, los documentos y el servidor de soporte, consulte [aquí](/additional-info/notation.md).
 
@@ -13,62 +13,50 @@ Para obtener una explicación más detallada de las notaciones que se usan comú
 
 ### ¿Cómo banear a un usuario?
 
-<!-- eslint-skip -->
-
 ```js
-const user = <interaction>.options.getUser('target');
-<guild>.members.ban(user);
+const user = interaction.options.getUser('target');
+guild.members.ban(user);
 ```
 
 ### ¿Cómo desbaneo un usuario?
 
-<!-- eslint-skip -->
-
 ```js
-const id = <interaction>.options.get('target')?.value;
-<guild>.members.unban(id);
+const id = interaction.options.get('target')?.value;
+guild.members.unban(id);
 ```
 
 ::: tip
-Debido a que no puede hacer ping a un usuario que no está en el servidor, debe pasar la identificación del usuario. Para hacer esto, usamos un <DocsLink path="typedef/CommandInteractionOption">`CommandInteractionOption`</DocsLink>. Mira [aquí](/interactions/replying-to-slash-commands.html#parsing-options) para obtener más información sobre este tema.
+Debido a que no puede hacer ping a un usuario que no está en el servidor, debe pasar la identificación del usuario. Para hacer esto, usamos un <DocsLink path="typedef/CommandInteractionOption" />. Mira [aquí](/interactions/replying-to-slash-commands.html#analizando-opciones) para obtener más información sobre este tema.
 :::
 
 ### ¿Cómo expulso a un usuario?
 
-<!-- eslint-skip -->
-
 ```js
-const member = <interaction>.options.getMember('target');
+const member = interaction.options.getMember('target');
 member.kick();
 ```
 
 ### ¿Cómo agrego un rol a un miembro de servidor?
 
-<!-- eslint-skip -->
-
 ```js
-const role = <interaction>.options.getRole('role');
-const member = <interaction>.options.getMember('target');
+const role = interaction.options.getRole('role');
+const member = interaction.options.getMember('target');
 member.roles.add(role);
 ```
 
 ### ¿Cómo verifico que un miembro tiene un rol especifico?
 
-<!-- eslint-skip -->
-
 ```js
-const member = <interaction>.options.getMember('target');
-if (member.roles.cache.some(role => role.name === '<role name>')) {
+const member = interaction.options.getMember('target');
+if (member.roles.cache.some(role => role.name === 'role name')) {
 	// ...
 }
 ```
 
 ### ¿Cómo limito un comando a un solo usuario?
 
-<!-- eslint-skip -->
-
 ```js
-if (<interaction>.user.id === '<id>') {
+if (interaction.user.id === 'id') {
 	// ...
 }
 ```
@@ -77,36 +65,28 @@ if (<interaction>.user.id === '<id>') {
 
 ### ¿Cómo establezco el nombre de usuario de mi bot?
 
-<!-- eslint-skip -->
-
 ```js
-<client>.user.setUsername('<username>');
+client.user.setUsername('username');
 ```
 
 ### ¿Cómo establezco el avatar de mi bot?
 
-<!-- eslint-skip -->
-
 ```js
-<client>.user.setAvatar('<url or path>');
+client.user.setAvatar('URL or path');
 ```
 
 ### ¿Cómo establezco el estado de juego?
 
-<!-- eslint-skip -->
-
 ```js
-<client>.user.setActivity('<activity>');
+client.user.setActivity('activity');
 ```
 
 ### ¿Cómo establezco el estado en "Mirando / Escuchando / Compitiendo en ..."?
 
-<!-- eslint-skip -->
-
 ```js
-<client>.user.setActivity('<activity>', { type: 'WATCHING' });
-<client>.user.setActivity('<activity>', { type: 'LISTENING' });
-<client>.user.setActivity('<activity>', { type: 'COMPETING' });
+client.user.setActivity('actividad', { type: 'WATCHING' });
+client.user.setActivity('actividad', { type: 'LISTENING' });
+client.user.setActivity('actividad', { type: 'COMPETING' });
 ```
 
 ::: tip
@@ -115,45 +95,37 @@ Si desea configurar su actividad al inicio, puede usar el objeto `ClientOptions`
 
 ### ¿Cómo hago para que mi bot se muestre en línea / inactivo / dnd / invisible?
 
-<!-- eslint-skip -->
-
 ```js
-<client>.user.setStatus('online');
-<client>.user.setStatus('idle');
-<client>.user.setStatus('dnd');
-<client>.user.setStatus('invisible');
+client.user.setStatus('online');
+client.user.setStatus('idle');
+client.user.setStatus('dnd');
+client.user.setStatus('invisible');
 ```
 
 ### ¿Cómo establezco el estado y la actividad de una sola vez?
 
-<!-- eslint-skip -->
-
 ```js
-<client>.user.setPresence({ activities: [{ name: '<activity>' }], status: 'idle' });
+client.user.setPresence({ activities: [{ name: 'actividad' }], status: 'idle' });
 ```
 
 ## Variados
 
 ### ¿Cómo envío un mensaje a un canal específico?
 
-<!-- eslint-skip -->
-
 ```js
-const channel = <client>.channels.cache.get('<id>');
-channel.send('<content>');
+const channel = client.channels.cache.get('id');
+channel.send('contenido');
 ```
 
 ### ¿Cómo hago DM a un usuario específico?
 
-<!-- eslint-skip -->
-
 ```js
-const user = <client>.users.cache.get('<id>');
-user.send('<content>');
+const user = client.users.cache.get('id');
+user.send('contenido');
 ```
 
 ::: tip
-Si desea enviar un mensaje directo al usuario que envió la interacción, puede usar `<interaction>.user.send()`.
+Si desea enviar un mensaje directo al usuario que envió la interacción, puede usar `interaction.user.send()`.
 :::
 
 ### ¿Cómo menciono a un usuario específico en un mensaje?
@@ -161,9 +133,9 @@ Si desea enviar un mensaje directo al usuario que envió la interacción, puede 
 <!-- eslint-skip -->
 
 ```js
-const user = <interaction>.options.getUser('target');
-await <interaction>.reply(`Hola, ${user}.`);
-await <interaction>.followUp('Hola, <@user id>.');
+const user = interaction.options.getUser('target');
+await interaction.reply(`Hola, ${user}.`);
+await interaction.followUp('Hola, <@user id>.');
 ```
 
 ::: tip
@@ -189,18 +161,16 @@ channel.send({
 
 ### ¿Cómo solicito al usuario información adicional?
 
-<!-- eslint-skip -->
-
 ```js
-<interaction>.reply('Ingrese más información.').then(() => {
+interaction.reply('Ingrese más información.').then(() => {
 	const filter = m => <interaction>.user.id === m.author.id;
 
-	<interaction>.channel.awaitMessages({ filter, time: 60000, max: 1, errors: ['time'] })
+	interaction.channel.awaitMessages({ filter, time: 60000, max: 1, errors: ['time'] })
 		.then(messages => {
-			<interaction>.followUp(`Has ingresado: ${messages.first().content}`);
+			interaction.followUp(`Has ingresado: ${messages.first().content}`);
 		})
 		.catch(() => {
-			<interaction>.followUp('¡No ingresaste nada!');
+			interaction.followUp('¡No ingresaste nada!');
 		});
 });
 ```
@@ -211,11 +181,11 @@ Si desea obtener más información sobre esta sintaxis u otros tipos de coleccio
 
 ### ¿Cómo puedo bloquear a un usuario para que no use mi bot?
 
-<!-- eslint-skip -->
+<!-- eslint-disable no-useless-return -->
 
 ```js
 const blockedUsers = ['id1', 'id2'];
-<client>.on('interactionCreate', interaction => {
+client.on('interactionCreate', interaction => {
 	if (blockedUsers.includes(interaction.user.id)) return;
 });
 ```
@@ -223,10 +193,10 @@ const blockedUsers = ['id1', 'id2'];
 ::: tip
 No es necesario que tenga una variable local constante como `blockUsers` anterior. Si tiene un sistema de base de datos que usa para almacenar los ID de los usuarios bloqueados, puede consultar la base de datos en su lugar:
 
-<!-- eslint-skip -->
+<!-- eslint-disable no-useless-return -->
 
 ```js
-<client>.on('interactionCreate', async interaction => {
+client.on('interactionCreate', async interaction => {
 	const blockedUsers = await database.query('SELECT user_id FROM blocked_users;');
 	if (blockedUsers.includes(interaction.user.id)) return;
 });
@@ -237,10 +207,8 @@ Tenga en cuenta que esto es solo una muestra de cómo podría hacer tal verifica
 
 ### ¿Cómo reacciono al mensaje que envió mi bot?
 
-<!-- eslint-skip -->
-
 ```js
-<interaction>.channel.send('Mi mensaje para reaccionar.').then(sentMessage => {
+interaction.channel.send('Mi mensaje para reaccionar.').then(sentMessage => {
 	// Unicode emoji
 	sentMessage.react('👍');
 
@@ -273,14 +241,12 @@ Un `User` representa a un usuario global de Discord y un `GuildMember` represent
 
 ### ¿Cómo encuentro a todos los miembros en línea de un gremio?
 
-<!-- eslint-skip -->
-
 ```js
 // First use guild.members.fetch to make sure all members are cached
-<guild>.members.fetch().then(fetchedMembers => {
+guild.members.fetch().then(fetchedMembers => {
 	const totalOnline = fetchedMembers.filter(member => member.presence.status === 'online');
 	// Now you have a collection with all online member objects in the totalOnline variable
-	console.log(`¡Actualmente hay ${totalOnline.size} miembros en línea en este servidor!`)
+	console.log(`¡Actualmente hay ${totalOnline.size} miembros en línea en este servidor!`);
 });
 ```
 
@@ -290,8 +256,6 @@ Si desea obtener más información sobre las intenciones, consulte [esta guía d
 :::
 
 ### ¿Cómo verifico qué función se agregó/eliminó y para qué miembro?
-
-<!-- eslint-skip -->
 
 ```js
 // Comience declarando un evento guildMemberUpdate
@@ -315,10 +279,8 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
 
 Hay dos medidas comunes para los bots. El primero, **`Websocket heartbeat`**, es el intervalo promedio de una señal enviada regularmente que indica el buen funcionamiento de la conexión `WebSocket` sobre la que la biblioteca recibe eventos:
 
-<!-- eslint-skip -->
-
 ```js
-<interaction>.reply(`Websocket latencia: ${<client>.ws.ping}ms.`);
+interaction.reply(`Websocket latencia: ${<client>.ws.ping}ms.`);
 ```
 
 ::: tip
@@ -327,10 +289,8 @@ Se puede encontrar un latido de un `shard` específico en la instancia de WebSoc
 
 El segundo, **Latencia de ida y vuelta**, describe la cantidad de tiempo que lleva una ida y vuelta completa de la API (desde la creación del mensaje de comando hasta la creación del mensaje de respuesta). Luego edita la respuesta al valor respectivo para evitar tener que enviar otro mensaje:
 
-<!-- eslint-skip -->
-
 ```js
-<interaction>.reply('Calculando...', { fetchReply: true })
+interaction.reply('Calculando...', { fetchReply: true })
 	.then(sent => {
 		sent.edit(`Latencia de ida y vuelta: ${sent.createdTimestamp - <interaction>.createdTimestamp}ms`);
 	});
@@ -352,8 +312,6 @@ sudo apt-get install ffmpeg # ffmpeg debian/ubuntu
 npm install ffmpeg-static # ffmpeg windows
 ```
 
-<!-- eslint-skip -->
-
 ```js
 const ytdl = require('ytdl-core');
 const {
@@ -367,12 +325,12 @@ const {
 // ...
 
 const connection = joinVoiceChannel({
-	channelId: <voiceChannel>.id,
-	guildId: <guild>.id,
-	adapterCreator: <guild>.voiceAdapterCreator,
+	channelId: voiceChannel.id,
+	guildId: guild.id,
+	adapterCreator: guild.voiceAdapterCreator,
 });
 
-const stream = ytdl('<youtubelink>', { filter: 'audioonly' });
+const stream = ytdl('link de youtube', { filter: 'audioonly' });
 const resource = createAudioResource(stream, { inputType: StreamType.Arbitrary });
 const player = createAudioPlayer();
 
@@ -406,8 +364,6 @@ module.exports = {
 	'!': '❗', '?': '❓',
 };
 ```
-
-<!-- eslint-skip -->
 
 ```js
 // index.js

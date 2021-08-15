@@ -260,6 +260,10 @@ La versión para navegadores ya no es soportada por Discord.js
 
 ## Cambios y eliminaciones
 
+### ActivityType
+
+El tipo `CUSTOM_STATUS` ha sido renombrado a `CUSTOM`.
+
 ### APIMessage
 
 La clase `APIMessage` ha sido renombrada a `MessagePayload`, resolviendo un conflicto de nombres con una interfaz en la librería `discord-api-types` que representa el objeto de un mensaje en bruto.
@@ -544,7 +548,7 @@ El método auxiliar/acortador `GuildMember#hasPermission` fue removido.
 
 #### GuildMember#lastMessage
 
-#### GuildMember#lastMessageId
+#### GuildMember#lastMessageChannelId
 
 Ninguna de estas propiedades fue proporcionada por Discord, sino que se basó en una caché potencialmente inexacta, y fue eliminado.
 
@@ -586,6 +590,10 @@ El método `MessageManager.delete()` no aceptara ningún tipo de opción adicion
 ```
 
 El parámetro `reason` no lo usa la API de Discord en dicha acción.
+
+#### Message#edits
+
+La propiedad `Message#edits` ha sido removida.
 
 ### MessageEmbed
 

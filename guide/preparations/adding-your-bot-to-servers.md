@@ -9,19 +9,15 @@ Antes de ver tu bot en tu propio (u otro) servidor, necesitas añadirlo creando 
 La versión básica del enlace luce algo así:
 
 ```
-https://discord.com/oauth2/authorize?client_id=123456789012345678&scope=bot+applications.commands
+https://discord.com/api/oauth2/authorize?client_id=123456789012345678&permissions=0&scope=bot%20applications.commands
 ```
 
-La estructura del url es bastante simple:
+La estructura del URL es bastante simple:
 
 * La primera parte es solo la estructura estándar de Discord para actualizar una aplicación OAuth2 (como tu aplicación del bot) para entrar a un servidor de Discord.
 * La segunda parte la cual dice `client_id=...` es para especificar _cual_ aplicación quieres autorizar. Necesitaras remplazar esta parte con la ID del cliente para crear un enlace de invitación valido.
-* Como último, la tercera parte, la cual dice `scope=bot+application.commads`, especifica que quieres añadir la aplicación como un bot de Discord, con la habilidad de crear Slash Commands (comandos de barra).
-
-
-::: tip
-El parámetro `permissions` también existe para restringir o garantizar el (o los) permiso que tu bot va a tener en el servidor en el cual añadiendo. Para facilidad de uso, es recomendado usar [esta](https://discordapi.com/permissions.html) página.
-:::
+* La tercer parte la cual dice `permissions=...` indica que permisos tendrá tu bot al ser añadido.
+* Como último, la cuarta parte, la cual dice `scope=bot%20application.commands`, especifica que quieres añadir la aplicación como un bot de Discord, con la habilidad de crear Slash Commands (comandos de barra).
 
 ::: warning ADVERTENCIA
 Si obtienes un error diciendo "Bot requires a code grant", entonces ve a las configuraciones de tu aplicación y deshabilita la opción "Require OAuth2 Code Grant". Usted usualmente no habilitará esta opción si no sabe para que lo necesita.
@@ -29,9 +25,11 @@ Si obtienes un error diciendo "Bot requires a code grant", entonces ve a las con
 
 ## Creando y usando el enlace de invitación
 
-Como mencionamos arriba, necesitas remplazar el parámetro `client_id` con la ID del cliente para generar el enlace de invitación. Para encontrar la ID de la aplicación, dirígete a la página [My Apps](https://discord.com/developers/applications/me), abajo de la sección "Applications" una vez más y clic en la aplicación de tu bot.
+Para crear un link de invitación, dirígete a [My Apps](https://discord.com/developers/applications/me), abajo de la sección "Applications" y clic en la aplicación de tu bot.
 
-Inserta la ID de la aplicación en el ejemplo, y entonces abre el enlace en el navegador. Deberías ver algo como esto (con el nombre y avatar del bot):
+Al final de la página, encontrarás el generador de URL OAuth2 de Discord. Selecciona las opciones `bot` y `applications.commands`. Cuando selecciones la opción de `bot`, una lista de permisos aparecerán, permitiéndote configurar los permisos que tu bot necesite.
+
+Presiona el botón correspondiente para copiar y abrir el enlace en el navegador. Deberías ver algo como esto (con el nombre y avatar del bot):
 
 ![Página de autorización](./images/bot-auth-page.png)
 

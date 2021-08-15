@@ -53,7 +53,7 @@ Este es un ejemplo de cómo puede verse un embed. Revisaremos la construcción d
 
 ## Usar el contructor de embeds
 
-discord.js cuenta con la utilidad <DocsLink path="class/MessageEmbed">`MessageEmbed`</DocsLink> para una construcción y manipulación sencilla de embeds.
+discord.js cuenta con la utilidad <DocsLink path="class/MessageEmbed" /> para una construcción y manipulación sencilla de embeds.
 
 ```js
 // arriba de tu archivo
@@ -85,7 +85,7 @@ channel.send({ embeds: [exampleEmbed] });
 No es necesario que incluyas todos los elementos mostrados arriba. Si quieres un embed más sencillo, no uses algunos.
 :::
 
-La función `.setColor()` acepta datos enteros, cadena de color HEX, una formación de valores RGB, o cadenas de color específicas. Encuentra una lista de estos en <DocsLink path="typedef/ColorResolvable">la documentación de discord.js</DocsLink>.
+La función `.setColor()` acepta un <DocsLink path="typedef/ColorResolvable" /> como por ejemplo datos enteros, cadena de color HEX, una formación de valores RGB, o cadenas de color específicas.
 
 Para añadir un campo vacío a tu embed, puedes usar `.addField('\u200b', '\u200b')`.
 
@@ -175,7 +175,7 @@ if (message.author.bot) {
 
 ## Adjuntar imágenes
 
-Puedes subir imágenes junto a tus mensajes incrustados (embedded) y usarlos como fuente para espacios que soporten urls de imágenes, construyendo un <DocsLink path="class/MessageAttachment">MessageAttachment</DocsLink> para que estos se envíen como opción de mensaje junto al embed. El parámetro para adjuntar usa un `BufferResolvable` o `Stream` incluyendo la URL de una imágen externa.
+Puedes subir imágenes junto a tus mensajes incrustados (embedded) y usarlos como fuente para espacios que soporten urls de imágenes, construyendo un <DocsLink path="class/MessageAttachment" /> para que estos se envíen como opción de mensaje junto al embed. El parámetro para adjuntar usa un `BufferResolvable` o `Stream` incluyendo la URL de una imágen externa.
 
 Luego puedes referenciar y usar las imágenes dentro del embed en sí con: `attachment://fileName.extension`.
 

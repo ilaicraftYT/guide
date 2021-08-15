@@ -15,7 +15,7 @@ Los comandos de aplicación del servidor, solo estan disponibles en el mismo que
 Es esta sección,
 In this section, utilizaremos una secuencia de comandos que se puede utilizar junto con el controlador de comandos de barra de [administrador de comandos](/command-handling/).
 
-Antes que nada, instala el [módulo discord.js REST](https://github.com/discordjs/discord.js-modules/blob/main/packages/rest/) ejecutando `npm install @discordjs/rest` en tu terminal.
+Antes que nada, instala [@discordjs/rest](https://github.com/discordjs/discord.js-modules/blob/main/packages/rest/) y [`discord-api-types`](https://github.com/discordjs/discord-api-types/) ejecutando `npm install @discordjs/rest discord-api-types` en tu terminal.
 
 <!-- eslint-skip -->
 
@@ -27,6 +27,10 @@ const fs = require('fs');
 
 const commands = [];
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+// Place your client and guild ids here
+const clientId = '123456789012345678';
+const guildId = '876543210987654321';
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
@@ -40,7 +44,7 @@ const rest = new REST({ version: '9' }).setToken(token);
 		console.log('Iniciando la actualización de (/) comandos de aplicación');
 
 		await rest.put(
-			Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
+			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },
 		);
 
@@ -61,13 +65,13 @@ Los comandos globales de la aplicación estarán disponibles en todos los gremio
 Los comandos globales se almacenan en caché durante una hora. Los nuevos comandos globales se desplegarán lentamente en todos los servidores y solo se garantizará que se actualicen después de una hora. Los comandos del servidor se actualizan instantáneamente. Como tal, le recomendamos que use comandos basados en servidores durante el desarrollo y los publique en comandos globales cuando estén listos para uso público.
 :::
 
-Para implementar comandos globales, puede usar el mismo script del [comandos de servidor](#comandos-de-servidor) y ajuste la ruta en el script para `.applicationCommands(CLIENT_ID)`.
+Para implementar comandos globales, puede usar el mismo script del [comandos de servidor](#comandos-de-servidor) y ajuste la ruta en el script para `.applicationCommands(clientId)`.
 
 <!-- eslint-skip -->
 
 ```js {2}
 await rest.put(
-	Routes.applicationCommands(CLIENT_ID),
+	Routes.applicationCommands(clientId),
 	{ body: commands },
 );
 ```
@@ -95,8 +99,8 @@ Observe cómo se especifica `.setRequired (true)` dentro del generador de opcion
 Como se muestra en el ejemplo de opciones anterior, puede especificar el `tipo` de un `ApplicationCommandOption`. A continuación se enumeran todos los valores posibles que puede pasar como `ApplicationCommandOptionType`:
 
 ::: tip
-El [constructor de comandos de barra](popular-topics/builders.md#slash-command-builders) tiene un método para cada uno de estos tipos, respectivamente.
-Consulte la documentación de la API de Discord para obtener explicaciones detalladas sobre el [`SUB_COMMAND` y `SUB_COMMAND_GROUP` tipos de opciones](https://discord.com/developers/docs/interactions/slash-commands#subcommands-and-subcommand-groups).
+El [constructor de comandos de barra](/popular-topics/builders.md#slash-command-builders) tiene un método para cada uno de estos tipos, respectivamente.
+Consulte la documentación de la API de Discord para obtener explicaciones detalladas sobre el [`SUB_COMMAND` y `SUB_COMMAND_GROUP` tipos de opciones](https://discord.com/developers/docs/interactions/application-commands#subcommands-and-subcommand-groups).
 :::
 
 * `SUB_COMMAND` establece la opción para que sea un subcomando

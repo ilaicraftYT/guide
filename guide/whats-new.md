@@ -51,6 +51,7 @@ Todo el contenido de la guia usa discord.js v13. La versión anterior de esta gu
 - [Botones](/interactions/buttons.md): Definiendo, enviando y recibiendo botones
 - [Menús de selección](/interactions/select-menus.md): Definiendo, enviando y recibiendo menús de selección
 - [Hilos](/popular-topics/threads.md): Creando y manejando hilos
+- [Builders](/popular-topics/builders.md): Una colección de constructores para usar con tu bot
 
 ### Nuevo
 

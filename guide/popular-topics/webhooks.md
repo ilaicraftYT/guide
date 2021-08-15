@@ -19,7 +19,7 @@ Los bots reciben mensajes de webhooks en un canal de texto como de costumbre. Pu
 if (message.webhookId) return;
 ```
 
-Si quieres obtener el objeto `Webhook` que envió el mensaje, puedes usar el método <DocsLink path="class/Message?scrollTo=fetchWebhook">`Message#fetchWebhook`</DocsLink>.
+Si quieres obtener el objeto `Webhook` que envió el mensaje, puedes usar el método <DocsLink path="class/Message?scrollTo=fetchWebhook" type="method" />.
 
 ## Obteniendo webhooks
 
@@ -27,19 +27,18 @@ Si quieres obtener el objeto `Webhook` que envió el mensaje, puedes usar el mé
 La búsqueda de webhooks siempre hará uso de colecciones y promesas. Si no comprendes ninguno de los conceptos, revísalos y luego vuelve a esta sección. Puedes leer sobre colecciones [aquí](/additional-info/collections.md), y  sobre promesas [aquí](/additional-info/async-await.md) y [aquí](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises).
 :::
 
-### Fetching all webhooks of a guild
+### Obteniendo todos los webhooks de un Guild
 
-If you would like to get all webhooks of a guild you can use <DocsLink path="class/Guild?scrollTo=fetchWebhooks">`Guild#fetchWebhooks()`</DocsLink>. This will return a Promise which will resolve into a Collection of `Webhook`s.
-
+Puedes obtener todos los webhoooks de un Guild usando <DocsLink path="class/Guild?scrollTo=fetchWebhooks" type="method" />. Esto devolverá una promesa que se resolverá en una colección de `Webhook`s.
 ### Obteniendo webhooks de un canal
 
-Los webhooks que pertenecen a un canal se pueden recuperar usando <DocsLink path="class/TextChannel?scrollTo=fetchWebhooks">`TextChannel#fetchWebhooks()`</DocsLink>. Esto devolverá una promesa que se resolverá en una colección de `Webhook`s. Se devolverá una colección incluso si el canal contiene un solo webhook. Si estás seguro de que el canal contiene un único webhook, puedes usar <DocsLink section="collection" path="class/Collection?scrollTo=first">`Collection#first()`</DocsLink> en la colección para obtener el webhook.
+Los webhooks que pertenecen a un canal se pueden recuperar usando <DocsLink path="class/TextChannel?scrollTo=fetchWebhooks" type="method" />. Esto devolverá una promesa que se resolverá en una colección de `Webhook`s. Se devolverá una colección incluso si el canal contiene un solo webhook. Si estás seguro de que el canal contiene un único webhook, puedes usar <DocsLink section="collection" path="class/Collection?scrollTo=first" type="method" /> en la colección para obtener el webhook.
 
 ### Obteniendo un solo webhook
 
 #### Usando el cliente
 
-Puedes obtener un webhook específico usando su `id` con <DocsLink path="class/Client?scrollTo=fetchWebhook">`Client#fetchWebhook()`</DocsLink>. Puedes obtener la ID del webhook mirando su enlace, el número después de `https://discord.com/api/webhooks/` es el `id`, y la parte posterior es el `token`.
+Puedes obtener un webhook específico usando su `id` con <DocsLink path="class/Client?scrollTo=fetchWebhook" type="method" />. Puedes obtener la ID del webhook mirando su enlace, el número después de `https://discord.com/api/webhooks/` es el `id`, y la parte posterior es el `token`.
 
 #### Usando el constructor WebhookClient
 
@@ -73,7 +72,7 @@ Una vez que estés ahí, haz clic en el botón `Crear webhook` / ` Nuevo webhook
 
 ### Creando webhooks con discord.js
 
-Los webhooks se pueden crear con el método <DocsLink path="class/TextChannel?scrollTo=createWebhook">`TextChannel#createWebhook()`</DocsLink>.
+Los webhooks se pueden crear con el método <DocsLink path="class/TextChannel?scrollTo=createWebhook" type="method" />.
 
 ```js
 channel.createWebhook('Some-username', {
@@ -85,7 +84,7 @@ channel.createWebhook('Some-username', {
 
 ## Editar webhooks
 
-Puedes editar `Webhook`s y `WebhookClient`s para cambiar su nombre, avatar y canal usando <DocsLink path="class/Webhook?scrollTo=edit">`Webhook#edit()`</DocsLink>.
+Puedes editar `Webhook`s y `WebhookClient`s para cambiar su nombre, avatar y canal usando <DocsLink path="class/Webhook?scrollTo=edit" type="method" />.
 
 ```js
 webhook.edit({
@@ -102,7 +101,7 @@ Los webhooks pueden enviar mensajes a canales de texto, así como recuperar, edi
 
 ### Enviando mensajes
 
-Los webhooks, como los bots, pueden enviar hasta 10 incrustaciones por mensaje. También pueden enviar archivos adjuntos y contenido normal. El método <DocsLink path="class/Webhook?scrollTo=send">`Webhook#send()`</DocsLink> utilizado para enviar a una webhook es muy similar al método utilizado para enviar a un canal de texto. Los webhooks también pueden elegir cómo aparecerá el nombre de usuario y el avatar cuando envíen el mensaje.
+Los webhooks, como los bots, pueden enviar hasta 10 incrustaciones por mensaje. También pueden enviar archivos adjuntos y contenido normal. El método <DocsLink path="class/Webhook?scrollTo=send" type="method" /> utilizado para enviar a una webhook es muy similar al método utilizado para enviar a un canal de texto. Los webhooks también pueden elegir cómo aparecerá el nombre de usuario y el avatar cuando envíen el mensaje.
 
 Ejemplo usando un WebhookClient:
 
@@ -158,7 +157,7 @@ client.login(token);
 
 ### Obteniendo mensajes
 
-Puedes usar <DocsLink path="class/Webhook?scrollTo=fetchMessage">`Webhook#fetchMessage()`</DocsLink> para obtener mensajes enviados previamente por el Webhook.
+Puedes usar <DocsLink path="class/Webhook?scrollTo=fetchMessage" type="method" /> para obtener mensajes enviados previamente por el Webhook.
 
 <!-- eslint-skip -->
 
@@ -168,7 +167,7 @@ const message = await webhookClient.fetchMessage('123456789012345678');
 
 ### Editando mensajes
 
-Puedes usar <DocsLink path="class/Webhook?scrollTo=editMessage">`Webhook#editMessage()`</DocsLink> para editar mensajes enviados previamente por el Webhook.
+Puedes usar <DocsLink path="class/Webhook?scrollTo=editMessage" type="method" /> para editar mensajes enviados previamente por el Webhook.
 
 <!-- eslint-skip -->
 
@@ -183,7 +182,7 @@ const message = await webhook.editMessage('123456789012345678', {
 
 ### Eliminando mensajes
 
-Puedes usar <DocsLink path="class/Webhook?scrollTo=deleteMessage">`Webhook#deleteMessage()`</DocsLink> para eliminar mensajes enviados previamente por el Webhook.
+Puedes usar <DocsLink path="class/Webhook?scrollTo=deleteMessage" type="method" /> para eliminar mensajes enviados previamente por el Webhook.
 
 <!-- eslint-skip -->
 

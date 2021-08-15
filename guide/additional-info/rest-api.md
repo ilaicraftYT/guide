@@ -31,7 +31,7 @@ client.once('ready', () => {
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
-	const { commandName: command } = interaction;
+	const { commandName } = interaction;
 
 	// ...
 });
@@ -68,7 +68,7 @@ Puede parecer que esto no hace nada, pero lo que está haciendo es lanzar una so
 ```js {3-6}
 client.on('interactionCreate', async interaction => {
 	// ...
-	if (command === 'cat') {
+	if (commandName === 'cat') {
 		const { file } = await fetch('https://aws.random.cat/meow').then(response => response.json());
 		interaction.reply({ files: [file] });
 	}
@@ -98,7 +98,7 @@ const querystring = require('querystring');
 // ...
 client.on('interactionCreate', async interaction => {
 	// ...
-	if (command === 'urban') {
+	if (commandName === 'urban') {
 		const term = interaction.options.getString('term');
 		const query = querystring.stringify({ term });
 
@@ -123,7 +123,7 @@ Now, if you look at the JSON, you can see that it's a `list` property, which is 
 As explained above, you'll want to check if the API returned any answers for your query, and send back the definition if so:
 
 ```js {3-5,7}
-if (command === 'urban') {
+if (commandName === 'urban') {
 	// ...
 	if (!list.length) {
 		return interaction.reply(`No encontré resultados para **${term}**.`);
