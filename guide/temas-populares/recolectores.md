@@ -84,18 +84,18 @@ interaction.reply(item.pregunta, { fetchReply: true })
 ```
 
 ::: tip
-If you don't understand how `.some()` works, you can read about it in more detail [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some).
+Si no entiende cómo funciona `.some()`, puede leerlo con más detalle [aquí](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/some).
 :::
 
-In this filter, you iterate through the answers to find what you want. You would like to ignore the case because simple typos can happen, so you convert each answer to its lowercase form and check if it's equal to the response in lowercase form as well. In the options section, you only want to allow one answer to pass through, hence the `max: 1` setting.
+En este filtro, recorre en iteración las respuestas para encontrar lo que desea. Le gustaría ignorar el caso porque pueden ocurrir errores tipográficos simples, por lo que convierte cada respuesta a su forma en minúsculas y verifica si es igual a la respuesta en minúsculas también. En la sección de opciones, solo desea permitir que pase una respuesta, de ahí la configuración `max: 1`.
 
-The filter looks for messages that match one of the answers in the array of possible answers to pass through the collector. The options (the second parameter) specifies that only a maximum of one message can go through the filter successfully before the Promise successfully resolves. The errors section specifies that time will cause it to error out, which will cause the Promise to reject if one correct answer is not received within the time limit of one minute. As you can see, there is no `collect` event, so you are limited in that regard.
+El filtro busca mensajes que coincidan con una de las respuestas en el arreglo (array) de posibles respuestas para pasar por el recolector. Las opciones (el segundo parámetro) especifican que solo un máximo de un mensaje puede pasar por el filtro correctamente antes de que la Promesa se resuelva correctamente. La sección de errores especifica que el tiempo hará que se produzca un error, lo que hará que la promesa se rechace si no se recibe una respuesta correcta dentro del límite de tiempo de un minuto. Como puede ver, no hay un evento de `recolectado`, por lo que está limitado en ese sentido.
 
-## Reaction collectors
+## Recolectores de reacciones
 
-### Basic reaction collector
+### Recolector de reacciones básico
 
-These work quite similarly to message collectors, except that you apply them on a message rather than a channel. This example uses the <DocsLink path="class/Message?scrollTo=createReactionCollector" type="method" /> method. The filter will check for the 👍 emoji–in the default skin tone specifically, so be wary of that. It will also check that the person who reacted shares the same id as the author of the original message that the collector was assigned to.
+Estos funcionan de manera bastante similar a los recolectores de mensajes, excepto que los aplica en un mensaje en lugar de un canal. Este ejemplo utiliza el método <DocsLink path="class/Message?scrollTo=createReactionCollector" type="method" />. El filtro buscará el emoji `👍` , específicamente en el tono de piel predeterminado, así que ten cuidado con eso. También verificará que la persona que reaccionó comparte la misma identificación que el autor del mensaje original al que se asignó el recolector.
 
 ```js
 const filter = (reaction, user) => {
@@ -105,17 +105,17 @@ const filter = (reaction, user) => {
 const collector = message.createReactionCollector({ filter, time: 15000 });
 
 collector.on('collect', (reaction, user) => {
-	console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
+	console.log(`${reaction.emoji.name} recolectado de ${user.tag}`);
 });
 
 collector.on('end', collected => {
-	console.log(`Collected ${collected.size} items`);
+	console.log(`${collected.size} items recolectados`);
 });
 ```
 
-### Await reactions
+### Esperando reacciones
 
-<p><DocsLink path="class/Message?scrollTo=awaitReactions" type="method" /> works almost the same as a reaction collector, except it is Promise-based. The same differences apply as with channel collectors.</p>
+<p><DocsLink path="class/Message?scrollTo=awaitReactions" type="method" /> funciona casi igual que un recolector de reacciones, excepto que está basado en promesa. Se aplican las mismas diferencias que con los recolectores de canales.</p>
 
 ```js
 const filter = (reaction, user) => {
@@ -125,41 +125,41 @@ const filter = (reaction, user) => {
 message.awaitReactions({ filter, max: 4, time: 60000, errors: ['time'] })
 	.then(collected => console.log(collected.size))
 	.catch(collected => {
-		console.log(`After a minute, only ${collected.size} out of 4 reacted.`);
+		console.log(`Después de un minuto, solo ${collect.size} de 4 reaccionó.`);
 	});
 ```
 
-## Interaction collectors
+## Recolectores de interacciones
 
-The third type of collector allows you to collect interactions; such as when users activate a slash command or click on a button in a message.
+El tercer tipo de recolector le permite recolectar interacciones; como cuando los usuarios activan un comando de barra o hacen clic en un botón en un mensaje.
 
-### Basic message component collector
+### Recolector de componentes básicos
 
-Collecting interactions from message components works similarly to reaction collectors. In the following example,  you will check that the interaction came from a button, and that the user clicking the button is the same user that initiated the command.
+La recolección de interacciones de los componentes del mensaje funciona de manera similar a los recolectores de reacciones. En el siguiente ejemplo, comprobará que la interacción procede de un botón y que el usuario que hace clic en el botón es el mismo que inició el comando.
 
-One important difference to note with interaction collectors is that Discord expects a response to *all* interactions within 3 seconds - even ones that you don't want to collect. For this reason, you may wish to `.deferUpdate()` all interactions in your filter, or not use a filter at all and handle this behavior in the `collect` event.
+Una diferencia importante a tener en cuenta con los recolectores de interacciones es que Discord espera una respuesta a *todas* las interacciones en 3 segundos, incluso las que no desea recolectar. Por esta razón, es posible que desee usar `.deferUpdate()` en todas las interacciones en su filtro, o no usar un filtro en absoluto y manejar este comportamiento en el evento `collect`.
 
 ```js
 const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
 
 collector.on('collect', i => {
 	if (i.user.id === interaction.user.id) {
-		i.reply(`${i.user.id} clicked on the ${i.customId} button.`);
+		i.reply(`${i.user.id} hizo clic en el botón ${i.customId}.`);
 	} else {
-		i.reply({ content: `These buttons aren't for you!`, ephemeral: true });
+		i.reply({ content: `¡Estos botones no son para ti!`, ephemeral: true });
 	}
 });
 
 collector.on('end', collected => {
-	console.log(`Collected ${collected.size} interactions.`);
+	console.log(`${collected.size} interacciones recolectadas`);
 });
 ```
 
-### Await message component
+### Esperando componentes
 
-As before, this works similarly to the message component collector, except it is Promise-based.
+Como antes, esto funciona de manera similar al recolector de componentes, excepto que está basado en promesas.
 
-Unlike other Promise-based collectors, this method will only ever collect one interaction that passes the filter. If no interactions are collected before the time runs out, the Promise will reject. This behavior aligns with Discord's requirement that actions should immediately receive a response. In this example, you will use `.deferUpdate()` on all interactions in the filter.
+A diferencia de otros recolectores basados en promesa, este método solo recolectará una interacción que pase el filtro. Si no se recolectan interacciones antes de que acabe el tiempo, la promesa se rechazará. Este comportamiento se alinea con el requisito de Discord de que las acciones deben recibir una respuesta inmediata. En este ejemplo, usará `.deferUpdate()` en todas las interacciones en el filtro.
 
 ```js
 const filter = i => {
@@ -168,6 +168,6 @@ const filter = i => {
 };
 
 message.awaitMessageComponent({ filter, componentType: 'SELECT_MENU', time: 60000 })
-	.then(interaction => interaction.editReply(`You selected ${interaction.values.join(', ')}!`))
-	.catch(err => console.log(`No interactions were collected.`));
+	.then(interaction => interaction.editReply(`haz selecionado ${interaction.values.join(', ')}!`))
+	.catch(err => console.log(`No se recogieron interacciones.`));
 ```
