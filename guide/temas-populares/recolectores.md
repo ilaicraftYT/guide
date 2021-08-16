@@ -1,4 +1,4 @@
-# Colecciones
+# Recolectores
 
 ## Recolectores de mensajes
 <br/>
