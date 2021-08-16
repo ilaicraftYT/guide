@@ -63,7 +63,7 @@ Keyv expone una API familiar a los "[Maps](https://developer.mozilla.org/en-US/d
 
 Aunque Keyv puede ayudar en cualquier caso donde necesite datos de clave-valor, nos centraremos en configurar un prefijo por guild usando Sqlite.
 
-::: consejo Esta sección seguirá funcionando con cualquier proveedor soportado por Keyv. Recomendamos PostgreSQL para aplicaciones más grandes. :::
+::: tip Esta sección seguirá funcionando con cualquier proveedor soportado por Keyv. Recomendamos PostgreSQL para aplicaciones más grandes. :::
 
 ### Configuración incial
 
