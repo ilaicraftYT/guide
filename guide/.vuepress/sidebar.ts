@@ -80,7 +80,7 @@ export default {
 				'/temas-populares/embeds.md',
 				'/temas-populares/constructores.md',
 				'/temas-populares/reacciones.md',
-				'/temas-populares/colecciones.md',
+				'/temas-populares/recolectores.md',
 				'/temas-populares/permisos.md',
 				'/temas-populares/permisos-extendidos.md',
 				'/temas-populares/intents.md',
