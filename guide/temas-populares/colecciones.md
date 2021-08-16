@@ -1,79 +1,84 @@
-# Collectors
+# Colecciones
 
-## Message collectors
+## Recolectores de mensajes
+<br/>
+<DocsLink path="class/Collector"><code>Colectores</code></DocsLink> son útiles para permitir que su bot obtenga entrada *adicional* después de que se envió el primer comando.  Un ejemplo sería iniciar una prueba, donde el bot "esperará" una respuesta correcta de alguien.
 
-<p><DocsLink path="class/Collector"><code>Collector</code>s</DocsLink> are useful to enable your bot to obtain *additional* input after the first command was sent. An example would be initiating a quiz, where the bot will "await" a correct response from somebody.</p>
+### Recolector de mensajes basico
 
-### Basic message collector
-
-For now, let's take the example that they have provided us:
+Por ahora, tomemos el ejemplo que nos han proporcionado:
 
 ```js
-// `m` is a message object that will be passed through the filter function
+// `m` es un objeto de mensaje que se pasará a través de la función de filtro
 const filter = m => m.content.includes('discord');
 const collector = interaction.channel.createMessageCollector({ filter, time: 15000 });
 
 collector.on('collect', m => {
-	console.log(`Collected ${m.content}`);
+	console.log(`Mensaje recolectado: ${m.content}`);
 });
 
 collector.on('end', collected => {
-	console.log(`Collected ${collected.size} items`);
+	console.log(`${collected.size} items recolectados`);
 });
 ```
+:::danger ADVERTENCIA
+Para este ejemplo, se necesita el [intent](/intents) `GUILD_MESSAGES`
+:::
 
-You can provide a `filter` key to the object parameter of `createMessageCollector()`. The value to this key should be a function that returns a boolean value to indicate if this message should be collected or not. To check for multiple conditions in your filter you can connect them using [logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#logical_operators).  If you don't provide a filter all messages in the channel the collector was started on will be collected. 
 
-Note that the above example uses [implicit return](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body) for the filter function and passes it to the options object using the [object property shorthand](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#property_definitions) notation.
+Puede proporcionar una clave de `filtro` para el parámetro de objeto de `createMessageCollector()`. El valor de esta clave debe ser una función que devuelva un valor booleano para indicar si este mensaje debe recolectase o no. Para verificar múltiples condiciones en su filtro, puede conectarlas usando [operadores logicos](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Expressions_and_Operators#operadores_l%C3%B3gicos).  Si no proporciona un filtro, se recolectarán todos los mensajes del canal en el que se inició el recolector.
 
+Tenga en cuenta que el ejemplo anterior usa [retorno implícito](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Functions/Arrow_functions#cuerpo_de_funci%C3%B3n) para la función de filtro y los pases al objeto de opciones usando la notación [abreviada de propiedad del objeto](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#property_definitions).
 
-If a message passes through the filter, it will trigger the `collect` event for the `collector` you've created. This message is then passed into the event listener as `collected` and the provided function is executed. In the above example, you simply log the message. Once the collector finishes collecting based on the provided end conditions the `end` event emits.
+Si un mensaje pasa por el filtro, activará el evento `collect` para el `recolector` que ha creado. Este mensaje luego se pasa al detector de eventos como `colectado` y se ejecuta la función proporcionada. En el ejemplo anterior, simplemente registra el mensaje. Una vez que el recolector termina de recolectar en función de las condiciones finales proporcionadas, se emite el evento `end`.
 
-You can control when a collector ends by supplying additional option keys when creating a collector:
+Puede controlar cuándo termina un recolector proporcionando claves de opción adicionales al crear un recolector:
 
-* `time`: Amount of time in milliseconds the collector should run for
-* `max`:  Number of messages to successfully pass the filter
-* `maxProcessed`: Number of messages encountered (no matter the filter result)
+* `time`:Cantidad de tiempo en milisegundos que el colector debería funcionar
+* `max`:  Número de mensajes para pasar el filtro con éxito
+* `maxProcessed`: Número de mensajes encontrados (sin importar el resultado del filtro)
 
-The benefit of using an event-based collector over `.awaitMessages()` (its promise-based counterpart) is that you can do something directly after each message is collected, rather than just after the collector ended. You can also stop the collector manually by calling `collector.stop()`.
+El beneficio de usar un recolector basado en eventos sobre `awaitMessages()`
 
-### Await messages
+The benefit of using an event-based collector over `.awaitMessages()` (su contraparte basada en promesas) es que puede hacer algo directamente después de que se recolecte cada mensaje, en lugar de hacerlo justo después de que finalice el recolector. También puede detener el recolector manualmente llamando `collector.stop()`.
 
-Using <DocsLink path="class/TextChannel?scrollTo=awaitMessages" type="method" /> can be easier if you understand Promises, and it allows you to have cleaner code overall. It is essentially identical to <DocsLink path="class/TextChannel?scrollTo=createMessageCollector" type="method" />, except promisified. However, the drawback of using this method is that you cannot do things before the Promise is resolved or rejected, either by an error or completion. However, it should do for most purposes, such as awaiting the correct response in a quiz. Instead of taking their example, let's set up a basic quiz command using the `.awaitMessages()` feature.
+### Esperando mensajes
 
-First, you'll need some questions and answers to choose from, so here's a basic set:
+Usando <DocsLink path="class/TextChannel?scrollTo=awaitMessages" type="method" /> puede ser más fácil si comprende promesas y le permite tener un código más limpio en general. Es esencialmente idéntico a <DocsLink path="class/TextChannel?scrollTo=createMessageCollector" type="method" />, excepto las promesas. Sin embargo, el inconveniente de utilizar este método es que no puede hacer nada antes de que se resuelva o rechace la promesa, ya sea por error o por finalización. Aun así debería funcionar para la mayoría de los propósitos, como esperar la respuesta correcta en un cuestionario. En lugar de tomar su ejemplo, configuremos un comando de prueba básico usando la función `.awaitMessages()`.
+
+Primero, necesitará algunas preguntas y respuestas para elegir, así que aquí tiene un conjunto básico:
 
 ```json
 [
 	{
-		"question": "What color is the sky?",
-		"answers": ["blue"]
+		"pregunta": "¿De que color es el cielo?",
+		"respuestas": ["azul"]
 	},
 	{
-		"question": "How many letters are there in the alphabet?",
-		"answers": ["26", "twenty-six", "twenty six", "twentysix"]
+		"pregunta": "¿Cuántas letras hay en el alfabeto?",
+		"respuestas": ["26", "veintiséis"]
 	}
 ]
 ```
 
-The provided set allows for responder error with an array of answers permitted. Ideally, it would be best to place this in a JSON file, which you can call `quiz.json` for simplicity.
+El conjunto proporcionado permite el error del usuario  con una variedad de respuestas permitidas. Idealmente, sería mejor colocar esto en un archivo JSON, al que puede llamar `quiz.json` para simplificar.
 
 ```js
 const quiz = require('./quiz.json');
 // ...
 const item = quiz[Math.floor(Math.random() * quiz.length)];
 const filter = response => {
-	return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+	return item.respuestas.some(answer => respuestas.toLowerCase() === response.content.toLowerCase());
 };
 
-interaction.reply(item.question, { fetchReply: true })
+interaction.reply(item.pregunta, { fetchReply: true })
 	.then(() => {
 		interaction.channel.awaitMessages({ filter, max: 1, time: 30000, errors: ['time'] })
 			.then(collected => {
-				interaction.followUp(`${collected.first().author} got the correct answer!`);
+				interaction.followUp(`${collected.first().author} ¡Me dio la respuesta correcta!`);
 			})
 			.catch(collected => {
-				interaction.followUp('Looks like nobody got the answer this time.');
+				interaction.followUp('Parece que nadie obtuvo la respuesta esta vez.');
 			});
 	});
 ```
