@@ -235,7 +235,7 @@ process.exit();
 `process.exit()`solo matará su proceso de Node, pero al usar [PM2](http://pm2.keymetrics.io/), reiniciará el proceso cada vez que muera. Puede leer nuestra guía sobre PM2 [aquí](/improving-dev-environment/pm2.md).
 :::
 
-## #¿Cuál es la diferencia entre un usuario y un miembro de servidor?
+## ¿Cuál es la diferencia entre un usuario y un miembro de servidor?
 
 Un `User` representa a un usuario global de Discord y un `GuildMember` representa a un usuario de Discord en un servidor específico. Eso significa que solo los `GuildMembers` pueden tener permisos, roles y apodos, por ejemplo, porque todas estas cosas son información vinculada al servidor que podría ser diferente en cada servidor en el que se encuentre el usuario.
 

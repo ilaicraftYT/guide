@@ -36,7 +36,7 @@ const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 		navbar: [
 			{
 				text: 'Voz',
-				link: '/voice/',
+				link: '/voz/',
 			},
 			{
 				text: 'Documentación',

@@ -1,26 +1,26 @@
 export default {
-	'/voice/': [
+	'/voz/': [
 		{
 			text: 'Inicio',
 			children: [
 				'/',
-				'/requesting-more-content.md',
-				'/whats-new.md',
+				'/solicitando-mas-contenido.md',
+				'/que-hay-de-nuevo.md',
 			],
 		},
 		{
 			text: '¿Cómo empezar?',
 			children: [
-				'/voice/',
+				'/voz/',
 			],
 		},
 		{
 			text: 'Librería',
 			children: [
-				'/voice/life-cycles.md',
-				'/voice/voice-connections.md',
-				'/voice/audio-player.md',
-				'/voice/audio-resources.md',
+				'/voz/ciclos-de-vida.md',
+				'/voz/conexiones-de-voz.md',
+				'/voz/reproductor-de-audio.md',
+				'/voz/recursos-de-audio.md',
 			],
 		},
 	],
@@ -29,17 +29,17 @@ export default {
 			text: 'Inicio',
 			children: [
 				'/',
-				'/requesting-more-content.md',
-				'/whats-new.md',
+				'/solicitando-mas-contenido.md',
+				'/que-hay-de-nuevo.md',
 			],
 		},
 		{
 			text: 'Preparándose',
 			children: [
 				'/preparaciones/',
-				'/preparaciones/setting-up-a-linter.md',
-				'/preparaciones/setting-up-a-bot-application.md',
-				'/preparaciones/adding-your-bot-to-servers.md',
+				'/preparaciones/configurando-un-linter.md',
+				'/preparaciones/configurando-una-app-bot.md',
+				'/preparaciones/agregando-tu-bot-a-servidores.md',
 			],
 		},
 		{
@@ -76,7 +76,7 @@ export default {
 			text: 'Temas populares',
 			children: [
 				'/temas-populares/faq.md',
-				'/temas-populares/threads.md',
+				'/temas-populares/hilos.md',
 				'/temas-populares/embeds.md',
 				'/temas-populares/builders.md',
 				'/temas-populares/reactions.md',
