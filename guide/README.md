@@ -19,11 +19,10 @@ Suena bien, ¿No? ¡Genial! Entonces empecemos...
 Hacer un bot es divertido y todo, pero hay pre-requisitos para hacerlos. Para poder usar discord.js, necesitas un conocimiento de JavaScript. *Puedes* hacer un bot con muy poco conocimiento de JavaScript y de programación en general, pero intentar hacer algo sin entender el lenguaje primero, solo te obstaculizará. Te podrías quedar atascado en problemas poco complicados, luchar con soluciones para problemas increíblemente fáciles, y terminar frustrado en general. Suena bastante molesto.
 
 Si no sabes JavaScript pero te gustaría aprender, aquí hay algunos links con los que puedes iniciar:
-* [Google, tu mejor amigo](https://google.com)
-* [Google, tu mejor amigo](https://google.com)
-* [Google, tu mejor amigo](https://google.com)
-* [Google, tu mejor amigo](https://google.com)
-* [Google, tu mejor amigo](https://google.com)
+* [Eloquent JavaScript, un libro en línea](https://eloquentjs-es.thedojo.mx/)
+* [JavaScript.info, una guía moderna de JavaScript](https://es.javascript.info/)
+* [Nodeschool, lecciones de Node y JavaScript](https://nodeschool.io/es/)
+* [La guía y documentación de JavaScript de MDN](https://developer.mozilla.org/es/docs/Web/JavaScript)
 * [Y Google, tu mejor amigo](https://google.com)
 
 Toma tu tiempo, aprende algo sobre JavaScript, y cuando te sientas lo suficientemente seguro para aprender a hacer un bot, ¡Vuelve e inicia con la guía!
