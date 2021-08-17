@@ -38,7 +38,7 @@ client.on('interactionCreate', async interaction => {
 			.addFields(
 				{ name: 'Definición', value: trim(answer.definition, 1024) },
 				{ name: 'Ejemplo', value: trim(answer.example, 1024) },
-				{ name: 'Clasificación', value: `${answer.thumbs_up} Pulgares arriba. ${answer.thumbs_down} Pulgares abajo.` },
+				{ name: 'Votos', value: `${answer.thumbs_up} Pulgares arriba. ${answer.thumbs_down} Pulgares abajo.` },
 			);
 		interaction.reply({ embeds: [embed] });
 	}
