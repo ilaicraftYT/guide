@@ -1,8 +1,8 @@
 # Estructuras parciales
 
-Las Estructuras Parciales se introdujeron en la libreria en la versión 12 y se reciben opcionalmente siempre que no hay datos suficientes para emitir un evento del cliente con una estructura discord.js completamente intacta. Están (como sugiere el nombre) incompletos y no puede esperar que tengan más información además de su ID. Todas las demás propiedades y métodos de este objeto deben considerarse inválidos y desaparecidos. Antes de esta característica, los eventos de cliente de discord.js no se emitirían si una de las estructuras necesarias no se pudiera construir con datos suficientes para garantizar una estructura completamente funcional. Si no opta por los parciales, este sigue siendo el caso.
+Las Estructuras Parciales se introdujeron en la libreria en la versión `12`  y se reciben opcionalmente siempre que los datos sean insuficientes  para emitir un evento del cliente con una estructura de `discord.js` completamente intacta. Están (como sugiere el nombre) incompletos y no puede esperar que tengan más información además de su `ID`. Todas las demás propiedades y métodos de este objeto deben considerarse inválidos y desaparecidos. Antes de esta característica, los eventos de cliente de `discord.js` no se emitirían si una de las estructuras necesarias no se pudiera construir con datos suficientes para garantizar una estructura completamente funcional. Si no opta por los parciales, este sigue siendo el caso.
 
-Un ejemplo de aprovechamiento de parciales es el manejo de reacciones en mensajes no almacenados en caché, que se explica en [esta página](/popular-topics/reactions.md#listening-for-reactions-on-old-messages).
+Un ejemplo de aprovechamiento de parciales es el manejo de reacciones en mensajes no almacenados en caché, que se explica en [esta página](/temas-populares/reacciones.md#listening-for-reactions-on-old-messages).
 
 Antes, tenía que manejar el evento `raw` indocumentado o recuperar los mensajes respectivos al inicio. El primer enfoque era propenso a errores y a un comportamiento interno inesperado. El segundo tampoco fue completamente a prueba de fallas, ya que los mensajes aún podrían eliminarse en caché si se excedía el tamaño de la caché en los canales ocupados.
 
@@ -10,7 +10,7 @@ Antes, tenía que manejar el evento `raw` indocumentado o recuperar los mensajes
 
 Como dijimos anteriormente, los parciales no tienen toda la información necesaria para que sean estructuras discord.js completamente funcionales, por lo que no sería una buena idea habilitar la funcionalidad por defecto. Los usuarios deben saber cómo manejarlos antes de optar por esta función.
 
-Usted elige qué estructuras quiere emitir como parciales como opciones del cliente al instanciar el cliente de su bot. Las estructuras disponibles son: `USER`, `CHANNEL` (sólo los canales de DM pueden no ser almacenados, los canales del servidor siempre estarán disponibles), `GUILD_MEMBER`, `MESSAGE`, y `REACTION`.
+Usted elige qué estructuras quiere emitir como parciales en las opciones del cliente al instanciar el cliente de su bot. Las estructuras disponibles son: `USER`, `CHANNEL` (sólo los canales de MD pueden no ser almacenados, los canales del servidor siempre estarán disponibles), `GUILD_MEMBER`, `MESSAGE`, y `REACTION`.
 
 ```js
 const { Client } = require('discord.js');
@@ -19,7 +19,7 @@ const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 ```
 
 ::: warning ADVERTENCIA
-Asegúrate de habilitar todos los parciales que necesites para tu caso de uso. Si te falta uno, el evento no se emite.
+Asegúrate de habilitar todos los parciales que necesites para tu caso de uso. Si te falta uno, el evento no se emitirá.
 :::
 
 ::: warning ADVERTENCIA
@@ -60,5 +60,5 @@ if (message.partial) {
 ```
 
 ::: warning ADVERTENCIA
-No se pueden obtener datos borrados desde la API. Para las eliminaciones de mensajes, `messageDelete` sólo emitirá el ID, que no puede utilizar para obtener el mensaje completo que contiene el contenido, el autor u otra información, ya que es inaccesible en el momento en que recibe el evento.
+No se pueden obtener datos borrados desde la API. Para las eliminaciones de mensajes, `messageDelete` sólo emitirá la Id, que no puede utilizar para obtener el mensaje completo con el contenido, el autor u otra información, ya que es inaccesible en el momento en que recibe el evento.
 :::
