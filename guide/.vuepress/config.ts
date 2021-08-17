@@ -8,7 +8,7 @@ const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 	templateDev: path.join(__dirname, 'templates', 'index.dev.html'),
 	templateSSR: path.join(__dirname, 'templates', 'index.ssr.html'),
 	lang: 'es-XL',
-	title: 'Guía de Discord.js',
+	title: 'Guía de discord.js',
 	description: 'La guía oficial de discord.js traducida a español.',
 	head: [
 		['meta', { charset: 'utf-8' }],
@@ -16,7 +16,7 @@ const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 		['link', { rel: 'icon', href: '/favicon.png' }],
 		['meta', { name: 'theme-color', content: '#3eaf7c' }],
 		['meta', { name: 'twitter:card', content: 'summary' }],
-		['meta', { property: 'og:title', content: 'Guía de Discord.js' }],
+		['meta', { property: 'og:title', content: 'Guía de discord.js' }],
 		['meta', { property: 'og:description', content: 'La guía oficial de discord.js traducida a español.' }],
 		['meta', { property: 'og:type', content: 'website' }],
 		['meta', { property: 'og:url', content: 'https://guia.palta.ml/' }],

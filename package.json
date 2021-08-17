@@ -1,6 +1,6 @@
 {
     "name": "discord.js-guide",
-    "description": "Imagine a guide... that explores the many possibilies for your discord.js bot.",
+    "description": "Imagina una guía... que explora varias posibilidades para tu bot en discord.js",
     "version": "3.0.0",
     "private": true,
     "scripts": {
@@ -8,27 +8,23 @@
         "dev": "vuepress dev guide",
         "build": "NODE_ENV=production vuepress build guide"
     },
-    "repository": "https://github.com/discordjs/guide.git",
+    "repository": "https://github.com/Awoocado/guide.git",
     "keywords": [
         "discord",
         "bot",
-        "guide",
+        "guía",
         "tutorial",
         "javascript",
-        "node"
+        "node",
+        "español",
+        "spanish"
     ],
-    "author": "Sanctuary <sanc.pw@gmail.com>",
-    "contributors": [
-        "dragonfire535 <danielbodendahl@gmail.com>",
-        "Drahcirius",
-        "Lewdcario",
-        "Souji <timoqueezle@gmail.com>"
-    ],
+    "author": "Awoocado",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/discordjs/guide/issues"
+        "url": "https://github.com/Awoocado/guide/issues"
     },
-    "homepage": "https://discordjs.guide",
+    "homepage": "https://guia.palta.ml",
     "devDependencies": {
         "@vuepress/plugin-docsearch": "^2.0.0-beta.23",
         "babel-eslint": "^10.0.1",
