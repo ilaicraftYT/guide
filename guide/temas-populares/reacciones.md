@@ -10,13 +10,13 @@
 }
 </style>
 
-# Reactions
+# Reacciones
 
-## Reacting to messages
+## Reaccionando a mensajes
 
-One of the first things many people want to know is how to react with emojis, both custom and "regular" (Unicode). There are different routes you need to take for each of those, so let's look at both.
+Una de las primeras cosas que las personas desearía saber es el como reaccionar con emojis, con emojis personalizados y "regulares" (Unicode). Hay diferentes rutas que debe tomar para cada uno de ellos, así que veamos ambos.
 
-Here's the base code we'll be using:
+Este es el código base que estaremos usando:
 
 ```js
 const { Client, Intents } = require('discord.js');
@@ -26,32 +26,32 @@ const client = new Client({
 });
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('¡Listo!');
 });
 
 client.on('interactionCreate', interaction => {
 	// ...
 });
 
-client.login('your-token-goes-here');
+client.login('tu-token-va-aquí');
 ```
 
-### Unicode emojis
+### Emojis Unicode
 
-To react with a Unicode emoji, you will need the actual Unicode character of the emoji. There are many ways to get a Unicode character of an emoji, but the easiest way would be through Discord itself. If you send a message with a Unicode emoji (such as `:smile:`, for example) and put a `\` before it, it will "escape" the emoji and display the Unicode character instead of the standard emoji image.
+Para reaccionar con un emoji Unicode, necesitaras el carácter Unicode del emoji correspondientes, hay diversas maneras de obtener el carácter Unicode de un emoji, pero la más fácil o recomendada seria obtenerlos a partir de Discord. Si envías un mensaje con un emoji Unicode (por ejemplo, `:smile:`) y escribes un `\` antes del emoji, el emoji será "desprocesado" por su carácter Unicode en lugar de la imagen estándar del emoji.
 
 <DiscordMessages>
 	<DiscordMessage profile="user">
-		Unicode emoji:
+		Emoji Unicode:
 		<span class="emoji-container">
 			<img class="emoji-image" title="smile" src="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f604.png" alt="" />
 		</span>
 		<br />
-		Escaped version (<DiscordMarkdown>`\:smile:`</DiscordMarkdown>): 😄
+		Versión sin procesar (<DiscordMarkdown>`\:smile:`</DiscordMarkdown>): 😄
 	</DiscordMessage>
 </DiscordMessages>
 
-To react with an emoji, you need to use the `message.react()` method. Once you have the emoji character, all you need to do is copy & paste it as a string inside the `.react()` method!
+Para reaccionar con un emoji, necesitaras usar el método `message.react()`. Cuando ya tengas el carácter del emoji, lo único que debes de hacer es copiar y pegar como un string dentro del método `.react()`.
 
 ```js {6-9}
 client.on('interactionCreate', async interaction => {
@@ -59,8 +59,8 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'react') {
-		const message = await interaction.reply('You can react with Unicode emojis!', { fetchReply: true });
+	if (commandName === 'reaccionar') {
+		const message = await interaction.reply('¡Puedes reaccionar con emojis Unicode!', { fetchReply: true });
 		message.react('😄');
 	}
 });
@@ -74,7 +74,7 @@ client.on('interactionCreate', async interaction => {
 				:command="true"
 			>react</DiscordInteraction>
 		</template>
-		You can react with Unicode emojis!
+		¡Puedes reaccionar con emojis Unicode!
 		<template #reactions>
 			<DiscordReactions>
 				<DiscordReaction name="smile" image="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f604.png" />
@@ -83,22 +83,22 @@ client.on('interactionCreate', async interaction => {
 	</DiscordMessage>
 </DiscordMessages>
 
-### Custom emojis
+### Emojis personalizados
 
-For custom emojis, there are multiple ways of reacting. Like Unicode emojis, you can also escape custom emojis. However, when you escape a custom emoji, the result will be different.
+Para los emojis personalizados, hay múltiples maneras de reaccionar. Como los emojis Unicode, puedes desprocesar los emojis personalizados. Sin embargo, cuando desprocesas un emoji personalizado, el resultado será diferente.
 
 <DiscordMessages>
 	<DiscordMessage profile="user">
-		Custom emoji:
+		Emoji personalizado:
 		<span class="emoji-container">
 			<img class="emoji-image" title="blobreach" src="https://imgur.com/3Oar9gP.png" alt="" />
 		</span>
 		<br />
-		Escaped version (<DiscordMarkdown>`\:blobreach:`</DiscordMarkdown>): &lt;:blobreach:123456789012345678&gt;
+		Versión sin procesar (<DiscordMarkdown>`\:blobreach:`</DiscordMarkdown>): &lt;:blobreach:123456789012345678&gt;
 	</DiscordMessage>
 </DiscordMessages>
 
-This format is essentially the name of the emoji, followed by its ID. Copy & paste the ID into the `.react()` method as a string.
+El formato es formado por el nombre del emoji, seguido por su ID. Copia y pega la ID dentro del método `.react()` como un string.
 
 ```js {6-9}
 client.on('interactionCreate', async interaction => {
@@ -106,15 +106,15 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'react-custom') {
-		const message = await interaction.reply('You can react with custom emojis!', { fetchReply: true });
+	if (commandName === 'reaccion-perzonalizada') {
+		const message = await interaction.reply('¡Puedes reaccionar con emojis personalizados!', { fetchReply: true });
 		message.react('123456789012345678');
 	}
 });
 ```
 
 ::: tip
-You can also pass different formats of the emoji to the `.react()` method.
+También puedes usar diferentes formatos del emoji en el método `.react()`.
 
 ```js
 message.react('<:blobreach:123456789012345678>');
@@ -132,7 +132,7 @@ message.react('a:blobreach:123456789012345678');
 				:command="true"
 			>react-custom</DiscordInteraction>
 		</template>
-		You can react with custom emojis!
+		¡Puedes reaccionar con emojis personalizados!
 		<template #reactions>
 			<DiscordReactions>
 				<DiscordReaction name="blobreach" image="https://imgur.com/3Oar9gP.png" />
@@ -141,46 +141,46 @@ message.react('a:blobreach:123456789012345678');
 	</DiscordMessage>
 </DiscordMessages>
 
-Great! This route may not always be available to you, though. Sometimes you'll need to react with an emoji programmatically. To do so, you'll need to retrieve the emoji object.
+¡Genial! Es posible que esta ruta no siempre esté disponible para usted. A veces tendrás que reaccionar con un emoji de forma programática. Para hacerlo, deberá recuperar el objeto emoji.
 
-Two of the easiest ways you can retrieve an emoji would be:
+Las dos formas más fáciles se obtener un emoji serían
 
-* Use `.find()` on a Collection of Emojis.
-* Use `.get()` on the `client.emojis.cache` Collection.
+* Usa `.find()` en una colección de emojis.
+* Usa `.get()` en la colección de `client.emojis.cache`.
 
 ::: tip
-Two or more emojis can have the same name, and using `.find()` will only return the **first** entry it finds. As such, this can cause unexpected results.
+Dos o más emojis pueden tener el mismo nombre, y usando `.find()` únicamente devolverá la **primera** entrada que encuentre. Por lo tanto, esto puede tener respuestas inesperadas.
 :::
 
-Using `.find()`, your code would look something like this:
+Usando `.find()`, tu código debería verse algo así:
 
 <!-- eslint-skip -->
 
 ```js {3-4}
-if (commandName === 'react-custom') {
-	const message = await interaction.reply('You can react with custom emojis!', { fetchReply: true });
+if (commandName === 'reaccion-personalizada') {
+	const message = await interaction.reply('¡Puedes reaccionar con emojis personalizados!', { fetchReply: true });
 	const reactionEmoji = message.guild.emojis.cache.find(emoji => emoji.name === 'blobreach');
 	message.react(reactionEmoji);
 }
 ```
 
-Using `.get()`, your code would look something like this:
+Usando `.get()`, tu código debería verse algo así:
 
 <!-- eslint-skip -->
 
 ```js {3-4}
-if (commandName === 'react-custom') {
-	const message = await interaction.reply('You can react with custom emojis!', { fetchReply: true });
+if (commandName === 'reaccion-personalizada') {
+	const message = await interaction.reply('¡Puedes reaccionar con emojis personalizados!', { fetchReply: true });
 	const reactionEmoji = client.emojis.cache.get('123456789012345678');
 	message.react(reactionEmoji);
 }
 ```
 
-Of course, if you already have the emoji ID, you should put that directly inside the `.react()` method. But if you want to do other things with the emoji data later on (e.g., display the name or image URL), it's best to retrieve the full emoji object.
+Claro, si tú ya tienes la ID del emoji, deberías ponerla directamente dentro del método `.react()`. Pero si quieres hacer otras cosas con los datos de emoji más adelante (p. ej., mostrar el nombre o la URL de la imagen), es mejor recuperar el objeto emoji completo.
 
-### Reacting in order
+### Reaccionando en orden
 
-If you just put one `message.react()` under another, it won't always react in order as-is. This is because `.react()` is a Promise and an asynchronous operation.
+Si tu pones un `message.react()` debajo de otro, no siempre reaccionara en el orden que se escribió. Porque `.react()` es una promesa y una operación asincrónica.
 
 ```js {6-12}
 client.on('interactionCreate', async interaction => {
@@ -188,8 +188,8 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'fruits') {
-		interaction.reply('Reacting with fruits!');
+	if (commandName === 'frutas') {
+		interaction.reply('¡Reaccionando con frutas!');
 		const message = await interaction.fetchReply();
 		message.react('🍎');
 		message.react('🍊');
@@ -206,7 +206,7 @@ client.on('interactionCreate', async interaction => {
 				:command="true"
 			>fruits</DiscordInteraction>
 		</template>
-		Reacting with fruits!
+		¡Reaccionando con frutas!
 		<template #reactions>
 			<DiscordReactions>
 				<DiscordReaction name="apple" image="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f34e.png" />
@@ -222,7 +222,7 @@ client.on('interactionCreate', async interaction => {
 				:command="true"
 			>fruits</DiscordInteraction>
 		</template>
-		Reacting with fruits!
+		¡Reaccionando con frutas!
 		<template #reactions>
 			<DiscordReactions>
 				<DiscordReaction name="apple" image="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f34e.png" />
@@ -238,7 +238,7 @@ client.on('interactionCreate', async interaction => {
 				:command="true"
 			>fruits</DiscordInteraction>
 		</template>
-		Reacting with fruits!
+		¡Reaccionando con frutas!
 		<template #reactions>
 			<DiscordReactions>
 				<DiscordReaction name="tangerine" image="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f34a.png" />
@@ -249,9 +249,9 @@ client.on('interactionCreate', async interaction => {
 	</DiscordMessage>
 </DiscordMessages>
 
-As you can see, if you leave it like that, it won't display as you want. It was able to react correctly on the first try but reacts differently each time after that.
+Como puedes ver, si tú lo dejas tal cual, no se mostrará como deseas. Pudo reaccionar correctamente en el primero intento, pero reacciono durante diferentes tiempos luego de eso.
 
-Luckily, there are two easy solutions to this. The first would be to chain `.then()`s in the order you want it to display.
+Afortunadamente, hay dos soluciones sencillas para esto. La primera sería crear una cadena de `.then()`s en el orden en el cual quieras que se muestre.
 
 ```js {8-11}
 client.on('interactionCreate', async interaction => {
@@ -259,16 +259,17 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'fruits') {
-		const message = await interaction.reply('Reacting with fruits!', { fetchReply: true });
+	if (commandName === 'frutas') {
+		const message = await interaction.reply('¡Reaccionando con frutas!', { fetchReply: true });
 		message.react('🍎')
 			.then(() => message.react('🍊'))
 			.then(() => message.react('🍇'))
-			.catch(error => console.error('One of the emojis failed to react:', error));
+			.catch(error => console.error('Uno de los emojis fallo al intentar reaccionar:', error));
 	}
 });
 ```
 
+La otra solución, sería usar las palabras claves `async`/`await`.
 The other would be to use the `async`/`await` keywords.
 
 ```js {9-15}
@@ -277,21 +278,21 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'fruits') {
-		const message = await interaction.reply('Reacting with fruits!', { fetchReply: true });
+	if (commandName === 'frutas') {
+		const message = await interaction.reply('¡Reaccionando con frutas!', { fetchReply: true });
 
 		try {
 			await message.react('🍎');
 			await message.react('🍊');
 			await message.react('🍇');
 		} catch (error) {
-			console.error('One of the emojis failed to react:', error);
+			console.error('Uno de los emojis fallo al intentar reaccionar:', error);
 		}
 	}
 });
 ```
 
-If you try again with either of the code blocks above, you'll get the result you originally wanted!
+So vuelves a intentarlo con los bloques de código anteriores, obtendrás el resultado deseado.
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
@@ -301,7 +302,7 @@ If you try again with either of the code blocks above, you'll get the result you
 				:command="true"
 			>fruits</DiscordInteraction>
 		</template>
-		Reacting with fruits!
+		¡Reaccionando con frutas!
 		<template #reactions>
 			<DiscordReactions>
 				<DiscordReaction name="apple" image="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f34e.png" />
@@ -317,7 +318,7 @@ If you try again with either of the code blocks above, you'll get the result you
 				:command="true"
 			>fruits</DiscordInteraction>
 		</template>
-		Reacting with fruits!
+		¡Reaccionando con frutas!
 		<template #reactions>
 			<DiscordReactions>
 				<DiscordReaction name="apple" image="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f34e.png" />
@@ -333,7 +334,7 @@ If you try again with either of the code blocks above, you'll get the result you
 				:command="true"
 			>fruits</DiscordInteraction>
 		</template>
-		Reacting with fruits!
+		¡Reaccionando con frutas!
 		<template #reactions>
 			<DiscordReactions>
 				<DiscordReaction name="apple" image="https://twemoji.maxcdn.com/v/13.1.0/72x72/1f34e.png" />
@@ -345,62 +346,62 @@ If you try again with either of the code blocks above, you'll get the result you
 </DiscordMessages>
 
 ::: tip
-If you aren't familiar with Promises or `async`/`await`, you can read more about them on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [our guide page on async/await](/additional-info/async-await.md)!
+Si no estas familiarizado con las promesas `async`/`await`, puedes leer más sobre estas en [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) o [nuestra página en la guía sobre async/await](/additional-info/async-await.md)!
 :::
 
-### Handling multiple reactions if the order doesn't matter
+### Manejando múltiples reacciones si el orden no importa
 
-However, if you don't mind the order the emojis react in, you can take advantage of `Promise.all()`, like so:
+Sin embargo, si no te importa el orden en el cual las reacciones se efectúan, puedes tomar provecho de `Promise.all()`, así:
 
 <!-- eslint-skip -->
 
 ```js {3-8}
-if (commandName === 'fruits') {
-	const message = await interaction.reply('Reacting with fruits!', { fetchReply: true });
+if (commandName === 'frutas') {
+	const message = await interaction.reply('¡Reaccionando con frutas!', { fetchReply: true });
 	Promise.all([
 		message.react('🍎'),
 		message.react('🍊'),
 		message.react('🍇'),
 	])
-		.catch(error => console.error('One of the emojis failed to react:', error));
+		.catch(error => console.error('Uno de los emojis fallo al intentar reaccionar:', error));
 }
 ```
 
-This small optimization allows you to use `.then()` to handle when all of the Promises have resolved, or `.catch()` when one fails. You can also `await` it since it returns a Promise itself.
+Esta pequeña optimización te permite usar `.then()` para manejar cuando todos las promesas fueron resueltas, o `.catch()` cuando una falla. También puedes usar `await` ya que devuelve una Promesa en sí.
 
-## Removing reactions
+## Removiendo reacciones
 
-Now that you know how to add reactions, you might be asking, how do you remove them? In this section, you will learn how to remove all reactions, remove reactions by user, and remove reactions by emoji.
+Ahora que sabes cómo agregar reacciones, es posible que te estés preguntando, ¿cómo las eliminan? En esta sección, aprenderás cómo eliminar todas las reacciones, eliminar las reacciones por usuario y eliminar las reacciones por emoji.
 
 ::: warning ADVERTENCIA
-All of these methods require `MANAGE_MESSAGES` permissions. Ensure your bot has permissions before attempting to utilize any of these methods, as it will error if it doesn't.
+Todos estos métodos requieren el permiso `MANAGE_MESSAGES`. Asegúrate que tu bot tenga este permiso antes de intentar utilizar cualquiera de estos métodos, ya que se producirá un error si no lo haces.
 :::
 
-### Removing all reactions
+### Removiendo todas las reacciones
 
-Removing all reactions from a message is the easiest, the API allows you to do this through a single call. It can be done through the `message.reactions.removeAll()` method. 
+Remover todas las reacciones de un mensaje es lo más fácil, la API te permite hacer esto con una sola llamada. Puede ser hecho usando el método `message.reactions.removeAll()`.
 
 ```js
 message.reactions.removeAll()
-	.catch(error => console.error('Failed to clear reactions:', error));
+	.catch(error => console.error('Ocurrió un error al intentar eliminar las reacciones:', error));
 ```
 
-### Removing reactions by emoji
+### Removiendo reacciones por emoji
 
-Removing reactions by emoji is easily done by using <DocsLink path="class/MessageReaction?scrollTo=remove" type="method" />.
+Remover reacciones por emoji es fácilmente hecho usando <DocsLink path="class/MessageReaction?scrollTo=remove" type="method" /.
 
 ```js
 message.reactions.cache.get('123456789012345678').remove()
-	.catch(error => console.error('Failed to remove reactions:', error));
+	.catch(error => console.error('Ocurrió un error al intentar eliminar las reacciones:', error));
 ```
 
-### Removing reactions by user
+### Removiendo reacciones por usuario
 
 ::: tip
-If you are not familiar with <DocsLink section="collection" path="class/Collection?scrollTo=filter" type="method" /> and [`Map.has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has) take the time to understand what they do and then come back.
+Si no estas familiarizado con <DocsLink section="collection" path="class/Collection?scrollTo=filter" type="method" /> y [`Map.has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has) tomate el tiempo de comprender que hace cada uno y vuelve luego.
 :::
 
-Removing reactions by a user is not as straightforward as removing by emoji or removing all reactions. The API does not provide a method for selectively removing the reactions of a user. This means you will have to iterate through reactions that include the user and remove them.
+Eliminar las reacciones de un usuario no es tan sencillo como eliminar con un emoji o eliminar todas las reacciones. La API no nos da un método para remover las reacciones un usuario en específico. Esto significa que tendrás que iterar a través de reacciones que incluyan al usuario y removerlas.
 
 <!-- eslint-skip -->
 
@@ -412,17 +413,17 @@ try {
 		await reaction.users.remove(userId);
 	}
 } catch (error) {
-	console.error('Failed to remove reactions.');
+	console.error('Ocurrió un error al intentar eliminar las reacciones:');
 }
 ```
 
 ::: warning ADVERTENCIA
-Make sure not to remove reactions by emoji or by user too much; if there are many reactions or users, it can be considered API spam.
+Estate seguro de no remover reacciones por emojis o por usuario demasiado; si hay muchas reacciones o usuarios, puede ser considerado un spam de la API.
 :::
 
-## Awaiting reactions
+## Esperando reacciones
 
-A common use case for reactions in commands is having a user confirm or deny an action or creating a poll system. Luckily, we actually [already have a guide page covering this](/popular-topics/collectors.md)! Check out that page if you want a more in-depth explanation. Otherwise, here's a basic example for reference:
+Un caso de uso común para las reacciones en los comandos es hacer que un usuario confirme o niegue una acción o cree un sistema de votación. Afortunadamente, nosotros actualmente [tenemos una guía que cubre este punto](/temas-populares/recolectores.md)! Revisa esa página si quieres ir mas a profundidad con la explicación. De otra manera, aquí hay un ejemplo básico para que tomes de referencia.
 
 ```js
 message.react('👍').then(() => message.react('👎'));
@@ -436,27 +437,27 @@ message.awaitReactions({ filter, max: 1, time: 60000, errors: ['time'] })
 		const reaction = collected.first();
 
 		if (reaction.emoji.name === '👍') {
-			message.reply('You reacted with a thumbs up.');
+			message.reply('Reaccionaste con un pulgar hacia arriba.');
 		} else {
-			message.reply('You reacted with a thumbs down.');
+			message.reply('Reaccionaste con un pulgar hacia abajo.');
 		}
 	})
 	.catch(collected => {
-		message.reply('You reacted with neither a thumbs up, nor a thumbs down.');
+		message.reply('No reaccionaste con un pulgar hacia arriba ni hacia abajo.');
 	});
 ```
 
-## Listening for reactions on old messages
+## Escuchar las reacciones de los mensajes antiguos.
 
-Messages sent before your bot started are uncached unless you fetch them first. By default, the library does not emit client events if the data received and cached is not sufficient to build fully functional objects.
-Since version 12, you can change this behavior by activating partials. For a full explanation of partials see [this page](/popular-topics/partials.md).
+Los mensajes enviados antes de que se iniciara tu bot no se almacenan en caché a menos que los recuperes primero. Por defecto, la librería no emite eventos de cliente si los datos recibidos y almacenados en el cache no son suficientes para construir un objeto completo y funcional.
+Desde la versión 12, puede cambiar este comportamiento activando parciales. Para obtener una explicación completa de los parciales, consulta [está página](/temas-populares/parciales.md).
 
-Make sure you enable partial structures for `MESSAGE`, `CHANNEL`, and `REACTION` when instantiating your client if you want reaction events on uncached messages for both server and direct message channels. If you do not want to support direct message channels, you can exclude `CHANNEL`.
+Asegúrese de habilitar estructuras parciales para `MESSAGE`, `CHANNEL`, y `REACTION` al crear una instancia de tu cliente si desea eventos de reacción en mensajes no almacenados en caché tanto para el servidor como para los canales de mensajes directos. Si no desea admitir canales de mensajes directos, puedes excluir `CHANNEL`.
 
 ::: tip
-If you use [gateway intents](/popular-topics/intents.md) but can't or don't want to use the privileged `GUILD_PRESENCES` intent, you additionally need the `USER` partial.
+Si usas [intents del gateway](/temas-populares/intents.md) pero no puedes o no quieres usar el intent `GUILD_PRESENCES`, además necesita el parcial `USER`.
 :::
-
+A
 ```js
 const { Client, Intents } = require('discord.js');
 
@@ -466,29 +467,29 @@ const client = new Client({
 });
 
 client.on('messageReactionAdd', async (reaction, user) => {
-	// When a reaction is received, check if the structure is partial
+	// Cuando una reacción es recibida, revisa si la estructura es parcial
 	if (reaction.partial) {
-		// If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
+		// Si se eliminó el mensaje al que pertenece esta reacción, la búsqueda puede dar como resultado un error de API que debe manejarse
 		try {
 			await reaction.fetch();
 		} catch (error) {
-			console.error('Something went wrong when fetching the message:', error);
-			// Return as `reaction.message.author` may be undefined/null
+			console.error('Algo salió mal al recuperar el mensaje:', error);
+			// Devuelve como que `reaction.message.author` es undefined/null
 			return;
 		}
 	}
 
-	// Now the message has been cached and is fully available
-	console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction!`);
-	// The reaction is now also fully available and the properties will be reflected accurately:
-	console.log(`${reaction.count} user(s) have given the same reaction to this message!`);
+	// Ahora el mensaje se ha almacenado en caché y está completamente disponible
+	console.log(`El mensaje de ${reaction.message.author}'s con el contenido: "${reaction.message.content}" ganó una reacción!`);
+	// La reacción ahora también está completamente disponible y las propiedades se reflejarán con precisión:
+	console.log(`¡${reaction.count} usuario(s) han dado la misma reacción al mensaje!`);
 });
 ```
 
 ::: warning ADVERTENCIA
-Partial structures are enabled globally. You cannot only make them work for a specific event or cache, and you very likely need to adapt other parts of your code that are accessing data from the relevant caches. All caches holding the respective structure type might return partials as well! For more info, check out [this page](/popular-topics/partials.md).
+Las estructuras parciales están habilitadas globalmente. No solo puedes hacer que funcionen para un evento o caché específico, y es muy probable que necesites adaptar otras partes de tu código que acceden a datos de los cachés relevantes. ¡Todos los cachés que contienen el tipo de estructura respectivo también pueden devolver parciales! Para obtener más información, consulte [esta página] (/temas-populares/parciales.md).
 :::
 
-## Resulting code
+## Código resultante
 
 <ResultingCode />
