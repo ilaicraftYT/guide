@@ -19,7 +19,7 @@ Este es un ejemplo de cómo puede verse una incrustación. Revisaremos la constr
 				thumbnail="https://i.imgur.com/AfFp7pu.png"
 				image="https://i.imgur.com/AfFp7pu.png"
 				footer-icon="https://i.imgur.com/AfFp7pu.png"
-				timestamp="17/08/2021"
+				timestamp="08/17/2021"
 				author-name="Autor"
 				author-icon="https://i.imgur.com/AfFp7pu.png"
 				author-url="https://discord.js.org/">
