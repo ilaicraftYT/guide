@@ -51,13 +51,13 @@ export default {
 			],
 		},
 		{
-			text: 'Administrador de comandos',
+			text: 'Gestor de comandos',
 			children: [
 				'/gestor-de-comandos/',
 			],
 		},
 		{
-			text: 'Administrador de eventos',
+			text: 'Gestor de eventos',
 			children: [
 				'/gestor-de-eventos/',
 			],
@@ -77,7 +77,7 @@ export default {
 			children: [
 				'/temas-populares/faq.md',
 				'/temas-populares/hilos.md',
-				'/temas-populares/embeds.md',
+				'/temas-populares/incrustaciones.md',
 				'/temas-populares/constructores.md',
 				'/temas-populares/reacciones.md',
 				'/temas-populares/recolectores.md',
