@@ -7,7 +7,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const trim = (str, max) => (str.length > max ? `${str.slice(0, max - 3)}...` : str);
 
 client.once('ready', () => {
-	console.log('!Listo!');
+	console.log('¡Listo!');
 });
 
 client.on('interactionCreate', async interaction => {
@@ -38,7 +38,7 @@ client.on('interactionCreate', async interaction => {
 			.addFields(
 				{ name: 'Definición', value: trim(answer.definition, 1024) },
 				{ name: 'Ejemplo', value: trim(answer.example, 1024) },
-				{ name: 'Rating', value: `${answer.thumbs_up} Pulgares arriba. ${answer.thumbs_down} Pulgares abajo.` },
+				{ name: 'Clasificación', value: `${answer.thumbs_up} Pulgares arriba. ${answer.thumbs_down} Pulgares abajo.` },
 			);
 		interaction.reply({ embeds: [embed] });
 	}
