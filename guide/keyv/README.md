@@ -43,6 +43,8 @@ Para una configuración más detallada, lee el [Keyv readme](https://github.com/
 
 Keyv expone una API familiar a los "[Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)". Sin embargo, solo tiene los métodos `set`, `get`, `delete`y `clear`. Además, en lugar de devolver datos inmediatamente, estos métodos retornan [Promesas](/additional-info/async-await.md) que se resuelven con los datos.
 
+<!-- eslint-skip -->
+
 ```js
 (async () => {
     // true

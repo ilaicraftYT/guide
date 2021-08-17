@@ -110,8 +110,8 @@ export default {
 			text: 'Fragmentación (Sharding)',
 			children: [
 				'/sharding/',
-				'/sharding/additional-information.md',
-				'/sharding/extended.md',
+				'/sharding/informacion-adicional.md',
+				'/sharding/extendido.md',
 			],
 		},
 		{
@@ -123,8 +123,8 @@ export default {
 		{
 			text: 'Mejorando tu entorno de desarrollo',
 			children: [
-				'/mejorando-el entorno-de-desarrollo/pm2.md',
-				'/mejorando-el entorno-de-desarrollo/package-json-scripts.md',
+				'/mejorando-el-entorno-de-desarrollo/pm2.md',
+				'/mejorando-el-entorno-de-desarrollo/package-json-scripts.md',
 			],
 		},
 		{
