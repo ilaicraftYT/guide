@@ -1,58 +1,57 @@
-# Errors
+# Errores
 
-There is no doubt that you have encountered errors while making bots. While errors are instrumental at warning you of what is going wrong, many people are stumped by them and how to track them down and fix them, but don't worry, we have you covered. This section will be all about diagnosing errors, identifying where they are coming from, and fixing them.
+No hay duda de que ha encontrado errores al crear bots. Si bien los errores son fundamentales para advertirle de lo que va mal, a muchas personas les desconciertan y cómo rastrearlos y solucionarlos, pero no se preocupe, lo tenemos cubierto. Esta sección tratará sobre el diagnóstico de errores, identificar de dónde provienen y corregirlos.
 
-## Types of Errors
+## Tipos de errores
 
-### API Errors
+### Errores de API
+Los errores de API o DiscordAPIErrors son lanzados por la API de Discord cuando se lleva a cabo una solicitud no válida. Los errores de API se pueden diagnosticar principalmente mediante el mensaje que se proporciona. Puede examinar más a fondo los errores inspeccionando el método HTTP y la ruta utilizados. Exploraremos el seguimiento de estos errores en la siguiente sección.
 
-API Errors or DiscordAPIErrors are thrown by the Discord API when an invalid request carries out. API Errors can be mostly diagnosed using the message that is given. You can further examine errors by inspecting the HTTP method and path used. We will explore tracking these errors down in the next section.
+Ejemplo: `DiscordAPIError: Cannot send an empty message` (No se puede enviar un mensaje vacio)
 
-Example: `DiscordAPIError: Cannot send an empty message`
+### Errores de discord.js
 
-### discord.js errors
+Los errores de discord.js son lanzados por la propia biblioteca. Por lo general, se pueden rastrear fácilmente mediante el [seguimiento de la pila](https://es.wikipedia.org/wiki/Stack_trace) y el mensaje de error.
 
-discord.js errors are thrown by the library itself. They can usually be easily tracked down using the stack trace and error message.
+Ejemplo: `The messages must be an Array, Collection, or number.` (Los mensajes deben ser un arreglo, una colección o un número.)
 
-Example: `The messages must be an Array, Collection, or number.`
+### Errores de JavaScript
 
-### JavaScript errors
+Los errores de JavaScript son lanzados por el propio node o por discord.js. Estos errores se pueden solucionar fácilmente observando el tipo de error y el [seguimiento de la pila](https://es.wikipedia.org/wiki/Stack_trace). Puede encontrar una lista completa de tipos [aquí](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Error) Y una lista de errores comunes de js [aquí](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Errors).
 
-JavaScript errors are thrown by node itself or by discord.js. These errors can easily be fixed by looking at the type of error and the stack trace. You can find a full list of types [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) And a list of common js errors [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors).
+Example: `ReferenceError: "x" is not defined` ("x" no esta definido)
 
-Example: `ReferenceError: "x" is not defined`
+### Errores de WebSocket y Red
 
-### WebSocket and Network errors
+Los errores de WebSocket y Red a son errores comunes del sistema que genera Node en respuesta a algún problema con la conexión de WebSocket.Desafortunadamente, estos errores no tienen una solución concreta y pueden (generalmente) solucionarse obteniendo una conexión mejor, más estable y más robusta. Discord.js intentará automáticamente volver a conectarse a WebSocket si se produce un error.
 
-WebSocket and Network errors are common system errors thrown by Node in response to something wrong with the WebSocket connection. Unfortunately, these errors do not have a concrete solution and can be (usually) fixed by getting a better, more stable, and more robust connection. discord.js will automatically try to reconnect to the WebSocket if an error occurs. 
-
-In version 12, WebSocket errors are handled internally, meaning your process should never crash from them. If you want to log these errors, should they happen, you can listen to the `shardError` event as shown below.
+En la versión 12, los errores de WebSocket se manejan internamente, lo que significa que su proceso nunca debería fallar. Si desea registrar estos errores, en caso de que ocurran, puede escuchar el evento `shardError` como se muestra a continuación.
 
 ```js
 client.on('shardError', error => {
-	console.error('A websocket connection encountered an error:', error);
+	console.error('Una conexión de websocket encontró un error:', error);
 });
 ```
 
-The commonly thrown codes for these errors are:
-- `ECONNRESET` - The connection was forcibly closed by a peer, thrown by the loss of connection to a WebSocket due to timeout or reboot.
-- `ETIMEDOUT` - A connect or send request failed because the receiving party did not respond after some time.
-- `EPIPE` - The remote side of the stream being written to has been closed.
-- `ENOTFOUND` - The domain being accessed is unavailable, usually caused by a lack of internet, can be thrown by the WebSocket and HTTP API.
-- `ECONNREFUSED` - The target machine refused the connection; check your ports and firewall.
+Los códigos lanzados comúnmente para estos errores son:
+- `ECONNRESET` - La conexión fue cerrada por la fuerza por un par, provocada por la pérdida de conexión a un WebSocket debido al tiempo de espera o al reinicio.
+- `ETIMEDOUT` - Una solicitud de conexión o envío falló porque la parte receptora no respondió después de un tiempo.
+- `EPIPE` - Se ha cerrado el lado remoto de la secuencia en la que se está escribiendo.
+- `ENOTFOUND` - El dominio al que se accede no está disponible, generalmente debido a la falta de Internet, puede ser arrojado por WebSocket y la API HTTP.
+- `ECONNREFUSED` - La máquina de destino rechazó la conexión; compruebe sus puertos y cortafuegos.
 
-## How to diagnose API errors
+## Cómo diagnosticar errores de API
 
-API Errors can be tracked down by adding an event listener for unhandled rejections and looking at the extra info.
-This can be done by adding this to your main file.
+Los errores de API se pueden rastrear agregando un detector de eventos para los rechazos no controlados y mirando la información adicional.
+Esto se puede hacer agregando esto a su archivo principal.
 
 ```js
 process.on('unhandledRejection', error => {
-	console.error('Unhandled promise rejection:', error);
+	console.error('Rechazo de promesa no manejada:', error);
 });
 ```
 
-The next time you get the error it will show info along the bottom of the error which will look something like this for example:
+La próxima vez que reciba el error, se mostrará información en la parte inferior del error, que se verá así, por ejemplo:
 
 ```json
   name: 'DiscordAPIError',
@@ -62,93 +61,95 @@ The next time you get the error it will show info along the bottom of the error 
   method: 'GET'
 ```
 
-All of this information can help you track down what caused the error and how to fix it. In this section, we will run through what each property means.
+Toda esta información puede ayudarlo a rastrear qué causó el error y cómo solucionarlo. En esta sección, repasaremos lo que significa cada propiedad.
 
-### Message
+### Mensaje
 
-The most important part of the error is the message. It tells you what went wrong, which can help you track down where it originates. 
-You can find a full list of messages [here](https://discord.com/developers/docs/topics/opcodes-and-status-codes#json) in the Discord API Docs.
+La parte más importante del error es el mensaje (message). Le dice qué salió mal, lo que puede ayudarlo a rastrear dónde se origina.
+Puede encontrar una lista completa de mensajes [aquí](https://discord.com/developers/docs/topics/opcodes-and-status-codes#json) en los documentos de la API de Discord.
 
-### Path
+### Ruta
 
-Another helpful piece of information is the path, which tells you what API endpoint the error occurred on. We cannot possibly cover all endpoints, but they are usually very descriptive.
+Otra información útil es la ruta (path), que le indica en qué punto final de API se produjo el error. Es posible que no podamos cubrir todos los puntos finales, pero suelen ser muy descriptivos.
 
-In the above example, the path tells you that the action was executed in the `/channels/` scope. The number you see next is the channel's ID. Next, you can spot the `message/` scope. The number is again the object's ID. Combined with the method `GET` you can conclude, that the bot tried to fetch the message with the id `[object Object]` from the channel with the ID `638200642359525387`.
+En el ejemplo anterior, la ruta le dice que la acción se ejecutó en `/channels/`. El número que ve a continuación es el ID del canal. A continuación, puede detectar el alcance `message/`. El número es nuevamente la identificación del objeto. Combinado con el método `GET` se puede concluir que el bot intentó obtener el mensaje con el ID `[object Object]` del canal con el ID` 638200642359525387`.
 
-As the error message tells you `[object Object ]` is not a valid ID, so you now know where to look for an error! Find out where you pass an object as an ID when trying to fetch a message and fix your code in that location.
+Como el mensaje de error le dice que `[object Object]` no es un ID válido, entonces ya sabe dónde buscar un error. Descubra dónde pasa un objeto como ID cuando intenta buscar un mensaje y corrija su código en esa ubicación.
 
-### Code
+### Código
 
-The code is another partial representation of the message, in this case, `Invalid Form Body`. You can find a full list of codes [here](https://discord.com/developers/docs/topics/opcodes-and-status-codes#json-json-error-codes)
+El código es otra representación parcial del mensaje, en este caso, `Invalid Form Body`.
 
-The code is also handy if you want only to handle a specific error. Say you're trying to delete a message which may or may not be there, and wanted to ignore unknown message errors. This can be done by checking the code, either manually or using discord.js constants.
+The code is another partial representation of the message, in this case, `Invalid Form Body`. Puede encontrar una lista completa de códigos [aquí](https://discord.com/developers/docs/topics/opcodes-and-status-codes#json-json-error-codes)
+
+El código también es útil si solo desea manejar un error específico. Supongamos que está intentando eliminar un mensaje que puede o no estar allí y desea ignorar los errores de mensajes desconocidos. Esto se puede hacer verificando el código, ya sea manualmente o usando las constantes de discord.js.
 
 ```js
 message.delete().catch(error => {
-	// Only log the error if it is not an Unknown Message error
+	// Solo registra el error si no es un error de mensaje desconocido
 	if (error.code !== 10008) {
-		console.error('Failed to delete the message:', error);
+		console.error('No se pudo borrar el mensaje:', error);
 	}
 });
 ```
 
-Or using Constants:
+O usando constantes:
 
 ```js
 message.delete().catch(error => {
 	if (error.code !== Discord.Constants.APIErrors.UNKNOWN_MESSAGE) {
-		console.error('Failed to delete the message:', error);
+		console.error('No se pudo borrar el mensaje:', error);
 	}
 });
 ```
 
-You can find a list of constants [here](https://github.com/discordjs/discord.js/blob/stable/src/util/Constants.js#L552)
+Puede encontrar una lista de constantes [aquí](https://github.com/discordjs/discord.js/blob/stable/src/util/Constants.js#L552)
 
-### Method
+### Método
 
-The final piece of information can tell you a lot about what you tried to do to the path. There are a set of predefined keywords that describe our actions on the path.
+La información final puede decirle mucho sobre lo que intentó hacer con la ruta (path). Hay un conjunto de palabras clave predefinidas que describen nuestras acciones en el camino.
 
 ```
-GET    - Used to retrieve a piece of data
-POST   - Used to send a piece of data
-PATCH  - Used to modify a piece of data
-PUT    - Used to replace a piece of data completely
-DELETE - Used to delete a piece of data completely
+GET    - Se usa para recuperar un dato
+POST   - Se usa para enviar un dato
+PATCH  - Se usa para modificar un dato
+PUT    - Se usa para reemplazar un dato por completo
+DELETE - Se usa para eliminar un dato por completo
 ```
 
-In this particular example, you can see you are trying to access a piece of data, specifically, a message.
+En este ejemplo en particular, puede ver que está intentando acceder a un dato, específicamente, un mensaje.
 
-## Common discord.js and API errors
+## Errores comunes de discord.js y API
 
-### An invalid token was provided.
+### Se proporcionó un token no válido.
 
-This is a prevalent error; it originates from a wrong token being passed into `client.login()`. The most common causes of this error are:
+Este es un error frecuente; se origina a partir de un token incorrecto que se pasa a `client.login()`. Las causas más comunes de este error son:
 
-- Not importing the config or env file correctly
-- Copying the client secret instead of the bot token (the token is alphanumerical and three parts delimited by a period while the client secret is significantly smaller and one part only)
-- Simply showing the token and copying that, instead of clicking regenerate and copying that.
+- No se importa correctamente el archivo de configuración o env
+- Copiar el secreto del cliente en lugar del token del bot (el token es alfanumérico y tres partes delimitadas por un punto, mientras que el secreto del cliente es significativamente más pequeño y solo una parte)
+- Simplemente mostrando el token y copiándolo, en lugar de hacer clic en regenerar y copiarlo.
 
 ::: warning ADVERTENCIA
-Before the release of version 12, there used to be an issue where the token was not prefixed correctly, which resulted in valid tokens being marked as invalid. If you have verified that all of the above is not the case, make sure you have updated discord.js to the current stable version.
+Antes del lanzamiento de la versión 12, solía haber un problema en el que el token no tenía el prefijo correcto, lo que provocaba que los tokens válidos se marcaran como no válidos. Si ha verificado que todo lo anterior no es el caso, asegúrese de haber actualizado discord.js a la versión estable actual.
 :::
 
-### Request to use token, but token was unavailable to the client.
+### Solicitud para usar el token, pero el token no estaba disponible para el cliente.
 
-Another common error–this error originates from the client attempting to execute an action that requires the token but the token not being available. This is most commonly caused by destroying the client and then trying to perform an action.
+Otro error común: este error se origina cuando el cliente intenta ejecutar una acción que requiere el token, pero el token no está disponible. Esto suele deberse a la destrucción del cliente y luego al intentar realizar una acción.
 
-This error is also caused by attempting to use a client that has not logged in. Both of the examples below will throw errors.
+Este error también se debe al intento de utilizar un cliente que no ha iniciado sesión. Los dos ejemplos siguientes arrojarán errores.
 
 ```js
 const { Client, Intents } = require('discord.js');
 
-// Should not be here!
+// ¡No debería estar aquí!
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 module.exports = interaction => {
 	const id = interaction.options.getString('id');
-	// Should be `interaction.client` instead!
+	// En su lugar, debería ser `interaction.client`!
 	client.users.fetch(id).then(user => {
-		interaction.reply(`Your requested user: ${user.tag}`);
+		interaction.reply(`Su usuario solicitado: ${user.tag}`);
 	});
 };
 ```
@@ -160,57 +161,57 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.on('interactionCreate', someHandlerFunction);
 
-client.login('your-token-goes-here');
-// client will not be logged in yet!
+client.login('tu-token-va-aquí');
+// ¡el cliente no ha iniciado sesión todavía!
 client.users.fetch('myId').then(someInitFunction);
 ```
 
-### MessageEmbed field names may not be empty.
+### Los nombres de los campos MessageEmbed no pueden estar vacíos.
 
-This error originates from calling `MessageEmbed.addFields()` with a field object's `name` property as an empty string. If you would like the title to be empty for a reason, you should use a zero width space, which can be input as `\u200b`.
+Este error se origina al llamar a `MessageEmbed.addFields()` con la propiedad `name` de un objeto de campo como una cadena vacía. Si desea que el título esté vacío por alguna razón, debe usar un espacio de ancho cero, que se puede ingresar como `\u200b`.
 
-### MessageEmbed field values may not be empty.
+### Los valores del campo MessageEmbed no pueden estar vacíos.
 
-In conjunction with the previous error, this error results from calling `MessageEmbed.addFields()` with a field object's `value` property as an empty string. You can use a zero-width space if you would like this blank.
+Junto con el error anterior, este error es el resultado de llamar a `MessageEmbed.addFields()` con la propiedad `value` de un objeto de campo como una cadena vacía. Puede utilizar un espacio de ancho cero si desea este espacio en blanco.
 
-### The messages must be an Array, Collection, or number.
+### Los mensajes deben ser un arreglo, una colección o un número.
 
-This error originates from an invalid call to `bulkDelete()`. Make sure you are inputting a valid Array or Collection of messages or a valid number.
+Este error se origina en una llamada no válida a `bulkDelete()`. Asegúrese de ingresar un arreglo, colección de mensajes válida o un número válido.
 
-### Members didn't arrive in time.
+### Los miembros no llegaron a tiempo.
 
-Another common error–this error originates from the client requesting members from the API through the WebSocket and the member chunks not arriving in time and triggering the timeout. The most common cause of this error is a bad connection; however, it can also be caused by fetching many members, upwards of 50 thousand. To fix this, run the bot on a location with better internet, such as a VPS. If this does not work for you, you will have to manually change the hardcoded member fetching timeout in the source code.
+Otro error común: este error se origina cuando el cliente solicita miembros de la API a través de WebSocket y los fragmentos de miembros no llegan a tiempo y activan el tiempo de espera. La causa más común de este error es una mala conexión; sin embargo, también puede deberse a la obtención de muchos miembros, más de 50 mil. Para solucionar este problema, ejecute el bot en una ubicación con mejor Internet, como un VPS. Si esto no funciona para usted, tendrá que cambiar manualmente el tiempo de espera de recuperación de miembros codificados en el código fuente.
 
-### MaxListenersExceededWarning: Possible EventEmitter memory leak detected...
+### MaxListenersExceededWarning: Posible fuga de memoria EventEmitter detectada ...
 
-This error is caused by spawning a large number of event listeners, usually for the client. The most common cause of this is nesting your event listeners instead of separating them. The way to fix this error is to make sure you do not nest your listeners; it is **not** to use `emitter.setMaxListeners()` as the error suggests.
+Este error se debe a la generación de una gran cantidad de detectores de eventos, generalmente para el cliente. La causa más común de esto es anidar sus detectores de eventos en lugar de separarlos. La forma de corregir este error es asegurarse de no anidar sus detectores de eventos; **no** usar `emitter.setMaxListeners ()` como sugiere el error.
 
-You can debug these messages in different ways:
-- Through the [CLI](https://nodejs.org/api/cli.html#cli_trace_warnings): `node --trace-warnings index.js`
-- Through the [`process#warning` event](https://nodejs.org/api/process.html#process_event_warning): `process.on('warning', console.warn);`
+Puede depurar estos mensajes de diferentes formas:
+- A través de la [CLI](https://nodejs.org/api/cli.html#cli_trace_warnings): `node --trace-warnings index.js`
+- A través del [evento `process#warning`](https://nodejs.org/api/process.html#process_event_warning): `process.on('warning', console.warn);`
 
-### Cannot send messages to this user.
+### No se pueden enviar mensajes a este usuario.
 
-This error throws when the bot attempts to send a DM message to a user but cannot do so. A variety of reasons causes this:
-- The bot and the user do not share a guild (often, people attempt to dm the user after kicking or banning them).
-- The bot tries to DM another bot.
-- The user has blocked the bot.
-- The user has disabled dms in the privacy settings.
+Este error se produce cuando el bot intenta enviar un mensaje directo a un usuario, pero no puede hacerlo. Varias razones causan esto:
+- El bot y el usuario no comparten un gremio (a menudo, la gente intenta enviar un MD al usuario después de expulsarlos o banearlos).
+- El bot intenta enviar un mensaje directo a otro bot.
+- El usuario ha bloqueado el bot.
+- El usuario ha desactivado los mensaje directos en la configuración de privacidad.
 
-In the case of the last two reasons, the error is not preventable, as the Discord API does not provide a way to check if you can send a user a dm until you attempt to send one. The best way to handle this error is to add a `.catch()` where you try to dm the user and either ignore the rejected Promise or do what you want because of it.
+En el caso de las dos últimas razones, el error no se puede evitar, ya que la API de Discord no proporciona una forma de verificar si puede enviar un dm a un usuario hasta que intente enviar uno. La mejor manera de manejar este error es agregar un `.catch()` donde intenta enviar un md al usuario e ignora la promesa rechazada o hace lo que quiera debido a ella.
 
-## Common miscellaneous errors
+## Errores varios comunes
 
-### code ENOENT... syscall spawn git.
+### código ENOENT ... syscall spawn git.
 
-This error is commonly thrown by your system due to it not finding `git`. You need to install `git` or update your path if `git` is already installed. Here are the download links for it:
+Este error es comúnmente lanzado por su sistema debido a que no encuentra `git`. Necesita instalar `git` o actualizar su ruta si `git` ya está instalado. Aquí están los enlaces de descarga para ello:
 - Ubuntu/Debian: `sudo apt-get install git`
 - Windows: [git-scm](https://git-scm.com/download/win)
 
-### code ELIFECYCLE
+### código ELIFECYCLE
 
-This error is commonly thrown by your system in response to the process unexpectedly closing. Cleaning the npm cache and deleting node_modules can usually fix it. The instructions for doing that are as such:
-- Clean npm cache with `npm cache clean --force`
-- delete `node_modules`
-- delete `package-lock.json` (make sure you have a `package.json`!)
-- run `npm install` to reinstall packages from `package.json`
+Este error es comúnmente lanzado por su sistema en respuesta al cierre inesperado del proceso. Limpiar la caché npm y eliminar node_modules generalmente puede solucionarlo. Las instrucciones para hacerlo son las siguientes:
+- Limpiar el caché de npm con `npm cache clean --force`
+- Borrar `node_modules`
+- Borrar `package-lock.json` (¡asegúrese de tener un `package.json`!)
+- Ejecutar `npm install` para reinstalar los paquetes desde `package.json`
