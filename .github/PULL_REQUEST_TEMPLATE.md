@@ -1,1 +1,1 @@
-**Please describe the changes this PR makes and why it should be merged:**
+**Por favor describa los cambios que este PR hace, y el porqué de combinarlo:**

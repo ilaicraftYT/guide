@@ -1,18 +1,19 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: Petición de característica
+about: Sugiere una idea a la guía
 labels: 't: request'
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-<!-- A clear and concise description of what the problem is. Ex. I'm always frustrated when [...] -->
+**¿Es tu petición relacionada a un problema? Por favor describa.**
 
-**Describe the solution you'd like**
-<!-- A clear and concise description of what you want to be addressed in the guide. -->
+<!-- Una descripción clara y concisa de qué es el problema. Ej. Siempre estoy frustado cuando [...] -->
 
-**Describe alternatives you've considered**
-<!-- A clear and concise description of any alternative solutions or features you've considered. -->
+**Describa la solución que te gustaría**
+<!-- Una descripción clara y concisa de lo que quieres que sea solucionado en esta guía -->
 
-**Additional notes**
-<!-- Add any other notes about the problem here. -->
+**Describa alternativas que hayas considerado**
+<!-- Una descripción clara y concisa de cualquier solución o característica alternativa que hayas considerado. -->
+
+**Notas adicionales**
+<!-- Añade otras notas acerca del problema aquí. -->
