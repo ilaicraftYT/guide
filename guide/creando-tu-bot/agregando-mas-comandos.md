@@ -1,7 +1,7 @@
 # Añadiendo más comandos
 
 ::: tip
-Esta página es una continuación y se basa en el código de la [página anterior](/creating-your-bot/) y asume que ya has leído la [sección de interacciones](/interactions/registering-slash-commands.md) y estás familiarizado con su uso.
+Esta página es una continuación y se basa en el código de la [página anterior](/creando-tu-bot/) y asume que ya has leído la [sección de interacciones](/interacciones/respondiendo-a-comandos-de-barra.md) y estás familiarizado con su uso.
 :::
 
 Un bot sin un solo comando puede ser aburrido, y probablemente tienes muchísimas ideas para comandos flotando alrededor de tu cabeza, ¿No? Empecemos entonces. 
@@ -29,7 +29,7 @@ client.login(token);
 Desde ahora, si cambias el token en tu archivo `config.json`, se cambiará en el archivo de tu bot igualmente.
 
 ::: tip
-Si no estás familiarizado con parte de esta sintaxis, es posible que sea sintaxis ES6. Si esto te confunde, deberías revisar [esta página](/additional-info/es6-syntax.md) de la guía antes de continuar.
+Si no estás familiarizado con parte de esta sintaxis, es posible que sea sintaxis ES6. Si esto te confunde, deberías revisar [esta página](/informacion-adicional/sintaxis-ES6.html) de la guía antes de continuar.
 :::
 
 ## Estructura simple de comandos

@@ -15,7 +15,7 @@ Discord.js v13 usa la versión 9 de la API de Discord. Adicionalmente, esta vers
 ## Comandos de barra diagonal
 
 ¡Discord.js tiene soporte para los comandos de barra diagonal!
-Visita la sección de los [comandos de barra diagonal](/interactions/registering-slash-commands.html) para empezar a usarlos.
+Visita la sección de los [comandos de barra diagonal](/interacciones/registrando-comandos-de-barra.html) para empezar a usarlos.
 
 Dicha sección de la guía explica el evento `interactionCreate`. En esta versión también existen los eventos `applicationCommandCreate`, `applicationCommandDelete`, y `applicationCommandUpdate`.
 

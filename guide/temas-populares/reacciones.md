@@ -346,7 +346,7 @@ So vuelves a intentarlo con los bloques de código anteriores, obtendrás el res
 </DiscordMessages>
 
 ::: tip
-Si no estas familiarizado con las promesas `async`/`await`, puedes leer más sobre estas en [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) o [nuestra página en la guía sobre async/await](/additional-info/async-await.md)!
+Si no estas familiarizado con las promesas `async`/`await`, puedes leer más sobre estas en [MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Using_promises) o [nuestra página en la guía sobre async/await](/informacion-adicional/async-await.md)!
 :::
 
 ### Manejando múltiples reacciones si el orden no importa

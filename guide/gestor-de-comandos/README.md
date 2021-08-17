@@ -131,4 +131,4 @@ Si no hay ningún comando con ese nombre, no tendrás que hacer nada más que ag
 
 ## Resultado final
 
-<ResultingCode path="command-handling/file-setup" />
+<ResultingCode path="gestor-de-comandosfile-setup" />

@@ -3,7 +3,7 @@
 Con la API de `Componentes`, puede crear componentes de mensajes interactivos. En esta página, cubriremos cómo enviar, recibir y responder a `botones` usando discord.js.
 
 ::: tip
-Esta página es un seguimiento de la [página de interacciones (comandos de barra)](/interactions/registering-slash-commands.md). Por favor, léalos primero con atención para que pueda comprender los métodos utilizados en esta sección.
+Esta página es un seguimiento de la [página de interacciones (comandos de barra)](/interraciones/registrando-comandos-de-barra.md). Por favor, léalos primero con atención para que pueda comprender los métodos utilizados en esta sección.
 :::
 
 ## Construyendo y enviando botones
@@ -167,7 +167,7 @@ Estos funcionan de manera bastante similar a los `collectors` de mensajes y reac
 Puede crear los `collectors` en un `mensaje` o en un `canal`.
 :::
 
-Para obtener una guía detallada sobre la recepción de componentes de mensajes a través de `collectors`, consulte la [guía de colleciones](/popular-topics/collectors.md#interaction-collectors).
+Para obtener una guía detallada sobre la recepción de componentes de mensajes a través de `collectors`, consulte la [guía de colleciones](/temas-populares/recolectores.html#recolectores-de-interacciones).
 
 ## Respondiendo a botones
 

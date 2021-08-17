@@ -42,7 +42,7 @@ Para una configuración más detallada, lee el [Keyv readme](https://github.com/
 
 ## Uso
 
-Keyv expone una API familiar a los "[Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)". Sin embargo, solo tiene los métodos `set`, `get`, `delete`y `clear`. Además, en lugar de devolver datos inmediatamente, estos métodos retornan [Promesas](/additional-info/async-await.md) que se resuelven con los datos.
+Keyv expone una API familiar a los "[Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)". Sin embargo, solo tiene los métodos `set`, `get`, `delete`y `clear`. Además, en lugar de devolver datos inmediatamente, estos métodos retornan [Promesas](/informacion-adicional/async-await.md) que se resuelven con los datos.
 
 <!-- eslint-skip -->
 
@@ -81,7 +81,7 @@ const prefixes = new Keyv('sqlite://path/to.sqlite');
 
 ### Usando "Command handler"
 
-Esta guía utiliza un "command handler "comandos muy básico añadiendo cierta complejidad para permitir múltiples prefijos. Mira la guía de "[command handler ](/command-handling/)" para un mejor "command handler".
+Esta guía utiliza un "command handler "comandos muy básico añadiendo cierta complejidad para permitir múltiples prefijos. Mira la guía de "[command handler ](/gestor-de-comandos/)" para un mejor "command handler".
 
 ```js
 client.on('messageCreate', async message => {

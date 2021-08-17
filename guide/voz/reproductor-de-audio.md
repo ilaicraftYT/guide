@@ -36,7 +36,7 @@ player.stop();
 
 ### Reproducción de audio
 
-Puede crear [recursos de audio](./audio-resources.md) y luego reproducirlos en un reproductor de audio.
+Puede crear [recursos de audio](./recursos-de-audio.md) y luego reproducirlos en un reproductor de audio.
 
 ```js
 const resource = createAudioResource('/home/user/voice/track.mp3');
@@ -64,7 +64,7 @@ setTimeout(() => player.unpause(), 5_000);
 
 ## Ciclo vital
 
-Las conexiones de voz tienen su propio ciclo de vida, con cinco estados distintos. Puede seguir los métodos discutidos en la sección [ciclos de vida](/voice/life-cycles.md) para suscribirse a los cambios en las conexiones de voz.
+Las conexiones de voz tienen su propio ciclo de vida, con cinco estados distintos. Puede seguir los métodos discutidos en la sección [ciclos de vida](./ciclos-de-vida.md) para suscribirse a los cambios en las conexiones de voz.
 
 - **Idle** - el estado inicial de un reproductor de audio. El reproductor de audio estará en este estado cuando no haya recursos de audio para reproducir.
 
