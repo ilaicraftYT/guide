@@ -6,7 +6,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const prefixes = new Keyv('sqlite://path/to.sqlite');
 
 client.once('ready', () => {
-	console.log('!Listo!');
+	console.log('¡Listo!');
 });
 
 client.on('messageCreate', async message => {
