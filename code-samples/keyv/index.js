@@ -32,7 +32,7 @@ client.on('messageCreate', async message => {
 
 	const command = args.shift().toLowerCase();
 
-	if (command === 'prefijo') {
+	if (command === 'prefix') {
 		if (args.length) {
 			await prefixes.set(message.guild.id, args[0]);
 			return message.channel.send(`El prefijo se estableció en \`${args[0]}\``);
