@@ -112,7 +112,7 @@ const command = new SlashCommandBuilder()
 	.setDescription('¡Obten información sobre un usuario o un servidor!')
 	.addSubcommand(subcommand =>
 		subcommand
-			.setName('user')
+			.setName('Usuario')
 			.setDescription('Información sobre un usuario')
 			.addUserOption(option => option.setName('target').setDescription('El usuario')))
 	.addSubcommand(subcommand =>
