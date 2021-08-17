@@ -5,16 +5,16 @@ jobs:
     name: ESLint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Verificar repositorio
         uses: actions/checkout@v2
 
-      - name: Install Node v16
+      - name: Instalar Node.js v16
         uses: actions/setup-node@v2
         with:
           node-version: 16
 
-      - name: Install dependencies
+      - name: Instalar dependencias
         run: npm ci
 
-      - name: Run ESLint
+      - name: Ejecutar ESLint
         run: npm run lint

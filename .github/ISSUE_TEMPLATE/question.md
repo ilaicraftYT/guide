@@ -1,13 +1,13 @@
 ---
-name: Question/General support request
-about: Ask questions about the guide. 
+name: Petición de ayuda
+about: Haz preguntas sobre la guía 
 labels: 'question'
 ---
 
-<!-- Use Discord for questions about discord.js: https://discord.gg/djs -->
+<!-- Use Discord para las preguntas de discord.js: https://discord.gg/djs -->
 
-**Part of the guide or code sample the question is about**
-<!-- URL or path to the file or section in question. If none please select "feature request" instead. -->
+**Parte de la guía o código de ejemplo a la cual esta pregunta se refiere**
+<!-- URL or ruta al archivo o sección en cuestión. Si no hay ninguno entonces use "petición de característica" -->
 
-**Question**
-<!-- Your question about the referenced part of the guide. -->
+**Pregunta**
+<!-- Tu pregunta acerca de la parte mencionada de la guía. -->
