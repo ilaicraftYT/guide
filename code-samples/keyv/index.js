@@ -6,7 +6,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const prefixes = new Keyv('sqlite://path/to.sqlite');
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('¡Listo!');
 });
 
 client.on('messageCreate', async message => {
@@ -35,10 +35,10 @@ client.on('messageCreate', async message => {
 	if (command === 'prefix') {
 		if (args.length) {
 			await prefixes.set(message.guild.id, args[0]);
-			return message.channel.send(`Successfully set prefix to \`${args[0]}\``);
+			return message.channel.send(`El prefijo se estableció en \`${args[0]}\``);
 		}
 
-		return message.channel.send(`Prefix is \`${await prefixes.get(message.guild.id) || globalPrefix}\``);
+		return message.channel.send(`El prefijo es \`${await prefixes.get(message.guild.id) || globalPrefix}\``);
 	}
 });
 
