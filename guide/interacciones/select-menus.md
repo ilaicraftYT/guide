@@ -36,7 +36,7 @@ client.on('interactionCreate', async interaction => {
 						},
 						{
 							label: 'Tu, también puedes seleccionarme',
-							description: 'Esta es también una descripción,
+							description: 'Esta es también una descripción',
 							value: 'second_option',
 						},
 					]),

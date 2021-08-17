@@ -1,3 +1,4 @@
+
 # Preguntas frecuentes (FAQ)
 
 ## Leyenda
@@ -117,7 +118,7 @@ const channel = client.channels.cache.get('id');
 channel.send('contenido');
 ```
 
-### ¿Cómo hago DM a un usuario específico?
+### ¿Cómo hago MD a un usuario específico?
 
 ```js
 const user = client.users.cache.get('id');
@@ -162,6 +163,7 @@ channel.send({
 ### ¿Cómo solicito al usuario información adicional?
 
 ```js
+
 interaction.reply('Ingrese más información.').then(() => {
 	const filter = m => <interaction>.user.id === m.author.id;
 

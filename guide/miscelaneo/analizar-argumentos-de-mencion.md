@@ -219,14 +219,14 @@ Actualizar su función `getUserFromMention` para usar RegExp le da esto:
 
 ```js
 function getUserFromMention(mention) {
-	//La identificación es la primera y única coincidencia encontrada por la expresión regular.
+	// La identificación es la primera y única coincidencia encontrada por la expresión regular.
 	const matches = mention.match(/^<@!?(\d+)>$/);
 
 	// Si la variable proporcionada no fue una mención, las coincidencias serán nulas en lugar de una matriz (array)
 	if (!matches) return;
 
 	// Sin embargo, el primer elemento de la matriz (array) de coincidencias será la mención completa, no solo el ID,
-    // Entonces usa el index 1.
+	// Entonces usa el index 1.
 	const id = matches[1];
 
 	return client.users.cache.get(id);

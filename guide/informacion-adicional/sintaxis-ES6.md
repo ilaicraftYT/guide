@@ -97,11 +97,9 @@ console.log('1 + 1 = ' + (1 + 1));
 
 console.log('Y aquí tenemos la llamada a la función: ' + letsPretendThisDoesSomething());
 
-console.log(
-	'Agregar cadenas de texto en nuevas líneas\n'
+console.log('Agregar cadenas de texto en nuevas líneas\n'
 	+ 'puede ser algo doloroso\n'
-	+ 'con concatenación de cadenas de texto. :('
-);
+	+ 'con concatenación de cadenas de texto. :(');
 ```
 
 ```js
@@ -148,7 +146,7 @@ client.on('messageCreate', function(message) {
 });
 
 client.on('interactionCreate', function(interaction) {
-    console.log(interaction.user + ' ejecutó una interacción en ' + interaction.channel);
+	console.log(interaction.user + ' ejecutó una interacción en ' + interaction.channel);
 });
 
 var doubleAge = function(age) {

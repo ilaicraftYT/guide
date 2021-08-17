@@ -59,7 +59,7 @@ La ejecución de este script registrará todos sus comandos en el servidor cuya 
 
 ## Comandos globales
 
-Los comandos globales de la aplicación estarán disponibles en todos los gremios que tu aplicación tenga el `scope` de `applications.commands` autorizado, así como en los DM.
+Los comandos globales de la aplicación estarán disponibles en todos los gremios que tu aplicación tenga el `scope` de `applications.commands` autorizado, así como en los MD.
 
 ::: tip
 Los comandos globales se almacenan en caché durante una hora. Los nuevos comandos globales se desplegarán lentamente en todos los servidores y solo se garantizará que se actualicen después de una hora. Los comandos del servidor se actualizan instantáneamente. Como tal, le recomendamos que use comandos basados en servidores durante el desarrollo y los publique en comandos globales cuando estén listos para uso público.
