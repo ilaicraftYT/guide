@@ -12,7 +12,7 @@ Los formateadores proporcionan funciones para formatear cadenas en todos los dif
 
 ```js
 const { bold, italic, strikethrough, underscore, spoiler, quote, blockQuote } = require('@discordjs/builders');
-const string = 'Hola!';
+const string = '¡Hola!';
 
 const boldString = bold(string);
 const italicString = italic(string);
@@ -25,7 +25,7 @@ const blockquoteString = blockQuote(string);
 
 ### Enlaces
 
-También hay dos métodos para formatear hipervínculos. `hyperlink()` formateará la URL en un enlace de rebajas enmascarado, y `hideLinkEmbed()` envolverá la URL en `<>`, evitando que se incruste.
+También hay dos métodos para formatear hipervínculos. `hyperlink()` formateará la URL en un enlace enmascarado, y `hideLinkEmbed()` envolverá la URL en `<>`, evitando que se incruste.
 
 ```js
 const { hyperlink, hideLinkEmbed } = require('@discordjs/builders');
@@ -37,7 +37,7 @@ const hiddenEmbed = hideLinkEmbed(url);
 
 ### Bloques de código
 
-Puedes usar `inline Code()` y `code Block()` para convertir una cadena en un bloque de código en línea o un bloque de código regular con o sin resaltado de sintaxis.
+Puedes usar `inlineCode()` y `codeBlock()` para convertir una cadena de texto en un bloque de código en línea o un bloque de código regular con o sin resaltado de sintaxis.
 
 ```js
 const { inlineCode, codeBlock } = require('@discordjs/builders');
@@ -62,7 +62,7 @@ const relative = time(date, 'R');
 
 ### Menciones
 
-Los formateadores también contienen varios métodos para dar formato a los copos de nieve en menciones.
+Los formateadores también contienen varios métodos para dar formato a los `Snowflakes` en menciones.
 
 ```js
 const { userMention, memberMention, channelMention, roleMention } = require('@discordjs/builders');
@@ -74,7 +74,7 @@ const channel = channelMention(id);
 const role = roleMention(id);
 ```
 
-## Constructores de slash commands
+## Constructores de comandos de barra
 
 El generador de slash commands es una clase de utilidad para crear comandos de barra sin tener que construir objetos manualmente.
 
@@ -85,9 +85,9 @@ Aquí hay un slash command simple usando el constructor. Puedes recopilar los da
 ```js
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
-const command = new SlashCommandBuilder().setName('ping').setDescription('Responde con Pong!');
+const command = new SlashCommandBuilder().setName('ping').setDescription('¡Responde con Pong!');
 
-// Datos que se pueden usar para registrar un slash command
+// Datos que se pueden usar para registrar un comando de barra
 const rawData = command.toJSON();
 ```
 
@@ -98,7 +98,7 @@ Este es un comando con una opción de usuario.
 ```js {4}
 const command = new SlashCommandBuilder()
 	.setName('Información')
-	.setDescription('Obtener información sobre un usuario!')
+	.setDescription('¡Obtener información sobre un usuario!')
 	.addUserOption(option => option.setName('user').setDescription('El usuario'));
 ```
 
@@ -120,3 +120,4 @@ const command = new SlashCommandBuilder()
 			.setName('server')
 			.setDescription('Información sobre el servidor'));
 ```
+
