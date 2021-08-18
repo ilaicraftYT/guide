@@ -1,6 +1,6 @@
-# Administrador de comandos
+# Gestor de Comandos
 
-A menos de que tu bot sea un proyecto pequeño, no es una buena idea tener un solo archivo con cadenas gigantes de if/else if para los comandos. Si quieres implementar más cosas en tu bot y hacer el proceso de desarrollo mucho menos doloroso, querrás implementar un administrador de comandos. ¡Empecemos!
+A menos de que tu bot sea un proyecto pequeño, no es una buena idea tener un solo archivo con cadenas gigantes de if/else if para los comandos. Si quieres implementar más cosas en tu bot y hacer el proceso de desarrollo mucho menos doloroso, querrás implementar un Gestor de Comandos. ¡Empecemos!
 
 Esta es la base del código que usaremos:
 
@@ -131,4 +131,4 @@ Si no hay ningún comando con ese nombre, no tendrás que hacer nada más que ag
 
 ## Resultado final
 
-<ResultingCode path="command-handling/file-setup" />
+<ResultingCode path="gestor-de-comandosfile-setup" />

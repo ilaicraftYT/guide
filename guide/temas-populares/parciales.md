@@ -2,7 +2,7 @@
 
 Las Estructuras Parciales se introdujeron en la libreria en la versión `12`  y se reciben opcionalmente siempre que los datos sean insuficientes  para emitir un evento del cliente con una estructura de `discord.js` completamente intacta. Están (como sugiere el nombre) incompletos y no puede esperar que tengan más información además de su `ID`. Todas las demás propiedades y métodos de este objeto deben considerarse inválidos y desaparecidos. Antes de esta característica, los eventos de cliente de `discord.js` no se emitirían si una de las estructuras necesarias no se pudiera construir con datos suficientes para garantizar una estructura completamente funcional. Si no opta por los parciales, este sigue siendo el caso.
 
-Un ejemplo de aprovechamiento de parciales es el manejo de reacciones en mensajes no almacenados en caché, que se explica en [esta página](/temas-populares/reacciones.md#listening-for-reactions-on-old-messages).
+Un ejemplo de aprovechamiento de parciales es el manejo de reacciones en mensajes no almacenados en caché, que se explica en [esta página](./reacciones.html#escuchar-las-reacciones-de-los-mensajes-antiguos).
 
 Antes, tenía que manejar el evento `raw` indocumentado o recuperar los mensajes respectivos al inicio. El primer enfoque era propenso a errores y a un comportamiento interno inesperado. El segundo tampoco fue completamente a prueba de fallas, ya que los mensajes aún podrían eliminarse en caché si se excedía el tamaño de la caché en los canales ocupados.
 
@@ -44,7 +44,7 @@ if (message.partial) {
 
 ## Obtención de la estructura completa
 
-Junto con `.partial` para comprobar si la estructura a la que se llama es parcial o no, la libreria también ha introducido un método `.fetch()` para recuperar los datos que faltan de la API y completar la estructura. El método devuelve una [Promesa](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) que necesitas resolver. Después de que se resuelva la Promesa (y con ella, los datos que faltaban), puedes utilizar la estructura como lo harías antes.
+Junto con `.partial` para comprobar si la estructura a la que se llama es parcial o no, la libreria también ha introducido un método `.fetch()` para recuperar los datos que faltan de la API y completar la estructura. El método devuelve una [Promesa](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise) que necesitas resolver. Después de que se resuelva la Promesa (y con ella, los datos que faltaban), puedes utilizar la estructura como lo harías antes.
 ```js {2-8,10}
 if (message.partial) {
 	message.fetch()

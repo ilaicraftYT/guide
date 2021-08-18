@@ -8,7 +8,7 @@
 * `<guild>` es un marcador de posición para el objeto <DocsLink path="class/Guild" />, como `<interaction>.guild` o `<client>.guilds.cache.get('<id>')`.
 * `<voiceChannel>`es un marcador de posición para el objeto <DocsLink path="class/VoiceChannel" />, como `<message>.member.voice.channel`
 
-Para obtener una explicación más detallada de las notaciones que se usan comúnmente en esta guía, los documentos y el servidor de soporte, consulte [aquí](/additional-info/notation.md).
+Para obtener una explicación más detallada de las notaciones que se usan comúnmente en esta guía, los documentos y el servidor de soporte, consulte [aquí](informacion-adicional/notacion.md).
 
 ## Administrativo
 
@@ -27,7 +27,7 @@ guild.members.unban(id);
 ```
 
 ::: tip
-Debido a que no puede hacer ping a un usuario que no está en el servidor, debe pasar la identificación del usuario. Para hacer esto, usamos un <DocsLink path="typedef/CommandInteractionOption" />. Mira [aquí](/interactions/replying-to-slash-commands.html#analizando-opciones) para obtener más información sobre este tema.
+Debido a que no puede hacer ping a un usuario que no está en el servidor, debe pasar la identificación del usuario. Para hacer esto, usamos un <DocsLink path="typedef/CommandInteractionOption" />. Mira [aquí](/interacciones/respondiendo-a-comandos-de-barra.html#analizando-opciones) para obtener más información sobre este tema.
 :::
 
 ### ¿Cómo expulso a un usuario?
@@ -178,7 +178,7 @@ interaction.reply('Ingrese más información.').then(() => {
 ```
 
 ::: tip
-Si desea obtener más información sobre esta sintaxis u otros tipos de colecciones, consulte [esta página de guía dedicada para `collectors`](/popular-topics/collectors.md).
+Si desea obtener más información sobre esta sintaxis u otros tipos de colecciones, consulte [esta página de guía dedicada para `collectors`](/temas-populares/recolectores.md).
 :::
 
 ### ¿Cómo puedo bloquear a un usuario para que no use mi bot?

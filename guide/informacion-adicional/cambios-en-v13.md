@@ -15,7 +15,7 @@ Discord.js v13 usa la versión 9 de la API de Discord. Adicionalmente, esta vers
 ## Comandos de barra diagonal
 
 ¡Discord.js tiene soporte para los comandos de barra diagonal!
-Visita la sección de los [comandos de barra diagonal](/interactions/registering-slash-commands.html) para empezar a usarlos.
+Visita la sección de los [comandos de barra diagonal](/interacciones/registrando-comandos-de-barra.html) para empezar a usarlos.
 
 Dicha sección de la guía explica el evento `interactionCreate`. En esta versión también existen los eventos `applicationCommandCreate`, `applicationCommandDelete`, y `applicationCommandUpdate`.
 
@@ -25,7 +25,7 @@ Dicha sección de la guía explica el evento `interactionCreate`. En esta versi�
 
 Se han introducido las clases `MessageActionRow`, `MessageButton` y `MessageSelectMenu`, al igual que las interacciones y colectores asociados a estos.
 
-Revisa la sección de [componentes](/interactions/buttons.html) en esta guía para empezar a usarlos.
+Revisa la sección de [componentes](/interacciones/botones.html) en esta guía para empezar a usarlos.
 
 ## Hilos
 
@@ -33,7 +33,7 @@ Revisa la sección de [componentes](/interactions/buttons.html) en esta guía pa
 
 Esto introduce la clase `ThreadManager`, la cual puede ser encontrada como `TextChannel#threads`, en adición a `ThreadChannel`, `ThreadMemberManager`, y `ThreadMember`. También hay cinco eventos nuevos: `threadCreate`, `threadDelete`, `threadListSync`, `threadMemberUpdate` y `threadMembersUpdate`.
 
-Revisa la sección de [hilos](/popular-topics/threads.html) en esta guía para empezar a usarlos.
+Revisa la sección de [hilos](/temas-populares/hilos.html) en esta guía para empezar a usarlos.
 
 ## Voz
 
@@ -921,7 +921,7 @@ Este parámetro es opcional y recurrirá a una función que siempre devuelve `tr
 ### CommandInteraction
 
 Proporciona soporte de la gateway para las interacciones de los comandos de barra diagonal.
-Para más información, visita la sección para los [comandos de barra diagonal](/interactions/registering-slash-commands.html) de esta guía.
+Para más información, visita la sección para los [comandos de barra diagonal](/interacciones/registrando-comandos-de-barra.html) de esta guía.
 
 ### Guild
 
@@ -1067,7 +1067,7 @@ Una `Collection` de roles los cuales son administrados por una integración.
 
 Proporciona soporte del gateway para los comandos de barra diagonal e interacciones con componentes.
 
-Para más información consulta las páginas para los [comandos de barra diagonal](/interactions/replying-to-slash-commands.md) y los [componentes](/interactions/buttons.html#responding-to-buttons.html) de esta guía.
+Para más información consulta las páginas para los [comandos de barra diagonal](/interraciones/respondiendo-a-comandos-de-barra.md) y los [componentes](/interacciones/botones.html#respondiendo-a-botones) de esta guía.
 
 ### InteractionCollector
 

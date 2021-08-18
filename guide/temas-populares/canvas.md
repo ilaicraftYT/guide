@@ -9,7 +9,7 @@ This guide is last tested with `canvas^2.6.0`, so make sure you have this or a s
 :::
 
 ::: warning ADVERTENCIA
-Be sure that you're familiar with things like [async/await](/additional-info/async-await.md) and [object destructuring](/additional-info/es6-syntax.md#object-destructuring) before continuing, as we'll be making use of features like these.
+Be sure that you're familiar with things like [async/await](/informacion-adicional/async-await.md) and [object destructuring](/informacion-adicional/sintaxis-ES6.html#desestructuracion-de-objetos) before continuing, as we'll be making use of features like these.
 :::
 
 ## Installation
@@ -56,7 +56,7 @@ client.login('your-token-goes-here');
 ```
 
 ::: warning ADVERTENCIA
-Remember to register the slash commands before continuing on with this section of the guide. You can view how to do that [here](/interactions/registering-slash-commands.md).
+Remember to register the slash commands before continuing on with this section of the guide. You can view how to do that [here](/interacciones/registrando-comandos-de-barra.md).
 :::
 
 ### Basic image loading
