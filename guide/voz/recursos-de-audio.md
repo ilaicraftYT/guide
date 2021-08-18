@@ -49,7 +49,7 @@ Para la mayoría de los escenarios, creará un recurso de audio para uso inmedia
 const { createAudioResource, createAudioPlayer } = require('@discordjs/voice');
 
 const player = createAudioPlayer();
-//Un AudioPlayer siempre emitirá un evento de "error" con una propiedad .resource
+// Un AudioPlayer siempre emitirá un evento de "error" con una propiedad .resource
 player.on('error', error => {
 	console.error('Error:', error.message, 'con la pista', error.resource.metadata.title);
 });

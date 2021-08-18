@@ -114,46 +114,46 @@ const exampleEmbed = {
 	author: {
 		name: 'Autor',
 		icon_url: 'https://i.imgur.com/AfFp7pu.png',
-		url: 'https://discord.js.org'
+		url: 'https://discord.js.org',
 	},
 	description: 'La descripción va aquí',
 	thumbnail: {
-		url: 'https://i.imgur.com/AfFp7pu.png'
+		url: 'https://i.imgur.com/AfFp7pu.png',
 	},
 	fields: [
 		{
 			name: 'Título de campo regular',
-			value: 'Texto'
+			value: 'Texto',
 		},
 		{
 			name: '\u200b',
 			value: '\u200b',
-			inline: false
+			inline: false,
 		},
 		{
 			name: 'Título de campo en línea',
 			value: 'Texto',
-			inline: true
+			inline: true,
 		},
 		{
 			name: 'Título de campo en línea',
 			value: 'Texto',
-			inline: true
+			inline: true,
 		},
 		{
 			name: 'Título de campo en línea',
 			value: 'Texto',
-			inline: true
-		}
+			inline: true,
+		},
 	],
 	image: {
-		url: 'https://i.imgur.com/AfFp7pu.png'
+		url: 'https://i.imgur.com/AfFp7pu.png',
 	},
 	timestamp: new Date(),
 	footer: {
 		text: 'Un pie de página',
-		icon_url: 'https://i.imgur.com/AfFp7pu.png'
-	}
+		icon_url: 'https://i.imgur.com/AfFp7pu.png',
+	},
 };
 
 channel.send({ embeds: [exampleEmbed] });
@@ -207,7 +207,7 @@ const exampleEmbed = {
 	title: 'Un título',
 	image: {
 		url: 'attachment://discordjs.png',
-	}
+	},
 };
 
 channel.send({ embeds: [exampleEmbed], files: [file] });
@@ -231,7 +231,7 @@ Aquí creamos deliberadamente una nueva incrustación en lugar de modificar dire
 
 ```js
 const receivedEmbed = message.embeds[0];
-//Creamos una incrustación nueva que tiene la misma información y cambiamos el título
+// Creamos una incrustación nueva que tiene la misma información y cambiamos el título
 const exampleEmbed = new MessageEmbed(receivedEmbed).setTitle('Nuevo título');
 
 channel.send({ embeds: [exampleEmbed] });

@@ -1,16 +1,16 @@
 <div align="center">
-	<img src="guide/images/branding/banner-blurple-small.png" title="Guía de Discord.js" alt="Guía de Discord.js" />
+	<img src="guide/images/branding/banner-blurple-small.png" title="Guía de discord.js" alt="Guía de discord.js" />
 </div>
 
-# Guía de Discord.js (En español)
+# Guía de discord.js (en español)
 
-Imagina una guía... que explora varias posibilidades para tu bot en [Discord.js](https://discord.js.org).
+Imagina una guía... que explora varias posibilidades para tu bot en [discord.js](https://discord.js.org).
 
 ## Acerca de
 
 Esta es una traducción no oficial de [Discord.js Guide](https://github.com/discordjs/guide) diseñada para quienes no saben inglés.
 
-Esta guía está diseñada principalmente para los usuarios que son inexpertos o no tiene una noción de Node.js y de crear bots de Discord. Esta también asume que tienes un conocimiento básico de JavaScript.
+Esta guía está diseñada principalmente para los usuarios que son inexpertos o no tiene noción básica de Node.js y de crear bots de Discord. Esta también asume que tienes un conocimiento básico de JavaScript.
 
 Se tratan diversos temas en esta guía, como por ejemplo:
 

@@ -1,2 +1,4 @@
 !/guide/.vuepress
 guide/.vuepress/dist
+guide/temas-populares/faq.md
+guide/keyv/README.md

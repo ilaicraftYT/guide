@@ -96,7 +96,7 @@ await thread.setLocked(false); // desbloqueo
 
 Los hilos públicos son visibles para todos los que pueden ver el canal principal del hilo. Los hilos públicos deben crearse a partir de un mensaje existente, pero pueden quedar "huérfanos" si ese mensaje se elimina. El hilo creado y el mensaje desde el que se originó compartirán el mismo ID. El tipo de hilo creado coincide con el tipo del canal principal.
 
-Los hilos privados se comportan de manera similar a los DM de grupo, pero en un servidor, los hilos privados solo se pueden crear en canales de texto.
+Los hilos privados se comportan de manera similar a los MD de grupo, pero en un servidor, los hilos privados solo se pueden crear en canales de texto.
 
 Para crear un hilo privado, use `ThreadManager#create()` y pase `private_thread` como el `tipo`:
 

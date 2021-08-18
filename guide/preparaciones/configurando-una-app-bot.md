@@ -22,7 +22,7 @@ Haga clic en el botón "Add Bot" a la derecha y confirme la ventana emergente ha
 
 ## Tu token
 
-::: danger
+::: danger PELIGRO
 Esta sección es fundamental, así que preste mucha atención. Explica cuál es su `token` de bot, así como sus aspectos de seguridad.
 :::
 
@@ -43,7 +43,7 @@ Los tokens se ven así: `NzkyNzE1NDU0MTk2MDg4ODQy.X-hvzA.Ovy4MCQywSkoMRRclStW4xA
 Imaginemos que tiene un bot en más de 1,000 servidores, y le tomó muchos, muchos meses de codificación y paciencia para obtener esa cantidad. Su token se filtró en alguna parte y ahora alguien más lo tiene. Esa persona puede:
 
 * Envíar mensajes no deseado a todos los servidores en los que se encuentra su bot;
-* Intentar enviar spam por DM a tantos usuarios como sea posible;
+* Intentar enviar spam por mensajes directos a tantos usuarios como sea posible;
 * Intentar eliminar tantos canales como sea posible;
 * Intentar expulsar o bannear a tantos miembros del servidor como sea posible;
 * Hagcer que su bot abandone todos los servidores a los que se ha unido.
@@ -51,7 +51,7 @@ Imaginemos que tiene un bot en más de 1,000 servidores, y le tomó muchos, much
 
 Todo eso y mucho, mucho más. Suena bastante terrible, ¿verdad? ¡Así que asegúrese de mantener su token lo más seguro posible!
 
-::: danger
+::: danger PELIGRO
 Si alguna vez compromete su token de bot actual (consignarlo en un repositorio público, publicarlo en soporte, etc.) o si ve a su bot en peligro, regrese a esta página y presione "Regenerate" para generar un nuevo token. Al hacerlo, todos los tokens antiguos quedarán invalidados. Tenga en cuenta que deberá actualizar su token donde lo usó antes.
 :::
 

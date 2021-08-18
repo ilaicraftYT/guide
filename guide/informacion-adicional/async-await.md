@@ -71,9 +71,9 @@ client.on('event', async (first, last) => {
 
 Una dato importante a saber es que una función declarada como `async` siempre devolverá una promesa. Además de esto, si devuelve algo, la promesa se resolverá con ese valor, y si arroja un error, rechazará la promesa con ese error.
 
-### Ejecución con código de Discord.js
+### Ejecución con código de discord.js
 
-Ahora que sabes cómo funcionan las promesas y para qué se utilizan, veamos un ejemplo que maneja varias promesas. Digamos que quieres reaccionar con letras (indicadores regionales) en un orden específico. Para este ejemplo, aquí hay una plantilla básica para un bot de Discord.js con algunos ajustes de ES6.
+Ahora que sabes cómo funcionan las promesas y para qué se utilizan, veamos un ejemplo que maneja varias promesas. Digamos que quieres reaccionar con letras (indicadores regionales) en un orden específico. Para este ejemplo, aquí hay una plantilla básica para un bot de discord.js con algunos ajustes de ES6.
 
 ```js
 const { Client, Intents } = require('discord.js');
@@ -185,7 +185,7 @@ client.on('interactionCreate', async interaction => {
 	if (commandName === 'delete') {
 		try {
 			const replyMessage = await interaction.reply('Este mensaje será eliminado.', { fetchReply: true });
-			setTimeout(async() => await replyMessage.delete(), 10000);
+			setTimeout(async () => replyMessage.delete(), 10000);
 		} catch (error) {
 			// manejo del error
 		}

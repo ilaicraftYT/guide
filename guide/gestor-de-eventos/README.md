@@ -40,16 +40,16 @@ En la misma carpeta, crea una nueva carpeta llamada `events`. Ahora puedes tomar
 
 ```js
 // ready.js
-module.exports = (client) => {
+module.exports = client => {
 	console.log('¡Estoy listo! Mi nombre es:', client.user.tag);
-}
+};
 ```
 
 ```js
 // interactionCreate.js
 module.exports = (client, interaction) => {
 	console.log(`${interaction.user.tag} ejecutó una interacción en #${interaction.channel.name}.`);
-}
+};
 ```
 
 ::: tip
@@ -93,7 +93,7 @@ Es importante saber que el orden de los parámetros importa. Por ejemplo, el eve
 ```js {3}
 module.exports = (client, oldUser, newUser) => {
 	// ...
-}
+};
 ```
 
 Si intentas hacer `(newUser, client, oldUser)`, esto significará que `newUser` es el objeto `client`, `client` es el objeto `oldUser` y `oldUser` es el objeto `newUser`.
