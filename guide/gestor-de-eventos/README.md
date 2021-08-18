@@ -21,7 +21,7 @@ client.on('interactionCreate', interaction => {
 client.login(token);
 ```
 
-Actualmente, los eventos están en el archivo `index.js`. El evento `ready` se emite una sola vez cuando `Client` está listo para su uso, y el evento `interactionCreate` se emite siempre que una interacción sea recibida. Mover el código de los eventos a archivos individuales es simple, y vamos a adoptar un enfoque similar al del [administrador de comandos](/gestor-de-comandos/).
+Actualmente, los eventos están en el archivo `index.js`. El evento `ready` se emite una sola vez cuando `Client` está listo para su uso, y el evento `interactionCreate` se emite siempre que una interacción sea recibida. Mover el código de los eventos a archivos individuales es simple, y vamos a adoptar un enfoque similar al del [Gestor de comandos](/gestor-de-comandos/).
 
 ## Archivos individuales para eventos
 
@@ -66,7 +66,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 ```
 
-Este mismo método es usado en nuestro [administrador de comandos](/gestor-de-comandos/). El método `fs.readdirSync().filter()` retorna un array de todos los nombres de los archivos en la carpeta especificada y filtra solamente los archivos que sean `.js`, por ejemplo: `['ready.js', 'interactionCreate.js']`.
+Este mismo método es usado en nuestro [Gestor de comandos](/gestor-de-comandos/). El método `fs.readdirSync().filter()` retorna un array de todos los nombres de los archivos en la carpeta especificada y filtra solamente los archivos que sean `.js`, por ejemplo: `['ready.js', 'interactionCreate.js']`.
 
 ```js {3-8}
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));

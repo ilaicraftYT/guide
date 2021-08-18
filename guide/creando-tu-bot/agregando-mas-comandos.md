@@ -171,7 +171,7 @@ Esto mostrará el **nombre de usuario** del autor del comando (no el apodo, si t
 
 Si no tienes planeado hacer más de siete u ocho comandos para tu bot, entonces usar una cadena de if/else if es suficiente; es presumiblemente un proyecto pequeño en ese punto, por lo que no necesitarías dedicarle mucho tiempo a eso. Sin embargo, este no es el caso para la mayoría de nosotros.
 
-Probablemente quieras hacer tu bot con diversas funciones, fácil de configurar y desarrollar, ¿No? Usar una cadena de muchos if/else if no te ayudará a lograr eso; solo te molestará durante el proceso de desarrollo. En la siguiente página los dividiremos en algo llamado "administrador de comandos". Algo que hace la gestión de comandos más fácil y mucho más eficiente.
+Probablemente quieras hacer tu bot con diversas funciones, fácil de configurar y desarrollar, ¿No? Usar una cadena de muchos if/else if no te ayudará a lograr eso; solo te molestará durante el proceso de desarrollo. En la siguiente página los dividiremos en algo llamado "Gestor de Comandos". Algo que hace la gestión de comandos más fácil y mucho más eficiente.
 
 Antes de continuar, aquí hay una pequeña lista de razones por las que no deberías usar cadenas de if/else if para algo que no sea un proyecto pequeño:
 
