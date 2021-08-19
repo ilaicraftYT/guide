@@ -30,7 +30,7 @@ Veamos más de cerda. Abajo de `main`, veras `scripts`. Puedes especificar tus s
 ## Agregando tu primer script
 
 ::: tip
-Asumiremos que ya terminaste la sección: [creando tu primer bot](/creating-your-bot/) de la guía. ¡Si no lo has hecho, asegúrate de seguirlo primero!
+Asumiremos que ya terminaste la sección: [creando tu primer bot](/creando-tu-bot/) de la guía. ¡Si no lo has hecho, asegúrate de seguirlo primero!
 :::
 
 En su archivo `package.json`, agregue la siguiente línea en la sección de `scripts`:

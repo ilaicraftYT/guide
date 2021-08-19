@@ -1,8 +1,8 @@
-# Sintaxis ES6
+# Ejemplos de sintax ES6
 
-Si has usado JavaScript por una (relativamente) pequeña cantidad de tiempo, o no tienes mucha experiencia con él, puede que no sepas qué es ES6 y qué características incluye. Dado que esta es una guía principalmente para los bots de Discord, usaremos algo de discord.js como un ejemplo de los beneficios de ES6.
+Si has usado JavaScript por una pequeña cantidad de tiempo, o no tienes mucha experiencia con el, probablemente no sepas qué es ES6 y los beneficios que incluye. Como esta es una guía especialmente para bots de Discord, estaremos usando código de discord.js como ejemplo de lo que podría tener frente a lo que podría hacer para beneficiarse de ES6.
 
-Aquí está el código de inicio que usaremos:
+Aquí está el código que usaremos como base:
 
 <!-- eslint-disable prefer-template -->
 <!-- eslint-disable prefer-destructuring -->
@@ -14,245 +14,261 @@ const config = require('./config.json');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.once('ready', () => {
-    console.log('¡Estoy listo!');
+	console.log('Ready!');
 });
 
 client.on('interactionCreate', interaction => {
-    if (!interaction.isCommand()) return;
+	if (!interaction.isCommand()) return;
 
-    const { commandName } = interaction;
+	const { commandName } = interaction;
 
-    if (commandName === 'ping') {
-        interaction.reply('Pong.');
-    } else if (commandName === 'beep') {
-        interaction.reply('Boop.');
-    } else if (commandName === 'server') {
-        interaction.reply('Nombre del servidor: ' + interaction.guild.name + '\nMiembros totales: ' + interaction.guild.memberCount);
-    } else if (commandName === 'user-info') {
-        interaction.reply('Tu nombre de usuario: ' + interaction.user.username + '\nTu Id: ' + interaction.user.id);
-    }
+	if (commandName === 'ping') {
+		interaction.reply('Pong.');
+	} else if (commandName === 'beep') {
+		interaction.reply('Boop.');
+	} else if (commandName === 'server') {
+		interaction.reply('Nombre del servidor: ' + interaction.guild.name + '\nMiembros totales: ' + interaction.guild.memberCount);
+	} else if (commandName === 'user-info') {
+		interaction.reply('Tu nombre de usuario: ' + interaction.user.username + '\nTu Id: ' + interaction.user.id);
+	}
 });
 
 client.login(config.token);
 ```
 
-Si no te has dado cuenta, ¡Este código ya está usando un poco de ES6! El uso de `const` y la función "flecha" (`() => ...`) es sintaxis ES6, y recomendamos usarla siempre que sea posible.
+Si no te has dado cuenta, ¡Este pedazo de código ya está usando un poco de ES6! La palabra clave `const` y la declaración de la función flecha (`() => ...`) es sintaxis ES6, y recomendamos usarla siempre que sea posible.
 
-En cuanto al código anterior, hay algunas cosas que se podrían mejorar. Veámoslas.
+En cuanto al código anterior, hay algunos puntos que se pueden mejorar. Vamos a verlos.
 
 ## Literales de plantilla
 
-Si revisas el código de arriba, está haciendo cosas como `'Nombre del servidor: ' + interaction.guild.name` y `'Tu nombre de usuario: ' + interaction.user.username`, que es perfectamente válido. Sin embargo, es un poco difícil de leer, y no es demasiado entretenido escribirlo constantemente. Afortunadamente, hay una mejor alternativa.
+Si revisas el código anterior, está haciendo cosas como `'Nombre del servidor: ' + interaction.guild.name` y `'Tu nombre de usuario: ' + interaction.user.username`, lo cual es perfectamente válido. Sin embargo, es un poco difícil de leer y no es demasiado divertido escribirlo constantemente. Afortunadamente, hay una mejor alternativa.
 
 <!-- eslint-skip -->
 
 ```js
-// ES5, la versión que tenemos
+// Versión ES5, tal y como lo tenemos actualmente
 else if (commandName === 'server') {
-    interaction.reply('Nombre del servidor: ' + interaction.guild.name + '\nMiembros totales: ' + interaction.guild.memberCount);
+	interaction.reply('Nombre del servidor: ' + interaction.guild.name + '\nMiembros totales: ' + interaction.guild.memberCount);
 }
 else if (commandName === 'user-info') {
-    interaction.reply('Tu nombre de usuario: ' + interaction.user.username + '\nTu Id: ' + interaction.user.id);
-}
-```<!-- eslint-skip -->```js
-// Versión ES6, usando literales de plantilla
-else if (commandName === 'server') {
-    interaction.reply(`Nombre del servidor: ${interaction.guild.name}\nMiembros totales: ${interaction.guild.memberCount}`);
-}
-else if (commandName === 'user-info') {
-    interaction.reply(`Tu nombre de usuario: ${interaction.user.username}\nTu Id: ${interaction.user.id}`);
+	interaction.reply('Tu nombre de usuario: ' + interaction.user.username + '\nTu Id: ' + interaction.user.id);
 }
 ```
 
-¡Más fácil de leer y de escribir! Lo mejor de ambos mundos.
+<!-- eslint-skip -->
+
+```js
+// Versión ES6, usando literales de plantilla
+else if (commandName === 'server') {
+	interaction.reply(`Nombre del servidor: ${interaction.guild.name}\nMiembros totales: ${interaction.guild.memberCount}`);
+}
+else if (commandName === 'user-info') {
+	interaction.reply(`Tu nombre de usuario: ${interaction.user.username}\nTu Id: ${interaction.user.id}`);
+}
+```
+
+¡Fácil de leer y escribir! Lo mejor de ambos mundos.
 
 ### Literales de plantilla contra concatenación de cadenas de texto
 
-Si ha usado otros lenguajes de programación, puedes estar familiarizado con el término "string interpolation". "Template literals" es la implementación de javascript de la interpolación de cadenas. Si estás familiarizado con la sintaxis de heredoc, es muy parecida; permite la interpolación de cadenas, así como cadenas multilíneas.
+Si has usado otros lenguajes de programación, deberías estar familiarizado con el término "interpolación de cadenas de texto". Los literales de plantilla son la implementación de JavaScript de la interpolación de cadenas de texto. Si estás familiarizado con sintaxis heredoc, es muy parecido; te permite la interpolación de cadenas de texto, al igual que hacer cadenas de texto multi-líneas.
 
-El siguiente ejemplo no entrará demasiado en detalles sobre el mismo, pero si estás interesado en saber más, puedes leer sobre ellos en [la documentación de MDN](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals).
+El siguiente ejemplo no entrará mucho en detalles, pero si estás interesado en saber más, puedes leer [la documentación de MDN](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals).
 
 ```js
-// variables y funciones usadas en los ejemplos 
-const username = 'Sanctuary';
-const password = 'pleasedonthackme';
+// variables/función usada a través de los ejemplos
+const username = 'Kirzu';
+const password = 'nomehackeesporfavor';
 
 function letsPretendThisDoesSomething() {
-    return 'Yay for sample data.';
+	return 'Yay, datos de muestra';
 }
-```<!-- eslint-disable prefer-template -->```js
-// concatenación de strings
-console.log('Your username is: **' + username + '**.');
-console.log('Your password is: **' + password + '**.');
+```
+
+<!-- eslint-disable prefer-template -->
+
+```js
+// concatenación de cadenas de texto regular
+console.log('Tu nombre de usuario es: **' + username + '**.');
+console.log('Tu contraseña es: **' + password + '**.');
 
 console.log('1 + 1 = ' + (1 + 1));
 
-console.log('And here\'s a function call: ' + letsPretendThisDoesSomething());
+console.log('Y aquí tenemos la llamada a la función: ' + letsPretendThisDoesSomething());
 
-console.log(
-    'Putting strings on new lines\n'
-    + 'can be a bit painful\n'
-    + 'with string concatenation. :(',
-);
+console.log('Agregar cadenas de texto en nuevas líneas\n'
+	+ 'puede ser algo doloroso\n'
+	+ 'con concatenación de cadenas de texto. :(');
 ```
 
 ```js
-// template literals
-console.log(`Your password is: **${password}**.`);
-console.log(`Your username is: **${username}**.`);
+// literales de plantilla
+console.log(`Tu nombre de usuario es: **${username}**.`);
+console.log(`Tu contraseña es: **${password}**.`);
 
 console.log(`1 + 1 = ${1 + 1}`);
 
-console.log(`And here's a function call: ${letsPretendThisDoesSomething()}`);
+console.log(`Y aquí tenemos la llamada a la función: ${letsPretendThisDoesSomething()}`);
 
 console.log(`
-    Putting strings on new lines
-    is a breeze
-    with template literals! :)
+	¡Agregar cadenas de texto en una nueva línea
+	es encantador
+	con literales de plantilla! :)
 `);
 
-// NOTA: los "template literals" también renderizan las sangria dentro de ellos
-// Hay varias maneras de hacerlo que discutiremos en otro momento.
+// NOTA: los literales de plantilla también muestran la identación dentro de ellos.
+// hay formas de evitarlo que discutiremos en otra sección.
 ```
 
-Puedes ver cómo hace las cosas más fáciles y más legibles. ¡En algunos casos, incluso pude acortar su código! Este es algo que querrás aprovechar tanto como sea posible.
+Puedes ver como hace las cosas más fáciles y legíbles. En algunos casos, ¡Puede hacer tu código más corto! Esto es algo que querrás aprovechar al máximo.
 
 ## Funciones flecha
 
-Las funciones flecha son una abreviatura de las funciones normales, con la adición de que utilizan un contexto léxico `this` dentro del suyo propio. Si no sabes a qué se refiere la palabra clave `this`, no te preocupes; aprenderás más sobre ella a medida que avances.
+Las funciones flecha son una abreviatura de las funciones normales, con el añadido de que utilizan un contexto léxico `this` dentro del suyo propio. Si no sabes a qué se refiere la palabra clave `this`, no te preocupes; aprenderás más sobre ella a medida que avances.
 
-Aquí tienes algunos ejemplos de cómo puedes beneficiarte de las funciones flecha sobre funciones regulares:
+Estos son algunos ejemplos de cómo puedes beneficiarte de las funciones flecha sobre las funciones normales:
 
 <!-- eslint-disable func-names, no-var, prefer-arrow-callback, prefer-template -->
 
 ```js
-// funciones regulares, ES5 completo
+// funciones normales, ES5 completo
 client.once('ready', function() {
-    console.log('Ready!');
+	console.log('¡Estoy listo!');
 });
 
 client.on('typingStart', function(channel, user) {
-    console.log(user + ' started typing in ' + channel);
+	console.log(user + ' comenzó a escribir en ' + channel);
 });
 
 client.on('messageCreate', function(message) {
-    console.log(message.author + ' sent: ' + message.content);
+	console.log(message.author + ' envió el mensaje: ' + message.content);
+});
+
+client.on('interactionCreate', function(interaction) {
+	console.log(interaction.user + ' ejecutó una interacción en ' + interaction.channel);
 });
 
 var doubleAge = function(age) {
-    return 'Your age doubled is: ' + (age * 2);
+	return 'Tu edad duplicada es: ' + (age * 2);
 };
 
-// dentro de un collector de mensajes
-var filter = function(m) {
-    return m.content === 'I agree' && !m.author.bot;
+// dentro de un collector de componentes
+var filter = function(i) {
+	return i.isButton() && !i.user.bot;
 };
 
-var collector = message.channel.createMessageCollector({ filter, time: 15000 });
+var collector = message.createMessageComponentCollector({ filter, time: 15000 });
 ```
 
 ```js
-// funciones "arrow", ES6
-client.once('ready', () => console.log('Ready!'));
+// funciones flecha, ES6 completo
+client.once('ready', () => console.log('¡Estoy listo!'));
 
-client. n('typingStart', (canal, usuario) => console.log(`${user} comenzó a escribir en ${channel}`));
+client.on('typingStart', (channel, user) => console.log(`${user} comenzó a escribir en ${channel}`));
 
-client.on('messageCreate', mensaje => consola. og(`${message.author} enviado: ${message.content}`));
+client.on('messageCreate', message => console.log(`${message.author} envió el mensaje: ${message.content}`));
 
-const doubleAge = age => `Tu edad duplica es: ${age * 2}`;
+client.on('interactionCreate', interaction => console.log(`${interaction.user} ejecutó una interacción en: ${interaction.channel}`));
 
-// dentro del recolector de mensajes
-const filter = m => m. ontent === 'Estoy de acuerdo' && !m.author.bot;
-const collector = message.createMessageCollector(filter, { time: 15000 });
+const doubleAge = age => `Tu edad duplicada es: ${age * 2}`;
+
+// dentro de un collector de componentes
+const filter = i => i.isButton() && !i.user.bot;
+const collector = message.createMessageComponentCollector({ filter, time: 15000 });
 ```
 
-Hay algunas cosas importantes que debe tener en cuenta:
+Hay algunas cosas importantes que debes notar aquí:
 
-* Los paréntesis alrededor de los parámetros de la función son opcionales cuando sólo tiene un parámetro, pero son requeridos de otra manera. Si crees que esto te confundirá, puede ser una buena idea usar paréntesis.
-* Puedes poner limpiamente lo que necesitas en una sola línea, sin llaves.
-* Omitir llaves hará que las funciones "arrow" usen **implicit retrun**, pero solo si tienes una expresión de una sola línea. Las variables `doubleAge` y `filter` son un buen ejemplo de esto.
-* A diferencia de la declaración de `función someFunc() { ... }` , las funciones "arrow" no pueden utilizarse para crear funciones con tal sintaxis. Puedes crear una variable y darle una función ""arrow" anónima como el valor, aunque (como se ve con la `doubleAge` y `filter` variables).
+* Los paréntesis alrededor de los parámetros de la función son opcionales cuando tienes un solo parámetro, pero obligatorios si tienes más de uno. Si sientes que esto te confunde, es buena idea usar siempre los paréntesis. 
+* Puedes poner limpiamente lo que necesites en una sola línea sin las llaves (`{ }`).
+* Omitir las llaves (`{ }`) hará que las funciones flecha usen un **return implícito**, pero solo si tienes una expresión de una sola línea. Las variables `doubleAge` y `filter` son un buen ejemplo de esto.
+* A diferencia de la declaración `function someFunc() { ... }`, las funciones flecha no pueden utilizarse para crear funciones con esa sintaxis. Sin embargo, puedes crear una variable y darle una función flecha anónima como valor (Como se ha visto con las variables `doubleAge` y `filter`).
 
-No cubriremos el ámbito léxico `this` con funciones "arrow" aquí, pero puedes "googlear" mas sobre eso. De nuevo, si no estás seguro de qué `this` o cuando lo necesitas, leyendo sobre el léxico `this` solo puede confundirte.
+No hablaremos sobre el ámbito léxico `this` con funciones flecha aquí, pero puedes [Googlear](https://google.com) sobre eso si tienes curiosidad. Nuevamente, si no estás seguro sobre qué es `this` o cuándo lo necesitarás, leer sobre el léxico `this` primero solamente te confundirá.
 
 ## Desestructuración
 
-La desestructuración es una forma fácil de extraer elementos de un objeto o matriz. Si nunca has visto la sintaxis para ella antes, puede ser un poco confusa, pero es fácil de entender una vez explicado
+La desestructuración es una forma fácil de extraer elementos de un objeto o una matriz. Si nunca has visto la sintaxis antes, puede ser algo confusa, ¡Pero es sencillo de entender una vez explicado!
 
 ### Desestructuración de objetos
 
-Aquí hay un ejemplo común en el que la destrucción de objetos sería útil:<!-- eslint-skip -->```js
+Aquí hay un ejemplo común en el cual la desestructuración de objetos sería muy útil:
+
+<!-- eslint-skip -->
+
+```js
 const config = require('./config.json');
 const prefix = config.prefix;
 const token = config.token;
 ```
 
-Este código es un poco detallado y no es el más divertido de escribir cada vez. La destrucción de objetos simplifica esto, facilitando tanto la lectura como la escritura. Echa un vistazo:
+Este código es un poco verboso y no es divertido escribirlo a cada rato. La desestructuración de objetos lo simplifica, facilitando tanto la lectura como la escritura. Echa un vistazo:
 
 ```js
 const { prefix, token } = require('./config.json');
 ```
 
-La destrucción de objetos toma esas propiedades del objeto y las almacena en variables. Si la propiedad no existe, seguirá creando una variable pero con el valor `undefined`. Así que en lugar de usar `config.token` en tu método `client.login()`, simplemente usarías `token`. Y como la desestructuración crea una variable para cada artículo, ni siquiera necesitas esa línea `const prefix = config.prefix`. ¡Cool!
+La desestructuración de objetos toma esas propiedades del objeto y las almacena en variables. Si la propiedad no existe, seguirá creando una variable pero con el valor de `undefined`. Así que en lugar de usar `config.token` en tu método `client.login()`, simplemente usarías `token`. Y como la desestructuración crea una variable para cada elemento, no necesitas la línea `const prefix = config.prefix`.
 
-Adicionalmente, puedes hacer esto en tus comandos.
+Adicionalmente, puedes usar esto para tus comandos.
 
 ```js
 client.on('interactionCreate', interaction => {
-    const { commandName } = interaction;
+	const { commandName } = interaction;
 
-    if (commandName === 'ping') {
-        // comando ping aquí...
-    } else if (commandName === 'beep') {
-        // comando beep aquí...
-    }
-    // otros comandos aquí...
+	if (commandName === 'ping') {
+		// comando ping aquí...
+	} else if (commandName === 'beep') {
+		// comando beep aquí...
+	}
+	// otros comandos aquí...
 });
 ```
 
-El código es más corto y se ve más limpio, pero no debería ser necesario si sigues [command handler](/command-handling/).
+El código es corto y limpio, pero no sería necesario si sigues la sección de [gestor de comandos](/gestor-de-comandos/) de la guía.
 
-También puede renombrar variables cuando se destruyen, si es necesario. Un buen ejemplo es cuando extrae una propiedad con un nombre que ya está siendo usado o entra en conflicto con una palabra clave reservada. La sintaxis es la siguiente:
+También puedes renombrar las variables al desestructurar, si es necesario. Un buen ejemplo de esto es cuando estás usando una propiedad con un nombre que ya es usado, o entra en conflicto con una palabra clave reservada. La sintaxis es la siguiente:
 
 ```js
-// `default` es una palabra clave reservada
+// 'default' es una palabra clave reservada
 const { 'default': defaultValue } = someObject;
 
 console.log(defaultValue);
-// 'Algún valor por defecto aquí'
+// 'Algún valor pre-definido aquí'
 ```
 
-### Desestructuración de objetos
+### Desestructuración de matricez
 
-La sintaxis de destrucción de sintaxis es muy similar a la destrucción de objetos, excepto que usas corchetes en lugar de llaves. Además, ya que se está usando en una array, se destruyen los elementos en el mismo orden en que se encuentra la array. Sin destrucción de arrays, así es como extraerías elementos de una array:
+La sintaxis de desestructuración de matrices es bastante similar a la desestructuración de objetos, excepto que usas corchetes en lugar de llaves. En adición, ya que estás usando una matriz, la desestructuración de elementos será en el mismo orden en el que está la matriz. Sin desestructurar la matriz, así sería como extraerías un elemento de la matriz:
 
 ```js
-// asumiendo que estamos en un comando `profile` y tenemos una variable `args`
+// asumiendo que estamos en un comando 'profile' y tenemos una variable 'args'
 const name = args[0];
 const age = args[1];
 const location = args[2];
 ```
 
-Como el primer ejemplo con la destrucción de objetos, esto es un poco verboso y no divertida de escribir. La destrucción de arrays alivia este dolor.
+Como en el primer ejemplo de desestructuración de objetos, esto es algo verboso y no es divertido de escribir. La desestructuración de matrices alivia este dolor.
 
 ```js
 const [name, age, location] = args;
 ```
 
-Una sola línea de código que hace las cosas mucho más limpias! En algunos casos, puede que ni siquiera necesite todos los elementos del array (por ejemplo, al usar `string.match(regex)`). La destrucción de arrays todavía le permite operar en el mismo sentido.
+¡Una sola línea de código que hace las cosas mucho más limpias! En algunos casos, no necesitarás todos los elementos de la matriz (e.j., cuando usas `string.match(regex)`). La desestructuración de matrices sigue permitiendo operar en el mismo sentido.
 
 ```js
 const [, username, id] = message.content.match(someRegex);
 ```
 
-En este snippet, usamos una coma sin proporcionar un nombre para el elemento de la array que no necesitamos. También puedes darle un nombre de marcador de posición si lo prefieres, por supuesto; es totalmente preferible en ese punto.
+En este fragmento de código, usamos una coma sin dar un nombre al elemento de la matriz que no necesitamos. También puedes darle un nombre como marcador si lo deseas, claro; todo depende de tus preferencias en este punto.
 
-## var, let y const
+## var, let, y const
 
-Dado que hay muchos, muchos artículos ahí fuera que pueden explicar esta parte más en profundidad, sólo te daremos una TL; R y un enlace de artículo si usted decide leer más sobre él.
+Como hay muchos, muchos artículos que explican esto más en profundidad, solamente te daremos mucho texto y un enlace a un artículo si eliges leer más sobre esto.
 
-1. La palabra clave `var` es lo que fue (y todavía puede ser) usado en JavaScript antes de que `let` y `const` se inventasen. Hay muchos problemas con `var`, sin embargo, tales como ser un ámbito de funciones, aumentar los problemas relacionados y permitir la redeclaración.
-2. La palabra clave `let` es esencialmente la nueva variable ``; aborda muchos de los problemas `var` tiene, pero su factor más significativo sería que su ámbito de aplicación en el bloque y no permite la redeclaración (*no* reasignación).
-3. La palabra clave `const` es para dar a las variables un valor constante que no puede ser reasignado. tanto `const`, como `let`, son block-scoped.
+1. La palabra clave `var` es lo que fue (y sigue siendo) usado en JavaScript antes de que aparecieran `let` y `const`. Sin embargo, hay muchos problemas con `var`, como el hecho de que sea de ámbito funcional (`function`), problemas relacionados con la elevación (`hoisting`) y la posibilidad de redeclaración.
+2. La palabra clave `let` es esencialmente la nueva `var`; aborda muchos de los problemas que tiene `var`, pero su factor más significativo sería que es de ámbito de bloques y no permite la redeclaración (*no* la reasignación).
+3. La palabra clave `const` sirve para dar a las variables un valor constante que no puede ser reasignado. La palabra `const`, al igual que `let`, también está limitada por bloques.
 
-La regla general recomendada por esta guía es usar `const` siempre que sea posible, `let` de otro modo, y evitar usar `var`. Aquí hay un [artículo útil](https://madhatted.com/2016/1/25/let-it-be) si quieres leer más sobre este tema.
+La regla general recomendada por esta guía es utilizar `const` siempre que sea posible, `let` en caso contrario, y evitar el uso de `var`. Aquí hay un [artículo útil](https://madhatted.com/2016/1/25/let-it-be) si quieres leer más sobre este te

@@ -75,9 +75,9 @@ Dentro de la consola, puedes presionar las flechas de tu teclado para ver los co
 :::
 
 ::: tip
-Para aprender cómo crear y recibir comandos slash (`/`), lee la [sección de interacciones](/interactions/registering-slash-commands.md).
+Para aprender cómo crear y recibir comandos slash (`/`), lee la [sección de interacciones](/interacciones/registrando-comandos-de-barra.html).
 :::
 
 ## Resultado final
 
-<ResultingCode path="creating-your-bot/up-and-running" />
+<ResultingCode path="creando-tu-bot/en-marcha" />

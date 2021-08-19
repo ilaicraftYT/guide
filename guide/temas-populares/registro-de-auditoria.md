@@ -34,7 +34,7 @@ So far, nothing should seem new or complicated. You get the message deleted even
 
 For simplicity, set a fetch limit of 1 and accept only the `MESSAGE_DELETE` type.
 
-Placing this into the previous code, you get the following. Note that this also makes the function async to make use of `await`. In addition, make sure to ignore DMs.
+Placing this into the previous code, you get the following. Note that this also makes the function async to make use of `await`. In addition, make sure to ignore MDs.
 
 ```js {2-9,11-12,14-16,18-25}
 client.on('messageDelete', async message => {

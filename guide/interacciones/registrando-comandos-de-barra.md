@@ -3,9 +3,9 @@
 Discord ofrece a los desarrolladores la opción de crear comandos de barra integrados en el cliente. En esta sección, cubriremos cómo registrar estos comandos usando discord.js.
 
 ::: tip
-Esta página asume que usa la misma estructura de archivo que nuestro **[administrador de comandos](/command-handling)**. Los scripts proporcionados están hechos para funcionar con esa configuración.
+Esta página asume que usa la misma estructura de archivo que nuestro **[Gestor de comandos](/gestor-de-comamdos)**. Los scripts proporcionados están hechos para funcionar con esa configuración.
 
-Si ya tiene los comandos de barra configurados para su aplicación y desea aprender cómo responder a ellos, consulte **[la página siguiente](/interactions/replying-to-slash-commands.md)**.
+Si ya tiene los comandos de barra configurados para su aplicación y desea aprender cómo responder a ellos, consulte **[la página siguiente](/interacciones/respondiendo-a-comandos-de-barra.md)**.
 :::
 
 ## Comandos de servidor
@@ -13,7 +13,7 @@ Si ya tiene los comandos de barra configurados para su aplicación y desea apren
 Los comandos de aplicación del servidor, solo estan disponibles en el mismo que fueron creados, si su aplicación tiene el `scope` de `applications.commands` autorizado.  
 
 Es esta sección,
-In this section, utilizaremos una secuencia de comandos que se puede utilizar junto con el controlador de comandos de barra de [administrador de comandos](/command-handling/).
+In this section, utilizaremos una secuencia de comandos que se puede utilizar junto con el controlador de comandos de barra de [Gestor de comandos](/gestor-de-comandos/).
 
 Antes que nada, instala [@discordjs/rest](https://github.com/discordjs/discord.js-modules/blob/main/packages/rest/) y [`discord-api-types`](https://github.com/discordjs/discord-api-types/) ejecutando `npm install @discordjs/rest discord-api-types` en tu terminal.
 
@@ -59,7 +59,7 @@ La ejecución de este script registrará todos sus comandos en el servidor cuya 
 
 ## Comandos globales
 
-Los comandos globales de la aplicación estarán disponibles en todos los gremios que tu aplicación tenga el `scope` de `applications.commands` autorizado, así como en los DM.
+Los comandos globales de la aplicación estarán disponibles en todos los gremios que tu aplicación tenga el `scope` de `applications.commands` autorizado, así como en los MD.
 
 ::: tip
 Los comandos globales se almacenan en caché durante una hora. Los nuevos comandos globales se desplegarán lentamente en todos los servidores y solo se garantizará que se actualicen después de una hora. Los comandos del servidor se actualizan instantáneamente. Como tal, le recomendamos que use comandos basados en servidores durante el desarrollo y los publique en comandos globales cuando estén listos para uso público.
@@ -99,7 +99,7 @@ Observe cómo se especifica `.setRequired (true)` dentro del generador de opcion
 Como se muestra en el ejemplo de opciones anterior, puede especificar el `tipo` de un `ApplicationCommandOption`. A continuación se enumeran todos los valores posibles que puede pasar como `ApplicationCommandOptionType`:
 
 ::: tip
-El [constructor de comandos de barra](/popular-topics/builders.md#slash-command-builders) tiene un método para cada uno de estos tipos, respectivamente.
+El [constructor de comandos de barra](/temas-populares/constructores.html#slash-command-builders) tiene un método para cada uno de estos tipos, respectivamente.
 Consulte la documentación de la API de Discord para obtener explicaciones detalladas sobre el [`SUB_COMMAND` y `SUB_COMMAND_GROUP` tipos de opciones](https://discord.com/developers/docs/interactions/application-commands#subcommands-and-subcommand-groups).
 :::
 

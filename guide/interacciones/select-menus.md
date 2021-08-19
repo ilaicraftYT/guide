@@ -3,7 +3,7 @@
 Con la API de `Componentes`, puede crear componentes de mensajes interactivos. En esta página, cubriremos cómo enviar, recibir y responder a `select menus` usando discord.js.
 
 ::: tip
-Esta página es un seguimiento de la [página de interacciones (comandos de barra)](/interactions/registering-slash-commands.md). Por favor, léalos primero con atención para que pueda comprender los métodos utilizados en esta sección.
+Esta página es un seguimiento de la [página de interacciones (comandos de barra)](/interacciones/registrando-comandos-de-barra.md). Por favor, léalos primero con atención para que pueda comprender los métodos utilizados en esta sección.
 :::
 
 ## Construyendo y enviando select menus
@@ -36,7 +36,7 @@ client.on('interactionCreate', async interaction => {
 						},
 						{
 							label: 'Tu, también puedes seleccionarme',
-							description: 'Esta es también una descripción,
+							description: 'Esta es también una descripción',
 							value: 'second_option',
 						},
 					]),

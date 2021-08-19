@@ -59,13 +59,13 @@ export default {
 			],
 		},
 		{
-			text: 'Administrador de comandos',
+			text: 'Gestor de comandos',
 			children: [
 				'/gestor-de-comandos/',
 			],
 		},
 		{
-			text: 'Administrador de eventos',
+			text: 'Gestor de eventos',
 			children: [
 				'/gestor-de-eventos/',
 			],
@@ -85,10 +85,10 @@ export default {
 			children: [
 				'/temas-populares/faq.md',
 				'/temas-populares/hilos.md',
-				'/temas-populares/embeds.md',
+				'/temas-populares/incrustaciones.md',
 				'/temas-populares/constructores.md',
 				'/temas-populares/reacciones.md',
-				'/temas-populares/colecciones.md',
+				'/temas-populares/recolectores.md',
 				'/temas-populares/permisos.md',
 				'/temas-populares/permisos-extendidos.md',
 				'/temas-populares/intents.md',
@@ -118,8 +118,8 @@ export default {
 			text: 'Fragmentación (Sharding)',
 			children: [
 				'/sharding/',
-				'/sharding/additional-information.md',
-				'/sharding/extended.md',
+				'/sharding/informacion-adicional.md',
+				'/sharding/extendido.md',
 			],
 		},
 		{
@@ -131,8 +131,8 @@ export default {
 		{
 			text: 'Mejorando tu entorno de desarrollo',
 			children: [
-				'/mejorando-el entorno-de-desarrollo/pm2.md',
-				'/mejorando-el entorno-de-desarrollo/package-json-scripts.md',
+				'/mejorando-el-entorno-de-desarrollo/pm2.md',
+				'/mejorando-el-entorno-de-desarrollo/package-json-scripts.md',
 			],
 		},
 		{

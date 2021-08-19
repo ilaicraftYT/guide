@@ -20,6 +20,7 @@ npm install --save @keyv/mysql
 
 Crear una instancia de Keyv después de haber instalado Keyv y los controladores necesarios.<!-- eslint-skip -->
 ```js
+
 const Keyv = require('keyv');
 
 // Unos de los siguientes
@@ -41,7 +42,9 @@ Para una configuración más detallada, lee el [Keyv readme](https://github.com/
 
 ## Uso
 
-Keyv expone una API familiar a los "[Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)". Sin embargo, solo tiene los métodos `set`, `get`, `delete`y `clear`. Además, en lugar de devolver datos inmediatamente, estos métodos retornan [Promesas](/additional-info/async-await.md) que se resuelven con los datos.
+Keyv expone una API familiar a los "[Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)". Sin embargo, solo tiene los métodos `set`, `get`, `delete`y `clear`. Además, en lugar de devolver datos inmediatamente, estos métodos retornan [Promesas](/informacion-adicional/async-await.md) que se resuelven con los datos.
+
+<!-- eslint-skip -->
 
 ```js
 (async () => {
@@ -78,36 +81,36 @@ const prefixes = new Keyv('sqlite://path/to.sqlite');
 
 ### Usando "Command handler"
 
-Esta guía utiliza un "command handler "comandos muy básico añadiendo cierta complejidad para permitir múltiples prefijos. Mira la guía de "[command handler ](/command-handling/)" para un mejor "command handler".
+Esta guía utiliza un "command handler "comandos muy básico añadiendo cierta complejidad para permitir múltiples prefijos. Mira la guía de "[command handler ](/gestor-de-comandos/)" para un mejor "command handler".
 
 ```js
 client.on('messageCreate', async message => {
-    if (message.author.bot) return;
+	if (message.author.bot) return;
 
-    let args;
-    // comandos en servidores
-if (message.guild) {
-        let prefix;
+	let args;
+	// comandos en servidores
+	if (message.guild) {
+		let prefix;
 
-        if (message.content.startsWith(globalPrefix)) {
-            prefix = globalPrefix;
-        } else {
-            //comprueba el prefijo de servidor-nivel
-            const guildPrefix = await prefixes.get(message.guild.id);
-            if (message.content.startsWith(guildPrefix)) prefix = guildPrefix;
-        }
+		if (message.content.startsWith(globalPrefix)) {
+			prefix = globalPrefix;
+		} else {
+			// comprueba el prefijo de servidor-nivel
+			const guildPrefix = await prefixes.get(message.guild.id);
+			if (message.content.startsWith(guildPrefix)) prefix = guildPrefix;
+		}
 
-        // si encuentra al prefix establece los argumentos, si no es un comando
-        if (!prefix) return;
-        args = message.content.slice(prefix.length).trim().split(/\s+/);
-    } else {
-        // mensajes directos 
-       const slice = message.content.startsWith(globalPrefix) ? globalPrefix.length : 0;
-        args = message.content.slice(slice).split(/\s+/);
-    }
+		// si encuentra al prefix establece los argumentos, si no es un comando
+		if (!prefix) return;
+		args = message.content.slice(prefix.length).trim().split(/\s+/);
+	} else {
+		// mensajes directos
+		const slice = message.content.startsWith(globalPrefix) ? globalPrefix.length : 0;
+		args = message.content.slice(slice).split(/\s+/);
+	}
 
-    // consigue el primer argumento después del prefix como el comando
-    const command = args.shift().toLowerCase();
+	// consigue el primer argumento después del prefix como el comando
+	const command = args.shift().toLowerCase();
 });
 ```
 
@@ -117,16 +120,16 @@ Ahora que tienes un "command handler", puedes hacer un comando para permitir que
 
 ```js {3-11}
 client.on('messageCreate', async message => {
-    // ...
-    if (command === 'prefijo') {
-        // if there's at least one argument, set the prefix
-        if (args.length) {
-            await prefixes.set(message.guild.id, args[0]);
-            return message.channel.send(`Se cambió el prefijo a  \`${args[0]}\``);
-        }
+	// ...
+	if (command === 'prefijo') {
+		// if there's at least one argument, set the prefix
+		if (args.length) {
+			await prefixes.set(message.guild.id, args[0]);
+			return message.channel.send(`Se cambió el prefijo a  \`${args[0]}\``);
+		}
 
-        return message.channel.send(`El prefijo es \`${await prefixes.get(message.guild.id) || globalPrefix}\``);
-    }
+		return message.channel.send(`El prefijo es \`${await prefixes.get(message.guild.id) || globalPrefix}\``);
+	}
 });
 ```
 

@@ -21,7 +21,7 @@ client.on('interactionCreate', interaction => {
 client.login(token);
 ```
 
-Actualmente, los eventos están en el archivo `index.js`. El evento `ready` se emite una sola vez cuando `Client` está listo para su uso, y el evento `interactionCreate` se emite siempre que una interacción sea recibida. Mover el código de los eventos a archivos individuales es simple, y vamos a adoptar un enfoque similar al del [administrador de comandos](/command-handling/).
+Actualmente, los eventos están en el archivo `index.js`. El evento `ready` se emite una sola vez cuando `Client` está listo para su uso, y el evento `interactionCreate` se emite siempre que una interacción sea recibida. Mover el código de los eventos a archivos individuales es simple, y vamos a adoptar un enfoque similar al del [Gestor de comandos](/gestor-de-comandos/).
 
 ## Archivos individuales para eventos
 
@@ -40,16 +40,16 @@ En la misma carpeta, crea una nueva carpeta llamada `events`. Ahora puedes tomar
 
 ```js
 // ready.js
-module.exports = (client) => {
+module.exports = client => {
 	console.log('¡Estoy listo! Mi nombre es:', client.user.tag);
-}
+};
 ```
 
 ```js
 // interactionCreate.js
 module.exports = (client, interaction) => {
 	console.log(`${interaction.user.tag} ejecutó una interacción en #${interaction.channel.name}.`);
-}
+};
 ```
 
 ::: tip
@@ -66,7 +66,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 ```
 
-Este mismo método es usado en nuestro [administrador de comandos](/command-handling/). El método `fs.readdirSync().filter()` retorna un array de todos los nombres de los archivos en la carpeta especificada y filtra solamente los archivos que sean `.js`, por ejemplo: `['ready.js', 'interactionCreate.js']`.
+Este mismo método es usado en nuestro [Gestor de comandos](/gestor-de-comandos/). El método `fs.readdirSync().filter()` retorna un array de todos los nombres de los archivos en la carpeta especificada y filtra solamente los archivos que sean `.js`, por ejemplo: `['ready.js', 'interactionCreate.js']`.
 
 ```js {3-8}
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
@@ -93,11 +93,11 @@ Es importante saber que el orden de los parámetros importa. Por ejemplo, el eve
 ```js {3}
 module.exports = (client, oldUser, newUser) => {
 	// ...
-}
+};
 ```
 
 Si intentas hacer `(newUser, client, oldUser)`, esto significará que `newUser` es el objeto `client`, `client` es el objeto `oldUser` y `oldUser` es el objeto `newUser`.
 
 ## Resultado final
 
-<ResultingCode path="event-handling/file-setup" />
+<ResultingCode path="gestor-de-eventos/file-setup" />

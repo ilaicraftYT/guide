@@ -24,7 +24,7 @@ Si quieres obtener el objeto `Webhook` que envió el mensaje, puedes usar el mé
 ## Obteniendo webhooks
 
 ::: tip
-La búsqueda de webhooks siempre hará uso de colecciones y promesas. Si no comprendes ninguno de los conceptos, revísalos y luego vuelve a esta sección. Puedes leer sobre colecciones [aquí](/additional-info/collections.md), y  sobre promesas [aquí](/additional-info/async-await.md) y [aquí](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises).
+La búsqueda de webhooks siempre hará uso de colecciones y promesas. Si no comprendes ninguno de los conceptos, revísalos y luego vuelve a esta sección. Puedes leer sobre colecciones [aquí](/informacio-adicional/colecciones.md), y  sobre promesas [aquí](/informacion-adicional/async-await.md) y [aquí](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Using_promises).
 :::
 
 ### Obteniendo todos los webhooks de un Guild
@@ -173,8 +173,8 @@ Puedes usar <DocsLink path="class/Webhook?scrollTo=editMessage" type="method" />
 
 ```js
 const message = await webhook.editMessage('123456789012345678', {
-	content: 'Edited!',
-	username: 'some-username',
+	content: '¡Editado!',
+	username: 'algún-nombre-de-usuario',
 	avatarURL: 'https://i.imgur.com/AfFp7pu.png',
 	embeds: [embed],
 });
@@ -193,3 +193,4 @@ await webhookClient.deleteMessage('123456789012345678');
 ## Resultado del código
 
 <ResultingCode/>
+

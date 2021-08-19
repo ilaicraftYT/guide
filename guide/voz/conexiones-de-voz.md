@@ -63,7 +63,7 @@ if (subscription) {
 
 ## Ciclos de vida
 
-Las conexiones de voz tienen su propio ciclo de vida, con cinco estados distintos. Puede seguir los métodos discutidos en la sección [ciclos de vida](/voice/life-cycles.md) para suscribirse a los cambios en las conexiones de voz.
+Las conexiones de voz tienen su propio ciclo de vida, con cinco estados distintos. Puede seguir los métodos discutidos en la sección [ciclos de vida](./ciclos-de-vida.md) para suscribirse a los cambios en las conexiones de voz.
 
 - **Signalling** - el estado inicial de una conexión de voz. La conexión estará en este estado cuando solicite permiso para unirse a un canal de voz.
 

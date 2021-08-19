@@ -1,27 +1,27 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Reporte de bugs/errores
+about: Crea un reporte así nos ayudas a mejorar
 labels: 'type: bug'
 
 ---
 
-**Describe the bug**
-<!-- A clear and concise description of what the bug is. -->
+**Describa el error**
+<!-- Una descripción clara y concisa de qué es este error. -->
 
-**To Reproduce**
-<!-- Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error -->
+**¿Cómo reproducirlo?**
+<!-- Pasos para reproducir este bug:
+1. Ve a '...'
+2. Clic en '....'
+3. Rote abajo en '....'
+4. Ver error -->
 
-**Screenshots**
-<!-- If applicable, add screenshots to help explain your problem. -->
+**Capturas de pantalla**
+<!-- Si aplica, añade capturas para ayudar a explicar tu problema. -->
 
-**Device (please complete the following information):**
-<!-- - Device/OS: [e.g. iOS]
- - Browser: [e.g. chrome, safari]
- - Version: [e.g. 22] -->
+**Dispositivo (Por favor complete la siguiente información):**
+<!-- - Dispositivo/SO: [ej. iOS]
+ - Navegador: [ej. chrome, safari]
+ - Versión: [ej. 22] -->
 
-**Additional notes**
-<!-- Add any other notes about the problem here. -->
+**Notas adicionales**
+<!-- Añade otras notas acerca del problema aquí. -->

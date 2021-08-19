@@ -44,20 +44,20 @@ Todo el contenido de la guia usa discord.js v13. La versión anterior de esta gu
 
 ### Contenido
 
-- [Actualizando de v12 a v13](/additional-info/changes-in-v13.md): Una lista de cambios para actualizar de discord.js v12 a v13
-- [Registrando slash commands](/interactions/registering-slash-commands.md): Pasos para registrar slash commands
-- [Respondiendo a slash commands](/interactions/replying-to-slash-commands.md): Múltiples maneras de responder un slash command
-- [Permisos para slash command](/interactions/slash-command-permissions.md): Restringir slash commands por usuario o por rol
-- [Botones](/interactions/buttons.md): Definiendo, enviando y recibiendo botones
-- [Menús de selección](/interactions/select-menus.md): Definiendo, enviando y recibiendo menús de selección
-- [Hilos](/popular-topics/threads.md): Creando y manejando hilos
-- [Builders](/popular-topics/builders.md): Una colección de constructores para usar con tu bot
+- [Actualizando de v12 a v13](informacion-adicional/cambios-en-v13.md): Una lista de cambios para actualizar de discord.js v12 a v13
+- [Registrando slash commands](/interacciones/registrando-comandos-de-barra.md): Pasos para registrar slash commands
+- [Respondiendo a slash commands](/interacciones/respondiendo-comandos-de-barra.md): Múltiples maneras de responder un slash command
+- [Permisos para slash command](/interacciones/permisos-de-comandos-de-barra.md): Restringir slash commands por usuario o por rol
+- [Botones](/interacciones/botones.md): Definiendo, enviando y recibiendo botones
+- [Menús de selección](/interacciones/select-menus.md): Definiendo, enviando y recibiendo menús de selección
+- [Hilos](/temas-populares/hilos.md): Creando y manejando hilos
+- [Builders](/temas-populares/constructores.md): Una colección de constructores para usar con tu bot
 
 ### Nuevo
 
 - Commando: Será reemplazado por una guía de [Sapphire](https://github.com/discordjs/guide/pull/711). *Aunque siendo sinceros, es mejor usar el handler de esta guía.*
-- [Voz](/voice/): Reescrito para que use [`@discordjs/voice`](https://github.com/discordjs/voice).
-- [Administrador de comandos](/command-handling/): Actualizado a slash commands
+- [Voz](/voz/): Reescrito para que use [`@discordjs/voice`](https://github.com/discordjs/voice).
+- [Gestor de comandos](/gestor-de-comandos/): Actualizado a comandos de barra
 	- Secciones obsoletas removidas
 - `client.on('message')` códigos actualizados a `client.on('interactionCreate')`
 	- ["Guild Message Content" será un intent privilegiado en Abril del 2022](https://support-dev.discord.com/hc/es-es/articles/4404772028055)

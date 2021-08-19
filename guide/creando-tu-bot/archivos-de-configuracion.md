@@ -1,7 +1,7 @@
 # Archivos de configuración
 
 ::: tip
-Esta página es una continuación y se basa en el código de la [página anterior](/creating-your-bot/)
+Esta página es una continuación y se basa en el código de la [página anterior](/creando-tu-bot/)
 :::
 
 Mientras más te profundices en el desarrollo, necesitarás interactuar con datos sensibles o datos que son usados en múltiples lugares, así como:

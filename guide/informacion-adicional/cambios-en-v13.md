@@ -4,9 +4,9 @@
 
 Discord.js v13 necesita Node.js v16.6.0 como mínimo para que funcione, así que asegúrate de tener la versión correcta. Para ver la versión de Node.js en la máquina, usa `node -v` en tu terminal, si es inferior a v16.6.0 significa que primero debes actualizar.
 
-Una vez tengas Node.js actualizado, podrás instalar Discord.js v13 usando `npm install discord.js` en tu terminal (o `npm install discord.js @discordjs/voice` para soporte de voz).
+Una vez tengas Node.js actualizado, podrás instalar discord.js v13 usando `npm install discord.js` en tu terminal (o `npm install discord.js @discordjs/voice` para soporte de voz).
 
-Puedes verificar tu versión de Discord.js usando `npm list discord.js`. Si sigue en v12.x, desinstálalo (`npm uninstall discord.js`) y reinstálalo (`npm install discord.js`).
+Puedes verificar tu versión de discord.js usando `npm list discord.js`. Si sigue en v12.x, desinstálalo (`npm uninstall discord.js`) y reinstálalo (`npm install discord.js`).
 
 ## Versión de la API
 
@@ -15,7 +15,7 @@ Discord.js v13 usa la versión 9 de la API de Discord. Adicionalmente, esta vers
 ## Comandos de barra diagonal
 
 ¡Discord.js tiene soporte para los comandos de barra diagonal!
-Visita la sección de los [comandos de barra diagonal](/interactions/registering-slash-commands.html) para empezar a usarlos.
+Visita la sección de los [comandos de barra diagonal](/interacciones/registrando-comandos-de-barra.html) para empezar a usarlos.
 
 Dicha sección de la guía explica el evento `interactionCreate`. En esta versión también existen los eventos `applicationCommandCreate`, `applicationCommandDelete`, y `applicationCommandUpdate`.
 
@@ -25,7 +25,7 @@ Dicha sección de la guía explica el evento `interactionCreate`. En esta versi�
 
 Se han introducido las clases `MessageActionRow`, `MessageButton` y `MessageSelectMenu`, al igual que las interacciones y colectores asociados a estos.
 
-Revisa la sección de [componentes](/interactions/buttons.html) en esta guía para empezar a usarlos.
+Revisa la sección de [componentes](/interacciones/botones.html) en esta guía para empezar a usarlos.
 
 ## Hilos
 
@@ -33,7 +33,7 @@ Revisa la sección de [componentes](/interactions/buttons.html) en esta guía pa
 
 Esto introduce la clase `ThreadManager`, la cual puede ser encontrada como `TextChannel#threads`, en adición a `ThreadChannel`, `ThreadMemberManager`, y `ThreadMember`. También hay cinco eventos nuevos: `threadCreate`, `threadDelete`, `threadListSync`, `threadMemberUpdate` y `threadMembersUpdate`.
 
-Revisa la sección de [hilos](/popular-topics/threads.html) en esta guía para empezar a usarlos.
+Revisa la sección de [hilos](/temas-populares/hilos.html) en esta guía para empezar a usarlos.
 
 ## Voz
 
@@ -45,7 +45,7 @@ Revisa la sección de [voz](/voice/) en esta guía para empezar a usarlos.
 
 Una solicitud muy popular ha sido escuchada: La clase `Client` ahora tiene una nueva opción, `makeCache`. El argumento que recibe es un `CacheFactory`.
 
-Combinandolo con el método `Options.cacheWithLimits` puedes definir los limites de caché para cada `*Manager` y Discord.js se encargará del resto.
+Combinandolo con el método `Options.cacheWithLimits` puedes definir los limites de caché para cada `*Manager` y discord.js se encargará del resto.
 
 ```js
 const client = new Client({
@@ -131,7 +131,7 @@ Consulte nuestro [artículo más detallado sobre el tema](/popular-topics/intent
 
 ### Structures#extend
 
-El concepto de estructuras extendidas ha sido removido completamente de Discord.js.
+El concepto de estructuras extendidas ha sido removido completamente de discord.js.
 Para más información sobre el por qué de esta decisión, puedes ver [este Pull Request](https://github.com/discordjs/discord.js/pull/6027).
 
 No hay ningún reemplazo para esto, ya que su intención es cambiar el diseño del código, en lugar de activar algo igualmente malo.
@@ -175,11 +175,11 @@ Todas las clases y métodos relacionados con / devuelven `Collector` (tanto `.cr
 
 ### Costumbre con los nombres
 
-Algunos nombres de uso común en Discord.js han cambiado.
+Algunos nombres de uso común en discord.js han cambiado.
 
 #### Algo#algoId
 
-El nombre de las propiedades con el formato `algoID` han cambiado a `algoId`. Discord.js ahora usa [camelCase o 'letra de caja camello'](https://es.wikipedia.org/wiki/Camel_case) ya que `Id` es una abreviación de 'identificador', no un acrónimo.
+El nombre de las propiedades con el formato `algoID` han cambiado a `algoId`. discord.js ahora usa [camelCase o 'letra de caja camello'](https://es.wikipedia.org/wiki/Camel_case) ya que `Id` es una abreviación de 'identificador', no un acrónimo.
 
 Esto incluye: `afkChannelId`, `applicationId`, `channelId`, `creatorId`, `guildId`, `lastMessageId`, `ownerId`, `parentId`, `partyId`, `processId`, `publicUpdatesChannelId`, `resolveId`, `rulesChannelId`, `sessionId`, `shardId`, `systemChannelId`, `webhookId`, `widgetChannelId` y `workerId`.
 
@@ -250,13 +250,13 @@ Evita usar cadenas como `Permissions` y `UserFlags`, hay "flags" en su lugar.
 + permissions.has(Permissions.FLAGS.SEND_MESSAGES)
 ```
 
-### Mensajes directos
+### Canales de mensajes directos
 
-En la API de Discord v8 y superior, los canales de un mensaje directo, no emiten el evento `CHANNEL_CREATE`, lo que significa que Discord.js no puede añadirlos en caché automáticamente. Para que tu bot pueda recibir DMs debes activar el [parcial (partial)](/popular-topics/partials.html) llamado `CHANNEL`.
+En la API de Discord v8 y superior, los canales de mensajes directos no emiten el evento `CHANNEL_CREATE`, lo que significa que discord.js no puede añadirlos en caché automáticamente. Para que tu bot pueda recibir mensajes directos debes activar el [parcial (partial)](/popular-topics/partials.html) llamado `CHANNEL`.
 
 ### Versión para navegadores (Webpack builds)
 
-La versión para navegadores ya no es soportada por Discord.js
+La versión para navegadores ya no es soportada por discord.js
 
 ## Cambios y eliminaciones
 
@@ -317,7 +317,7 @@ Tambien puedes definir los permisos necesarios:
 
 #### Client#login
 
-Cuando tu token se reiniciaba por llegar al límite de 1000 inicios de sesión en 1 día, Discord.js lo consideraba un ratelimit y esperaba a que pueda iniciar sesión sin avisar al usuario. Ahora tira un `Error` si esto ocurre.
+Cuando tu token se reiniciaba por llegar al límite de 1000 inicios de sesión en 1 día, discord.js lo consideraba un ratelimit y esperaba a que pueda iniciar sesión sin avisar al usuario. Ahora tira un `Error` si esto ocurre.
 
 #### Client#setInterval
 #### Client#setTimeout
@@ -343,7 +343,7 @@ La opción `ClientOptions#messageCacheMaxSize` ha sido removida. En su lugar, us
 
 La opción `ClientOptions#messageEditHistoryMaxSize` ha sido removida.
 
-Para reducir el caché, Discord.js no almacenará un historial de ediciones. Ahora tendrás que implementar esto por tí mismo si lo necesitas.
+Para reducir el caché, discord.js no almacenará un historial de ediciones. Ahora tendrás que implementar esto por tí mismo si lo necesitas.
 
 ### ClientUser
 
@@ -921,7 +921,7 @@ Este parámetro es opcional y recurrirá a una función que siempre devuelve `tr
 ### CommandInteraction
 
 Proporciona soporte de la gateway para las interacciones de los comandos de barra diagonal.
-Para más información, visita la sección para los [comandos de barra diagonal](/interactions/registering-slash-commands.html) de esta guía.
+Para más información, visita la sección para los [comandos de barra diagonal](/interacciones/registrando-comandos-de-barra.html) de esta guía.
 
 ### Guild
 
@@ -1067,7 +1067,7 @@ Una `Collection` de roles los cuales son administrados por una integración.
 
 Proporciona soporte del gateway para los comandos de barra diagonal e interacciones con componentes.
 
-Para más información consulta las páginas para los [comandos de barra diagonal](/interactions/replying-to-slash-commands.md) y los [componentes](/interactions/buttons.html#responding-to-buttons.html) de esta guía.
+Para más información consulta las páginas para los [comandos de barra diagonal](/interraciones/respondiendo-a-comandos-de-barra.md) y los [componentes](/interacciones/botones.html#respondiendo-a-botones) de esta guía.
 
 ### InteractionCollector
 
