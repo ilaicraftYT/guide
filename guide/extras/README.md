@@ -48,7 +48,7 @@ Por las funciones que ofrece:
 ### ¿Porqué los sistemas de niveles/experiencia no cuentan para conseguir el Intent de Message Content?
 Si bien es cierto que necesitas ver los mensajes para otorgar experiencia al miembro por su actividad, no necesitas el contenido del mismo. Los sistemas de niveles no cuentan como motivo para pedir el intent privilegiado.
 
-### No me gustan los comandos de barra, voy a pedir el Message Content Intent de todos modos :P
+### No me gustan los comandos de barra, voy a pedir el Message Content Intent de todos modos 😛 🤙 👌
 Al igual que los otros intents privilegiados (Guild Presences y Guild Members), vas a tener que explicar a Discord que planeas hacer con los mensajes. 
 
 ### Espera, ¿Eso significa que ya no van a existir los prefijos personalizados?
