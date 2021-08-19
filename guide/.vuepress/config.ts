@@ -39,6 +39,10 @@ const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 				link: '/voz/',
 			},
 			{
+				text: 'Extras',
+				link: '/extras/',
+			},
+			{
 				text: 'Documentación',
 				link: 'https://discord.js.org/#/docs/main/stable/general/welcome',
 			},

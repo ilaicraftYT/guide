@@ -1,4 +1,12 @@
 export default {
+	'/extras/': [
+		{
+			text: 'Nuevo',
+			children: [
+				'/extras/',
+			],
+		},
+	],
 	'/voz/': [
 		{
 			text: 'Inicio',
