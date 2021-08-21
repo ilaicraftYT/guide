@@ -1,38 +1,38 @@
-# Image manipulation with Canvas
+# Manipulación de imágenes con Canvas
 
-## Setting up Canvas
+## Configuración de Canvas
 
-Canvas is an image manipulation tool that allows you to modify images with code. We'll explore how to use this module in a slash command to make a profile command. But first, you must go through the intense labor of installing Canvas. It's highly recommended that you use a Linux distribution for this because it'll be much easier to install on.
+Canvas es una herramienta de manipulación de imágenes que le permite modificar imágenes con código. Exploraremos cómo usar este módulo en un comando de barra para hacer un comando de perfil. Pero primero, debe pasar por la intensa labor de instalar Canvas. Se recomienda encarecidamente que utilice una distribución de Linux para esto porque será mucho más fácil de instalar.
 
 ::: tip
-This guide is last tested with `canvas^2.6.0`, so make sure you have this or a similar version after installation.
+Esta guía se probó por última vez con `canvas^2.6.0`, así que asegúrese de tener esta o una versión similar después de la instalación.
 :::
 
 ::: warning ADVERTENCIA
-Be sure that you're familiar with things like [async/await](/informacion-adicional/async-await.md) and [object destructuring](/informacion-adicional/sintaxis-ES6.html#desestructuracion-de-objetos) before continuing, as we'll be making use of features like these.
+Asegúrese de estar familiarizado con cosas como [async/await](/informacion-adicional/async-await.md) y [desestructuración de objetos](/informacion-adicional/sintaxis-ES6.html#desestructuracion-de-objetos) antes de continuar, ya que utilizaremos funciones como estas.
 :::
 
-## Installation
+## Instalación
 
 ### Windows
 
-You will need a package called Windows Build Tools. To install this, open Powershell as Administrator. You then can install it with either npm (`npm i --global --production windows-build-tools`) or Yarn (`yarn global add --production windows-build-tools`). It is also bundled with Chocolatey, should you choose that installation path.
+Necesitará un paquete llamado Windows Build Tools. Para instalar esto, abra Powershell como administrador. Luego puede instalarlo con npm (`npm i --global --production windows-build-tools`) o Yarn (` yarn global add --production windows-build-tools`). También se incluye con Chocolatey, en caso de que elija esa ruta de instalación.
 
-Afterward, you should follow the instructions detailed [here](https://github.com/Automattic/node-canvas/wiki/Installation:-Windows). Additionally, make sure Node and Cairo are **both** either 32-bit or 64-bit; having a 32-bit version of one and a 64-bit version of the other will cause errors.
+Luego, debe seguir las instrucciones detalladas [aquí](https://github.com/Automattic/node-canvas/wiki/Installation:-Windows). Además, asegúrese de que Node y Cairo sean **ambos**  de 32 bits o de 64 bits; tener una versión de 32 bits de uno y una versión de 64 bits del otro provocará errores. 
 
-If you are *still* unable to install Canvas, you might want to consider installing [Microsoft Visual Studio 2015](https://www.visualstudio.com/vs/older-downloads/).
+Si * todavía * no puede instalar Canvas, es posible que desee considerar la instalación [Microsoft Visual Studio 2015](https://www.visualstudio.com/vs/older-downloads/).
 
-### Other distributions
+### Otras distribuciones
 
-You can run one of the commands listed [here](https://github.com/Automattic/node-canvas#compiling) to install the necessary tools Canvas needs.
+Puede ejecutar uno de los comandos enumerados [aquí](https://github.com/Automattic/node-canvas#compiling) para instalar las herramientas necesarias que Canvas necesita.
 
-### Package installation
+### Instalación del paquete
 
-After installing all the necessary software, run `npm i canvas` if you use npm or `yarn add canvas` if you use Yarn.
+Después de instalar todo el software necesario, ejecute `npm i canvas` si usa npm o` yarn add canvas` si usa Yarn.
 
-## Getting started
+## Empezando
 
-Here is the base code you'll be using to get started:
+Aquí está el código base que usará para comenzar:
 
 ```js
 const { Client, Intents, MessageAttachment } = require('discord.js');
@@ -41,41 +41,41 @@ const Canvas = require('canvas');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('¡Listo!');
 });
 
 client.on('interactionCreate', interaction => {
 	if (!interaction.isCommand()) return;
 
-	if (interaction.commandName === 'profile') {
+	if (interaction.commandName === 'perfil') {
 		// ...
 	}
 });
 
-client.login('your-token-goes-here');
+client.login('tu-token-va-aquí');
 ```
 
 ::: warning ADVERTENCIA
-Remember to register the slash commands before continuing on with this section of the guide. You can view how to do that [here](/interacciones/registrando-comandos-de-barra.md).
+Recuerde registrar los comandos de barra antes de continuar con esta sección de la guía. Puede ver cómo hacerlo [aquí](/interacciones/registrando-comandos-de-barra.md).
 :::
 
-### Basic image loading
+### Carga básica de imágenes
 
-The end goal will be to display the user's avatar and nickname.
+El objetivo final será mostrar el avatar y el apodo del usuario.
 
-After importing the Canvas module and initializing it, you should load the images. With Canvas, you have to specify where the image comes from first, naturally, and then specify how it gets loaded into the actual Canvas using `context`, which you will use to interact with Canvas.
+Después de importar el módulo Canvas e inicializarlo, debe cargar las imágenes. Con Canvas, primero debe especificar de dónde proviene la imagen, naturalmente, y luego especificar cómo se carga en el Canvas real usando el "contexto", que usará para interactuar con Canvas.
 
 ::: tip
-`canvas` works almost identical to HTML5 Canvas. You can read the HTML5 Canvas tutorials on [w3Schools](https://www.w3schools.com/html/html5_canvas.asp) and [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) for more information later!
+`canvas` funciona casi idéntico a HTML5 Canvas. Puede leer los tutoriales de HTML5 Canvas en [MDN](https://developer.mozilla.org/es/docs/Web/API/Canvas_API) para obtener más información!
 :::
 
 ```js {5-8}
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
-	if (interaction.commandName === 'profile') {
-		// Create a 700x250 pixel canvas and get its context
-		// The context will be used to modify the canvas
+	if (interaction.commandName === 'perfil') {
+		// Crea un Canvas de 700x250 píxeles y obtén su contexto
+		// El contexto se usará para modificar el Canvas
 		const canvas = Canvas.createCanvas(700, 250);
 		const context = canvas.getContext('2d');
 		// ...
@@ -83,63 +83,63 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-Now, you need to load the image you want to use into Canvas. To have sufficient coverage, we'll first show you how to load a basic image from a local directory. We'll be using [this image](https://github.com/discordjs/guide/blob/main/guide/popular-topics/images/canvas.jpg) as the background in the welcome image, but you can use whatever you want. Be sure to download the file, name it `wallpaper.jpg`, and save it inside the same directory as your main bot file.
+Ahora, debe cargar la imagen que desea usar en Canvas. Para tener suficiente cobertura, primero le mostraremos cómo cargar una imagen básica desde un directorio local. Usaremos [esta imagen](https://github.com/Awoocado/guide/blob/main/guide/temas-populares/images/canvas.jpg) como fondo en la imagen de bienvenida, pero puedes usar lo que quieras. Asegúrese de descargar el archivo, asígnele el nombre `wallpaper.jpg` y guárdelo dentro del mismo directorio que su archivo bot principal. 
 
 ```js {5-14}
 client.on('interactionCreate', async interaction => {
 	// ...
 	const context = canvas.getContext('2d');
 
-	// Since the image takes time to load, you should await it
+	// Dado que la imagen tarda en cargarse, debe esperarla.
 	const background = await Canvas.loadImage('./wallpaper.jpg');
 
-	// This uses the canvas dimensions to stretch the image onto the entire canvas
+	// Esto usa las dimensiones del canvas para estirar la imagen en todo el canvas.
 	context.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-	// Use the helpful Attachment class structure to process the file for you
-	const attachment = new MessageAttachment(canvas.toBuffer(), 'profile-image.png');
+	// Utilice la útil estructura de clases Attachment para procesar el archivo por usted
+	const attachment = new MessageAttachment(canvas.toBuffer(), 'image-perfil.png');
 
 	interaction.reply({ files: [attachment] });
 });
 ```
 
-![Basic canvas preview](./images/canvas-preview.png)
+![Vista previa del canvas básico](./images/canvas-preview.png)
 
 ::: tip
-If you get an error such as `Error: error while reading from input stream`, then the file's provided path was incorrect.
+Si recibe un error como `Error: error while reading from input stream`, entonces la ruta proporcionada por el archivo era incorrecta.
 :::
 
 ### Manipulating images
 
-Next, let's place a border around the image for the sake of demonstration purposes.
+A continuación, coloquemos un borde alrededor de la imagen con fines de demostración.
 
 ```js {5-9}
 client.on('interactionCreate', async interaction => {
 	// ...
 	context.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-	// Set the color of the stroke
+	// Establecer el color del trazo
 	context.strokeStyle = '#0099ff';
 
-	// Draw a rectangle with the dimensions of the entire canvas
+	// Dibuja un rectángulo con las dimensiones de todo el canvas.
 	context.strokeRect(0, 0, canvas.width, canvas.height);
 	// ...
 });
 ```
 
-![Image](./images/canvas-plain.png)
+![Canvas imagen](./images/canvas-plain.png)
 
-A bit plain, right? Fear not, for you have a bit more to do until you reach completion. Since this guide page's goal is focused more on actual code than design, let's place a basic square-shaped avatar for now on the left side of the image. In the interest of coverage, you will also make it a circle afterward.
+Un poco sencillo, ¿verdad? No temas, porque tienes un poco más que hacer hasta que lo completes. Dado que el objetivo de esta página de guía se centra más en el código real que en el diseño, coloquemos un avatar básico de forma cuadrada por ahora en el lado izquierdo de la imagen. En aras de la cobertura, también lo convertirá en un círculo después.
 
 ```js {5-9}
 client.on('interactionCreate', async interaction => {
 	// ...
 	context.strokeRect(0, 0, canvas.width, canvas.height);
 
-	// Wait for Canvas to load the image
+	// Espere a que Canvas cargue la imagen
 	const avatar = await Canvas.loadImage(interaction.user.displayAvatarURL({ format: 'jpg' }));
 
-	// Draw a shape onto the main canvas
+	// Dibuja una forma en el canvas principal
 	context.drawImage(avatar, 25, 0, 200, canvas.height);
 	// ...
 });
@@ -147,14 +147,14 @@ client.on('interactionCreate', async interaction => {
 
 ![Image](./images/canvas-stretched-avatar.png)
 
-It works well, but the avatar image itself seems a bit stretched out. Let's remedy that.
+Funciona bien, pero la imagen del avatar en sí parece un poco estirada. Pongamos remedio a eso.
 
 ```js {5-6}
 client.on('interactionCreate', async interaction => {
 	// ...
 	const avatar = await Canvas.loadImage(interaction.user.displayAvatarURL({ format: 'jpg' }));
 
-	// Move the image downwards vertically and constrain its height to 200, so that it's square
+	// Mueva la imagen hacia abajo verticalmente y restrinja su altura a 200, para que quede cuadrada
 	context.drawImage(avatar, 25, 25, 200, 200);
 	// ...
 });
@@ -162,25 +162,25 @@ client.on('interactionCreate', async interaction => {
 
 ![Image](./images/canvas-square-avatar.png)
 
-The purpose of this small section is to demonstrate that working with Canvas is essentially a hit-and-miss workflow where you fiddle with properties until they work just right.
+El propósito de esta pequeña sección es demostrar que trabajar con Canvas es esencialmente un flujo de trabajo impredecible en el que se juega con las propiedades hasta que funcionan correctamente.
 
-Since we covered how to load external images and fix dimensions, let's turn the avatar into a circle to improve the image's overall style.
+Dado que cubrimos cómo cargar imágenes externas y corregir dimensiones, convierta el avatar en un círculo para mejorar el estilo general de la imagen.
 
 ```js {5-15}
 client.on('interactionCreate', async interaction => {
 	// ...
 	context.strokeRect(0, 0, canvas.width, canvas.height);
 
-	// Pick up the pen
+	// Coge el bolígrafo
 	context.beginPath();
 
-	// Start the arc to form a circle
+	// Comienza el arco para formar un círculo.
 	context.arc(125, 125, 100, 0, Math.PI * 2, true);
 
-	// Put the pen down
+	// Baja el bolígrafo
 	context.closePath();
 
-	// Clip off the region you drew on
+	// Recorta la región en la que dibujaste
 	context.clip();
 	// ...
 });
@@ -189,25 +189,25 @@ client.on('interactionCreate', async interaction => {
 ![Image](./images/canvas-circle-avatar.png)
 
 ::: tip
-You can read more about `context.arc()` on [w3schools](https://www.w3schools.com/tags/canvas_arc.asp) or [MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc).
+Puedes leer más sobre `context.arc()`en [MDN](https://developer.mozilla.org/es/docs/Web/API/CanvasRenderingContext2D/arc).
 :::
 
-### Adding in text
+### Añadiendo texto
 
-Now, let's quickly go over adding text to your image. This will help make the purpose of this image apparent since currently, it's just an avatar floating on a starry background that comes out of nowhere.
+Ahora, repasemos rápidamente cómo agregar texto a su imagen. Esto ayudará a que el propósito de esta imagen sea evidente, ya que actualmente, es solo un avatar flotando sobre un fondo estrellado que sale de la nada.
 
 ```js {5-12}
 client.on('interactionCreate', async interaction => {
 	// ...
 	context.strokeRect(0, 0, canvas.width, canvas.height);
 
-	// Select the font size and type from one of the natively available fonts
+	// Seleccione el tamaño y el tipo de fuente de una de las fuentes disponibles de forma nativa
 	context.font = '60px sans-serif';
 
-	// Select the style that will be used to fill the text in
+	// Seleccione el estilo que se utilizará para rellenar el texto
 	context.fillStyle = '#ffffff';
 
-	// Actually fill the text with a solid color
+	// Actualmente llene el texto con un color sólido
 	context.fillText(interaction.member.displayName, canvas.width / 2.5, canvas.height / 1.8);
 	// ...
 });
@@ -216,26 +216,26 @@ client.on('interactionCreate', async interaction => {
 ![Image](./images/canvas-add-name.png)
 
 ::: tip
-If you get an error like `Fontconfig error: Cannot load default config file`, it means you do not have any fonts installed on your system. On Linux, you can run the following command to fix this: `sudo apt-get install fontconfig`. This might also need to be installed if you see boxes where the text should be. As for Windows, you will need to find a way to install fonts.
+Si recibe un error como `Error de Fontconfig: error: Cannot load default config file`, significa que no tiene ninguna fuente instalada en su sistema. En Linux, puede ejecutar el siguiente comando para solucionar este problema: `sudo apt-get install fontconfig`. También es posible que deba instalarlo si ve cuadros donde debería estar el texto. En cuanto a Windows, deberá encontrar una forma de instalar fuentes.
 :::
 
-You may have noticed or considered that if a member's username is too long, then the output won't be quite nice. This is because the text overflows out of the canvas, and you don't have any measures in place for that. Let's take care of this issue!
+Es posible que haya notado o considerado que si el nombre de usuario de un miembro es demasiado largo, el resultado no será muy bueno. Esto se debe a que el texto se desborda del canvas y no tiene medidas para eso. ¡Ocúpesemos de este problema!
 
 ```js {1-16,22-25}
-// Pass the entire Canvas object because you'll need access to its width and context
+// Pase todo el objeto Canvas porque necesitará acceso a su ancho y contexto
 const applyText = (canvas, text) => {
 	const context = canvas.getContext('2d');
 
-	// Declare a base size of the font
+	// Declare un tamaño base de la fuente
 	let fontSize = 70;
 
 	do {
-		// Assign the font to the context and decrement it so it can be measured again
+		// Asignar la fuente al contexto y disminuirla para que se pueda medir nuevamente
 		context.font = `${fontSize -= 10}px sans-serif`;
-		// Compare pixel width of the text to the canvas minus the approximate avatar size
+		// Compare el ancho de píxel del texto con el canvas menos el tamaño aproximado del avatar
 	} while (context.measureText(text).width > canvas.width - 300);
 
-	// Return the result to use in the actual canvas
+	// Devuelve el resultado para usarlo en el canvas real
 	return context.font;
 };
 
@@ -243,7 +243,7 @@ client.on('interactionCreate', async interaction => {
 	// ...
 	context.strokeRect(0, 0, canvas.width, canvas.height);
 
-	// Assign the decided font to the canvas
+	// Asignar la fuente decidida al canvas
 	context.font = applyText(canvas, interaction.member.displayName);
 	context.fillStyle = '#ffffff';
 	context.fillText(interaction.member.displayName, canvas.width / 2.5, canvas.height / 1.8);
@@ -251,27 +251,27 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-Before adjustment:
+Antes del ajuste:
 
-![Before adjustment](./images/canvas-before-text-wrap.png)
+![Antes del ajuste](./images/canvas-before-text-wrap.png)
 
 After adjustment:
 
-![After adjustment](./images/canvas-after-text-wrap.png)
+![Despues del ajuste](./images/canvas-after-text-wrap.png)
 
-Let's move the welcome text inside the image itself instead of adding it outside as a nice finishing touch.
+Muevamos el texto de bienvenida dentro de la propia imagen en lugar de agregarlo afuera como un buen toque final.
 
 ```js {5-8,10-13}
 client.on('interactionCreate', async interaction => {
 	// ...
 	context.strokeRect(0, 0, canvas.width, canvas.height);
 
-	// Slightly smaller text placed above the member's display name
+	// Texto un poco más pequeño colocado encima del nombre para mostrar del miembro
 	context.font = '28px sans-serif';
 	context.fillStyle = '#ffffff';
-	context.fillText('Profile', canvas.width / 2.5, canvas.height / 3.5);
+	context.fillText('Perfil', canvas.width / 2.5, canvas.height / 3.5);
 
-	// Add an exclamation point here and below
+	// Agregue un signo de exclamación aquí y debajo
 	context.font = applyText(canvas, `${interaction.member.displayName}!`);
 	context.fillStyle = '#ffffff';
 	context.fillText(`${interaction.member.displayName}!`, canvas.width / 2.5, canvas.height / 1.8);
@@ -279,10 +279,10 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-![Final result](./images/canvas-final-result.png)
+![Resultado Final](./images/canvas-final-result.png)
 
-And that's it! We have covered the basics of image manipulation, text generation, and loading from a remote source.
+¡Y eso es! Hemos cubierto los conceptos básicos de manipulación de imágenes, generación de texto y carga desde una fuente remota.
 
-## Resulting code
+## Código resultante
 
 <ResultingCode />
