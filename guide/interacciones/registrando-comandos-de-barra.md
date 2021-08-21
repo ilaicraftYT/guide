@@ -3,7 +3,7 @@
 Discord ofrece a los desarrolladores la opción de crear comandos de barra integrados en el cliente. En esta sección, cubriremos cómo registrar estos comandos usando discord.js.
 
 ::: tip
-Esta página asume que usa la misma estructura de archivo que nuestro **[Gestor de comandos](/gestor-de-comamdos)**. Los scripts proporcionados están hechos para funcionar con esa configuración.
+Esta página asume que usa la misma estructura de archivo que nuestro **[Gestor de comandos](/gestor-de-comandos)**. Los scripts proporcionados están hechos para funcionar con esa configuración.
 
 Si ya tiene los comandos de barra configurados para su aplicación y desea aprender cómo responder a ellos, consulte **[la página siguiente](/interacciones/respondiendo-a-comandos-de-barra.md)**.
 :::
@@ -12,8 +12,7 @@ Si ya tiene los comandos de barra configurados para su aplicación y desea apren
 
 Los comandos de aplicación del servidor, solo estan disponibles en el mismo que fueron creados, si su aplicación tiene el `scope` de `applications.commands` autorizado.  
 
-Es esta sección,
-In this section, utilizaremos una secuencia de comandos que se puede utilizar junto con el controlador de comandos de barra de [Gestor de comandos](/gestor-de-comandos/).
+Es esta sección utilizaremos una secuencia de comandos que se puede utilizar junto con el controlador de comandos de barra de [Gestor de comandos](/gestor-de-comandos/).
 
 Antes que nada, instala [@discordjs/rest](https://github.com/discordjs/discord.js-modules/blob/main/packages/rest/) y [`discord-api-types`](https://github.com/discordjs/discord-api-types/) ejecutando `npm install @discordjs/rest discord-api-types` en tu terminal.
 
