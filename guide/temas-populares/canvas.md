@@ -20,7 +20,7 @@ Necesitará un paquete llamado Windows Build Tools. Para instalar esto, abra Pow
 
 Luego, debe seguir las instrucciones detalladas [aquí](https://github.com/Automattic/node-canvas/wiki/Installation:-Windows). Además, asegúrese de que Node y Cairo sean **ambos**  de 32 bits o de 64 bits; tener una versión de 32 bits de uno y una versión de 64 bits del otro provocará errores. 
 
-Si * todavía * no puede instalar Canvas, es posible que desee considerar la instalación [Microsoft Visual Studio 2015](https://www.visualstudio.com/vs/older-downloads/).
+Si * todavía * no puede instalar Canvas, considere instalar de [Microsoft Visual Studio 2015](https://www.visualstudio.com/vs/older-downloads/).
 
 ### Otras distribuciones
 
@@ -109,7 +109,7 @@ client.on('interactionCreate', async interaction => {
 Si recibe un error como `Error: error while reading from input stream`, entonces la ruta proporcionada por el archivo era incorrecta.
 :::
 
-### Manipulating images
+### Manipulando imagenes
 
 A continuación, coloquemos un borde alrededor de la imagen con fines de demostración.
 
@@ -255,7 +255,7 @@ Antes del ajuste:
 
 ![Antes del ajuste](./images/canvas-before-text-wrap.png)
 
-After adjustment:
+Después del ajuste:
 
 ![Despues del ajuste](./images/canvas-after-text-wrap.png)
 
