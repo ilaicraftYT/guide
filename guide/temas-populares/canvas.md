@@ -5,7 +5,7 @@
 Canvas es una herramienta de manipulación de imágenes que le permite modificar imágenes con código. Exploraremos cómo usar este módulo en un comando de barra para hacer un comando de perfil. Pero primero, debe pasar por la intensa labor de instalar Canvas. Se recomienda encarecidamente que utilice una distribución de Linux para esto porque será mucho más fácil de instalar.
 
 ::: tip
-Esta guía se probó por última vez con `canvas^2.6.0`, así que asegúrese de tener esta o una versión similar después de la instalación.
+Esta guía se probó por última vez con `canvas^2.8.0`, así que asegúrese de tener esta o una versión similar después de la instalación.
 :::
 
 ::: warning ADVERTENCIA
@@ -20,7 +20,7 @@ Necesitará un paquete llamado Windows Build Tools. Para instalar esto, abra Pow
 
 Luego, debe seguir las instrucciones detalladas [aquí](https://github.com/Automattic/node-canvas/wiki/Installation:-Windows). Además, asegúrese de que Node y Cairo sean **ambos**  de 32 bits o de 64 bits; tener una versión de 32 bits de uno y una versión de 64 bits del otro provocará errores. 
 
-Si * todavía * no puede instalar Canvas, considere instalar de [Microsoft Visual Studio 2015](https://www.visualstudio.com/vs/older-downloads/).
+Si *todavía* no puede instalar Canvas, considere instalar de [Microsoft Visual Studio 2015](https://www.visualstudio.com/vs/older-downloads/).
 
 ### Otras distribuciones
 
@@ -47,7 +47,7 @@ client.once('ready', () => {
 client.on('interactionCreate', interaction => {
 	if (!interaction.isCommand()) return;
 
-	if (interaction.commandName === 'perfil') {
+	if (interaction.commandName === 'profile') {
 		// ...
 	}
 });
@@ -73,7 +73,7 @@ Después de importar el módulo Canvas e inicializarlo, debe cargar las imágene
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
-	if (interaction.commandName === 'perfil') {
+	if (interaction.commandName === 'profile') {
 		// Crea un Canvas de 700x250 píxeles y obtén su contexto
 		// El contexto se usará para modificar el Canvas
 		const canvas = Canvas.createCanvas(700, 250);
@@ -97,7 +97,7 @@ client.on('interactionCreate', async interaction => {
 	context.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 	// Utilice la útil estructura de clases Attachment para procesar el archivo por usted
-	const attachment = new MessageAttachment(canvas.toBuffer(), 'image-perfil.png');
+	const attachment = new MessageAttachment(canvas.toBuffer(), 'imagen-perfil.png');
 
 	interaction.reply({ files: [attachment] });
 });
@@ -127,9 +127,9 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-![Canvas imagen](./images/canvas-plain.png)
+![Imagen del canvas](./images/canvas-plain.png)
 
-Un poco sencillo, ¿verdad? No temas, porque tienes un poco más que hacer hasta que lo completes. Dado que el objetivo de esta página de guía se centra más en el código real que en el diseño, coloquemos un avatar básico de forma cuadrada por ahora en el lado izquierdo de la imagen. En aras de la cobertura, también lo convertirá en un círculo después.
+Un poco sencillo, ¿Verdad? No temas, porque tienes un poco más que hacer hasta que lo completes. Dado que el objetivo de esta página de guía se centra más en el código real que en el diseño, coloquemos un avatar básico de forma cuadrada por ahora en el lado izquierdo de la imagen. Luego lo convertira en un círculo.
 
 ```js {5-9}
 client.on('interactionCreate', async interaction => {
@@ -145,7 +145,7 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-![Image](./images/canvas-stretched-avatar.png)
+![Imagen del Canvas](./images/canvas-stretched-avatar.png)
 
 Funciona bien, pero la imagen del avatar en sí parece un poco estirada. Pongamos remedio a eso.
 
@@ -160,7 +160,7 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-![Image](./images/canvas-square-avatar.png)
+![Imagen del canvas](./images/canvas-square-avatar.png)
 
 El propósito de esta pequeña sección es demostrar que trabajar con Canvas es esencialmente un flujo de trabajo impredecible en el que se juega con las propiedades hasta que funcionan correctamente.
 
@@ -171,7 +171,7 @@ client.on('interactionCreate', async interaction => {
 	// ...
 	context.strokeRect(0, 0, canvas.width, canvas.height);
 
-	// Coge el bolígrafo
+	// Obtén el bolígrafo
 	context.beginPath();
 
 	// Comienza el arco para formar un círculo.
@@ -186,7 +186,7 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-![Image](./images/canvas-circle-avatar.png)
+![Imagen del canvas](./images/canvas-circle-avatar.png)
 
 ::: tip
 Puedes leer más sobre `context.arc()`en [MDN](https://developer.mozilla.org/es/docs/Web/API/CanvasRenderingContext2D/arc).
@@ -219,7 +219,7 @@ client.on('interactionCreate', async interaction => {
 Si recibe un error como `Error de Fontconfig: error: Cannot load default config file`, significa que no tiene ninguna fuente instalada en su sistema. En Linux, puede ejecutar el siguiente comando para solucionar este problema: `sudo apt-get install fontconfig`. También es posible que deba instalarlo si ve cuadros donde debería estar el texto. En cuanto a Windows, deberá encontrar una forma de instalar fuentes.
 :::
 
-Es posible que haya notado o considerado que si el nombre de usuario de un miembro es demasiado largo, el resultado no será muy bueno. Esto se debe a que el texto se desborda del canvas y no tiene medidas para eso. ¡Ocúpesemos de este problema!
+Es posible que haya notado o considerado que si el nombre de usuario de un miembro es demasiado largo, el resultado no será muy bueno. Esto se debe a que el texto se desborda del canvas y no tiene medidas para eso. ¡Ocupémonos de este problema!
 
 ```js {1-16,22-25}
 // Pase todo el objeto Canvas porque necesitará acceso a su ancho y contexto
@@ -259,7 +259,7 @@ Después del ajuste:
 
 ![Despues del ajuste](./images/canvas-after-text-wrap.png)
 
-Muevamos el texto de bienvenida dentro de la propia imagen en lugar de agregarlo afuera como un buen toque final.
+Movamos el texto de bienvenida dentro de la propia imagen en lugar de agregarlo afuera como un buen toque final.
 
 ```js {5-8,10-13}
 client.on('interactionCreate', async interaction => {
@@ -274,7 +274,7 @@ client.on('interactionCreate', async interaction => {
 	// Agregue un signo de exclamación aquí y debajo
 	context.font = applyText(canvas, `${interaction.member.displayName}!`);
 	context.fillStyle = '#ffffff';
-	context.fillText(`${interaction.member.displayName}!`, canvas.width / 2.5, canvas.height / 1.8);
+	context.fillText(`¡${interaction.member.displayName}!`, canvas.width / 2.5, canvas.height / 1.8);
 	// ...
 });
 ```
