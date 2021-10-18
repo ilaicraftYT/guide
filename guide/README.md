@@ -1,3 +1,15 @@
+<style scoped>
+.emoji-container {
+	display: inline-block;
+}
+
+.emoji-container .emoji-image {
+	width: 1.375rem;
+	height: 1.375rem;
+	vertical-align: bottom;
+}
+</style>
+
 # Introducción
 
 Si estás leyendo esto, es posible que quieras aprender a cómo hacer un bot con discord.js. ¡Genial! Has llegado al lugar correcto.
@@ -28,7 +40,7 @@ Toma tu tiempo, aprende algo sobre JavaScript, y cuando te sientas lo suficiente
 
 <DiscordMessages>
 	<DiscordMessage profile="kirzu">Somos</DiscordMessage>
-	<DiscordMessage profile="awoo">Las gemas</DiscordMessage>
+	<DiscordMessage profile="awoo">Todo en la vida se basa en compartir <span class="emoji-container"><img class="emoji-image" title="pray" src="https://twemoji.maxcdn.com/v/latest/svg/1f64f.svg" alt="" /></span></DiscordMessage>
 	<DiscordMessage profile="socram">De cristal</DiscordMessage>
 	<DiscordMessage profile="nejire">El mundo hay</DiscordMessage>
 	<DiscordMessage profile="andre">Que salvar</DiscordMessage>
