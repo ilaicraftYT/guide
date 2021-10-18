@@ -41,7 +41,7 @@ Toma tu tiempo, aprende algo sobre JavaScript, y cuando te sientas lo suficiente
 <DiscordMessages>
 	<DiscordMessage profile="kirzu">Somos</DiscordMessage>
 	<DiscordMessage profile="awoo">Todo en la vida se basa en compartir <span class="emoji-container"><img class="emoji-image" title="pray" src="https://twemoji.maxcdn.com/v/latest/svg/1f64f.svg" alt="" /></span></DiscordMessage>
-	<DiscordMessage profile="socram">De cristal</DiscordMessage>
+	<DiscordMessage profile="socram">Programar no es complicado, solucionar los bugs... tal vez.</DiscordMessage>
 	<DiscordMessage profile="nejire">El mundo hay</DiscordMessage>
 	<DiscordMessage profile="andre">Que salvar</DiscordMessage>
 </DiscordMessages>
