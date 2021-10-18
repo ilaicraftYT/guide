@@ -25,3 +25,11 @@ Si no sabes JavaScript pero te gustaría aprender, aquí hay algunos links con l
 * [Y Google, tu mejor amigo](https://google.com)
 
 Toma tu tiempo, aprende algo sobre JavaScript, y cuando te sientas lo suficientemente seguro para aprender a hacer un bot, ¡Vuelve e inicia con la guía!
+
+<DiscordMessages>
+	<DiscordMessage profile="kirzu">Somos</DiscordMessage>
+	<DiscordMessage profile="awoo">Las gemas</DiscordMessage>
+	<DiscordMessage profile="socram">De cristal</DiscordMessage>
+	<DiscordMessage profile="nejire">El mundo hay</DiscordMessage>
+	<DiscordMessage profile="andre">Que salvar</DiscordMessage>
+</DiscordMessages>
