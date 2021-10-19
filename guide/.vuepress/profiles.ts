@@ -53,7 +53,7 @@ export default {
         santi: {
             author: 'Santi_24',
             avatar: SantiAvatar,
-            roleColor: '#E3A034'
+            roleColor: '#3C6DE8'
         }
 	}
 }
