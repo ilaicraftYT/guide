@@ -6,7 +6,8 @@ import {
     SocramAvatar,
     NejireAvatar,
     AndreMorAvatar,
-    SantiAvatar
+    SantiAvatar,
+    G4Avatar
 } from './assets/avatars';
 
 export default {
@@ -54,6 +55,11 @@ export default {
             author: 'Santi_24',
             avatar: SantiAvatar,
             roleColor: '#3C6DE8'
-        }
+        },
+        g4: {
+            author: 'MARCROCK22',
+            avatar: G4Avatar,
+            roleColor: '#DB323B'
+        },
 	}
 }
