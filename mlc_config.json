@@ -2,7 +2,7 @@
     "replacementPatterns": [
         {
             "pattern": "^/",
-            "replacement": "guide/"
+            "replacement": "/home/runner/work/guide/guide/guide/"
         }
     ]
 }
