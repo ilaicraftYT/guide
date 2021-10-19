@@ -71,3 +71,13 @@ div[class*=language-].line-numbers-mode::after {
 		padding: 0.2em;
 	}
 }
+
+.emoji-container {
+	display: inline-block;
+}
+
+.emoji-container .emoji-image {
+	width: 1.375rem;
+	height: 1.375rem;
+	vertical-align: bottom;
+}

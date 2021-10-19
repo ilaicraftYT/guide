@@ -2,6 +2,7 @@ import path from 'path';
 import { defineUserConfig } from 'vuepress-vite';
 import type { DefaultThemeOptions, ViteBundlerOptions } from 'vuepress-vite';
 import sidebar from './sidebar';
+import notFound from './notFound';
 
 const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 	bundler: '@vuepress/vite',
@@ -29,7 +30,7 @@ const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 		sidebar,
 		repo: 'Awoocado/guide',
 		docsDir: 'guide',
-		sidebarDepth: 3,
+		sidebarDepth: 1, // estaba en 3, 'toy probando
 		editLinks: true,
 		editLinkText: 'Editar esta página',
 		lastUpdated: 'Última actualización',
@@ -39,10 +40,6 @@ const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 				link: '/voz/',
 			},
 			{
-				text: 'Extras',
-				link: '/extras/',
-			},
-			{
 				text: 'Documentación',
 				link: 'https://discord.js.org/#/docs/main/stable/general/welcome',
 			},
@@ -50,6 +47,8 @@ const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 		themePlugins: {
 			mediumZoom: false,
 		},
+		backToHome: 'Regresar al inicio',
+		notFound
 	},
 	plugins: [],
 });

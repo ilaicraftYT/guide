@@ -1,4 +1,4 @@
-# Administrador de eventos
+# Gestor de eventos
 
 Node.js usa una arquitectura basada en eventos, haciendo posible el ejecutar código cuando un evento específico ocurre. La librería discord.js aprovecha esto al máximo. Puedes visitar <DocsLink path="class/Client">la documentación</DocsLink> para ver una lista de todos los eventos que tiene `Client`.
 
@@ -100,4 +100,4 @@ Si intentas hacer `(newUser, client, oldUser)`, esto significará que `newUser` 
 
 ## Resultado final
 
-<ResultingCode path="gestor-de-eventos/file-setup" />
+<ResultingCode />

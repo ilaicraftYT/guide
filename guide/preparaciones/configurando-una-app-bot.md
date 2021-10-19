@@ -36,7 +36,7 @@ En este panel, puede darle a su bot un avatar elegante, establecer su nombre de 
 
 Un token es esencialmente la contraseña de su bot; es lo que usa su bot para iniciar sesión en Discord. Dicho esto, **es vital que nunca compartas este token con nadie, intencional o accidentalmente**. Si alguien logra hacerse con su token, puede usar su bot como si fuera suyo; esto significa que puede realizar actos maliciosos con él.
 
-Los tokens se ven así: `NzkyNzE1NDU0MTk2MDg4ODQy.X-hvzA.Ovy4MCQywSkoMRRclStW4xAYK7I` (¡no se preocupe, restablecemos este token inmediatamente antes de publicarlo aquí!). Si es más corto y se parece más a esto: `kxbsDRU5UfAaiO7ar9GFMHSlmTwYaIYn`, en su lugar, copió el secreto de su cliente. ¡Asegúrate de copiar el token si quieres que tu bot funcione!
+Los tokens se ven así: `NzkyNzE1NDU0MTk2MDg4ODQy.X-hvzA.Ovy4MCQywSkoMRRclStW4xAYK7I` (¡No se preocupe, este token ya no funciona!). Si es más corto y se parece más a esto: `kxbsDRU5UfAaiO7ar9GFMHSlmTwYaIYn`, en su lugar, copió el secreto de su cliente. ¡Asegúrate de copiar el token si quieres que tu bot funcione!
 
 ### Escenario de fuga de tokens
 

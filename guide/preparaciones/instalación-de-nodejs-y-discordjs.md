@@ -67,9 +67,3 @@ Ahora que ha instalado Node.js y sabe cómo abrir su consola y ejecutar comandos
 Para instalar discord.js, ejecute `npm install discord.js`. Esto puede llevar un poco de tiempo, pero debería terminar con bastante rapidez.
 
 ¡Y eso es! Con todas las necesidades instaladas, está casi listo para comenzar a codificar su bot.
-
----
-
-## Instalación de un linter
-
-Mientras codifica, es posible que se encuentre con numerosos errores de sintaxis o codifique con un estilo incoherente. Debe instalar un linter para aliviar estos problemas. Si bien los editores de código generalmente pueden señalar errores de sintaxis, con un linter, puede forzar su codificación para que tenga un estilo específico según lo defina en la configuración. Si bien esto no es obligatorio, es recomendable. [¡Haga clic aquí para obtener la guía de linter!](/preparaciones/configurando-un-linter.md)

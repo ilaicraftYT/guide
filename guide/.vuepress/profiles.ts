@@ -5,7 +5,8 @@ import {
     AvocadoAvatar,
     SocramAvatar,
     NejireAvatar,
-    AndreMorAvatar
+    AndreMorAvatar,
+    SantiAvatar
 } from './assets/avatars';
 
 export default {
@@ -32,7 +33,7 @@ export default {
         awoo: {
             author: 'Avocado',
             avatar: AvocadoAvatar,
-            roleColor: '#EC1BFF'
+            roleColor: '#FFAACC'
         },
         socram: {
             author: 'Socram09',
@@ -48,6 +49,11 @@ export default {
             author: 'AndreMor',
             avatar: AndreMorAvatar,
             roleColor: '#FFDD00'
+        },
+        santi: {
+            author: 'Santi_24',
+            avatar: SantiAvatar,
+            roleColor: '#E3A034'
         }
 	}
 }

@@ -1,25 +1,9 @@
-<style scoped>
-.emoji-container {
-	display: inline-block;
-}
-
-.emoji-container .emoji-image {
-	width: 1.375rem;
-	height: 1.375rem;
-	vertical-align: bottom;
-}
-</style>
-
 # ¿Qué hay de nuevo?
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
 		<template #interactions>
-			<DiscordInteraction
-				profile="user"
-				author="discord.js"
-				:command="true"
-			>upgrade</DiscordInteraction>
+			<DiscordInteraction profile="user" author="discord.js" :command="true">upgrade</DiscordInteraction>
 		</template>
 		Discord.js v13 ya está disponible, pero esta guía sigue en proceso.
 		<span class="emoji-container">

@@ -1,4 +1,3 @@
-
 # Preguntas frecuentes (FAQ)
 
 ## Leyenda

@@ -1,15 +1,3 @@
-<style scoped>
-.emoji-container {
-	display: inline-block;
-}
-
-.emoji-container .emoji-image {
-	width: 1.375rem;
-	height: 1.375rem;
-	vertical-align: bottom;
-}
-</style>
-
 # Introducción
 
 Si estás leyendo esto, es posible que quieras aprender a cómo hacer un bot con discord.js. ¡Genial! Has llegado al lugar correcto.
@@ -24,8 +12,7 @@ Esta guía te enseñará cosas como:
 Esta guía también cubre temas como errores comunes y cómo resolverlos, mantener tu código ordenado, configurar un entorno de desarrollo adecuado, etc.
 Suena bien, ¿No? ¡Genial! Entonces empecemos...
 
-
-## Antes de iniciar...
+#### Antes de iniciar...
 
 Hacer un bot es divertido y todo, pero hay pre-requisitos para hacerlos. Para poder usar discord.js, necesitas un conocimiento de JavaScript. *Puedes* hacer un bot con muy poco conocimiento de JavaScript y de programación en general, pero intentar hacer algo sin entender el lenguaje primero, solo te obstaculizará. Te podrías quedar atascado en problemas poco complicados, luchar con soluciones para problemas increíblemente fáciles, y terminar frustrado en general. Suena bastante molesto.
 
@@ -40,7 +27,9 @@ Toma tu tiempo, aprende algo sobre JavaScript, y cuando te sientas lo suficiente
 
 <DiscordMessages>
 	<DiscordMessage profile="kirzu">Somos</DiscordMessage>
-	<DiscordMessage profile="awoo">Todo en la vida se basa en compartir <span class="emoji-container"><img class="emoji-image" title="pray" src="https://twemoji.maxcdn.com/v/latest/svg/1f64f.svg" alt="" /></span></DiscordMessage>
+	<DiscordMessage profile="awoo">Todo en la vida se basa en compartir
+	  <span class="emoji-container"><img class="emoji-image" title="pray" src="https://twemoji.maxcdn.com/v/latest/svg/1f64f.svg" alt="" /></span>
+	</DiscordMessage>
 	<DiscordMessage profile="socram">Programar no es complicado, solucionar los bugs... tal vez.</DiscordMessage>
 	<DiscordMessage profile="nejire">El mundo hay</DiscordMessage>
 	<DiscordMessage profile="andre">Que salvar</DiscordMessage>
