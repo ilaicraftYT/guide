@@ -38,7 +38,7 @@ Some Discord permissions apply implicitly based on logical use, which can cause 
 The prime example for implicit permissions is `VIEW_CHANNEL`. If this flag is missing in the final permissions, you can't do anything on that channel. It makes sense, right? If you can't view the channel, you can't read or send messages in it, set the topic, or change its name.
 The library does not handle implicit permissions for you, so understanding how the system works is vital for you as a bot developer.
 
-Let's say you want to send a message to a channel. To prevent unnecessary API calls, you want to make sure your bot's permissions in this channel include `SEND_MESSAGES` (more on how to achieve this [here](/popular-topics/permissions.md#checking-for-permissions)). The check passes, but you still can't send the message and are greeted with `DiscordAPIError: Missing Access`.
+Let's say you want to send a message to a channel. To prevent unnecessary API calls, you want to make sure your bot's permissions in this channel include `SEND_MESSAGES` (more on how to achieve this [here](/temas-populares/permisos.md#checking-for-permissions)). The check passes, but you still can't send the message and are greeted with `DiscordAPIError: Missing Access`.
 
 This error means your bot is missing `VIEW_CHANNEL`, and as such, can't send messages either.
 

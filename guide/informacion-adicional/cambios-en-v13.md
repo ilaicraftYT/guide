@@ -39,7 +39,7 @@ Revisa la sección de [hilos](/temas-populares/hilos.html) en esta guía para em
 
 El soporte para voz ha sido separado a un nuevo módulo. Ahora tienes que instalar [@discordjs/voice](https://github.com/discordjs/voice) para interactuar con la gateway especial de voz de Discord.
 
-Revisa la sección de [voz](/voice/) en esta guía para empezar a usarlos.
+Revisa la sección de [voz](/voz/) en esta guía para empezar a usarlos.
 
 ## Nuevo administrador de caché
 
@@ -122,7 +122,7 @@ Discord.js v13 hace el cambio a Discord API v9, donde ahora es **obligatorio** e
 
 Los atajos `Intents.ALL`, `Intents.NON_PRIVILEGED`, y `Intents.PRIVILEGED` han sido removidos para evitar que el usuario establezca `Intents` innecesarios.
 
-Consulte nuestro [artículo más detallado sobre el tema](/popular-topics/intents.html).
+Consulte nuestro [artículo más detallado sobre el tema](/temas-populares/intents.md).
 
 ```diff
 - const client = new Client({ ws: { intents: [Intents.FLAGS.GUILDS] } });
@@ -252,7 +252,7 @@ Evita usar cadenas como `Permissions` y `UserFlags`, hay "flags" en su lugar.
 
 ### Canales de mensajes directos
 
-En la API de Discord v8 y superior, los canales de mensajes directos no emiten el evento `CHANNEL_CREATE`, lo que significa que discord.js no puede añadirlos en caché automáticamente. Para que tu bot pueda recibir mensajes directos debes activar el [parcial (partial)](/popular-topics/partials.html) llamado `CHANNEL`.
+En la API de Discord v8 y superior, los canales de mensajes directos no emiten el evento `CHANNEL_CREATE`, lo que significa que discord.js no puede añadirlos en caché automáticamente. Para que tu bot pueda recibir mensajes directos debes activar el [parcial (partial)](/temas-populares/parciales.md) llamado `CHANNEL`.
 
 ### Versión para navegadores (Webpack builds)
 
@@ -1067,7 +1067,7 @@ Una `Collection` de roles los cuales son administrados por una integración.
 
 Proporciona soporte del gateway para los comandos de barra diagonal e interacciones con componentes.
 
-Para más información consulta las páginas para los [comandos de barra diagonal](/interraciones/respondiendo-a-comandos-de-barra.md) y los [componentes](/interacciones/botones.html#respondiendo-a-botones) de esta guía.
+Para más información consulta las páginas para los [comandos de barra diagonal](/interacciones/respondiendo-a-comandos-de-barra.md) y los [componentes](/interacciones/botones.html#respondiendo-a-botones) de esta guía.
 
 ### InteractionCollector
 

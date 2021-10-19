@@ -1,8 +1,17 @@
 {
+    "ignorePatterns": [
+        {
+            "pattern": "^http"
+        }
+    ],
     "replacementPatterns": [
         {
             "pattern": "^/",
-            "replacement": "/home/runner/work/guide/guide/guide/"
+            "replacement": "{{BASEURL}}/guide/"
+        },
+        {
+            "pattern": "\\.html",
+            "replacement": ".md"
         }
     ]
 }

@@ -40,12 +40,12 @@ client.login('tu-token-va-aquí');
 ```
 
 ::: tip
-Vamos a aprovechar [desestructuración](/additional-info/es6-syntax.md#desestructuración) en este tutorial para mantener la legibilidad.
+Vamos a aprovechar [desestructuración](/informacion-adicional/sintaxis-ES6.md#desestructuración) en este tutorial para mantener la legibilidad.
 :::
 
 ## Usando node-fetch
 
-node-fetch es un módulo ligero basado en `Promise` que trae la [Fetch API](https://developer.mozilla.org/es/docs/Web/API/Fetch_API), que está disponible desde los navegadores a Node.js. Si aún no está familiarizado con las promesas, debería leerlas [aquí](/additional-info/async-await.md).
+node-fetch es un módulo ligero basado en `Promise` que trae la [Fetch API](https://developer.mozilla.org/es/docs/Web/API/Fetch_API), que está disponible desde los navegadores a Node.js. Si aún no está familiarizado con las promesas, debería leerlas [aquí](/informacion-adicional/async-await.md).
 
 En este tutorial, crearemos un bot con dos comandos basados en API usando las APIs [random.cat](https://aws.random.cat) y [Urban Dictionary](https://www.urbandictionary.com).
 
@@ -158,7 +158,7 @@ Si ha seguido el tutorial, debería tener algo como esto:
 	</DiscordMessage>
 </DiscordMessages>
 
-Ahora, hagamos de esto un [embed](/popular-topics/embeds.md).
+Ahora, hagamos de esto un [embed](/temas-populares/incrustaciones.md).
 
 También vamos a definir una función de utilidad en la parte superior del archivo para que la inserción no produzca errores cuando el valor del campo supere los 1024 caracteres. Aquí hay un poco de código para hacer eso:
 

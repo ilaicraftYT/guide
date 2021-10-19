@@ -7,7 +7,7 @@
 * `<guild>` es un marcador de posición para el objeto <DocsLink path="class/Guild" />, como `<interaction>.guild` o `<client>.guilds.cache.get('<id>')`.
 * `<voiceChannel>`es un marcador de posición para el objeto <DocsLink path="class/VoiceChannel" />, como `<message>.member.voice.channel`
 
-Para obtener una explicación más detallada de las notaciones que se usan comúnmente en esta guía, los documentos y el servidor de soporte, consulte [aquí](informacion-adicional/notacion.md).
+Para obtener una explicación más detallada de las notaciones que se usan comúnmente en esta guía, los documentos y el servidor de soporte, consulte [aquí](/informacion-adicional/notacion.md).
 
 ## Administrativo
 
@@ -223,7 +223,7 @@ interaction.channel.send('Mi mensaje para reaccionar.').then(sentMessage => {
 ```
 
 ::: tip
-Si desea obtener más información sobre las reacciones, consulte [esta guía dedicada a las reacciones](/popular-topics/react.md).
+Si desea obtener más información sobre las reacciones, consulte [esta guía dedicada a las reacciones](/temas-populares/reacciones.md).
 :::
 
 ### ¿Cómo reinicio mi bot con un comando?
@@ -233,7 +233,7 @@ process.exit();
 ```
 
 ::: danger PELIGRO
-`process.exit()`solo matará su proceso de Node, pero al usar [PM2](http://pm2.keymetrics.io/), reiniciará el proceso cada vez que muera. Puede leer nuestra guía sobre PM2 [aquí](/improving-dev-environment/pm2.md).
+`process.exit()`solo matará su proceso de Node, pero al usar [PM2](http://pm2.keymetrics.io/), reiniciará el proceso cada vez que muera. Puede leer nuestra guía sobre PM2 [aquí](/mejorando-el-entorno-de-desarrollo/pm2.md).
 :::
 
 ## ¿Cuál es la diferencia entre un usuario y un miembro de servidor?
@@ -253,7 +253,7 @@ guild.members.fetch().then(fetchedMembers => {
 
 ::: warning ADVERTENCIA
 Esto solo funciona correctamente si tiene habilitada la intención `GUILD_PRESENCES` para su aplicación y cliente.
-Si desea obtener más información sobre las intenciones, consulte [esta guía dedicada a las intenciones](/popular-topics/intents.md).
+Si desea obtener más información sobre las intenciones, consulte [esta guía dedicada a las intenciones](/temas-populares/intents.md).
 :::
 
 ### ¿Cómo verifico qué función se agregó/eliminó y para qué miembro?
@@ -342,12 +342,12 @@ player.on(AudioPlayerStatus.Idle, () => connection.destroy());
 ```
 
 ::: tip
-Puede obtener más información sobre estos métodos en la [sección de voz de esta guía](/voice).
+Puede obtener más información sobre estos métodos en la [sección de voz de esta guía](/voz/).
 :::
 
 ### ¿Por qué algunos emojis se comportan de manera extraña?
 
-Si ha intentado utilizar [el método habitual para recuperar emojis Unicode](/popular-topics/react.md#unicode-emojis), es posible que haya notado que algunos caracteres no proporcionan los resultados esperados. Aquí hay un breve fragmento que lo ayudará con ese problema. ¡Puedes guardarlo en un archivo propio y usarlo en cualquier lugar que necesites! Alternativamente, siéntase libre de simplemente copiar y pegar los caracteres de abajo:
+Si ha intentado utilizar [el método habitual para recuperar emojis Unicode](/temas-populares/reacciones.md#unicode-emojis), es posible que haya notado que algunos caracteres no proporcionan los resultados esperados. Aquí hay un breve fragmento que lo ayudará con ese problema. ¡Puedes guardarlo en un archivo propio y usarlo en cualquier lugar que necesites! Alternativamente, siéntase libre de simplemente copiar y pegar los caracteres de abajo:
 
 ```js
 // emojiCharacters.js

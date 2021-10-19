@@ -3,7 +3,7 @@
 Discord ofrece a los desarrolladores la opción de crear comandos de barra integrados en el cliente. En esta sección, cubriremos cómo responder a estos comandos usando discord.js.
 
 ::: tip
-Necesita al menos un comando de barra registrado en su aplicación para continuar con las instrucciones en esta página. Si aún no lo ha hecho, consulte [la página anterior](interacciones/registrando-comandos-de-barra.md).
+Necesita al menos un comando de barra registrado en su aplicación para continuar con las instrucciones en esta página. Si aún no lo ha hecho, consulte [la página anterior](/interacciones/registrando-comandos-de-barra.md).
 :::
 
 ## Recibir interacciones

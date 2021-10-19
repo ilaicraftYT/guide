@@ -138,7 +138,7 @@ Estos funcionan de manera bastante similar a los `collectors` de mensajes y reac
 Puede crear los `collectors` en un `mensaje` o en un `canal`.
 :::
 
-Para obtener una guía detallada sobre la recepción de componentes de mensajes a través de `collectors`, consulte la [guía de colleciones](/popular-topics/collectors.md#interaction-collectors).
+Para obtener una guía detallada sobre la recepción de componentes de mensajes a través de `collectors`, consulte la [guía de colleciones](/temas-populares/recolectores.md#interaction-collectors).
 
 ## Respondiendo a select menus
 

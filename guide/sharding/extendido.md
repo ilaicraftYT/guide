@@ -1,7 +1,7 @@
 # Extended changes
 
 ::: tip
-This page is a follow-up and bases its code on [the previous page](/sharding/additional-information.md), which assumes knowledge of arguments and passing functions.
+This page is a follow-up and bases its code on [the previous page](/sharding/informacion-adicional.md), which assumes knowledge of arguments and passing functions.
 :::
 
 ## Sending messages across shards
@@ -87,7 +87,7 @@ function findEmoji(c, { nameOrId }) {
 }
 ```
 
-Next, you need to call the function in your command properly. If you recall from [this section](/sharding/additional-information.md#eval-arguments), it is shown there how to pass a function and arguments correctly.
+Next, you need to call the function in your command properly. If you recall from [this section](/sharding/informacion-adicional.md#eval-arguments), it is shown there how to pass a function and arguments correctly.
 
 ```js {4-7}
 client.on('interactionCreate', interaction => {

@@ -24,7 +24,7 @@ Si quieres obtener el objeto `Webhook` que envió el mensaje, puedes usar el mé
 ## Obteniendo webhooks
 
 ::: tip
-La búsqueda de webhooks siempre hará uso de colecciones y promesas. Si no comprendes ninguno de los conceptos, revísalos y luego vuelve a esta sección. Puedes leer sobre colecciones [aquí](/informacio-adicional/colecciones.md), y  sobre promesas [aquí](/informacion-adicional/async-await.md) y [aquí](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Using_promises).
+La búsqueda de webhooks siempre hará uso de colecciones y promesas. Si no comprendes ninguno de los conceptos, revísalos y luego vuelve a esta sección. Puedes leer sobre colecciones [aquí](/informacion-adicional/colecciones.md), y  sobre promesas [aquí](/informacion-adicional/async-await.md) y [aquí](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Using_promises).
 :::
 
 ### Obteniendo todos los webhooks de un Guild

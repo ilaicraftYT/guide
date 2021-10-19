@@ -34,7 +34,7 @@ manager.spawn();
 The above code utilizes the discord.js sharding manager to spawn the recommended amount of shards for your bot. The recommended amount should be approximately 1,000 guilds per shard. Note that you have to attach the event listener to `shardCreate` before calling `.spawn()` to prevent a race condition possibly preventing shard 0 from logging the successful launch. Even though you provide the token here, you will still need to send it over to the main bot file in `client.login()`, so don't forget to do that.
 
 ::: tip
-You can find the methods available for the ShardingManager class <DocsLink path="class/ShardingManager">here</DocsLink>. Though, you may not be making much use of this section, unlike the next feature we will explore, which you may learn about by clicking [this link](/sharding/additional-information.md).
+You can find the methods available for the ShardingManager class <DocsLink path="class/ShardingManager">here</DocsLink>. Though, you may not be making much use of this section, unlike the next feature we will explore, which you may learn about by clicking [this link](/sharding/informacion-adicional.md).
 :::
 
 ## Getting started
@@ -109,7 +109,7 @@ client.on('interactionCreate', interaction => {
 
 ## BroadcastEval
 
-Next, check out another handy sharding method known as <DocsLink path="class/ShardClientUtil?scrollTo=broadcastEval" type="method" />. This method makes all of the shards evaluate a given method, which recieves a `client` and a `context` argument. The `client` argument refers to the Client object of the shard evaluating it. You can read about the `context` argument [here](/sharding/additional-information.md#eval-arguments).
+Next, check out another handy sharding method known as <DocsLink path="class/ShardClientUtil?scrollTo=broadcastEval" type="method" />. This method makes all of the shards evaluate a given method, which recieves a `client` and a `context` argument. The `client` argument refers to the Client object of the shard evaluating it. You can read about the `context` argument [here](/sharding/informacion-adicional.md#eval-arguments).
 
 ```js
 client.shard
@@ -169,7 +169,7 @@ client.on('interactionCreate', interaction => {
 });
 ```
 
-The next section contains additional changes you might want to consider, which you may learn about by clicking [this link](/sharding/additional-information.md).
+The next section contains additional changes you might want to consider, which you may learn about by clicking [this link](/sharding/informacion-adicional.md).
 
 ## Resulting code
 

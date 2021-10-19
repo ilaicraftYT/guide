@@ -3,9 +3,9 @@
 Si estás leyendo esto, es posible que quieras aprender a cómo hacer un bot con discord.js. ¡Genial! Has llegado al lugar correcto.
 Esta guía te enseñará cosas como:
 - Cómo [crear un bot](/preparaciones/).
-- Cómo [crear](/creando-tu-bot/), [organizar](/gestor-de-comandos/) y expandir tus comandos.
-- Explicaciones a temas populares como por ejemplo [reacciones](/temas-populares/reacciones.md), [embeds](/temas-populares/incrustaciones.md) y [canvas](/temas-populares/canvas.md).
-- Trabajar con bases de datos como por ejemplo [sequelize](/sequelize/) y [keyv](/keyv/).
+- Cómo [crear](/creando-tu-bot/), [organizar](/usando-gestores/gestor-de-comandos.md) y expandir tus comandos.
+- Explicaciones a temas populares como por ejemplo [reacciones](/temas-populares/reacciones.md), [embeds](/temas-populares/incrustaciones.md) y [canvas](/miscelaneo/canvas.md).
+- Trabajar con bases de datos como por ejemplo [sequelize](/bases-de-datos/introduccion.md) y [keyv](/bases-de-datos/introduccion.md).
 - Empezar con [sharding](/sharding/).
 - Y mucho más.
 
