@@ -83,7 +83,7 @@ client.on('interactionCreate', async interaction => {
 });
 ```
 
-Ahora, debe cargar la imagen que desea usar en Canvas. Para tener suficiente cobertura, primero le mostraremos cómo cargar una imagen básica desde un directorio local. Usaremos [esta imagen](https://github.com/Awoocado/guide/blob/main/guide/temas-populares/images/canvas.jpg) como fondo en la imagen de bienvenida, pero puedes usar lo que quieras. Asegúrese de descargar el archivo, asígnele el nombre `wallpaper.jpg` y guárdelo dentro del mismo directorio que su archivo bot principal. 
+Ahora, debe cargar la imagen que desea usar en Canvas. Para tener suficiente cobertura, primero le mostraremos cómo cargar una imagen básica desde un directorio local. Usaremos [esta imagen](https://github.com/discordPrisma/guide/blob/main/guide/temas-populares/images/canvas.jpg) como fondo en la imagen de bienvenida, pero puedes usar lo que quieras. Asegúrese de descargar el archivo, asígnele el nombre `wallpaper.jpg` y guárdelo dentro del mismo directorio que su archivo bot principal. 
 
 ```js {5-14}
 client.on('interactionCreate', async interaction => {

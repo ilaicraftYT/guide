@@ -4,8 +4,8 @@ Ya que esta guía ha sido creada específicamente por la comunidad, trataremos d
 
 Las solicitudes pueden ser tan simples como: "añadan un ejemplo en [preguntas frecuentes](/temas-populares/faq.html)", o elaboradas como: "añadan una página acerca de [sharding](/sharding/getting-started.md)". Haremos todo lo posible para cumplir con todas las solicitudes siempre y cuando sean razonables.
 
-Para hacer una solicitud, entra [al issue tracker del repositorio](https://github.com/Awoocado/guide/issues) y [crea un nuevo issue](https://github.com/Awoocado/guide/issues/new). Ponle un título apropiado y cuéntanos tu solicitud en la descripción del issue. ¡Asegúrate de no crear una solicitud repetida!
+Para hacer una solicitud, entra [al issue tracker del repositorio](https://github.com/discordPrisma/guide/issues) y [crea un nuevo issue](https://github.com/discordPrisma/guide/issues/new). Ponle un título apropiado y cuéntanos tu solicitud en la descripción del issue. ¡Asegúrate de no crear una solicitud repetida!
 
 ::: tip
-También puedes [forkear el repositorio](https://github.com/Awoocado/guide) y [crear un pull request](https://github.com/Awoocado/guide/pulls) si quieres añadir algo por tu cuenta.
+También puedes [forkear el repositorio](https://github.com/discordPrisma/guide) y [crear un pull request](https://github.com/discordPrisma/guide/pulls) si quieres añadir algo por tu cuenta.
 :::

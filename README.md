@@ -23,4 +23,4 @@ Se tratan diversos temas en esta guía, como por ejemplo:
 
 ## Contribuyendo
 
-Si estás interesado en contribuir a esta guía, puedes ir al [issue tracker](https://github.com/Awoocado/guide/issues) del repositorio y crear un [nuevo issue](https://github.com/Awoocado/guide/issues/new). O si quieres añadir algo por tu cuenta, puedes [forkear](https://github.com/Awoocado/guide) el repositorio y crear un [pull request](https://github.com/Awoocado/guide/pulls).
+Si estás interesado en contribuir a esta guía, puedes ir al [issue tracker](https://github.com/discordPrisma/guide/issues) del repositorio y crear un [nuevo issue](https://github.com/discordPrisma/guide/issues/new). O si quieres añadir algo por tu cuenta, puedes [forkear](https://github.com/discordPrisma/guide) el repositorio y crear un [pull request](https://github.com/discordPrisma/guide/pulls).

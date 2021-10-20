@@ -28,7 +28,7 @@ const config = defineUserConfig<DefaultThemeOptions, ViteBundlerOptions>({
 	themeConfig: {
 		contributors: false,
 		sidebar,
-		repo: 'Awoocado/guide',
+		repo: 'discordPrisma/guide',
 		docsDir: 'guide',
 		sidebarDepth: 1, // estaba en 3, 'toy probando
 		editLinks: true,

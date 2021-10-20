@@ -9,7 +9,7 @@
         "dev": "vuepress dev guide",
         "build": "NODE_ENV=production vuepress build guide"
     },
-    "repository": "https://github.com/Awoocado/guide.git",
+    "repository": "https://github.com/discordPrisma/guide",
     "keywords": [
         "discord",
         "bot",
@@ -23,7 +23,7 @@
     "author": "Awoocado",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/Awoocado/guide/issues"
+        "url": "https://github.com/discordPrisma/guide/issues"
     },
     "homepage": "https://guia.palta.ml",
     "devDependencies": {

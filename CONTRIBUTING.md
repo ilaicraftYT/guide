@@ -5,7 +5,7 @@
 Clona el repositorio en la carpeta deseada, `cd` para entrar a la carpeta, e instala las dependencias.
 
 ```bash
-git clone https://github.com/awoocado/guide.git
+git clone https://github.com/discordPrisma/guide
 cd guide
 npm install
 ```

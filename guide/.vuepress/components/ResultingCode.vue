@@ -11,7 +11,7 @@
 import { defineProps, onMounted, ref } from 'vue';
 import { usePageData } from '@vuepress/client';
 
-const codeSamplesURL = 'https://github.com/Awoocado/guide/tree/main/code-samples/';
+const codeSamplesURL = 'https://github.com/discordPrisma/guide/tree/main/code-samples/';
 
 const props = defineProps({
 	path: String,
