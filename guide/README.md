@@ -23,7 +23,7 @@ Si no sabes JavaScript pero te gustaría aprender, aquí hay algunos links con l
 * [La guía y documentación de JavaScript de MDN](https://developer.mozilla.org/es/docs/Web/JavaScript)
 * [Y Google, tu mejor amigo](https://google.com)
 
-Toma tu tiempo, aprende algo sobre JavaScript, y cuando te sientas lo suficientemente seguro para aprender a hacer un bot, ¡Vuelve e inicia con la guía!
+Toma tu tiempo, aprende algo sobre JavaScript, y cuando te sientas lo suficientemente seguro para aprender a hacer un bot, ¡vuelve e inicia con la guía!
 
 <DiscordMessages>
 	<DiscordMessage profile="kirzu">[Mensaje]</DiscordMessage>
@@ -32,5 +32,5 @@ Toma tu tiempo, aprende algo sobre JavaScript, y cuando te sientas lo suficiente
 	</DiscordMessage>
 	<DiscordMessage profile="socram">Programar no es complicado, solucionar los bugs... tal vez.</DiscordMessage>
 	<DiscordMessage profile="nejire">[Mensaje]</DiscordMessage>
-	<DiscordMessage profile="andre">[Mensaje]</DiscordMessage>
+	<DiscordMessage profile="andre">Hay que tener paciencia si quieres algo decente.</DiscordMessage>
 </DiscordMessages>
