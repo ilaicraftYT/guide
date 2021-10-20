@@ -31,6 +31,6 @@ Toma tu tiempo, aprende algo sobre JavaScript, y cuando te sientas lo suficiente
 	  <span class="emoji-container"><img class="emoji-image" title="pray" src="https://twemoji.maxcdn.com/v/latest/svg/1f64f.svg" alt="" /></span>
 	</DiscordMessage>
 	<DiscordMessage profile="socram">Programar no es complicado, solucionar los bugs... tal vez.</DiscordMessage>
-	<DiscordMessage profile="nejire">[Mensaje]</DiscordMessage>
+	<DiscordMessage profile="nejire">Solo disfruta lo que haces y sé feliz en la vida</DiscordMessage>
 	<DiscordMessage profile="andre">Hay que tener paciencia si quieres algo decente.</DiscordMessage>
 </DiscordMessages>
