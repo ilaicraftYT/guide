@@ -26,7 +26,7 @@ Si no sabes JavaScript pero te gustaría aprender, aquí hay algunos links con l
 Toma tu tiempo, aprende algo sobre JavaScript, y cuando te sientas lo suficientemente seguro para aprender a hacer un bot, ¡vuelve e inicia con la guía!
 
 <DiscordMessages>
-	<DiscordMessage profile="kirzu">[Mensaje]</DiscordMessage>
+	<DiscordMessage profile="kirzu">Haz de tu vida un sueño, y de tu sueño una realidad.</DiscordMessage>
 	<DiscordMessage profile="awoo">Todo en la vida se basa en compartir
 	  <span class="emoji-container"><img class="emoji-image" title="pray" src="https://twemoji.maxcdn.com/v/latest/svg/1f64f.svg" alt="" /></span>
 	</DiscordMessage>
