@@ -62,9 +62,10 @@ export default {
 		{
 			text: 'Usando Gestores',
 			children: [
-				'/usando-gestores/gestor-de-comandos.md',
-				'/usando-gestores/gestor-de-eventos.md',
 				'/usando-gestores/gestor-de-interacciones.md',
+				'/usando-gestores/gestor-de-eventos.md',
+				'/usando-gestores/gestor-de-componentes.md',
+				'/usando-gestores/gestor-de-comandos.md',
 			],
 		},
 		{
@@ -105,6 +106,14 @@ export default {
 			]
 		},
 		{
+			text: 'Mejorando tu entorno de desarrollo',
+			children: [
+				'/mejorando-el-entorno-de-desarrollo/configurando-un-linter.md',
+				'/mejorando-el-entorno-de-desarrollo/pm2.md',
+				'/mejorando-el-entorno-de-desarrollo/package-json-scripts.md',
+			],
+		},
+		{
 			text: 'Fragmentación (Sharding)',
 			children: [
 				'/sharding/getting-started.md',
@@ -119,20 +128,12 @@ export default {
 			],
 		},
 		{
-			text: 'Mejorando tu entorno de desarrollo',
-			children: [
-				'/mejorando-el-entorno-de-desarrollo/configurando-un-linter.md',
-				'/mejorando-el-entorno-de-desarrollo/pm2.md',
-				'/mejorando-el-entorno-de-desarrollo/package-json-scripts.md',
-			],
-		},
-		{
 			text: 'Información adicional',
 			children: [
 				'/informacion-adicional/notacion.md',
 				'/informacion-adicional/sintaxis-es6.md',
-				'/informacion-adicional/colecciones.md',
 				'/informacion-adicional/async-await.md',
+				'/informacion-adicional/colecciones.md',
 				'/informacion-adicional/cambios-en-v13.md',
 				'/informacion-adicional/message-content-intent.md',
 			],

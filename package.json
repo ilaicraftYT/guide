@@ -7,7 +7,7 @@
         "lint": "eslint . --ext js,md,vue",
         "check-links": "find ./guide -name \\*.md -exec npx markdown-link-check -q -c ./mlc_config.json {} \\;",
         "dev": "vuepress dev guide",
-        "build": "NODE_ENV=production vuepress build guide"
+        "build": "vuepress build guide"
     },
     "repository": "https://github.com/discordPrisma/guide",
     "keywords": [
@@ -27,16 +27,16 @@
     },
     "homepage": "https://guia.palta.ml",
     "devDependencies": {
-        "@vuepress/plugin-docsearch": "^2.0.0-beta.23",
+        "@vuepress/plugin-docsearch": "^2.0.0-beta.27",
         "babel-eslint": "^10.0.1",
         "eslint": "^7.18.0",
         "eslint-config-sora": "^3.1.0",
         "eslint-plugin-markdown": "^1.0.0",
         "eslint-plugin-vue": "^7.5.0",
-        "markdown-link-check": "^3.8.7",
-        "vuepress-vite": "^2.0.0-beta.23"
+        "vuepress-vite": "^2.0.0-beta.24"
     },
     "dependencies": {
-        "@discord-message-components/vue": "^0.2.1"
+        "@discord-message-components/vue": "^0.2.1",
+        "@discordprisma/vue-message-components": "^0.2.1"
     }
 }

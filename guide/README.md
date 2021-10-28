@@ -25,12 +25,14 @@ Si no sabes JavaScript pero te gustaría aprender, aquí hay algunos links con l
 
 Toma tu tiempo, aprende algo sobre JavaScript, y cuando te sientas lo suficientemente seguro para aprender a hacer un bot, ¡vuelve e inicia con la guía!
 
+# Principales Contribuidores
+
+Cada una de estas personas ayudaron considerablemente ya sea traduciendo, configurando o aconsejando sobre el desarrollo de esta web.
+
 <DiscordMessages>
 	<DiscordMessage profile="kirzu">Haz de tu vida un sueño, y de tu sueño una realidad.</DiscordMessage>
-	<DiscordMessage profile="awoo">Todo en la vida se basa en compartir
-	  <span class="emoji-container"><img class="emoji-image" title="pray" src="https://twemoji.maxcdn.com/v/latest/svg/1f64f.svg" alt="" /></span>
-	</DiscordMessage>
+	<DiscordMessage profile="awoo">Todo en la vida se basa en compartir.</DiscordMessage>
 	<DiscordMessage profile="socram">Programar no es complicado, solucionar los bugs... tal vez.</DiscordMessage>
-	<DiscordMessage profile="nejire">Solo disfruta lo que haces y sé feliz en la vida</DiscordMessage>
+	<DiscordMessage profile="nejire">Solo disfruta lo que haces y sé feliz en la vida.</DiscordMessage>
 	<DiscordMessage profile="andre">Hay que tener paciencia si quieres algo decente.</DiscordMessage>
 </DiscordMessages>

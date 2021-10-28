@@ -1,3 +1,3 @@
 # Manejando MegaDB
 
-En construcción.
+En construcción. 🚧

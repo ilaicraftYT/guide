@@ -51,7 +51,7 @@ Este es un ejemplo de cómo puede verse una incrustación. Revisaremos la constr
 	</DiscordMessage>
 </DiscordMessages>
 
-## Usar el contructor de incrustaciones
+## Usar el constructor de incrustaciones
 
 Discord.js cuenta con la clase de utilidad <DocsLink path="class/MessageEmbed" /> para una construcción y manipulación sencilla de incrustaciones.
 

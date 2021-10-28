@@ -26,7 +26,7 @@ Para crear un hilo, llama al método `ThreadManager#create()`:
 
 ```js
 const thread = await channel.threads.create({
-	name: 'food-talk',
+	name: '¿Palta o Aguacate?',
 	autoArchiveDuration: 60,
 	reason: '¿Palta o Aguacate? Debate serio, abro hilo.',
 });
@@ -38,7 +38,7 @@ Para eliminar un hilo, usa el método `ThreadChannel#delete()`:
 <!-- eslint-skip -->
 
 ```js
-const thread = channel.threads.cache.find(x => x.name === 'food-talk');
+const thread = channel.threads.cache.find(x => x.name === '¿Palta o Aguacate?');
 await thread.delete();
 ```
 
@@ -49,7 +49,7 @@ Para unir tu bot a un canal de hilo, usa el método `ThreadChannel#join()`:
 <!-- eslint-skip -->
 
 ```js
-const thread = channel.threads.cache.find(x => x.name === 'food-talk');
+const thread = channel.threads.cache.find(x => x.name === '¿Palta o Aguacate?');
 if (thread.joinable) await thread.join();
 ```
 
@@ -58,7 +58,7 @@ Y para dejar uno, usa `ThreadChannel#leave()`;
 <!-- eslint-skip -->
 
 ```js
-const thread = channel.threads.cache.find(x => x.name === 'food-talk');
+const thread = channel.threads.cache.find(x => x.name === '¿Palta o Aguacate?');
 await thread.leave();
 ```
 ## Archivar, desarchivar y bloquear hilos
@@ -72,7 +72,7 @@ Para archivar o desarchivar un hilo, usa el método `ThreadChannel#setArchived()
 <!-- eslint-skip -->
 
 ```js
-const thread = channel.threads.cache.find(x => x.name === 'food-talk');
+const thread = channel.threads.cache.find(x => x.name === '¿Palta o Aguacate?');
 await thread.setArchived(true); // archivado
 await thread.setArchived(false); // desarchivado
 ```
@@ -83,7 +83,7 @@ Este mismo principio se aplica al bloqueo y desbloqueo de un hilo a través del 
 <!-- eslint-skip -->
 
 ```js 
-const thread = channel.threads.cache.find(x => x.name === 'food-talk');
+const thread = channel.threads.cache.find(x => x.name === '¿Palta o Aguacate?');
 await thread.setLocked(true); // bloqueo
 await thread.setLocked(false); // desbloqueo
 ```
@@ -122,7 +122,7 @@ Para agregar un miembro a un hilo, use el método `ThreadMemberManager#add()`:
 <!-- eslint-skip -->
 
 ```js
-const thread = channel.threads.cache.find(x => x.name === 'food-talk');
+const thread = channel.threads.cache.find(x => x.name === '¿Palta o Aguacate?');
 await thread.members.add('140214425276776449');
 ```
 
@@ -131,7 +131,7 @@ Y para eliminar un miembro de un hilo, usa `ThreadMemberManager#remove()`:
 <!-- eslint-skip -->
 
 ```js
-const thread = channel.threads.cache.find(x => x.name === 'food-talk');
+const thread = channel.threads.cache.find(x => x.name === '¿Palta o Aguacate?');
 await thread.members.remove('140214425276776449');
 ```
 ¡Y eso es! ¡Ahora ya sabes todo lo que hay que saber sobre cómo trabajar con hilos usando discord.js!

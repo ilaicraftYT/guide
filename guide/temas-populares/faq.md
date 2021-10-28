@@ -233,7 +233,7 @@ process.exit();
 ```
 
 ::: danger PELIGRO
-`process.exit()`solo matará su proceso de Node, pero al usar [PM2](http://pm2.keymetrics.io/), reiniciará el proceso cada vez que muera. Puede leer nuestra guía sobre PM2 [aquí](/mejorando-el-entorno-de-desarrollo/pm2.md).
+`process.exit()` solo matará su proceso de Node, pero al usar [PM2](http://pm2.keymetrics.io/), reiniciará el proceso cada vez que muera. Puede leer nuestra guía sobre PM2 [aquí](/mejorando-el-entorno-de-desarrollo/pm2.md).
 :::
 
 ## ¿Cuál es la diferencia entre un usuario y un miembro de servidor?
@@ -297,54 +297,6 @@ interaction.reply('Calculando...', { fetchReply: true })
 	});
 ```
 
-### ¿Cómo reproduzco música de YouTube?
-
-Para que esto funcione, necesita tener instalados `ytdl-core` y `@discordjs/voice`.
-
-```bash
-npm install ytdl-core @discordjs/voice
-```
-
-Además, es posible que necesite lo siguiente:
-
-```bash
-npm install --save @discordjs/opus # opus engine (if missing)
-sudo apt-get install ffmpeg # ffmpeg debian/ubuntu
-npm install ffmpeg-static # ffmpeg windows
-```
-
-```js
-const ytdl = require('ytdl-core');
-const {
-	AudioPlayerStatus,
-	StreamType,
-	createAudioPlayer,
-	createAudioResource,
-	joinVoiceChannel,
-} = require('@discordjs/voice');
-
-// ...
-
-const connection = joinVoiceChannel({
-	channelId: voiceChannel.id,
-	guildId: guild.id,
-	adapterCreator: guild.voiceAdapterCreator,
-});
-
-const stream = ytdl('link de youtube', { filter: 'audioonly' });
-const resource = createAudioResource(stream, { inputType: StreamType.Arbitrary });
-const player = createAudioPlayer();
-
-player.play(resource);
-connection.subscribe(player);
-
-player.on(AudioPlayerStatus.Idle, () => connection.destroy());
-```
-
-::: tip
-Puede obtener más información sobre estos métodos en la [sección de voz de esta guía](/voz/).
-:::
-
 ### ¿Por qué algunos emojis se comportan de manera extraña?
 
 Si ha intentado utilizar [el método habitual para recuperar emojis Unicode](/temas-populares/reacciones.md#unicode-emojis), es posible que haya notado que algunos caracteres no proporcionan los resultados esperados. Aquí hay un breve fragmento que lo ayudará con ese problema. ¡Puedes guardarlo en un archivo propio y usarlo en cualquier lugar que necesites! Alternativamente, siéntase libre de simplemente copiar y pegar los caracteres de abajo:
@@ -352,17 +304,15 @@ Si ha intentado utilizar [el método habitual para recuperar emojis Unicode](/te
 ```js
 // emojiCharacters.js
 module.exports = {
-	a: '🇦', b: '🇧', c: '🇨', d: '🇩',
-	e: '🇪', f: '🇫', g: '🇬', h: '🇭',
-	i: '🇮', j: '🇯', k: '🇰', l: '🇱',
-	m: '🇲', n: '🇳', o: '🇴', p: '🇵',
-	q: '🇶', r: '🇷', s: '🇸', t: '🇹',
-	u: '🇺', v: '🇻', w: '🇼', x: '🇽',
-	y: '🇾', z: '🇿', 0: '0️⃣', 1: '1️⃣',
-	2: '2️⃣', 3: '3️⃣', 4: '4️⃣', 5: '5️⃣',
-	6: '6️⃣', 7: '7️⃣', 8: '8️⃣', 9: '9️⃣',
-	10: '🔟', '#': '#️⃣', '*': '*️⃣',
-	'!': '❗', '?': '❓',
+	a: '🇦', b: '🇧', c: '🇨', d: '🇩',	e: '🇪',
+	f: '🇫', g: '🇬', h: '🇭',i: '🇮', j: '🇯',
+	k: '🇰', l: '🇱',	m: '🇲', n: '🇳', o: '🇴',
+	p: '🇵', q: '🇶', r: '🇷', s: '🇸', t: '🇹',
+	u: '🇺', v: '🇻', w: '🇼', x: '🇽',	y: '🇾',
+	z: '🇿', 0: '0️⃣', 1: '1️⃣', 2: '2️⃣', 3: '3️⃣',
+	4: '4️⃣', 5: '5️⃣', 6: '6️⃣', 7: '7️⃣', 8: '8️⃣',
+	9: '9️⃣', 10: '🔟', '#': '#️⃣', '*': '*️⃣',
+	'!': '❗', '?': '❓'
 };
 ```
 
