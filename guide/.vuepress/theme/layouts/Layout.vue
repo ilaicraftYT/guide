@@ -14,15 +14,6 @@
 			</template>
 		</Navbar>
 		<div class="content-wrapper">
-			<Notifications>
-				<Notification storage-key="v13-notice">
-					<span class="notification-icon"><PartyPopperIcon /></span>
-					<span>
-						Estás en la guía traducida de <a href="https://discordjs.guide">https://discordjs.guide</a> en español.
-						¡Visita <router-link to="/whats-new.html">¿Qué hay de nuevo?</router-link> para ver las novedades!
-					</span>
-				</Notification>
-			</Notifications>
 			<div class="sidebar-mask" @click="toggleSidebar(false)"></div>
 			<div class="sidebar-wrapper">
 				<Sidebar>
@@ -65,9 +56,6 @@ import Page from '@vuepress/theme-default/lib/client/components/Page.vue';
 import { useScrollPromise, useSidebarItems, useThemeLocaleData } from '@vuepress/theme-default/lib/client/composables';
 import Navbar from '../components/Navbar.vue';
 import Sidebar from '../components/Sidebar.vue';
-import Notifications from '../components/Notifications.vue';
-import Notification from '../components/Notification.vue';
-import PartyPopperIcon from '../components/icons/PartyPopper.vue';
 
 const page = usePageData();
 const frontmatter = usePageFrontmatter<DefaultThemePageFrontmatter>();
