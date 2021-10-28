@@ -10,7 +10,7 @@ Digamos que estás haciendo un bot para moderar su servidor. Querrás que el bot
 Pero, ¿qué pasa si intentas usar el comando de esta manera?
 
 <DiscordMessages>
-	<DiscordMessage profile="user">
+	<DiscordMessage profile="nejire">
 		!ban <DiscordMention>Villano</DiscordMention> Fue grosero con <DiscordMention>Victima</DiscordMention>.
 	</DiscordMessage>
 </DiscordMessages>
@@ -22,7 +22,7 @@ O tal vez alguien hace un mal uso de un comando, el bot aún puede aceptarlo, pe
 Digamos que alguien usó accidentalmente el comando de prohibición de esta manera:
 
 <DiscordMessages>
-	<DiscordMessage profile="user">
+	<DiscordMessage profile="kirzu">
 		!ban Fueron groseros con <DiscordMention>Victima</DiscordMention>.
 	</DiscordMessage>
 </DiscordMessages>
@@ -38,7 +38,7 @@ Eso significa que cuando recibe un mensaje de la API de Discord y contiene menci
 Si tu envías:
 
 <DiscordMessages>
-	<DiscordMessage profile="user">
+	<DiscordMessage profile="socram">
 		Creo que deberíamos agregar el rol <DiscordMention type="role" role-color="#3eaf7c">Moderador</DiscordMention> a <DiscordMention>BuenaPersona</DiscordMention>
 	</DiscordMessage>
 </DiscordMessages>
@@ -135,7 +135,7 @@ Si el usuario proporcionó un argumento, debería ser la mención del usuario, p
 ¡Y eso es todo! Simple, ¿no es así? Inicia tu bot y ve si funciona.
 
 <DiscordMessages>
-	<DiscordMessage author="Awoo" avatar="https://cdn.discordapp.com/avatars/224619540263337984/120934a52cccfd5838df9ee7f0ce7cc3.png?size=256">
+	<DiscordMessage profile="awoo">
 		!avatar <DiscordMention profile="bot" />
 	</DiscordMessage>
 	<DiscordMessage profile="bot" avatar="https://i.imgur.com/AfFp7pu.png">
@@ -184,7 +184,7 @@ client.on('messageCreate', async message => {
 Ahora, si envías un comando como el siguiente, siempre puedes estar seguro de que usarás la mención al principio para averiguar a quién banear, y validarás adecuadamente la mención:
 
 <DiscordMessages>
-<DiscordMessage profile="usuario">
+<DiscordMessage profile="andre">
 !ban <DiscordMention>Villano</DiscordMention> Fue grosero con <DiscordMention>Victima</DiscordMention>.
 </DiscordMessage>
 </DiscordMessages>

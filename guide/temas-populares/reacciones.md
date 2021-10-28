@@ -1,15 +1,3 @@
-<style scoped>
-.emoji-container {
-	display: inline-block;
-}
-
-.emoji-container .emoji-image {
-	width: 1.375rem;
-	height: 1.375rem;
-	vertical-align: bottom;
-}
-</style>
-
 # Reacciones
 
 ## Reaccionando a mensajes

@@ -18,6 +18,24 @@
 	--blurple-600: #3c45a5;
 	--blurple-630: #343b8f;
 
+	// Orange colors
+	--orange-430: #f48a70;
+	--orange-460: #f3a565;
+	--orange-500: #f29658;
+	--orange-530: #dc9f50;
+	--orange-560: rgb(196, 131, 71);
+	--orange-600: #a56f3c;
+	--orange-630: #8f5534;
+
+	// Purple colors
+	--purple-430: #8d5df4;
+	--purple-460: #8755e2;
+	--purple-500: #804ed1;
+	--purple-530: #7947c0;
+	--purple-560: #7140af; //rgb(146, 71, 196);
+	--purple-600: #69399f;
+	--purple-630: #61338f;
+
 	// Theme colors
 	--theme-430: var(--green-430);
 	--theme-460: var(--green-460);
@@ -78,6 +96,44 @@ html.guide-theme-blurple {
 	--theme-560: var(--blurple-560);
 	--theme-600: var(--blurple-600);
 	--theme-630: var(--blurple-630);
+
+	// Overrides
+
+	// brand colors
+	--c-brand: var(--theme-560);
+	--c-brand-light: var(--theme-460);
+
+	// text colors
+	--c-text-accent: var(--c-brand-light);
+}
+
+html.guide-theme-orange {
+	--theme-430: var(--orange-430);
+	--theme-460: var(--orange-460);
+	--theme-500: var(--orange-500);
+	--theme-530: var(--orange-530);
+	--theme-560: var(--orange-560);
+	--theme-600: var(--orange-600);
+	--theme-630: var(--orange-630);
+
+	// Overrides
+
+	// brand colors
+	--c-brand: var(--theme-560);
+	--c-brand-light: var(--theme-460);
+
+	// text colors
+	--c-text-accent: var(--c-brand-light);
+}
+
+html.guide-theme-purple {
+	--theme-430: var(--purple-430);
+	--theme-460: var(--purple-460);
+	--theme-500: var(--purple-500);
+	--theme-530: var(--purple-530);
+	--theme-560: var(--purple-560);
+	--theme-600: var(--purple-600);
+	--theme-630: var(--purple-630);
 
 	// Overrides
 

@@ -226,7 +226,7 @@ client.on('interactionCreate', interaction => {
 });
 ```
 
-El código es corto y limpio, pero no sería necesario si sigues la sección de [gestor de comandos](/gestor-de-comandos/) de la guía.
+El código es corto y limpio, pero no sería necesario si sigues la sección de [gestor de comandos](/usando-gestores/gestor-de-comandos.md) de la guía.
 
 También puedes renombrar las variables al desestructurar, si es necesario. Un buen ejemplo de esto es cuando estás usando una propiedad con un nombre que ya es usado, o entra en conflicto con una palabra clave reservada. La sintaxis es la siguiente:
 

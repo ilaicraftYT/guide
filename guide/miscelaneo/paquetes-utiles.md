@@ -69,50 +69,6 @@ const formatted = ms(difference);
 await interaction.followUp(`La diferencia de tiempo entre tus dos mensajes es ${formatted}`);
 ```
 
-## common-tags
-
-::: tip
-Documentación oficial: [Aquí](https://github.com/zspecza/common-tags)
-:::
-
-Common-tags es una biblioteca dedicada al trabajo con literales de plantilla.
-Hasta ahora, probablemente solo la hayas usado para interpolar variables en sus cadenas, pero puedes hacer mucho más.
-Si tiene tiempo, deberías consultar [la documentación de MDN sobre *literales etiquetados*](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Template_literals#plantillas_etiquetadas).
-
-¿Alguna vez le molestó que sus cadenas de texto multi-líneas tuvieran partes desagradables de sangría en ellas
-pero no quería eliminar la sangría en su código fuente?
-Common-tags lo tiene cubierto:
-
-```js
-const packageName = 'common-tags';
-
-if (someCondition) {
-	const poem = stripIndents`
-		Me gusta ${packageName}.
-		Hace mis cadenas de texto muy lindas,
-		deberías usarlo también.
-	`;
-
-	console.log(poem);
-}
-```
-Esto imprimirá tu pequeño poema como se esperaba, pero no tendrá tabulaciones ni otros espacios en blanco a la izquierda.
-
-¡Pero esto es sólo el comienzo! Otro conjunto de funciones útiles son las funciones relacionadas con la lista:
-`inlineLists`, `commaLists`, etc.
-Con ellos, puede interpolar fácilmente arreglos en sus cadenas sin que se vean feos:
-
-```js
-const options = ['agregue', 'elimine', 'edite'];
-
-// -> ¿Quieres que agregue, elimine o edite el canal?
-interaction.reply(oneLineCommaListsOr`
-	¿Quieres que ${options} el canal?
-`);
-```
-
-Consulta la documentación para encontrar más funciones útiles.
-
 ## chalk
 
 ::: tip

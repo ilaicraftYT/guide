@@ -22,7 +22,7 @@ collector.on('end', collected => {
 });
 ```
 :::danger ADVERTENCIA
-Para este ejemplo, se necesita el [intent](/intents) `GUILD_MESSAGES`
+Para este ejemplo, se necesita el [intent](/temas-populares/intents.md) `GUILD_MESSAGES`
 :::
 
 

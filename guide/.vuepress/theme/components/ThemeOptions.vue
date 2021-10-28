@@ -16,6 +16,20 @@
 					@click.prevent="setTheme({ colorTheme: 'blurple', persist: true })"
 				></button>
 			</li>
+			<li>
+				<button
+					class="orange-theme"
+					title="Orange"
+					@click.prevent="setTheme({ colorTheme: 'orange', persist: true })"
+				></button>
+			</li>
+			<li>
+				<button
+					class="purple-theme"
+					title="Purple"
+					@click.prevent="setTheme({ colorTheme: 'purple', persist: true })"
+				></button>
+			</li>
 		</ul>
 	</div>
 </template>
@@ -60,6 +74,22 @@ const { setTheme } = useColorTheme();
 
 					&:hover {
 						background-color: var(--blurple-530)
+					}
+				}
+
+				&.orange-theme {
+					background-color: var(--orange-500);
+
+					&:hover {
+						background-color: var(--orange-530)
+					}
+				}
+
+				&.purple-theme {
+					background-color: var(--purple-500);
+
+					&:hover {
+						background-color: var(--purple-530)
 					}
 				}
 			}

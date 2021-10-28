@@ -1,19 +1,11 @@
 export default {
-	'/extras/': [
-		{
-			text: 'Nuevo',
-			children: [
-				'/extras/',
-			],
-		},
-	],
 	'/voz/': [
 		{
 			text: 'Inicio',
 			children: [
 				'/',
-				'/solicitando-mas-contenido.md',
-				'/que-hay-de-nuevo.md',
+				'/inicio/solicitando-mas-contenido.md',
+				'/inicio/que-hay-de-nuevo.md',
 			],
 		},
 		{
@@ -37,15 +29,14 @@ export default {
 			text: 'Inicio',
 			children: [
 				'/',
-				'/solicitando-mas-contenido.md',
-				'/que-hay-de-nuevo.md',
+				'/inicio/solicitando-mas-contenido.md',
+				'/inicio/que-hay-de-nuevo.md',
 			],
 		},
 		{
-			text: 'Preparándose',
+			text: 'Preparaciones',
 			children: [
-				'/preparaciones/',
-				'/preparaciones/configurando-un-linter.md',
+				'/preparaciones/instalación-de-nodejs-y-discordjs.md',
 				'/preparaciones/configurando-una-app-bot.md',
 				'/preparaciones/agregando-tu-bot-a-servidores.md',
 			],
@@ -53,21 +44,9 @@ export default {
 		{
 			text: 'Creando tu bot',
 			children: [
-				'/creando-tu-bot/',
+				'/creando-tu-bot/poniendo-en-marcha-tu-bot.md',
 				'/creando-tu-bot/archivos-de-configuracion.md',
 				'/creando-tu-bot/agregando-mas-comandos.md',
-			],
-		},
-		{
-			text: 'Gestor de comandos',
-			children: [
-				'/gestor-de-comandos/',
-			],
-		},
-		{
-			text: 'Gestor de eventos',
-			children: [
-				'/gestor-de-eventos/',
 			],
 		},
 		{
@@ -78,6 +57,15 @@ export default {
 				'/interacciones/permisos-de-comandos-de-barra.md',
 				'/interacciones/botones.md',
 				'/interacciones/select-menus.md',
+			],
+		},
+		{
+			text: 'Usando Gestores',
+			children: [
+				'/usando-gestores/gestor-de-interacciones.md',
+				'/usando-gestores/gestor-de-eventos.md',
+				'/usando-gestores/gestor-de-componentes.md',
+				'/usando-gestores/gestor-de-comandos.md',
 			],
 		},
 		{
@@ -96,7 +84,6 @@ export default {
 				'/temas-populares/webhooks.md',
 				'/temas-populares/errores.md',
 				'/temas-populares/registro-de-auditoria.md',
-				'/temas-populares/canvas.md',
 			],
 		},
 		{
@@ -104,20 +91,32 @@ export default {
 			children: [
 				'/miscelaneo/analizar-argumentos-de-mencion.md',
 				'/miscelaneo/paquetes-utiles.md',
+				'/miscelaneo/rest-api.md',
+				'/miscelaneo/canvas.md',
 			],
 		},
 		{
-			text: 'Bases de datos',
+			text:'Bases de datos',
 			children: [
-				'/sequelize/',
-				'/sequelize/economia.md',
-				'/keyv/',
+				'/bases-de-datos/introduccion.md',
+				'/bases-de-datos/manejando-mongodb.md',
+				'/bases-de-datos/manejando-mysql.md',
+				'/bases-de-datos/manejando-redis.md',
+				'/bases-de-datos/manejando-megadb.md',
+			]
+		},
+		{
+			text: 'Mejorando tu entorno de desarrollo',
+			children: [
+				'/mejorando-el-entorno-de-desarrollo/configurando-un-linter.md',
+				'/mejorando-el-entorno-de-desarrollo/pm2.md',
+				'/mejorando-el-entorno-de-desarrollo/package-json-scripts.md',
 			],
 		},
 		{
 			text: 'Fragmentación (Sharding)',
 			children: [
-				'/sharding/',
+				'/sharding/getting-started.md',
 				'/sharding/informacion-adicional.md',
 				'/sharding/extendido.md',
 			],
@@ -125,14 +124,7 @@ export default {
 		{
 			text: 'OAuth2',
 			children: [
-				'/oauth2/',
-			],
-		},
-		{
-			text: 'Mejorando tu entorno de desarrollo',
-			children: [
-				'/mejorando-el-entorno-de-desarrollo/pm2.md',
-				'/mejorando-el-entorno-de-desarrollo/package-json-scripts.md',
+				'/oauth2/getting-started-with-oauth2.md',
 			],
 		},
 		{
@@ -140,10 +132,10 @@ export default {
 			children: [
 				'/informacion-adicional/notacion.md',
 				'/informacion-adicional/sintaxis-es6.md',
-				'/informacion-adicional/colecciones.md',
 				'/informacion-adicional/async-await.md',
-				'/informacion-adicional/rest-api.md',
+				'/informacion-adicional/colecciones.md',
 				'/informacion-adicional/cambios-en-v13.md',
+				'/informacion-adicional/message-content-intent.md',
 			],
 		},
 	],

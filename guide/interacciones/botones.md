@@ -3,7 +3,7 @@
 Con la API de `Componentes`, puede crear componentes de mensajes interactivos. En esta página, cubriremos cómo enviar, recibir y responder a `botones` usando discord.js.
 
 ::: tip
-Esta página es un seguimiento de la [página de interacciones (comandos de barra)](/interraciones/registrando-comandos-de-barra.md). Por favor, léalos primero con atención para que pueda comprender los métodos utilizados en esta sección.
+Esta página es un seguimiento de la [página de interacciones (comandos de barra)](/interacciones/registrando-comandos-de-barra.md). Por favor, léalos primero con atención para que pueda comprender los métodos utilizados en esta sección.
 :::
 
 ## Construyendo y enviando botones

@@ -25,7 +25,7 @@ Si obtienes un error diciendo "Bot requires a code grant", entonces ve a las con
 
 ## Creando y usando el enlace de invitación
 
-Para crear un link de invitación, dirígete a [My Apps](https://discord.com/developers/applications/me), abajo de la sección "Applications" y clic en la aplicación de tu bot.
+Para crear un link de invitación, dirígete a [My Applications](https://discord.com/developers/applications/me), abajo de la sección "Applications" y clic en la aplicación de tu bot.
 
 Al final de la página, encontrarás el generador de URL OAuth2 de Discord. Selecciona las opciones `bot` y `applications.commands`. Cuando selecciones la opción de `bot`, una lista de permisos aparecerán, permitiéndote configurar los permisos que tu bot necesite.
 

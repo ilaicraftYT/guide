@@ -1,4 +1,4 @@
-# Añadiendo más comandos
+# Agregando más comandos
 
 ::: tip
 Esta página es una continuación y se basa en el código de la [página anterior](/creando-tu-bot/) y asume que ya has leído la [sección de interacciones](/interacciones/respondiendo-a-comandos-de-barra.md) y estás familiarizado con su uso.
