@@ -8,7 +8,7 @@ Ayúdanos con un pull request en nuestro [repositorio](https://github.com/discor
 
 Al principio esta guía era una traducción pero el esperar un Pull request del repositorio original era agotador asi que el orden, contenido y orientación de esta página han cambiado.
 
-Actualmente la guía se centra en poder crear un bot público haciendo uso de los comandos de barra (/), la única excepción es el artículo de [gestor de comandos](/usando-gestores/gestor-de-comandos) donde se usa el evento messageCreate.
+Actualmente la guía se centra en poder crear un bot público haciendo uso de los comandos de barra (/), la única excepción es el artículo de [gestor de comandos](/usando-gestores/gestor-de-comandos.md) donde se usa el evento messageCreate.
 
 Todo el contenido de la guia usa discord.js v13. La versión anterior de esta guía se puede encontrar en [https://v12.discordjs.guide/](https://v12.discordjs.guide/) (en inglés).
 

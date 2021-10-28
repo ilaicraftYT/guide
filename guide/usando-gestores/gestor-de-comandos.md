@@ -1,7 +1,7 @@
 # Gestor de comandos
 
 ::: warning ADVERTENCIA
-El resto de la guía se centra en el uso de comandos de barra, esta sección solo es válida para bots que tengan acceso al intent privilegiado para leer el contenido de los mensajes. Si deseas saber más al respecto lee [nuestro artículo](/informacion-adicional/message-content-intent).
+El resto de la guía se centra en el uso de comandos de barra, esta sección solo es válida para bots que tengan acceso al intent privilegiado para leer el contenido de los mensajes. Si deseas saber más al respecto lee [nuestro artículo](/informacion-adicional/message-content-intent.md).
 :::
 
 Unless your bot project is a small one, it's not a very good idea to have a single file with a giant if/else if chain for commands. If you want to implement features into your bot and make your development process a lot less painful, you'll want to implement a command handler. Let's get started on that!
@@ -36,14 +36,14 @@ client.login(token);
 ```
 
 ::: tip
-We'll be moving over the commands created in [the previous page](/creating-your-bot/commands-with-user-input.md) as well, but for the sake of keeping the base code short, the code block above omits those commands.
+We'll be moving over the commands created in \[the previous page](/creating-your-bot/commands-with-user-input.md) as well, but for the sake of keeping the base code short, the code block above omits those commands.
 :::
 
 ## Individual command files
 
 Before anything, you may want to create a backup of your current bot file. If you've followed along so far, your entire folder structure should look something like this:
 
-![Current folder structure](./images/folder-structure.png)
+!\[Current folder structure](./images/folder-structure.png)
 
 In the same folder, create a new folder and name it `commands`. This is where you'll store all of your commands, of course. Head over to your `commands` folder, create a new file named `ping.js`, and copy & paste in the following code:
 
