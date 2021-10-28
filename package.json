@@ -36,7 +36,6 @@
         "vuepress-vite": "^2.0.0-beta.24"
     },
     "dependencies": {
-        "@discord-message-components/vue": "^0.2.1",
-        "@discordprisma/vue-message-components": "^0.2.1"
+        "@discord-message-components/vue": "^0.2.1"
     }
 }
