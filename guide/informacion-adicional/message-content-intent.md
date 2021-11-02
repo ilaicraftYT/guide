@@ -1,5 +1,9 @@
 # Message Content Intent
 
+::: tip
+Discord ya tiene varios documentos hablando del tema tales como su [política](https://support.discord.com/hc/es/articles/4410940809111-Message-Content-Intent-Review-Policy) (en inglés) como su propio [FAQ](https://support-dev.discord.com/hc/es/articles/4404772028055). Este artículo se encarga de explicarlo en español.
+:::
+
 Discord anunció que el contenido de los mensajes serán parte de un intent privilegiado. **Esto no afecta a los bots privados.**
 El contenido de los mensajes es considerado información sensible asi que la gran mayoría de bots públicos tendrán que pasar a comandos de barra para poder cumplir con las nuevas restricciones.
 
@@ -20,20 +24,14 @@ Incluso si no consigues el intent, el bot recibirá esas propiedades si el mensa
 * Contiene una mención al bot
 * Es del propio bot
 
-## Bots Privados 
-||Actualidad|Semanas antes de abril de 2022 (Message Content Intent se puede solicitar)|A partir de abril del 2022 (Message Content Intent es privilegiado)|
-|:-:|:-:|:-:|:-:|
-|Bot Privado en v12|Posiblemente uses el gestor de comandos basado en mensajes, no hay necesidad de actualizar si no necesitas ninguna función nueva (componentes, comandos de barra y menú contextual)|Nada deberia cambiar, los intents privilegiados puedes activarlos desde la dashboard de Discord o por último, no usar intents|<--|
-|Bot Privado en v13|¡Genial! Ya puedes usar todas las funciones nuevas que Discord ofrece|Nada deberia cambiar, los intents privilegiados puedes activarlos desde la dashboard de Discord|<--|
-
 
 ## Bots Públicos
-||Actualidad|Semanas antes de abril de 2022 (Message Content Intent se puede solicitar)|A partir de abril del 2022 (Message Content Intent es privilegiado)|
-|:-:|:-:|:-:|:-:|
-|Bot público genérico en v12|Tu bot va a tener que usar comandos de barra a partir de abril, considera pasar todos tus comandos a comandos de barra pronto (actualizar a v13)|Tu bot va a tener que usar comandos de barra a partir de abril, considera pasar todos tus comandos a comandos de barra pronto (actualizar a v13)|Tu bot ahora solo debe usar comandos de barra|
-|Bot público genérico en v13|Tu bot va a tener que usar comandos de barra a partir de abril, considera pasar todos tus comandos a comandos de barra pronto|Tu bot va a tener que usar comandos de barra a partir de abril, considera pasar todos tus comandos a comandos de barra pronto|Tu bot ahora solo debe usar comandos de barra|
-|Bot público que tiene sistema de moderación automática en v12|Nada impide que el bot use un prefijo personalizado, puedes seguir usando el mismo handler. Actualizar a v13 sería opcional si no necesitas moderar hilos o usar interaciones (componentes, comandos de barra y menú contextual)|<--|<--|
-|Bot público que tiene sistema de moderación automática en v13|Nada impide que el bot use un prefijo personalizado, puedes seguir usando el mismo handler|<--|<--|
+||25 de Octubre de  (Message Content Intent se puede solicitar)|A finales de abril del 2022 (Message Content Intent es privilegiado)|
+|:-:|:-:|:-:|
+|Bot genérico en v12|Tu bot va a tener que usar comandos de barra a partir de abril, considera pasar todos tus comandos a comandos de barra pronto (actualizar a v13)|Tu bot ahora solo debe usar comandos de barra|
+|Bot genérico en v13|Tu bot va a tener que usar comandos de barra a partir de abril, considera pasar todos tus comandos a comandos de barra pronto|Tu bot ahora solo debe usar comandos de barra|
+|Bot con sistema de moderación automática en v12|Nada impide que el bot use un prefijo personalizado, puedes seguir usando el mismo handler. Actualizar a v13 sería opcional si no necesitas moderar hilos o usar interaciones (componentes, comandos de barra y menú contextual)|<--|
+|Bot con sistema de moderación automática en v13|Nada impide que el bot use un prefijo personalizado, puedes seguir usando el mismo handler|<--|
 
 ## ¿Cómo saber qué tipo de bot tengo?
 Por la cantidad de servidores:
@@ -41,20 +39,28 @@ Por la cantidad de servidores:
 - Público: Tu bot ha sido diseñado para múltiples servidores, planeas verificarlo o ya está verificado
 
 Por las funciones que ofrece:
-- Moderación Automática: Tu bot tiene filtros automáticos para los mensajes (anti-links, anti-invites, malas palabras, etc.)
+- Moderación automática: Tu bot tiene filtros automáticos para los mensajes (anti-links, anti-invites, malas palabras, etc.)
 - Genérico: Tu bot tiene cualquier otro tipo de comando (informativos, roleplay, utilidad, diversión, sorteos, bienvenidas y niveles)
 
 ## Preguntas Frecuentes para bots públicos
 ### ¿Porqué los sistemas de niveles/experiencia no cuentan para conseguir el Intent de Message Content?
 Si bien es cierto que necesitas ver los mensajes para otorgar experiencia al miembro por su actividad, no necesitas el contenido del mismo. Los sistemas de niveles no cuentan como motivo para pedir el intent privilegiado.
 
-### No me gustan los comandos de barra, voy a pedir el Message Content Intent de todos modos 😛 🤙 👌
+### No me gustan los comandos de barra, voy a pedir el Message Content Intent de todos modos
 Al igual que los otros intents privilegiados (Guild Presences y Guild Members), vas a tener que explicar a Discord que planeas hacer con los mensajes. 
 
 ### Espera, ¿Eso significa que ya no van a existir los prefijos personalizados?
-Asi es, el hecho de que no puedas ver el contenido del mensaje significa que no vas a poder analizarlo para ver el prefix. De cierta manera estás obligado a usar comandos de barra.
-
-Como alternativa puedes usar las menciones como prefix (los bots reciben todas las propiedades de un mensaje si son mencionados)
+Asi es, el hecho de que no puedas ver el contenido del mensaje significa que no vas a poder analizarlo para ver el prefix. De cierta manera estás obligado a usar comandos de barra. Como alternativa puedes usar las menciones como prefix (los bots reciben todas las propiedades de un mensaje si son mencionados).
 
 ### Mi bot es de moderación, ¿De todos modos tengo que pasar mis comandos a comandos de barra o puedo seguir usando mi prefijo personalizado?
-Tal parece que Discord no evita que los bots de moderación (los únicos bots que pueden conseguir este intent) usen un prefijo personalizado. Actualizar a comandos de barra puede que no sea necesario pero tampoco tengo la menor idea 
+Tal parece que Discord no evita que los bots de moderación (los únicos bots que pueden conseguir este intent) usen un prefijo personalizado. Usar los comandos de barra son la mejor opción: evitarías, por ejemplo, múltiples llamadas a tu base de datos para comprobar el prefix.
+
+## ¿Cómo se va a comportar el evento `messageCreate` con este nuevo intent?
+
+Este intent tiene un comportamiento distinto a los intents privilegiados actuales. Este es el comportamiento del evento `messageCreate` ***cuando Discord lo active:***
+
+||Activado en el Dashboard|Desactivado en el dashboard|
+|:-:|:-:|:-:|
+|Asignado en mi código|El evento `messageCreate` tendrá todos los valores.|El evento `messageCreate` no tendrá los valores de `content`, `embeds`, `attachments` ni `components`|
+|No asignado en mi código|No recibirás el evento `messageCreate`|No recibirás el evento `messageCreate`|
+

@@ -102,6 +102,7 @@ export default {
 				'/bases-de-datos/manejando-mongodb.md',
 				'/bases-de-datos/manejando-mysql.md',
 				'/bases-de-datos/manejando-redis.md',
+				'/bases-de-datos/manejando-quickdb.md',
 				'/bases-de-datos/manejando-megadb.md',
 			]
 		},

@@ -66,5 +66,43 @@
 		"body": [
 			"<DocsLink section=\"collection\" path=\"${1:class/Collection?scrollTo=partition}\" type=\"method\" />"
 		]
+	},
+	"codes": {
+		"prefix": ["codes"],
+		"description": "Codes",
+		"body": [
+			":::: code-group",
+			"::: code-group-item Tab1",
+			"```js",
+			"//Tab 1",
+			"```",
+			":::",
+			"::: code-group-item Tab2",
+			"```js",
+			"//Tab 2",
+			"```",
+			":::",
+			"::::"
+		]
+	},
+	"tabs": {
+		"prefix": ["tabs"],
+		"description": "Tabs",
+		"body": [
+			":::: code-group",
+			"::: code-group-item Tab1",
+			"```:no-line-numbers",
+			"Tab 1",
+			"```",
+			":::",
+			"::: code-group-item Tab2",
+			"```:no-line-numbers",
+			"Tab 2",
+			"```",
+			":::",
+			"::::"
+		]
 	}
 }
+
+

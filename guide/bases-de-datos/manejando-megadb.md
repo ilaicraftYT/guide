@@ -1,3 +1,3 @@
-# Manejando MegaDB
+# Manejando megaDB
 
 En construcción. 🚧
