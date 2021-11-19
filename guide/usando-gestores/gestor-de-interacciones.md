@@ -42,7 +42,7 @@ bot-de-discord/
 ├── package-lock.json
 └── package.json
 ```
-Next, open your terminal and install the [`@discordjs/builders`](https://github.com/discordjs/builders) package by running `npm install @discordjs/builders`, as we'll be using the utility methods from this package in the following code samples.
+A continuación, abra su terminal e instale el módulo [`@discordjs/builders`](https://github.com/discordjs/builders) ejecutando `npm install @discordjs/builders`, ya que estaremos usando métodos que son de utilidad en este módulo siguiendo los codigos de ejemplo posteriores.
 
 En la misma carpeta, crea una nueva carpeta llamada `commands`. Aquí será donde guardaremos todos los comandos, por supuesto. Abre esa carpeta, crea un nuevo archivo llamado `ping.js`, y copia y pega el siguiente código:
 
