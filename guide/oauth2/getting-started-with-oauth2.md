@@ -1,14 +1,14 @@
-# Getting started with OAuth2
+# Introducción a OAuth2
 
-OAuth2 enables application developers to build applications that utilize authentication and data from the Discord API. Developers can use this to create things such as web dashboards to display user info, fetch linked third-party accounts like Twitch or Steam, access users' guild information without actually being in the guild, and much more. OAuth2 can significantly extend the functionality of your bot if used correctly.
+OAuth2 permite que los desarrolladores puedan crear aplicaciones que usen la autenticación y datos de la API de Discord. Los desarrolladores pueden usar esto para crear cosas como dashboards web para mostrar información del usuario, obtener cuentas de terceros vinculadas del mismo (como Twitch o Steam), acceder a la información de los servidores de los usuarios sin necesidad de estar en ellos, y mucho más. OAuth2 puede ampliar significativamente la funcionalidad de tu bot si es utilizado correctamente.
 
-## A quick example
+## Un ejemplo rápido
 
-### Setting up a basic web server
+### Configurando un servidor web básico
 
-Most of the time, websites use OAuth2 to get information about their users from an external service. In this example, we will use [`express`](https://expressjs.com/) to create a web server to use a user's Discord information to greet them. Start by creating three files: `config.json`, `index.js`, and `index.html`. 
+La mayoría del tiempo, los sitios web usan OAuth2 para obtener información acerca de sus usuarios desde un servicio externo. En este ejemplo, usaremos [`express`](https://expressjs.com/) para crear un servidor web que use la información de Discord de un usuario para darle la bienvenida. Comienza creando tres archivos: `config.json`, `index.js`, y `index.html`.
 
-`config.json` will be used to store the client ID, client secret, and server port.
+`config.json` se usará para almacenar la ID de la aplicación, el token de la misma, y el puerto del servidor.
 
 ```json
 {
@@ -18,7 +18,7 @@ Most of the time, websites use OAuth2 to get information about their users from 
 }
 ```
 
-`index.js` will be used to start the server and handle requests. When someone visits the index page (`/`), an HTML file will be sent in response.
+`index.js` será usado para iniciar el servidor web y manejar las peticiones. Cuando alguien visite la página principal (`/`), le enviará un archivo HTML como respuesta.
 
 ```js
 const express = require('express');
@@ -30,68 +30,69 @@ app.get('/', (request, response) => {
 	return response.sendFile('index.html', { root: '.' });
 });
 
-app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Servidor escuchando a http://localhost:${port}`));
 ```
 
-`index.html` will be used to display the user interface and OAuth data once logged in.
+`index.html` será usado para mostrar la interfaz de usuario, y los datos de OAuth una vez que la sesión se inicie.
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My Discord OAuth2 App</title>
+	<meta charset="utf-8">
+	<title>Mi aplicación OAuth2</title>
 </head>
 <body>
 	<div id="info">
-		Hoi!
+		¡Holi!
 	</div>
 </body>
 </html>
 ```
 
-After running `npm i express`, you can start your server with `node index.js`. Once started, connect to `http://localhost:53134`, and you should see "Hoi!".
+Después de ejecutar `npm i express`, podrás iniciar tu servidor web con `node index.js`. Una vez se inicie, abre `http://localhost:53134` y deberías de ver un "¡Holi!".
 
-::: tip
-Although we're using express, there are many other alternatives to handle a web server, such as: [fastify](https://www.fastify.io/), [koa](https://koajs.com/), and the [native Node.js http module](https://nodejs.org/api/http.html).
+::: consejo
+Aunque en este ejemplo estamos usando express, hay muchas otras alternativas para manejar un servidor web, tales como: [fastify](https://www.fastify.io/), [koa](https://koajs.com/), y el [módulo http nativo de Node.js](https://nodejs.org/api/http.html).
 :::
 
-### Getting an OAuth2 URL
+### Obteniendo una URL OAuth2
 
-Now that you have a web server up and running, it's time to get some information from Discord. Open [your Discord applications](https://discord.com/developers/applications/), create or select an application, and head over to the "OAuth2" page.
+Ahora que tienes un servidor web en funcionamiento, es hora de obtener información de Discord. Abre [aplicaciones de Discord](https://discord.com/developers/applications/), crea o selecciona una aplicación, y ve a la página "OAuth2".
 
-![OAuth2 application page](./images/oauth2-app-page.png)
+![Página OAuth2 de la aplicación](./images/oauth2-app-page.png)
 
-Take note of the `client id` and `client secret` fields. Copy these values into your `config.json` file; you'll need them later. For now, add a redirect URL to `http://localhost:53134` like so:
+Toma nota de los valores de `CLIENT ID` y `CLIENT SECRET`. Copia estos valores en tu archivo `config.json`; los necesitarás más tarde. Por ahora, añade una URL de redirección (`Redirects`) de esta manera:
 
-![Adding Redirects](./images/add-redirects.png)
+![Añadiendo  URLs de redirección](./images/add-redirects.png)
 
-Once you've added your redirect URL, you will want to generate an OAuth2 URL. Lower down on the page, you can conveniently find an OAuth2 URL Generator provided by Discord. Use this to create a URL for yourself with the `identify` scope.
+Una vez hayas añadido la URL de redirección, tendrás que generar una URL Oauth2. Más abajo en la página de OAuth2, puedes encontrar un conveniente generador de URLs OAuth2 proporcionado por Discord. Úsalo para crear una URL OAuth2 con el campo `ìdentify`.
 
-![Generate an OAuth2 URL](./images/generate-url.png)
+![Generar una URL OAuth2](./images/generate-url.png)
 
-The `identify` scope will allow your application to get basic user information from Discord. You can find a list of all scopes [here](https://discord.com/developers/docs/topics/oauth2#shared-resources-oauth2-scopes).
+El campo `identify` permitirá que tu aplicación pueda obtener información básica del usuario de Discord. Puedes encontrar una lista de todos los campos [aquí](https://discord.com/developers/docs/topics/oauth2#shared-resources-oauth2-scopes).
 
-### Implicit grant flow
+### Flujo implícito de subvenciones
 
-You have your website, and you have a URL. Now you need to use those two things to get an access token. For basic applications like [SPAs](https://en.wikipedia.org/wiki/Single-page_application), getting an access token directly is enough. You can do so by changing the `response_type` in the URL to `token`. However, this means you will not get a refresh token, which means the user will have to explicitly re-authorize when this access token has expired.
+Ya tienes el sitio web, y tienes la URL. Ahora necesitas usar estas dos cosas para obtener un token de acceso. Para applicaciones básicas como [SPAs](https://es.wikipedia.org/wiki/Single-page_application), obtener un token de acceso de manera directa es suficiente. Puedes hacerlo cambiando el `response_type` de la URL OAuth2 por `token`. Sin embargo, esto significa que no obtendrás un token de actualización, lo que significa que el usuario tendrá re-autorizarse explícitamente cuando el token de acceso haya expirado.
 
-After you change the `response_type`, you can test the URL right away. Visiting it in your browser, you will be directed to a page that looks like this:
+Después de que cambies el `response_type`, puedes probar la URL inmediatamente. Al visitarla en tu navegador, aparecerá una página que luce algo así:
 
-![Authorization Page](./images/authorize-app-page.png)
+![Página de autorización](./images/authorize-app-page.png)
 
-You can see that by clicking `Authorize`, you allow the application to access your username and avatar. Once you click through, it will redirect you to your redirect URL with a [fragment identifier](https://en.wikipedia.org/wiki/Fragment_identifier) appended to it. You now have an access token and can make requests to Discord's API to get information on the user.
+Puedes ver que al hacer click sobre `Autorizar`, permites que la aplicación pueda acceder a tu nombre de usuario, avatar y banner. Una vez lo autorices, te redirigirá a la URL de redirección que hayas especificado pero con un [fragmento identificador](https://es.wikipedia.org/wiki/Identificador_de_recursos_uniforme) añadido. Ahora tienes un token de acceso y puedes hacerle peticiones HTTP a la API de la Discord para obtener información sobre el usuario.
 
-Modify `index.html` to add your OAuth2 URL and to take advantage of the access token if it exists. Even though [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) is for working with query strings, it can work here because the structure of the fragment follows that of a query string after removing the leading "#".
+Modifica `index.html` par añadir tu URL OAuth2 y aprovechar el token de acceso si existe. Aunque [`URLSearchParams`](https://developer.mozilla.org/es/docs/Web/API/URLSearchParams) es para trabajar con Strings del query, aquí puede funcionar porque la estructura del fragmento de la URL sigue la de un String query tras eliminar el "#" inicial.
 
 ```html {4-26}
 <div id="info">
-	Hoi!
+	¡Holi!
 </div>
-<a id="login" style="display: none;" href="your-oauth2-URL-here">Identify Yourself</a>
+<a id="login" style="display: none;" href="your-oauth2-URL-here">Iniciar sesión</a>
 <script>
 	window.onload = () => {
-		const fragment = new URLSearchParams(window.location.hash.slice(1));
-		const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
+		const fragmento = new URLSearchParams(window.location.hash.slice(1));
+		const [accessToken, tokenType] = [fragmento.get('access_token'), fragmento.get('token_type')];
 
 		if (!accessToken) {
 			return document.getElementById('login').style.display = 'block';
@@ -102,9 +103,9 @@ Modify `index.html` to add your OAuth2 URL and to take advantage of the access t
 				authorization: `${tokenType} ${accessToken}`,
 			},
 		})
-			.then(result => result.json())
-			.then(response => {
-				const { username, discriminator } = response;
+			.then(res => res.json())
+			.then(respuesta => {
+				const { username, discriminator } = respuesta;
 				document.getElementById('info').innerText += ` ${username}#${discriminator}`;
 			})
 			.catch(console.error);
@@ -112,85 +113,86 @@ Modify `index.html` to add your OAuth2 URL and to take advantage of the access t
 </script>
 ```
 
-Here you grab the access token and type from the URL if it's there and use it to get info on the user, which is then used to greet them. The response you get from the [`/api/users/@me` endpoint](https://discord.com/developers/docs/resources/user#get-current-user) is a [user object](https://discord.com/developers/docs/resources/user#user-object) and should look something like this:
+Aquí obtienes el token de acceso y el tipo desde la URL si están ahí, y los usas para obtener información sobre el usuario, que se usará para darle la bienvenida. La respuesta que obtienes de la [endpoint `/api/users/@me`](https://discord.com/developers/docs/resources/user#get-current-user) es un [User Object](https://discord.com/developers/docs/resources/user#user-object) y se debería de ver algo así:
 
 ```json
 {
 	"id": "123456789012345678",
-	"username": "User",
+	"username": "Usuario",
 	"discriminator": "0001",
 	"avatar": "1cc0a3b14aec3499632225c708451d67",
 	...
 }
 ```
 
-In the following sections, we'll go over various details of Discord and OAuth2.
+En las siguientes secciones, repasaremos varios detalles de Discord y OAuth2.
 
-## More details
+## Más detalles
 
-### The state parameter
+### El parámetro state
 
-OAuth2's protocols provide a `state` parameter, which Discord supports. This parameter helps prevent [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) attacks and represents your application's state. The state should be generated per user and appended to the OAuth2 URL. For a basic example, you can use a randomly generated string encoded in Base64 as the state parameter.
+Los protocolos de OAuth2 proveen un parámetro `state`, el cual Discord soporta. Este parámetro ayuda a prevenir [ataques CSRF](https://es.wikipedia.org/wiki/Cross-site_request_forgery) y representa el state de la aplicación. El state debe generarse de manera única para cada usuario y se debe de añadir a la URL de OAuth2. Como un ejemplo básico, puedes utilizar un String generado aleatoriamente codificado en Base64 como parámetro de state.
 
 ```js {1-10,15-18}
-function generateRandomString() {
-	let randomString = '';
-	const randomNumber = Math.floor(Math.random() * 10);
+function generarStringAleatorio() {
+	let stringAleatorio = '';
+	const numeroAleatorio = Math.floor(Math.random() * 10);
 
-	for (let i = 0; i < 20 + randomNumber; i++) {
-		randomString += String.fromCharCode(33 + Math.floor(Math.random() * 94));
+	for (let i = 0; i < 20 + numeroAleatorio; i++) {
+		stringAleatorio += String.fromCharCode(33 + Math.floor(Math.random() * 94));
 	}
 
-	return randomString;
+	return stringAleatorio;
 }
 
 window.onload = () => {
 	// ...
 	if (!accessToken) {
-		const randomString = generateRandomString();
-		localStorage.setItem('oauth-state', randomString);
+		const stringAleatorio = generarStringAleatorio();
+		localStorage.setItem('oauth-state', stringAleatorio);
 
-		document.getElementById('login').href += `&state=${btoa(randomString)}`;
+		document.getElementById('login').href += `&state=${btoa(stringAleatorio)}`;
 		return document.getElementById('login').style.display = 'block';
 	}
 };
 ```
 
-When you visit a URL with a `state` parameter appended to it and then click `Authorize`, you'll notice that after being redirected, the URL will also have the `state` parameter appended, which you should then check against what was stored. You can modify the script in your `index.html` file to handle this.
+Cuando visitas una URL OAuth2 con un parámetro `state` añadiendo a ella, y luego haces click en `Authorize`, te darás cuenta de que después de ser redirigido, la URL también tendrá el parámetro `state` añadido, el cual deberás de comprobar con el `state` almacenado. Puedes modificar el script en tu archivo `index.html` para que haga esto.
 
 ```js {2,8-10}
-const fragment = new URLSearchParams(window.location.hash.slice(1));
-const [accessToken, tokenType, state] = [fragment.get('access_token'), fragment.get('token_type'), fragment.get('state')];
+const fragmento = new URLSearchParams(window.location.hash.slice(1));
+const [accessToken, tokenType, state] = [fragmento.get('access_token'), fragmento.get('token_type'), fragmento.get('state')];
 
 if (!accessToken) {
 	// ...
 }
 
 if (localStorage.getItem('oauth-state') !== atob(decodeURIComponent(state))) {
-	return console.log('You may have been clickjacked!');
+	return console.log('¡Puede que hayas sido víctima de clickjacking!');
+	// https://es.wikipedia.org/wiki/Clickjacking
 }
 ```
 
-::: tip
-Don't forgo security for a tiny bit of convenience!
+::: consejo
+No renuncies a la seguridad por un poco de comodidad.
 :::
 
-### Authorization code grant flow
+### Flujo de concesión de códigos de autorización
 
-What you did in the quick example was go through the `implicit grant` flow, which passed the access token straight to the user's browser. This flow is great and simple, but you don't get to refresh the token without the user, and it is less secure than going through the `authorization code grant` flow. This flow involves receiving an access code, which your server then exchanges for an access token. Notice that this way, the access token never actually reaches the user throughout the process.
+Lo que hiciste en el ejemplo rápido fue pasar por el flujo `implicit grant`, que pasó el token de acceso directamente al navegador del usuario. Este flujo es genial y simple, pero no consigues refrescar el token sin el usuario, y es menos seguro que pasar por el flujo de `authorization code grant`. Este flujo implica la recepción de un código de acceso, que su servidor intercambia por un token de acceso. Observe que de esta manera, el token de acceso nunca llega al usuario en todo el proceso.
 
-Unlike the [implicit grant flow](/oauth2/#implicit-grant-flow), you need an OAuth2 URL where the `response_type` is `code`. After you change the `response_type`, try visiting the link and authorizing your application. You should notice that instead of a hash, the redirect URL now has a single query parameter appended to it, i.e. `?code=ACCESS_CODE`. Modify your `index.js` file to access the parameter from the URL if it exists. In express, you can use the `request` parameter's `query` property.
+A diferencia del [flujo de concesión implícita](/oauth2/#implicit-grant-flow), necesitas una URL OAuth2 donde el `response_type` sea `code`. Después de cambiar el `response_type`, intenta visitar el enlace y autorizar tu aplicación. Deberías notar que en lugar de un hash, la URL de redirección tiene ahora un único parámetro de consulta añadido, es decir, `?code=ACCESS_CODE`. Modifica tu archivo `index.js` para acceder al parámetro desde la URL si existe. En express, puedes utilizar la propiedad `query` del parámetro `request`.
 
 ```js {2}
 app.get('/', (request, response) => {
-	console.log(`The access code is: ${request.query.code}`);
+	console.log(`El código de acceso es: ${request.query.code}`);
 	return response.sendFile('index.html', { root: '.' });
 });
 ```
 
-Now you have to exchange this code with Discord for an access token. To do this, you need your `client_id` and `client_secret`. If you've forgotten these, head over to [your applications](https://discord.com/developers/applications) and get them. You can use [`node-fetch`](https://www.npmjs.com/package/node-fetch) to make requests to Discord; you can install it with `npm i node-fetch`.
+Ahora tienes que intercambiar este código con Discord para obtener un token de acceso. Para ello, necesitas tu `client_id` y `client_secret`. Si los has perdido, vete a [aplicaciones de Discord](https://discord.com/developers/applications) y tenlos de vuelta. Puedes usar [`node-fetch`](https://www.npmjs.com/package/node-fetch) para hacer peticiones HTTP a Discord; puedes instalarlo usando `npm i node-fetch`.
 
-Require `node-fetch` and make your request.
+Requiere `node-fetch` y haz la petición HTTP.
 
 ```js {1,3,7-8,10-34}
 const fetch = require('node-fetch');
@@ -222,8 +224,8 @@ app.get('/', async ({ query }, response) => {
 			const oauthData = await oauthResult.json();
 			console.log(oauthData);
 		} catch (error) {
-			// NOTE: An unauthorized token will not throw an error;
-			// it will return a 401 Unauthorized response in the try block above
+			// NOTA: Un token no autorizado/válido no arrojará un error;
+			// devolverá una respuesta 401 "No autorizado" en el bloque "try" anterior
 			console.error(error);
 		}
 	}
@@ -233,45 +235,45 @@ app.get('/', async ({ query }, response) => {
 ```
 
 ::: warning ADVERTENCIA
-The content-type for the token URL must be `application/x-www-form-urlencoded`, which is why `URLSearchParams` is used.
+El `Content-Type` de la URL del token debe ser `application/x-www-form-urlencoded`, por lo que se utiliza `URLSearchParams`.
 :::
 
-Now try visiting your OAuth2 URL and authorizing your application. Once you're redirected, you should see an [access token response](https://discord.com/developers/docs/topics/oauth2#authorization-code-grant-access-token-response) in your console.
+Ahora, intenta visitar tu uRL OAuth2 y darle a `Authorize`. Una vez redirigido, deberías de ver una [respuesta de token de acceso](https://discord.com/developers/docs/topics/oauth2#authorization-code-grant-access-token-response) en tu consola.
 
 ```json
 {
-	"access_token": "an access token",
+	"access_token": "un token de acceso",
 	"token_type": "Bearer",
 	"expires_in": 604800,
-	"refresh_token": "a refresh token",
+	"refresh_token": "un token de refresco",
 	"scope": "identify"
 }
 ```
 
-With an access token and a refresh token, you can once again use the [`/api/users/@me` endpoint](https://discord.com/developers/docs/resources/user#get-current-user) to fetch the [user object](https://discord.com/developers/docs/resources/user#user-object).
+Con un token de acceso, y un token de refresco, puedes volver a usar la edpoint [`/api/users/@me`](https://discord.com/developers/docs/resources/user#get-current-user) para obtener el [User Object](https://discord.com/developers/docs/resources/user#user-object).
 
 <!-- eslint-skip -->
 ```js {3-7,9}
-const oauthData = await oauthResult.json();
+const datosOAuth = await oauthResult.json();
 
-const userResult = await fetch('https://discord.com/api/users/@me', {
+const resultado = await fetch('https://discord.com/api/users/@me', {
 	headers: {
-		authorization: `${oauthData.token_type} ${oauthData.access_token}`,
+		authorization: `${datosOAuth.token_type} ${datosOAuth.access_token}`,
 	},
 });
 
-console.log(await userResult.json());
+console.log(await resultado.json());
 ```
 
-::: tip
-To maintain security, store the access token server-side but associate it with a session ID that you generate for the user.
+::: consejo
+Para mantener la seguridad sana, almacena el token de acceso en el lado del servidor pero asócielo a una ID de sesión (cookies) que el servidor genere para el usuario.
 :::
 
-## Additional reading
+## Lecturas adicionales
 
 [RFC 6759](https://tools.ietf.org/html/rfc6749)  
-[Discord Docs for OAuth2](https://discord.com/developers/docs/topics/oauth2)
+[Documentación de la OAuth2 de Discord](https://discord.com/developers/docs/topics/oauth2)
 
-## Resulting code
+## Código resultante
 
 <ResultingCode path="oauth/simple-oauth-webserver" />
