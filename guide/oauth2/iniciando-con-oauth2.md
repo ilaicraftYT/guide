@@ -18,7 +18,7 @@ La mayoría del tiempo, los sitios web usan OAuth2 para obtener información ace
 }
 ```
 
-`index.js` será usado para iniciar el servidor web y manejar las peticiones. Cuando alguien visite la página principal (`/`), le enviará un archivo HTML como respuesta.
+`index.js` será usado para iniciar el servidor web y manejar las peticiones. Cuando alguien visite la página principal (`/`), se le enviará un archivo HTML como respuesta.
 
 ```js
 const express = require('express');
@@ -52,13 +52,13 @@ app.listen(port, () => console.log(`Servidor escuchando a http://localhost:${por
 
 Después de ejecutar `npm i express`, podrás iniciar tu servidor web con `node index.js`. Una vez se inicie, abre `http://localhost:53134` y deberías de ver un "¡Holi!".
 
-::: consejo
-Aunque en este ejemplo estamos usando express, hay muchas otras alternativas para manejar un servidor web, tales como: [fastify](https://www.fastify.io/), [koa](https://koajs.com/), y el [módulo http nativo de Node.js](https://nodejs.org/api/http.html).
+::: tip
+Aunque en este ejemplo estamos usando express, hay muchas otras alternativas para manejar un servidor web, tales como: [fastify](https://www.fastify.io/), [koa](https://koajs.com/), y el [módulo nativo http de Node.js](https://nodejs.org/api/http.html).
 :::
 
-### Obteniendo una URL OAuth2
+### Obteniendo una URL de OAuth2
 
-Ahora que tienes un servidor web en funcionamiento, es hora de obtener información de Discord. Abre [aplicaciones de Discord](https://discord.com/developers/applications/), crea o selecciona una aplicación, y ve a la página "OAuth2".
+Ahora que tienes un servidor web en funcionamiento, es hora de obtener información de Discord. Abre tus [aplicaciones de Discord](https://discord.com/developers/applications/), crea o selecciona una aplicación, y ve a la página "OAuth2".
 
 ![Página OAuth2 de la aplicación](./images/oauth2-app-page.png)
 
@@ -74,15 +74,15 @@ El campo `identify` permitirá que tu aplicación pueda obtener información bá
 
 ### Flujo implícito de subvenciones
 
-Ya tienes el sitio web, y tienes la URL. Ahora necesitas usar estas dos cosas para obtener un token de acceso. Para applicaciones básicas como [SPAs](https://es.wikipedia.org/wiki/Single-page_application), obtener un token de acceso de manera directa es suficiente. Puedes hacerlo cambiando el `response_type` de la URL OAuth2 por `token`. Sin embargo, esto significa que no obtendrás un token de actualización, lo que significa que el usuario tendrá re-autorizarse explícitamente cuando el token de acceso haya expirado.
+Ya tienes el sitio web, y la URL. Ahora necesitas usar estas dos cosas para obtener un token de acceso. Para applicaciones básicas como [SPAs](https://es.wikipedia.org/wiki/Single-page_application), obtener un token de acceso de manera directa es suficiente. Puedes hacerlo cambiando el `response_type` de la URL OAuth2 por `token`. Sin embargo, esto significa que no obtendrás un token de actualización, lo que significa que el usuario tendrá re-autorizarse explícitamente cuando el token de acceso haya expirado.
 
 Después de que cambies el `response_type`, puedes probar la URL inmediatamente. Al visitarla en tu navegador, aparecerá una página que luce algo así:
 
 ![Página de autorización](./images/authorize-app-page.png)
 
-Puedes ver que al hacer click sobre `Autorizar`, permites que la aplicación pueda acceder a tu nombre de usuario, avatar y banner. Una vez lo autorices, te redirigirá a la URL de redirección que hayas especificado pero con un [fragmento identificador](https://es.wikipedia.org/wiki/Identificador_de_recursos_uniforme) añadido. Ahora tienes un token de acceso y puedes hacerle peticiones HTTP a la API de la Discord para obtener información sobre el usuario.
+Puedes ver que al hacer click sobre `Autorizar` permites que la aplicación pueda acceder a tu nombre de usuario, avatar y banner. Una vez lo autorices, te redirigirá a la URL de redirección que hayas especificado pero con un [fragmento identificador](https://es.wikipedia.org/wiki/Identificador_de_recursos_uniforme) añadido. Ahora tienes un token de acceso y puedes hacerle peticiones HTTP a la API de la Discord para obtener información sobre el usuario.
 
-Modifica `index.html` par añadir tu URL OAuth2 y aprovechar el token de acceso si existe. Aunque [`URLSearchParams`](https://developer.mozilla.org/es/docs/Web/API/URLSearchParams) es para trabajar con Strings del query, aquí puede funcionar porque la estructura del fragmento de la URL sigue la de un String query tras eliminar el "#" inicial.
+Modifica `index.html` para añadir tu URL de OAuth2 y aprovechar el token de acceso si existe. Aunque [`URLSearchParams`](https://developer.mozilla.org/es/docs/Web/API/URLSearchParams) es para trabajar con strings del query, aquí puede funcionar porque la estructura del fragmento de la URL sigue la de un string query tras eliminar el "#" inicial.
 
 ```html {4-26}
 <div id="info">
@@ -157,7 +157,7 @@ window.onload = () => {
 };
 ```
 
-Cuando visitas una URL OAuth2 con un parámetro `state` añadiendo a ella, y luego haces click en `Authorize`, te darás cuenta de que después de ser redirigido, la URL también tendrá el parámetro `state` añadido, el cual deberás de comprobar con el `state` almacenado. Puedes modificar el script en tu archivo `index.html` para que haga esto.
+Cuando visitas una URL OAuth2 con un parámetro `state` añadiendo a ella, y luego haces click en `Autorizar`, te darás cuenta de que después de ser redirigido, la URL también tendrá el parámetro `state` añadido, el cual deberás de comprobar con el `state` almacenado. Puedes modificar el script en tu archivo `index.html` para que haga esto.
 
 ```js {2,8-10}
 const fragmento = new URLSearchParams(window.location.hash.slice(1));
@@ -173,7 +173,7 @@ if (localStorage.getItem('oauth-state') !== atob(decodeURIComponent(state))) {
 }
 ```
 
-::: consejo
+::: tip
 No renuncies a la seguridad por un poco de comodidad.
 :::
 
@@ -181,7 +181,7 @@ No renuncies a la seguridad por un poco de comodidad.
 
 Lo que hiciste en el ejemplo rápido fue pasar por el flujo `implicit grant`, que pasó el token de acceso directamente al navegador del usuario. Este flujo es genial y simple, pero no consigues refrescar el token sin el usuario, y es menos seguro que pasar por el flujo de `authorization code grant`. Este flujo implica la recepción de un código de acceso, que su servidor intercambia por un token de acceso. Observe que de esta manera, el token de acceso nunca llega al usuario en todo el proceso.
 
-A diferencia del [flujo de concesión implícita](/oauth2/#implicit-grant-flow), necesitas una URL OAuth2 donde el `response_type` sea `code`. Después de cambiar el `response_type`, intenta visitar el enlace y autorizar tu aplicación. Deberías notar que en lugar de un hash, la URL de redirección tiene ahora un único parámetro de consulta añadido, es decir, `?code=ACCESS_CODE`. Modifica tu archivo `index.js` para acceder al parámetro desde la URL si existe. En express, puedes utilizar la propiedad `query` del parámetro `request`.
+A diferencia del [flujo de concesión implícita](/oauth2/#flujo-implícito-de-subvenciones), necesitas una URL OAuth2 donde el `response_type` sea `code`. Después de cambiar el `response_type`, intenta visitar el enlace y autorizar tu aplicación. Deberías notar que en lugar de un hash, la URL de redirección tiene ahora un único parámetro de consulta añadido, es decir, `?code=ACCESS_CODE`. Modifica tu archivo `index.js` para acceder al parámetro desde la URL si existe. En express, puedes utilizar la propiedad `query` del parámetro `request`.
 
 ```js {2}
 app.get('/', (request, response) => {
@@ -190,7 +190,7 @@ app.get('/', (request, response) => {
 });
 ```
 
-Ahora tienes que intercambiar este código con Discord para obtener un token de acceso. Para ello, necesitas tu `client_id` y `client_secret`. Si los has perdido, vete a [aplicaciones de Discord](https://discord.com/developers/applications) y tenlos de vuelta. Puedes usar [`node-fetch`](https://www.npmjs.com/package/node-fetch) para hacer peticiones HTTP a Discord; puedes instalarlo usando `npm i node-fetch`.
+Ahora tienes que intercambiar este código con Discord para obtener un token de acceso. Para ello, necesitas tu `client_id` y `client_secret`. Si los has perdido, ve a [aplicaciones de Discord](https://discord.com/developers/applications) y obtenlos de vuelta. Puedes usar [`node-fetch`](https://www.npmjs.com/package/node-fetch) para hacer peticiones HTTP a Discord; puedes instalarlo usando `npm i node-fetch`.
 
 Requiere `node-fetch` y haz la petición HTTP.
 
@@ -238,7 +238,7 @@ app.get('/', async ({ query }, response) => {
 El `Content-Type` de la URL del token debe ser `application/x-www-form-urlencoded`, por lo que se utiliza `URLSearchParams`.
 :::
 
-Ahora, intenta visitar tu uRL OAuth2 y darle a `Authorize`. Una vez redirigido, deberías de ver una [respuesta de token de acceso](https://discord.com/developers/docs/topics/oauth2#authorization-code-grant-access-token-response) en tu consola.
+Ahora, intenta visitar tu URL de OAuth2 y darle a `Autorizar`. Una vez redirigido, deberías de ver una [respuesta de token de acceso](https://discord.com/developers/docs/topics/oauth2#authorization-code-grant-access-token-response) en tu consola.
 
 ```json
 {
@@ -250,7 +250,7 @@ Ahora, intenta visitar tu uRL OAuth2 y darle a `Authorize`. Una vez redirigido, 
 }
 ```
 
-Con un token de acceso, y un token de refresco, puedes volver a usar la edpoint [`/api/users/@me`](https://discord.com/developers/docs/resources/user#get-current-user) para obtener el [User Object](https://discord.com/developers/docs/resources/user#user-object).
+Con un token de acceso, y un token de refresco, puedes volver a usar la [endpoint `/api/users/@me`](https://discord.com/developers/docs/resources/user#get-current-user) para obtener el [User Object](https://discord.com/developers/docs/resources/user#user-object).
 
 <!-- eslint-skip -->
 ```js {3-7,9}
@@ -265,8 +265,8 @@ const resultado = await fetch('https://discord.com/api/users/@me', {
 console.log(await resultado.json());
 ```
 
-::: consejo
-Para mantener la seguridad sana, almacena el token de acceso en el lado del servidor pero asócielo a una ID de sesión (cookies) que el servidor genere para el usuario.
+::: tip
+Para mantener la seguridad, almacena el token de acceso en el lado del servidor pero asócielo a una ID de sesión (cookies) que el servidor genere para el usuario.
 :::
 
 ## Lecturas adicionales
